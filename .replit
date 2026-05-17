@@ -62,3 +62,7 @@ build = ["bash", "-c", "CI=true pnpm install && cd packages/db && pnpm exec driz
 [userenv]
 
 [userenv.shared]
+NODE_ENV = "development"
+PORT = "8080"
+LOG_LEVEL = "info"
+JWT_SECRET = "e817102e844321feb509b192ed5b962d6c19cf8865ec96ab3b72091d725b5c1769fc5281b5493ca55bf1fcd97d01649d8a1b642e4e9378586a46bd829f0c79f6"
