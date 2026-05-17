@@ -42,7 +42,7 @@ export function Categories({
                   height: "clamp(48px, 13vw, 62px)",
                   flexShrink: 0,
                   borderRadius: "50%",
-                  padding: "1.5px",
+                  padding: "1px",
                   background: isActive
                     ? "linear-gradient(135deg, #FED7AA, #F97316, #C2410C)"
                     : "linear-gradient(135deg, #FED7AA, #EA580C)",
