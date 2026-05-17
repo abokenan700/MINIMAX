@@ -361,10 +361,10 @@ export function AccountSheet() {
               <div style={{ textAlign: "center" }}>
                 <div style={{
                   width: 48, height: 48, borderRadius: 14,
-                  background: "linear-gradient(145deg,#D4AA70 0%,#9A7040 100%)",
+                  background: "linear-gradient(145deg,#FB923C 0%,#EA580C 100%)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   margin: "0 auto 12px",
-                  boxShadow: "0 4px 16px rgba(168,120,60,0.28)",
+                  boxShadow: "0 4px 16px rgba(249,115,22,0.28)",
                 }}>
                   <User size={22} color="#fff" strokeWidth={1.8} />
                 </div>
@@ -519,12 +519,12 @@ export function AccountSheet() {
                   type="submit" disabled={busy}
                   style={{
                     width: "100%", padding: "14px 0", borderRadius: 13, border: "none",
-                    background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)",
+                    background: busy ? "#CCCCCC" : "linear-gradient(135deg,#F97316 0%,#C2410C 100%)",
                     color: "#fff", fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700,
                     cursor: busy ? "not-allowed" : "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
                     transition: "all 0.2s ease",
-                    boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)",
+                    boxShadow: busy ? "none" : "0 5px 18px rgba(249,115,22,0.32)",
                   }}
                 >
                   {busy && <Loader size={16} className="animate-spin" />}
@@ -543,14 +543,14 @@ export function AccountSheet() {
                 {mode === "login" ? (
                   <p style={{ margin: 0, fontSize: 13.5, color: "#6B6560", fontFamily: "var(--font-main)" }}>
                     ليس لديك حساب؟{" "}
-                    <button type="button" onClick={() => switchMode("register")} style={{ background: "none", border: "none", cursor: "pointer", color: "#C8A060", fontWeight: 700, fontSize: 13.5, fontFamily: "var(--font-main)", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }}>
+                    <button type="button" onClick={() => switchMode("register")} style={{ background: "none", border: "none", cursor: "pointer", color: "#F97316", fontWeight: 700, fontSize: 13.5, fontFamily: "var(--font-main)", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }}>
                       أنشئ حساباً الآن
                     </button>
                   </p>
                 ) : (
                   <p style={{ margin: 0, fontSize: 13.5, color: "#6B6560", fontFamily: "var(--font-main)" }}>
                     لديك حساب بالفعل؟{" "}
-                    <button type="button" onClick={() => switchMode("login")} style={{ background: "none", border: "none", cursor: "pointer", color: "#C8A060", fontWeight: 700, fontSize: 13.5, fontFamily: "var(--font-main)", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }}>
+                    <button type="button" onClick={() => switchMode("login")} style={{ background: "none", border: "none", cursor: "pointer", color: "#F97316", fontWeight: 700, fontSize: 13.5, fontFamily: "var(--font-main)", padding: 0, textDecoration: "underline", textUnderlineOffset: 3 }}>
                       سجّل الدخول
                     </button>
                   </p>
@@ -587,7 +587,7 @@ export function AccountSheet() {
                   <p style={{ fontFamily: "var(--font-main)", fontSize: 17, fontWeight: 800, color: "#1A1814", marginBottom: 6 }}>تم تغيير كلمة المرور!</p>
                   <p style={{ fontSize: 13, color: "#8A8480", marginBottom: 26, lineHeight: 1.7 }}>يتم تسجيل دخولك تلقائياً…</p>
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <div style={{ width: 42, height: 42, borderRadius: "50%", background: "linear-gradient(135deg,#C8A060,#8B6230)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 42, height: 42, borderRadius: "50%", background: "linear-gradient(135deg,#F97316,#C2410C)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <Loader size={18} className="animate-spin" color="#fff" />
                     </div>
                   </div>
@@ -600,7 +600,7 @@ export function AccountSheet() {
                   </div>
                   <Input ref={firstRef} icon={<Mail size={17} color="#B8A88C" />} type="email" placeholder="البريد الإلكتروني المسجّل" value={forgotEmail} onChange={e => { setForgotEmail(e.target.value); setErr(""); }} autoComplete="email" required />
                   {err && <div role="alert" style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "11px 13px", borderRadius: 11, background: "#FEF0EE", border: "1px solid #FECACA", marginBottom: 13 }}><span style={{ fontSize: 14, flexShrink: 0 }}>⚠️</span><p style={{ fontSize: 13, color: "#DC2626", margin: 0, fontFamily: "var(--font-main)", lineHeight: 1.5 }}>{err}</p></div>}
-                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", marginTop: 4, borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
+                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", marginTop: 4, borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#F97316 0%,#C2410C 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: busy ? "none" : "0 5px 18px rgba(249,115,22,0.32)" }}>
                     {busy && <Loader size={16} className="animate-spin" />}إرسال رمز التحقق
                   </button>
                 </form>
@@ -618,7 +618,7 @@ export function AccountSheet() {
                   <Input icon={<Lock size={17} color="#B8A88C" />} type={showNewPass ? "text" : "password"} placeholder="كلمة المرور الجديدة (6 أحرف على الأقل)" value={newPass} onChange={e => { setNewPass(e.target.value); setErr(""); }} autoComplete="new-password" suffix={<button type="button" onClick={() => setShowNewPass(s => !s)} aria-label={showNewPass ? "إخفاء" : "إظهار"} style={{ background: "none", border: "none", cursor: "pointer", padding: 6, display: "flex" }}>{showNewPass ? <EyeOff size={16} color="var(--text-muted)" /> : <Eye size={16} color="var(--text-muted)" />}</button>} />
                   {newPass && <PasswordStrength password={newPass} />}
                   {err && <div role="alert" style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "11px 13px", borderRadius: 11, background: "#FEF0EE", border: "1px solid #FECACA", marginBottom: 13 }}><span style={{ fontSize: 14, flexShrink: 0 }}>⚠️</span><p style={{ fontSize: 13, color: "#DC2626", margin: 0, fontFamily: "var(--font-main)", lineHeight: 1.5 }}>{err}</p></div>}
-                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 11, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
+                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#F97316 0%,#C2410C 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 11, boxShadow: busy ? "none" : "0 5px 18px rgba(249,115,22,0.32)" }}>
                     {busy && <Loader size={16} className="animate-spin" />}تغيير كلمة المرور
                   </button>
                   <div style={{ display: "flex", justifyContent: "center" }}>

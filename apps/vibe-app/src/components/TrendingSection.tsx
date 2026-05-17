@@ -52,7 +52,7 @@ export function TrendingSection() {
             const rankColors = [
               { bg: "#D4AF37", text: "#1A1A1A" },
               { bg: "#B0B0B0", text: "#1A1A1A" },
-              { bg: "#A67C52", text: "#fff"    },
+              { bg: "#F97316", text: "#fff"    },
             ];
             const rank = index < 3 ? rankColors[index] : { bg: "var(--border)", text: "var(--text-muted)" };
 

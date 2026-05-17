@@ -8,15 +8,15 @@
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* ─── THAWQ Primary Brown Scale ─────────────────────────────── */
-  --gold:                  #B88A44;
-  --gold-dark:             #7A5323;
-  --gold-mid:              #C89A54;
+  /* ─── Primary Orange Scale ──────────────────────────────────── */
+  --gold:                  #F97316;
+  --gold-dark:             #C2410C;
+  --gold-mid:              #FB923C;
   --gold-light:            #F0F0F0;
   --gold-pale:             #FFFFFF;
-  --gold-accent:           #996B2E;
-  --gold-gradient-start:   #E8C98A;
-  --gold-warm:             #D0A561;
+  --gold-accent:           #EA580C;
+  --gold-gradient-start:   #FED7AA;
+  --gold-warm:             #F97316;
 
   /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
   --accent:                #C53A2B;
@@ -29,7 +29,7 @@
   --text-secondary:        #615648;
   --text-muted:            #908373;
   --text-price:            #1A1A1A;
-  --text-brand:            #7B5A28;
+  --text-brand:            #C2410C;
 
   /* ─── Semantic ───────────────────────────────────────────────── */
   --discount-bg:           var(--accent-bg);
@@ -47,7 +47,7 @@
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
-  --card-border:           rgba(184, 138, 68, 0.22);
+  --card-border:           rgba(249, 115, 22, 0.22);
   --card-img-bg:           #FFFFFF;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
@@ -64,9 +64,9 @@
   --shadow-md:      0 6px 20px rgba(42, 28, 12, 0.14);
   --shadow-lg:      0 12px 42px rgba(30, 20, 10, 0.20);
   --shadow-sheet:   0 -4px 40px rgba(30, 20, 10, 0.14);
-  --shadow-feature: 0 3px 10px rgba(28, 20, 10, 0.10), 0 0 0 1px rgba(184, 138, 68, 0.14);
+  --shadow-feature: 0 3px 10px rgba(28, 20, 10, 0.10), 0 0 0 1px rgba(249, 115, 22, 0.14);
   --shadow-success: 0 2px 8px rgba(74, 138, 58, 0.30);
-  --shadow-glow:    0 0 12px rgba(184, 138, 68, 0.35);
+  --shadow-glow:    0 0 12px rgba(249, 115, 22, 0.35);
   --shadow-sticky:  0 -2px 16px rgba(30, 20, 10, 0.10), 0 -1px 4px rgba(30, 20, 10, 0.06);
   --shadow-accent:  0 4px 12px rgba(197, 58, 43, 0.24);
 
@@ -88,9 +88,9 @@
 
   /* ─── Gradients ──────────────────────────────────────────────── */
   --gradient-brand-text:
-    linear-gradient(160deg, #B88A44 0%, #7A5323 35%, #E8C98A 65%, #4A341A 100%);
+    linear-gradient(160deg, #F97316 0%, #C2410C 35%, #FED7AA 65%, #EA580C 100%);
   --gradient-gold:
-    linear-gradient(135deg, #EFD8AD, #B88A44, #8A642D);
+    linear-gradient(135deg, #FED7AA, #F97316, #C2410C);
   --gradient-cta:
     linear-gradient(135deg, #111111, #2A231B);
   --gradient-accent:

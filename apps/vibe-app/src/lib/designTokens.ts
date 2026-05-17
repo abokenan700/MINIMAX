@@ -1,6 +1,6 @@
 /**
- * THAWQ Visual Identity — Applied to نخبة
- * Palette: #B88A44 · #E8C98A · #FAF7F2 · #2A241C · #FFFFFF
+ * نخبة Visual Identity
+ * Palette: #F97316 · #FED7AA · #FFFFFF · #2A241C · #FFFFFF
  * Accent:  #C53A2B (urgency — discounts, flash, notifications)
  *
  * استخدم CSS vars في style={{}} بدلاً من القيم المباشرة:
@@ -8,11 +8,11 @@
  */
 
 export const BRAND = {
-  gold:          "var(--gold)",              /* #A67C52 — THAWQ primary brown */
-  goldDark:      "var(--gold-dark)",         /* #6B4A00 */
-  goldAccent:    "var(--gold-accent)",       /* #8B5E38 */
-  goldLight:     "var(--gold-light)",        /* #EDE0D0 */
-  goldMid:       "var(--gold-mid)",          /* #C09060 */
+  gold:          "var(--gold)",              /* #F97316 — orange */
+  goldDark:      "var(--gold-dark)",         /* #C2410C */
+  goldAccent:    "var(--gold-accent)",       /* #EA580C */
+  goldLight:     "var(--gold-light)",        /* #F0F0F0 */
+  goldMid:       "var(--gold-mid)",          /* #FB923C */
   gradientGold:  "var(--gradient-gold)",
   gradientText:  "var(--gradient-brand-text)",
   gradientCta:   "var(--gradient-cta)",

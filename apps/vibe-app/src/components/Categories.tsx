@@ -44,8 +44,8 @@ export function Categories({
                   borderRadius: "50%",
                   padding: "1.5px",
                   background: isActive
-                    ? "linear-gradient(135deg, #D4B99A, #A67C52, #6B4A00)"
-                    : "linear-gradient(135deg, #C8A880, #8B6040)",
+                    ? "linear-gradient(135deg, #FED7AA, #F97316, #C2410C)"
+                    : "linear-gradient(135deg, #FED7AA, #EA580C)",
                   boxShadow: isActive ? "var(--shadow-glow)" : "none",
                   transition: "background var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard)",
                 }}
