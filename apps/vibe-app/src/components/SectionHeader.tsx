@@ -12,6 +12,18 @@ export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderPr
   return (
     <div className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-2">
+        {/* Orange accent bar — brand identity marker */}
+        <span
+          aria-hidden="true"
+          style={{
+            display: "inline-block",
+            width: "3px",
+            height: "17px",
+            borderRadius: "2px",
+            background: "var(--gradient-cta)",
+            flexShrink: 0,
+          }}
+        />
         <h2
           style={{
             fontFamily: "var(--font-main)",
@@ -19,7 +31,8 @@ export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderPr
             fontWeight: 700,
             color: "var(--text-primary)",
             margin: 0,
-            lineHeight: 1.3,
+            lineHeight: 1.25,
+            letterSpacing: "-0.1px",
           }}
         >
           {title}
@@ -31,6 +44,7 @@ export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderPr
         )}
         {extra}
       </div>
+
       {onViewAll && (
         <button
           onClick={onViewAll}
@@ -43,12 +57,13 @@ export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderPr
             background: "none",
             border: "none",
             cursor: "pointer",
-            padding: "4px 2px",
+            padding: "4px 0 4px 2px",
+            opacity: 0.85,
           }}
           aria-label={`عرض كل ${title}`}
         >
           <span>عرض الكل</span>
-          <ChevronLeft size={13} strokeWidth={2.5} />
+          <ChevronLeft size={12} strokeWidth={2.5} />
         </button>
       )}
     </div>

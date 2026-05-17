@@ -4,7 +4,7 @@ import { Home, LayoutGrid, Heart, ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";
 
 const GOLD     = "var(--text-brand)";
-const INACTIVE = "var(--text-muted)";
+const INACTIVE = "#AAAAAA";
 const BADGE_BG = "var(--error)";
 
 export type NavId = "home" | "categories" | "wishlist" | "cart";
@@ -26,11 +26,8 @@ const navItems: { id: NavId; label: string; Icon: React.ElementType }[] = [
 export function BottomNav() {
   const [location, navigate] = useLocation();
   const { count } = useCart();
-
-  /* ── مشكلة 67: roving tabindex refs ─────────────────────────── */
   const btnRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
-  /* مشكلة 55: استُبدل `as NavId` بتحقق صريح من الـ Record */
   function activeIdFromPath(path: string): NavId {
     if (path === "/" || path === "") return "home";
     const match = Object.entries(NAV_ROUTE).find(
@@ -43,40 +40,39 @@ export function BottomNav() {
   const activeId  = activeIdFromPath(location);
   const activeIdx = navItems.findIndex(n => n.id === activeId);
 
-  /* ── مشكلة 67: Arrow Key navigation (RTL-aware) ──────────────
-     التطبيق بالعربية RTL — ArrowLeft يتقدم للأمام، ArrowRight للخلف
-     Home → أول تبويب، End → آخر تبويب
-     Tab/Shift+Tab يخرج من الـ tablist كلياً (roving tabindex)   */
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLElement>) => {
       const total = navItems.length;
       let next = activeIdx;
-
       switch (e.key) {
-        case "ArrowLeft":  next = (activeIdx + 1) % total;              break;
-        case "ArrowRight": next = (activeIdx - 1 + total) % total;     break;
-        case "Home":       next = 0;                                     break;
-        case "End":        next = total - 1;                             break;
+        case "ArrowLeft":  next = (activeIdx + 1) % total;          break;
+        case "ArrowRight": next = (activeIdx - 1 + total) % total;  break;
+        case "Home":       next = 0;                                  break;
+        case "End":        next = total - 1;                          break;
         default:           return;
       }
-
       e.preventDefault();
       const nextItem = navItems[next];
       navigate(NAV_ROUTE[nextItem.id]);
-      /* نقل focus للزر المحدد (roving tabindex) */
       btnRefs.current[next]?.focus();
     },
     [activeIdx, navigate]
   );
 
-  // مشكلة 140: pb-safe كان يتطلب tailwindcss-safe-area plugin غير مُثبَّت → CSS env() مباشرة
   return (
     <nav
-      className="border-t h-full flex items-center justify-between px-2 pt-1.5"
-      style={{ background: "var(--bg-card)", borderColor: "var(--border)", paddingBottom: "max(6px, env(safe-area-inset-bottom, 0px))" }}
       role="tablist"
       aria-label="التنقل الرئيسي"
       onKeyDown={handleKeyDown}
+      className="h-full flex items-center justify-between px-1"
+      style={{
+        background: "rgba(255, 255, 255, 0.92)",
+        backdropFilter: "blur(20px) saturate(1.8)",
+        WebkitBackdropFilter: "blur(20px) saturate(1.8)",
+        borderTop: "1px solid rgba(0,0,0,0.06)",
+        paddingBottom: "max(6px, env(safe-area-inset-bottom, 0px))",
+        paddingTop: 6,
+      }}
     >
       {navItems.map(({ id, label, Icon }, idx) => {
         const isActive  = activeId === id;
@@ -89,35 +85,55 @@ export function BottomNav() {
             role="tab"
             aria-selected={isActive}
             aria-label={id === "cart" && count > 0 ? `${label} — ${count} عناصر` : label}
-            /* مشكلة 67: roving tabindex — التبويب النشط فقط قابل للوصول بـ Tab */
             tabIndex={isActive ? 0 : -1}
             onClick={() => navigate(NAV_ROUTE[id])}
-            className="flex flex-col items-center gap-[3px] flex-1 py-1 relative transition-opacity active:opacity-60"
+            className="flex flex-col items-center flex-1 py-1 relative"
+            style={{
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              gap: 3,
+              transition: "opacity var(--duration-fast) var(--ease-out)",
+            }}
           >
-            {/* مشكلة 62: تحريك width يُحرّك layout — استُبدل بـ scaleX (compositor-only) */}
-            <div
-              className="absolute top-0 start-1/2 h-[2.5px] rounded-full"
+            {/* Top indicator pill */}
+            <span
+              aria-hidden="true"
               style={{
-                width: 22,
-                background: GOLD,
+                position: "absolute",
+                top: -6,
+                left: "50%",
                 transform: `translateX(-50%) scaleX(${isActive ? 1 : 0})`,
+                width: 20,
+                height: 2.5,
+                borderRadius: "0 0 2px 2px",
+                background: "var(--gradient-cta)",
                 opacity: isActive ? 1 : 0,
-                transition: "transform var(--duration-base) var(--ease-standard), opacity var(--duration-base) var(--ease-standard)",
+                transition: "transform var(--duration-base) var(--ease-spring), opacity var(--duration-base) var(--ease-out)",
               }}
             />
 
-            <div className="relative">
+            <div className="relative" style={{ width: 24, height: 24, display: "flex", alignItems: "center", justifyContent: "center" }}>
               <Icon
-                size={20}
-                strokeWidth={isActive ? 2 : 1.6}
-                className="transition-colors duration-200"
-                style={{ color: isActive ? GOLD : INACTIVE }}
+                size={isActive ? 22 : 20}
+                strokeWidth={isActive ? 2.2 : 1.6}
+                style={{
+                  color: isActive ? GOLD : INACTIVE,
+                  transition: "color var(--duration-fast) var(--ease-out), width var(--duration-fast) var(--ease-out)",
+                }}
               />
               {showBadge && (
                 <span
-                  className="absolute -top-1.5 -end-1.5 text-white text-[8px] font-bold rounded-full w-[14px] h-[14px] flex items-center justify-center leading-none"
-                  style={{ background: BADGE_BG }}
                   aria-hidden="true"
+                  className="absolute -top-1.5 -end-1.5 text-white rounded-full flex items-center justify-center leading-none"
+                  style={{
+                    background: BADGE_BG,
+                    fontSize: 8,
+                    fontWeight: 800,
+                    width: 15,
+                    height: 15,
+                    border: "1.5px solid rgba(255,255,255,0.9)",
+                  }}
                 >
                   {count > 9 ? "9+" : count}
                 </span>
@@ -125,8 +141,14 @@ export function BottomNav() {
             </div>
 
             <span
-              className="leading-none transition-colors duration-200"
-              style={{ fontSize: "var(--text-2xs)", color: isActive ? GOLD : INACTIVE, fontWeight: isActive ? 700 : 500 }}
+              style={{
+                fontSize: "var(--text-2xs)",
+                fontFamily: "var(--font-main)",
+                color: isActive ? GOLD : INACTIVE,
+                fontWeight: isActive ? 700 : 500,
+                lineHeight: 1,
+                transition: "color var(--duration-fast) var(--ease-out), font-weight var(--duration-fast) var(--ease-out)",
+              }}
             >
               {label}
             </span>

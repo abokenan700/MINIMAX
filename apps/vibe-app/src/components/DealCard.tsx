@@ -1,6 +1,5 @@
 /**
- * مشكلة 32: ProductCard كان مُعرَّفاً مرتين — Products.tsx و FeaturedProducts.tsx
- * هذا المكون يخدم "عروض اليوم" (تمرير أفقي، عرض محدد، حدود ذهبية)
+ * DealCard — عروض اليوم (تمرير أفقي، عرض محدد)
  * نظيره للشبكة: FeaturedCard.tsx
  */
 import { Heart } from "lucide-react";
@@ -14,7 +13,6 @@ export function DealCard({ product }: { product: Product }) {
   const [, navigate] = useLocation();
   const liked = isWishlisted(product.id);
 
-  // مشكلة 120: aria-label يُعطي السياق لقارئ الشاشة بدل "article" المجهول
   return (
     <article
       aria-label={`${product.name} — ${product.price.toLocaleString("ar-SA")} ريال`}
@@ -41,20 +39,31 @@ export function DealCard({ product }: { product: Product }) {
           onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
           aria-label={liked ? "إزالة من المفضلة" : "إضافة للمفضلة"}
           className="absolute top-0 end-0 flex items-start justify-end"
-          style={{ minWidth: 44, minHeight: 44, padding: "8px 8px 0 0", background: "transparent", border: "none", cursor: "pointer" }}
+          style={{
+            minWidth: 44, minHeight: 44,
+            padding: "7px 7px 0 0",
+            background: "transparent", border: "none", cursor: "pointer",
+          }}
         >
-          <span className="w-6 h-6 flex items-center justify-center rounded-full transition-colors" style={{ background: "rgba(255,255,255,0.88)" }}>
+          <span
+            className="w-6 h-6 flex items-center justify-center rounded-full"
+            style={{
+              background: "rgba(255,255,255,0.88)",
+              boxShadow: "0 1px 4px rgba(0,0,0,0.10)",
+            }}
+          >
             <Heart
-              className={`w-3.5 h-3.5 transition-colors ${liked ? "fill-red-400 stroke-red-400" : "stroke-[#9D9EA4] fill-none"}`}
+              className={`w-3.5 h-3.5 ${liked ? "fill-red-400 stroke-red-400" : "fill-none"}`}
+              style={{ color: liked ? undefined : "#BBBBBB" }}
             />
           </span>
         </button>
       </div>
 
-      <div className="gold-divider" />
+      <div style={{ height: 1, background: "var(--border-separator)" }} />
 
       <div className="px-2 pt-1.5 pb-2">
-        <p className="leading-snug" style={{ fontSize: "clamp(8.5px, 2.3vw, 10px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.3px" }}>
+        <p style={{ fontSize: "clamp(8.5px, 2.3vw, 10px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.2px", lineHeight: 1.3 }}>
           {product.brand}
         </p>
         <p className="leading-snug line-clamp-1 mt-0.5" style={{ fontSize: "clamp(10px, 2.8vw, 12px)", color: "var(--text-primary)", fontWeight: 600 }}>
@@ -63,20 +72,27 @@ export function DealCard({ product }: { product: Product }) {
 
         <div className="flex items-center justify-between mt-1.5 gap-1">
           <div className="flex items-baseline gap-0.5">
-            <span className="font-bold" style={{ fontSize: "clamp(11px, 3vw, 13px)", color: "var(--text-price)" }}>
+            <span style={{ fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 800, color: "var(--text-price)" }}>
               {product.price.toLocaleString("ar-SA")}
             </span>
-            <span style={{ fontSize: "clamp(8px, 2.2vw, 9.5px)", color: "var(--text-secondary)" }}>ر.س</span>
+            <span style={{ fontSize: "clamp(8px, 2.2vw, 9px)", color: "var(--text-muted)" }}>ر.س</span>
           </div>
-          <span className="line-through" style={{ fontSize: "clamp(8px, 2.2vw, 9.5px)", color: "var(--text-muted)" }}>
+          <span className="line-through" style={{ fontSize: "clamp(8px, 2.2vw, 9px)", color: "var(--text-muted)" }}>
             {product.original_price.toLocaleString("ar-SA")}
           </span>
         </div>
 
         <div className="flex items-center justify-between mt-1.5">
           <span
-            className="rounded-full px-1.5 py-0.5 leading-none font-bold"
-            style={{ fontSize: "clamp(8.5px, 2.3vw, 10px)", background: "var(--discount-bg)", color: "var(--discount-text)" }}
+            style={{
+              fontSize: "clamp(8.5px, 2.3vw, 9.5px)",
+              fontWeight: 700,
+              background: "var(--discount-bg)",
+              color: "var(--discount-text)",
+              borderRadius: "var(--radius-pill)",
+              padding: "2px 7px",
+              border: "1px solid rgba(249,115,22,0.15)",
+            }}
           >
             خصم {product.discount}%
           </span>
