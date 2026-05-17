@@ -593,7 +593,7 @@ export function ProductDetailPage() {
           {/* Add to cart buttons */}
           <div style={{ display: "flex", gap: 10, marginBottom: 18 }} dir="rtl">
             <button onClick={handleAddToCart} disabled={isOOS}
-              style={{ flex: 1, padding: "13px", borderRadius: 14, border: "none", background: isOOS ? "var(--border)" : added ? "linear-gradient(135deg,var(--gold),var(--gold-accent))" : "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: isOOS ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.3s" }}>
+              style={{ flex: 1, padding: "13px", borderRadius: 14, border: "none", background: isOOS ? "var(--border)" : "var(--gradient-cta)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: isOOS ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: isOOS ? "none" : "var(--shadow-btn)" }}>
               {isOOS ? "نفذ المخزون" : added ? <><Check size={16} />تمت الإضافة</> : <><ShoppingBag size={16} />أضف للسلة</>}
             </button>
             <button onClick={handleAddToCart} disabled={isOOS}

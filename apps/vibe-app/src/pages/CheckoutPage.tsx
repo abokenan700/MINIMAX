@@ -29,7 +29,7 @@ function Stepper({ step }: { step: 1 | 2 }) {
       {steps.map((s, i) => (
         <div key={s.n} style={{ display: "flex", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--gold)" : s.n === step ? "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
+            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--gold)" : s.n === step ? "var(--gradient-cta)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
               {s.n < step ? <CheckCircle size={14} /> : s.n}
             </div>
             <span style={{ fontSize: 10, color: s.n === step ? "var(--text-brand)" : "var(--text-muted)", fontWeight: s.n === step ? 700 : 400, whiteSpace: "nowrap" }}>{s.label}</span>

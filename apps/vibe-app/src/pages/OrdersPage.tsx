@@ -175,7 +175,7 @@ export function OrdersPage() {
             <Package size={48} style={{ color: "#D4CFC9" }} strokeWidth={1.2} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 600, color: "var(--text-primary)", textAlign: "center" }}>سجّل دخولك لعرض طلباتك</p>
             <button onClick={() => openSheet()}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               تسجيل الدخول
             </button>
           </div>

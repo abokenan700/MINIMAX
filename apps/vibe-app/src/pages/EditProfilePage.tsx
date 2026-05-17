@@ -302,7 +302,7 @@ export function EditProfilePage() {
             <button
               type="submit"
               disabled={profileBusy || !profileChanged}
-              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (profileBusy || !profileChanged) ? "#D1CBBC" : "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (profileBusy || !profileChanged) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "all 0.2s ease", boxShadow: (profileBusy || !profileChanged) ? "none" : "0 4px 14px rgba(0,0,0,0.18)" }}
+              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (profileBusy || !profileChanged) ? "var(--bg-subtle)" : "var(--gradient-cta)", color: (profileBusy || !profileChanged) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (profileBusy || !profileChanged) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (profileBusy || !profileChanged) ? "none" : "var(--shadow-btn)" }}
             >
               {profileBusy ? <Loader size={16} className="animate-spin" /> : null}
               حفظ التغييرات
@@ -366,7 +366,7 @@ export function EditProfilePage() {
             <button
               type="submit"
               disabled={passBusy || !currentPass || !newPass}
-              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (passBusy || !currentPass || !newPass) ? "#D1CBBC" : "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (passBusy || !currentPass || !newPass) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "all 0.2s ease", boxShadow: (passBusy || !currentPass || !newPass) ? "none" : "0 4px 14px rgba(0,0,0,0.2)" }}
+              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (passBusy || !currentPass || !newPass) ? "var(--bg-subtle)" : "var(--gradient-cta)", color: (passBusy || !currentPass || !newPass) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (passBusy || !currentPass || !newPass) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (passBusy || !currentPass || !newPass) ? "none" : "var(--shadow-btn)" }}
             >
               {passBusy ? <Loader size={16} className="animate-spin" /> : null}
               تغيير كلمة المرور

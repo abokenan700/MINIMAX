@@ -37,9 +37,10 @@ export function NewArrivals() {
             style={{
               flexShrink: 0, padding: "7px 16px", borderRadius: 20, cursor: "pointer",
               fontFamily: "var(--font-main)", fontSize: "var(--text-sm)", fontWeight: 600,
-              background: activeTab === key ? "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)" : "var(--bg-card)",
+              background: activeTab === key ? "var(--gradient-cta)" : "var(--bg-card)",
               color: activeTab === key ? "#fff" : "var(--text-secondary)",
               border: activeTab === key ? "none" : "1px solid var(--border-warm)",
+              boxShadow: activeTab === key ? "var(--shadow-btn)" : "none",
               transition: "background 0.2s, color 0.2s",
             }}>
             {label}
@@ -87,7 +88,7 @@ export function NewArrivals() {
                     </span>
                   </button>
                 </div>
-                <div style={{ height: 1, background: "linear-gradient(90deg,transparent,var(--gold),transparent)", opacity: 0.4 }} />
+                <div style={{ height: 1, background: "var(--border)" }} />
                 <div style={{ padding: "8px 10px 12px" }}>
                   <p style={{ fontSize: "var(--text-2xs)", fontWeight: 700, color: "var(--text-brand)", marginBottom: 2 }}>{p.brand}</p>
                   <p className="line-clamp-2" style={{ fontSize: "var(--text-xs)", fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.35, marginBottom: 7 }}>{p.name}</p>

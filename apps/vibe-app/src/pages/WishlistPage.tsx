@@ -189,7 +189,7 @@ export function WishlistPage() {
           <p className="text-center" style={{ color: "var(--text-muted)", fontSize: "13px" }}>أضف المنتجات التي تعجبك لتجدها هنا</p>
           <button
             onClick={() => navigate("/categories")}
-            style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", marginTop: 4 }}
+            style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", marginTop: 4, boxShadow: "var(--shadow-btn)" }}
           >
             تسوّق الآن
           </button>

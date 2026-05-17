@@ -153,7 +153,7 @@ export function AddressBookPage() {
         </button>
         <h1 style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 700, color: "var(--text-primary)", flex: 1, textAlign: "center" }}>عناويني</h1>
         <button onClick={openAdd}
-          style={{ width: 40, height: 40, borderRadius: "50%", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+          style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--gradient-cta)", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: "var(--shadow-btn)" }}
           aria-label="إضافة عنوان">
           <Plus size={18} color="#fff" />
         </button>
@@ -176,7 +176,7 @@ export function AddressBookPage() {
               أضف عنوانك لتسريع عملية الطلب في المرة القادمة
             </p>
             <button onClick={openAdd}
-              style={{ padding: "12px 28px", borderRadius: 12, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              style={{ padding: "12px 28px", borderRadius: 12, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               إضافة عنوان
             </button>
           </div>

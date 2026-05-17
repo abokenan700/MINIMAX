@@ -79,7 +79,7 @@ function CouponInput() {
         </div>
         {!applied && (
           <button onClick={() => void apply()} disabled={busy}
-            style={{ padding: "10px 16px", borderRadius: 12, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: busy ? 0.7 : 1 }}>
+            style={{ padding: "10px 16px", borderRadius: 12, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: busy ? 0.7 : 1, boxShadow: "var(--shadow-btn)" }}>
             {busy ? "..." : "تطبيق"}
           </button>
         )}
