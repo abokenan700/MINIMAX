@@ -3,6 +3,7 @@ import { Bell, User } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -69,6 +70,10 @@ export function Header() {
 
       {/* ─── Actions ──────────────────────────────────────────────── */}
       <div className="flex items-center gap-0.5">
+        {/* Theme Switcher */}
+        <ThemeSwitcher />
+
+        {/* Notifications */}
         <button
           className="flex items-center justify-center rounded-full"
           style={{
@@ -100,6 +105,7 @@ export function Header() {
           />
         </button>
 
+        {/* Account */}
         <button
           className="flex items-center justify-center rounded-full"
           style={{

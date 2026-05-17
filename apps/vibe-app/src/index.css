@@ -128,6 +128,476 @@
   --ease-bounce:     cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ════════════════════════════════════════════════════════════════════
+   IDENTITY 01 — Contemporary Luxury (الفاخر المعاصر)
+   Navy Midnight + Royal Gold
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme="01"] {
+  --gold:                  #C9A84C;
+  --gold-dark:             #A8893A;
+  --gold-mid:              #D4B566;
+  --gold-light:            #F5E6C8;
+  --gold-pale:             #FAF0DC;
+  --gold-accent:           #A8893A;
+  --gold-gradient-start:   #C9A84C;
+  --gold-warm:             #C9A84C;
+
+  --accent:                #C9A84C;
+  --accent-bg:             #FAF0DC;
+  --accent-light:          #FDF7EC;
+  --accent-text:           #8A6A2A;
+
+  --text-primary:          #0C0A07;
+  --text-secondary:        #2E2A22;
+  --text-tertiary:         #6B6257;
+  --text-muted:            #8A7F6E;
+  --text-placeholder:      #B8AE9E;
+  --text-price:            #0C0A07;
+  --text-brand:            #C9A84C;
+
+  --success:               #15803D;
+  --success-bg:            #F0FDF4;
+  --error:                 #BE123C;
+  --error-bg:              #FFF1F2;
+  --warning:               #B45309;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FAF0DC;
+  --discount-text:         #8A6A2A;
+
+  --bg-body:               #FEFCF8;
+  --bg-page:               #FEFCF8;
+  --bg-card:               #FFFFFF;
+  --bg-surface-warm:       #FAF6EE;
+  --bg-surface-subtle:     #F5F0E8;
+  --bg-subtle:             #F0EAE0;
+  --bg-hover:              #FAF6EE;
+  --bg-cta-dark:           #0F172A;
+
+  --card-bg:               #FFFFFF;
+  --card-border:           rgba(201, 168, 76, 0.18);
+  --card-img-bg:           #FAF6EE;
+
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FAF6EE;
+  --input-border:          rgba(201, 168, 76, 0.28);
+  --input-border-focus:    #C9A84C;
+
+  --border:                rgba(201, 168, 76, 0.15);
+  --border-warm:           rgba(201, 168, 76, 0.22);
+  --border-separator:      rgba(201, 168, 76, 0.10);
+  --border-orange:         rgba(201, 168, 76, 0.22);
+
+  --shadow-xs:    0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-sm:    0 2px 4px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md:    0 4px 8px rgba(15, 23, 42, 0.08), 0 8px 16px rgba(15, 23, 42, 0.06);
+  --shadow-lg:    0 8px 16px rgba(15, 23, 42, 0.10), 0 20px 40px rgba(15, 23, 42, 0.08);
+  --shadow-xl:    0 16px 32px rgba(15, 23, 42, 0.12), 0 32px 64px rgba(15, 23, 42, 0.08);
+  --shadow-sheet: 0 -4px 12px rgba(15, 23, 42, 0.08), 0 -16px 48px rgba(15, 23, 42, 0.10);
+  --shadow-feature: 0 2px 4px rgba(15,23,42,0.06), 0 6px 12px rgba(15,23,42,0.05), 0 0 0 1px rgba(201,168,76,0.18);
+  --shadow-card:  0 2px 4px rgba(15, 23, 42, 0.05), 0 6px 16px rgba(15, 23, 42, 0.06);
+  --shadow-sticky: 0 -1px 0 rgba(201,168,76,0.15), 0 -8px 24px rgba(15,23,42,0.08);
+  --shadow-btn:   0 4px 8px rgba(201,168,76,0.30), 0 8px 24px rgba(15,23,42,0.20);
+  --shadow-btn-hover: 0 6px 12px rgba(201,168,76,0.40), 0 12px 32px rgba(15,23,42,0.25);
+  --shadow-success: 0 2px 8px rgba(201,168,76,0.30), 0 4px 16px rgba(201,168,76,0.20);
+  --shadow-glow:  0 0 32px rgba(201, 168, 76, 0.28);
+
+  --radius-xs:     0.25rem;
+  --radius-sm:     0.375rem;
+  --radius-md:     0.625rem;
+  --radius-lg:     0.875rem;
+  --radius-card:   0.75rem;
+  --radius-xl:     1.125rem;
+  --radius-pill:   9999px;
+
+  --gradient-brand-text:   linear-gradient(145deg, #C9A84C 0%, #A8893A 100%);
+  --gradient-gold:         linear-gradient(135deg, #C9A84C 0%, #A8893A 100%);
+  --gradient-cta:          linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  --gradient-cta-hover:    linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+  --gradient-accent:       linear-gradient(135deg, #C9A84C 0%, #A8893A 100%);
+  --gradient-warm:         linear-gradient(135deg, #FAF6EE 0%, #F5F0E8 100%);
+  --gradient-img-overlay:  linear-gradient(to top, rgba(15,23,42,0.04) 0%, transparent 60%);
+
+  --duration-fast:   0.18s;
+  --duration-base:   0.32s;
+  --duration-slow:   0.56s;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   IDENTITY 02 — Arabic Heritage Fresh (النضارة العربية)
+   Emerald Deep + Amber Warm
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme="02"] {
+  --gold:                  #065F46;
+  --gold-dark:             #064E3B;
+  --gold-mid:              #059669;
+  --gold-light:            #D1FAE5;
+  --gold-pale:             #ECFDF5;
+  --gold-accent:           #047857;
+  --gold-gradient-start:   #065F46;
+  --gold-warm:             #059669;
+
+  --accent:                #D97706;
+  --accent-bg:             #FEF3C7;
+  --accent-light:          #FFFBEB;
+  --accent-text:           #B45309;
+
+  --text-primary:          #1C1407;
+  --text-secondary:        #3A2F1E;
+  --text-tertiary:         #6B5E48;
+  --text-muted:            #7A6B55;
+  --text-placeholder:      #B5A98E;
+  --text-price:            #1C1407;
+  --text-brand:            #065F46;
+
+  --success:               #065F46;
+  --success-bg:            #ECFDF5;
+  --error:                 #DC2626;
+  --error-bg:              #FEF2F2;
+  --warning:               #D97706;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FEF3C7;
+  --discount-text:         #B45309;
+
+  --bg-body:               #FDFAF5;
+  --bg-page:               #FDFAF5;
+  --bg-card:               #FFFFFF;
+  --bg-surface-warm:       #FAF6EE;
+  --bg-surface-subtle:     #F5F0E4;
+  --bg-subtle:             #F0EAD8;
+  --bg-hover:              #FAF6EE;
+  --bg-cta-dark:           #065F46;
+
+  --card-bg:               #FFFFFF;
+  --card-border:           rgba(6, 95, 70, 0.12);
+  --card-img-bg:           #F5F8F5;
+
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FDFAF5;
+  --input-border:          rgba(6, 95, 70, 0.20);
+  --input-border-focus:    #065F46;
+
+  --border:                rgba(6, 95, 70, 0.10);
+  --border-warm:           rgba(6, 95, 70, 0.15);
+  --border-separator:      rgba(6, 95, 70, 0.07);
+  --border-orange:         rgba(6, 95, 70, 0.15);
+
+  --shadow-xs:    0 1px 3px rgba(6, 45, 30, 0.07);
+  --shadow-sm:    0 2px 4px rgba(6, 45, 30, 0.06), 0 1px 2px rgba(6, 45, 30, 0.04);
+  --shadow-md:    0 4px 8px rgba(6, 45, 30, 0.07), 0 8px 16px rgba(6, 45, 30, 0.05);
+  --shadow-lg:    0 8px 16px rgba(6, 45, 30, 0.08), 0 20px 40px rgba(6, 45, 30, 0.06);
+  --shadow-xl:    0 16px 32px rgba(6, 45, 30, 0.09), 0 32px 64px rgba(6, 45, 30, 0.06);
+  --shadow-sheet: 0 -4px 12px rgba(6, 45, 30, 0.07), 0 -16px 48px rgba(6, 45, 30, 0.08);
+  --shadow-feature: 0 2px 4px rgba(6,45,30,0.06), 0 6px 12px rgba(6,45,30,0.05), 0 0 0 1px rgba(6,95,70,0.12);
+  --shadow-card:  0 2px 6px rgba(6, 45, 30, 0.06), 0 6px 14px rgba(6, 45, 30, 0.05);
+  --shadow-sticky: 0 -1px 0 rgba(6,95,70,0.12), 0 -6px 20px rgba(6,45,30,0.08);
+  --shadow-btn:   0 4px 8px rgba(6, 95, 70, 0.28), 0 8px 24px rgba(6, 95, 70, 0.18);
+  --shadow-btn-hover: 0 6px 12px rgba(6, 95, 70, 0.36), 0 12px 32px rgba(6, 95, 70, 0.22);
+  --shadow-success: 0 2px 8px rgba(6, 95, 70, 0.28), 0 4px 16px rgba(6, 95, 70, 0.18);
+  --shadow-glow:  0 0 32px rgba(6, 95, 70, 0.22);
+
+  --radius-xs:     0.5rem;
+  --radius-sm:     0.75rem;
+  --radius-md:     1rem;
+  --radius-lg:     1.5rem;
+  --radius-card:   1.125rem;
+  --radius-xl:     1.75rem;
+  --radius-pill:   9999px;
+
+  --gradient-brand-text:   linear-gradient(145deg, #065F46 0%, #047857 100%);
+  --gradient-gold:         linear-gradient(135deg, #065F46 0%, #059669 100%);
+  --gradient-cta:          linear-gradient(135deg, #065F46 0%, #047857 100%);
+  --gradient-cta-hover:    linear-gradient(135deg, #047857 0%, #065F46 100%);
+  --gradient-accent:       linear-gradient(135deg, #D97706 0%, #B45309 100%);
+  --gradient-warm:         linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+  --gradient-img-overlay:  linear-gradient(to top, rgba(6,45,30,0.04) 0%, transparent 60%);
+
+  --duration-fast:   0.16s;
+  --duration-base:   0.28s;
+  --duration-slow:   0.50s;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   IDENTITY 03 — Bold Minimalism (الحداثة الجريئة)
+   Pure Black + Electric Orange
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme="03"] {
+  --gold:                  #FF6B00;
+  --gold-dark:             #E05A00;
+  --gold-mid:              #FF8533;
+  --gold-light:            #FFF3E6;
+  --gold-pale:             #FFF8F2;
+  --gold-accent:           #E05A00;
+  --gold-gradient-start:   #FF6B00;
+  --gold-warm:             #FF6B00;
+
+  --accent:                #FF6B00;
+  --accent-bg:             #FFF3E6;
+  --accent-light:          #FFF8F2;
+  --accent-text:           #E05A00;
+
+  --text-primary:          #080808;
+  --text-secondary:        #1A1A1A;
+  --text-tertiary:         #444444;
+  --text-muted:            #6B6B6B;
+  --text-placeholder:      #AAAAAA;
+  --text-price:            #080808;
+  --text-brand:            #FF6B00;
+
+  --success:               #16A34A;
+  --success-bg:            #F0FDF4;
+  --error:                 #DC2626;
+  --error-bg:              #FEF2F2;
+  --warning:               #D97706;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FFF3E6;
+  --discount-text:         #E05A00;
+
+  --bg-body:               #FFFFFF;
+  --bg-page:               #FFFFFF;
+  --bg-card:               #FFFFFF;
+  --bg-surface-warm:       #FAFAFA;
+  --bg-surface-subtle:     #F5F5F5;
+  --bg-subtle:             #F0F0F0;
+  --bg-hover:              #F5F5F5;
+  --bg-cta-dark:           #0A0A0A;
+
+  --card-bg:               #FFFFFF;
+  --card-border:           #E5E5E5;
+  --card-img-bg:           #FAFAFA;
+
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FAFAFA;
+  --input-border:          #D0D0D0;
+  --input-border-focus:    #0A0A0A;
+
+  --border:                #E5E5E5;
+  --border-warm:           #D8D8D8;
+  --border-separator:      #F0F0F0;
+  --border-orange:         rgba(255, 107, 0, 0.25);
+
+  --shadow-xs:    0 1px 0 rgba(0,0,0,0.08);
+  --shadow-sm:    0 1px 0 rgba(0,0,0,0.10), 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-md:    0 2px 0 rgba(0,0,0,0.08), 0 8px 16px rgba(0,0,0,0.08);
+  --shadow-lg:    0 4px 0 rgba(0,0,0,0.10), 0 16px 32px rgba(0,0,0,0.08);
+  --shadow-xl:    0 8px 0 rgba(0,0,0,0.10), 0 32px 64px rgba(0,0,0,0.10);
+  --shadow-sheet: 0 -2px 0 rgba(0,0,0,0.10), 0 -16px 48px rgba(0,0,0,0.12);
+  --shadow-feature: 0 0 0 1px #E5E5E5, 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-card:  0 0 0 1px #E8E8E8, 0 2px 8px rgba(0,0,0,0.05);
+  --shadow-sticky: 0 -2px 0 rgba(0,0,0,0.12), 0 -8px 24px rgba(0,0,0,0.08);
+  --shadow-btn:   0 4px 0 rgba(0,0,0,0.25), 0 2px 8px rgba(255,107,0,0.20);
+  --shadow-btn-hover: 0 6px 0 rgba(0,0,0,0.30), 0 4px 12px rgba(255,107,0,0.25);
+  --shadow-success: 0 2px 8px rgba(255,107,0,0.30), 0 4px 16px rgba(255,107,0,0.20);
+  --shadow-glow:  0 0 32px rgba(255, 107, 0, 0.30);
+
+  --radius-xs:     0.125rem;
+  --radius-sm:     0.25rem;
+  --radius-md:     0.5rem;
+  --radius-lg:     0.75rem;
+  --radius-card:   0.625rem;
+  --radius-xl:     1rem;
+  --radius-pill:   9999px;
+
+  --gradient-brand-text:   linear-gradient(145deg, #0A0A0A 0%, #333333 100%);
+  --gradient-gold:         linear-gradient(135deg, #FF6B00 0%, #E05A00 100%);
+  --gradient-cta:          linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+  --gradient-cta-hover:    linear-gradient(135deg, #1A1A1A 0%, #0A0A0A 100%);
+  --gradient-accent:       linear-gradient(135deg, #FF6B00 0%, #E05A00 100%);
+  --gradient-warm:         linear-gradient(135deg, #F5F5F5 0%, #EBEBEB 100%);
+  --gradient-img-overlay:  linear-gradient(to top, rgba(0,0,0,0.02) 0%, transparent 40%);
+
+  --duration-fast:   0.10s;
+  --duration-base:   0.20s;
+  --duration-slow:   0.36s;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   IDENTITY 04 — Soft Luxe (الأناقة الرقيقة)
+   Deep Plum + Blush Rose
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme="04"] {
+  --gold:                  #6D28D9;
+  --gold-dark:             #4C1D95;
+  --gold-mid:              #7C3AED;
+  --gold-light:            #EDE9FE;
+  --gold-pale:             #F5F3FF;
+  --gold-accent:           #4C1D95;
+  --gold-gradient-start:   #6D28D9;
+  --gold-warm:             #7C3AED;
+
+  --accent:                #E879A0;
+  --accent-bg:             #FCE7F0;
+  --accent-light:          #FDF2F7;
+  --accent-text:           #BE185D;
+
+  --text-primary:          #1A0030;
+  --text-secondary:        #3B1F4A;
+  --text-tertiary:         #6B5070;
+  --text-muted:            #9E8FA0;
+  --text-placeholder:      #C4B8C8;
+  --text-price:            #1A0030;
+  --text-brand:            #6D28D9;
+
+  --success:               #15803D;
+  --success-bg:            #F0FDF4;
+  --error:                 #DC2626;
+  --error-bg:              #FEF2F2;
+  --warning:               #B45309;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FCE7F0;
+  --discount-text:         #BE185D;
+
+  --bg-body:               #FDF8F5;
+  --bg-page:               #FDF8F5;
+  --bg-card:               #FFFFFF;
+  --bg-surface-warm:       #FAF5F0;
+  --bg-surface-subtle:     #F5EFF0;
+  --bg-subtle:             #F0E8ED;
+  --bg-hover:              #FAF5F0;
+  --bg-cta-dark:           #4C1D95;
+
+  --card-bg:               #FFFFFF;
+  --card-border:           rgba(109, 40, 217, 0.10);
+  --card-img-bg:           #FDF5F8;
+
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FDF8F5;
+  --input-border:          rgba(109, 40, 217, 0.18);
+  --input-border-focus:    #6D28D9;
+
+  --border:                rgba(109, 40, 217, 0.09);
+  --border-warm:           rgba(109, 40, 217, 0.14);
+  --border-separator:      rgba(109, 40, 217, 0.06);
+  --border-orange:         rgba(232, 121, 160, 0.20);
+
+  --shadow-xs:    0 1px 3px rgba(76, 29, 149, 0.07);
+  --shadow-sm:    0 2px 4px rgba(76, 29, 149, 0.06), 0 1px 2px rgba(76, 29, 149, 0.04);
+  --shadow-md:    0 4px 12px rgba(76, 29, 149, 0.08), 0 8px 20px rgba(76, 29, 149, 0.05);
+  --shadow-lg:    0 8px 20px rgba(76, 29, 149, 0.10), 0 20px 44px rgba(76, 29, 149, 0.06);
+  --shadow-xl:    0 16px 40px rgba(76, 29, 149, 0.12), 0 32px 64px rgba(76, 29, 149, 0.07);
+  --shadow-sheet: 0 -4px 16px rgba(76, 29, 149, 0.08), 0 -16px 48px rgba(76, 29, 149, 0.08);
+  --shadow-feature: 0 2px 4px rgba(76,29,149,0.06), 0 8px 16px rgba(76,29,149,0.05), 0 0 0 1px rgba(109,40,217,0.10);
+  --shadow-card:  0 2px 8px rgba(76, 29, 149, 0.06), 0 6px 16px rgba(76, 29, 149, 0.05);
+  --shadow-sticky: 0 -1px 0 rgba(109,40,217,0.10), 0 -8px 24px rgba(76,29,149,0.08);
+  --shadow-btn:   0 4px 12px rgba(109, 40, 217, 0.30), 0 8px 24px rgba(109, 40, 217, 0.18);
+  --shadow-btn-hover: 0 6px 16px rgba(109, 40, 217, 0.38), 0 12px 32px rgba(109, 40, 217, 0.22);
+  --shadow-success: 0 2px 8px rgba(109, 40, 217, 0.28), 0 4px 16px rgba(109, 40, 217, 0.18);
+  --shadow-glow:  0 0 40px rgba(109, 40, 217, 0.22), 0 0 16px rgba(232, 121, 160, 0.15);
+
+  --radius-xs:     0.625rem;
+  --radius-sm:     0.875rem;
+  --radius-md:     1.125rem;
+  --radius-lg:     1.625rem;
+  --radius-card:   1.25rem;
+  --radius-xl:     2rem;
+  --radius-pill:   9999px;
+
+  --gradient-brand-text:   linear-gradient(145deg, #6D28D9 0%, #4C1D95 100%);
+  --gradient-gold:         linear-gradient(135deg, #6D28D9 0%, #4C1D95 100%);
+  --gradient-cta:          linear-gradient(135deg, #6D28D9 0%, #4C1D95 100%);
+  --gradient-cta-hover:    linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
+  --gradient-accent:       linear-gradient(135deg, #E879A0 0%, #BE185D 100%);
+  --gradient-warm:         linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+  --gradient-img-overlay:  linear-gradient(to top, rgba(76,29,149,0.04) 0%, transparent 60%);
+
+  --duration-fast:   0.20s;
+  --duration-base:   0.36s;
+  --duration-slow:   0.62s;
+}
+
+/* ════════════════════════════════════════════════════════════════════
+   IDENTITY 05 — Digital Prestige (الرقي الرقمي)
+   Deep Teal + Warm Amber
+   ════════════════════════════════════════════════════════════════════ */
+[data-theme="05"] {
+  --gold:                  #0D9488;
+  --gold-dark:             #0F766E;
+  --gold-mid:              #14B8A6;
+  --gold-light:            #CCFBF1;
+  --gold-pale:             #F0FDFA;
+  --gold-accent:           #0F766E;
+  --gold-gradient-start:   #0D9488;
+  --gold-warm:             #14B8A6;
+
+  --accent:                #F59E0B;
+  --accent-bg:             #FEF3C7;
+  --accent-light:          #FFFBEB;
+  --accent-text:           #D97706;
+
+  --text-primary:          #111827;
+  --text-secondary:        #1F2937;
+  --text-tertiary:         #374151;
+  --text-muted:            #6B7280;
+  --text-placeholder:      #9CA3AF;
+  --text-price:            #111827;
+  --text-brand:            #0D9488;
+
+  --success:               #0D9488;
+  --success-bg:            #F0FDFA;
+  --error:                 #DC2626;
+  --error-bg:              #FEF2F2;
+  --warning:               #D97706;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FEF3C7;
+  --discount-text:         #D97706;
+
+  --bg-body:               #FAFAFA;
+  --bg-page:               #FAFAFA;
+  --bg-card:               #FFFFFF;
+  --bg-surface-warm:       #F5F5F5;
+  --bg-surface-subtle:     #F0F0F0;
+  --bg-subtle:             #EBEBEB;
+  --bg-hover:              #F5F5F5;
+  --bg-cta-dark:           #0F766E;
+
+  --card-bg:               #FFFFFF;
+  --card-border:           rgba(0, 0, 0, 0.08);
+  --card-img-bg:           #F5F5F5;
+
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FAFAFA;
+  --input-border:          rgba(0, 0, 0, 0.14);
+  --input-border-focus:    #0D9488;
+
+  --border:                rgba(0, 0, 0, 0.08);
+  --border-warm:           rgba(0, 0, 0, 0.12);
+  --border-separator:      rgba(0, 0, 0, 0.06);
+  --border-orange:         rgba(13, 148, 136, 0.20);
+
+  --shadow-xs:    0 1px 2px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.03);
+  --shadow-sm:    0 1px 3px rgba(0,0,0,0.07), 0 1px 0 rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 8px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-lg:    0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+  --shadow-xl:    0 16px 48px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+  --shadow-sheet: 0 -2px 8px rgba(0,0,0,0.06), 0 -16px 40px rgba(0,0,0,0.08);
+  --shadow-feature: 0 0 0 1px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05), 0 6px 12px rgba(0,0,0,0.04);
+  --shadow-card:  0 0 0 1px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.05), 0 4px 8px rgba(0,0,0,0.04);
+  --shadow-sticky: 0 -1px 0 rgba(0,0,0,0.08), 0 -4px 16px rgba(0,0,0,0.06);
+  --shadow-btn:   0 2px 4px rgba(13,148,136,0.25), 0 6px 16px rgba(13,148,136,0.20);
+  --shadow-btn-hover: 0 4px 8px rgba(13,148,136,0.32), 0 8px 24px rgba(13,148,136,0.24);
+  --shadow-success: 0 2px 8px rgba(13,148,136,0.28), 0 4px 16px rgba(13,148,136,0.18);
+  --shadow-glow:  0 0 32px rgba(13, 148, 136, 0.25);
+
+  --radius-xs:     0.3125rem;
+  --radius-sm:     0.5rem;
+  --radius-md:     0.75rem;
+  --radius-lg:     1.125rem;
+  --radius-card:   0.875rem;
+  --radius-xl:     1.375rem;
+  --radius-pill:   9999px;
+
+  --gradient-brand-text:   linear-gradient(145deg, #0D9488 0%, #0F766E 100%);
+  --gradient-gold:         linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --gradient-cta:          linear-gradient(135deg, #0D9488 0%, #0F766E 100%);
+  --gradient-cta-hover:    linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+  --gradient-accent:       linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  --gradient-warm:         linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+  --gradient-img-overlay:  linear-gradient(to top, rgba(0,0,0,0.03) 0%, transparent 50%);
+
+  --duration-fast:   0.12s;
+  --duration-base:   0.22s;
+  --duration-slow:   0.40s;
+}
+
 /* ─── Dark Mode ──────────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {

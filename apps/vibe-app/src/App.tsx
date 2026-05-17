@@ -15,6 +15,7 @@ import { CollectionBanners } from "./components/CollectionBanners";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
 
@@ -146,6 +147,7 @@ function PageBoundary({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
+    <ThemeProvider>
     <AccountSheetProvider>
       <div className="app-shell">
         <a href="#main-content" className="skip-link">تخطى للمحتوى الرئيسي</a>
@@ -211,5 +213,6 @@ export default function App() {
         <AccountSheet />
       </div>
     </AccountSheetProvider>
+    </ThemeProvider>
   );
 }
