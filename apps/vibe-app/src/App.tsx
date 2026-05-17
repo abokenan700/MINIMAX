@@ -4,7 +4,6 @@ import { Header } from "./components/Header";
 import { SearchBar } from "./components/SearchBar";
 import { Categories } from "./components/Categories";
 import { BannerSlider } from "./components/BannerSlider";
-import { Features } from "./components/Features";
 import { Products } from "./components/Products";
 import { FeaturedProducts } from "./components/FeaturedProducts";
 import { Brands } from "./components/Brands";
@@ -117,9 +116,6 @@ function HomePage() {
       <SearchBar readOnly navigateTo="/search" />
       <Categories />
       <BannerSlider />
-      <div className="px-3 py-2">
-        <Features />
-      </div>
       <div style={{ padding: "0 0 4px" }}>
         <Products />
       </div>
