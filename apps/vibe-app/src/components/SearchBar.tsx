@@ -48,24 +48,27 @@ export function SearchBar({
         flexShrink: 0,
       }}
     >
-      <div className="px-3 pt-3 pb-2.5">
+      <div className="px-3 pt-2 pb-1.5">
         <div
-          className="flex items-center gap-3 rounded-2xl px-4 py-2.5"
+          className="flex items-center gap-3 rounded-2xl px-4"
           style={{
             background: "var(--input-bg)",
-            border: focused
-              ? "1.5px solid var(--gold)"
-              : "1px solid transparent",
-            boxShadow: "none",
-            transition: "border-color 0.18s ease, box-shadow 0.18s ease",
+            border: "1px solid var(--gold)",
+            paddingTop: "7px",
+            paddingBottom: "7px",
+            boxShadow: focused ? "0 0 0 2.5px var(--gold-light)" : "none",
+            transition: "box-shadow 0.18s ease",
           }}
           dir="rtl"
         >
           <Search
-            size={18}
+            size={16}
             strokeWidth={1.8}
             className="flex-shrink-0"
-            style={{ color: focused ? "var(--gold-accent)" : "var(--text-muted)", transition: "color 0.18s ease" }}
+            style={{
+              color: focused ? "var(--gold-accent)" : "var(--text-muted)",
+              transition: "color 0.18s ease",
+            }}
           />
           <input
             type={readOnly ? "text" : "search"}
