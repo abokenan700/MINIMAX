@@ -11,6 +11,7 @@ import { SearchBar } from "../components/SearchBar";
 import { SectionHeader } from "../components/SectionHeader";
 import { useWishlist } from "../context/WishlistContext";
 import { Stars } from "../components/Stars";
+import { FeaturedCard } from "../components/FeaturedCard";
 import {
   type Filters, DEFAULT_FILTERS,
   SortSheet, FilterSheet, ControlsBar,
@@ -350,7 +351,7 @@ export function SearchPage() {
                 </div>
               ) : viewMode === "grid" ? (
                 <div className="grid grid-cols-2 gap-3">
-                  {processedResults.map((item) => <ResultCard key={item.id} item={item} />)}
+                  {processedResults.map((item) => <FeaturedCard key={item.id} item={item} />)}
                 </div>
               ) : (
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
