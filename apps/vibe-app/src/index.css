@@ -34,7 +34,7 @@
   /* ─── Semantic ───────────────────────────────────────────────── */
   --discount-bg:           var(--accent-bg);
   --discount-text:         var(--accent);
-  --success:               #4A8A3A;
+  --success:               #F97316;
   --error:                 #D93030;
 
   /* ─── Surfaces ───────────────────────────────────────────────── */
@@ -137,7 +137,7 @@
 
     --discount-bg:          var(--accent-bg);
     --discount-text:        var(--accent);
-    --success:              #5AAF48;
+    --success:              #F97316;
     --error:                #FF5555;
 
     --bg-body:              #120E0B;

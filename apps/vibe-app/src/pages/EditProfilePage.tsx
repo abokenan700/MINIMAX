@@ -293,7 +293,7 @@ export function EditProfilePage() {
               </div>
             )}
             {profileSuccess && (
-              <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(90,138,74,0.08)", border: "1px solid rgba(90,138,74,0.3)", marginBottom: 12 }}>
+              <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)", marginBottom: 12 }}>
                 <CheckCircle2 size={16} color="var(--success)" />
                 <p style={{ fontSize: 12.5, color: "var(--success)", margin: 0, fontFamily: "var(--font-main)" }}>تم حفظ التغييرات بنجاح</p>
               </div>
@@ -357,7 +357,7 @@ export function EditProfilePage() {
               </div>
             )}
             {passSuccess && (
-              <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(90,138,74,0.08)", border: "1px solid rgba(90,138,74,0.3)", marginBottom: 12 }}>
+              <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)", marginBottom: 12 }}>
                 <CheckCircle2 size={16} color="var(--success)" />
                 <p style={{ fontSize: 12.5, color: "var(--success)", margin: 0, fontFamily: "var(--font-main)" }}>تم تغيير كلمة المرور بنجاح</p>
               </div>

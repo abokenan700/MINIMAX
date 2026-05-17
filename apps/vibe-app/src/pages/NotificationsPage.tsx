@@ -21,7 +21,7 @@ interface Notif {
 const TYPE_CONFIG: Record<NotifType, { icon: React.ReactNode; color: string; bg: string }> = {
   promo:  { icon: <Tag size={16} />,          color: "#8B6310", bg: "#FDF6EC" },
   order:  { icon: <Truck size={16} />,         color: "#1565C0", bg: "#E3F2FD" },
-  price:  { icon: <TrendingDown size={16} />,  color: "#5A8A4A", bg: "#E8F5E9" },
+  price:  { icon: <TrendingDown size={16} />,  color: "#F97316", bg: "#FFF7F0" },
   review: { icon: <Star size={16} />,          color: "#B8922A", bg: "#FFF8E1" },
 };
 

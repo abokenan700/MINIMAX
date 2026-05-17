@@ -43,7 +43,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
           width: dim,
           height: dim,
           background: added
-            ? "linear-gradient(135deg, var(--success), #4a8a4a)"
+            ? "linear-gradient(135deg,var(--gold),var(--gold-accent))"
             : "linear-gradient(135deg, var(--gold-gradient-start), var(--gold), var(--gold-accent))",
           boxShadow: added
             ? "var(--shadow-success)"

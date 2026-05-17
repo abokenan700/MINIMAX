@@ -46,7 +46,7 @@ export const buttonVariants = cva(
         /* زر دائري نجاح */
         "circle-success": [
           "rounded-full border-none text-white flex-shrink-0",
-          "[background:linear-gradient(135deg,var(--success),#3a7a2a)]",
+          "[background:linear-gradient(135deg,var(--gold),var(--gold-accent))]",
           "[box-shadow:var(--shadow-success)]",
         ].join(" "),
 

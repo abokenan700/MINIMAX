@@ -431,7 +431,7 @@ export function SearchPage() {
                               {p.price.toLocaleString("ar-SA")}
                               <span style={{ fontSize: 9.5, fontWeight: 400, color: "var(--text-secondary)", marginInlineStart: 1 }}>ر.س</span>
                             </span>
-                            {p.badge ? <span style={{ fontFamily: "var(--font-main)", fontSize: 9.5, fontWeight: 700, color: p.isNew ? "var(--success, #5A8A4A)" : "var(--discount-text)", background: p.isNew ? "rgba(90,138,74,0.1)" : "var(--accent-bg)", padding: "2px 6px", borderRadius: 20 }}>{p.badge}</span> : null}
+                            {p.badge ? <span style={{ fontFamily: "var(--font-main)", fontSize: 9.5, fontWeight: 700, color: p.isNew ? "var(--success, #F97316)" : "var(--discount-text)", background: p.isNew ? "rgba(249,115,22,0.1)" : "var(--accent-bg)", padding: "2px 6px", borderRadius: 20 }}>{p.badge}</span> : null}
                           </div>
                         </div>
                       </button>

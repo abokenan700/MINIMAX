@@ -98,7 +98,7 @@ function OrderSummaryCollapsible({ total, discountAmount, shipping, grandTotal }
           ].map(({ label, value, green }) => (
             <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "8px 14px", borderTop: "1px solid var(--border)" }}>
               <span style={{ fontSize: 12, color: "var(--text-secondary)" }}>{label}</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: green ? "#5A8A4A" : "var(--text-primary)" }}>{value}</span>
+              <span style={{ fontSize: 12, fontWeight: 600, color: green ? "#F97316" : "var(--text-primary)" }}>{value}</span>
             </div>
           ))}
         </div>
@@ -328,8 +328,8 @@ export function CheckoutPage() {
               <Field label="الرمز البريدي (اختياري)" value={zip}       onChange={setZip}       placeholder="12345" type="text" />
             </div>
 
-            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px", borderRadius: 12, background: "#F0F8F0", border: "1px solid #C8E6C0" }} dir="rtl">
-              <Truck size={16} style={{ color: "#5A8A4A", flexShrink: 0 }} />
+            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px", borderRadius: 12, background: "#FFF7F0", border: "1px solid #FED7AA" }} dir="rtl">
+              <Truck size={16} style={{ color: "#F97316", flexShrink: 0 }} />
               <p style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "#4A7A3A" }}>
                 {shipping === 0 ? "✓ تأهّلت للشحن المجاني!" : `أضف ${(500 - total).toLocaleString("ar-SA")} ر.س للحصول على شحن مجاني`}
               </p>
@@ -386,7 +386,7 @@ export function CheckoutPage() {
               ].map(({ label, value, green }) => (
                 <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "10px 14px", borderBottom: "1px solid var(--border)" }}>
                   <span style={{ fontSize: 13, color: "var(--text-secondary)" }}>{label}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: green ? "#5A8A4A" : "var(--text-primary)" }}>{value}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: green ? "#F97316" : "var(--text-primary)" }}>{value}</span>
                 </div>
               ))}
               <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 14px" }}>

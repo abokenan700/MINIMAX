@@ -100,7 +100,7 @@ function PriceAlertSection({ product }: { product: Product }) {
             <input type="number" value={targetPrice} onChange={e => setTargetPrice(e.target.value)} min={1} max={product.price - 1} dir="rtl"
               style={{ width: "100%", padding: "13px 14px", borderRadius: 12, border: "1.5px solid var(--border-warm)", background: "var(--bg)", fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", outline: "none", boxSizing: "border-box" }} />
             {targetPrice && Number(targetPrice) > 0 && Number(targetPrice) < product.price && (
-              <p dir="rtl" style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--success, #16a34a)", marginTop: 6 }}>ستوفّر {saving.toLocaleString("ar-SA")} ر.س</p>
+              <p dir="rtl" style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--success)", marginTop: 6 }}>ستوفّر {saving.toLocaleString("ar-SA")} ر.س</p>
             )}
             <button onClick={() => createMutation.mutate()} disabled={createMutation.isPending || !targetPrice || Number(targetPrice) >= product.price || Number(targetPrice) <= 0}
               style={{ width: "100%", padding: "14px", marginTop: 14, borderRadius: 14, border: "none", background: "var(--text-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", opacity: (createMutation.isPending || !targetPrice || Number(targetPrice) >= product.price) ? 0.5 : 1 }}>
@@ -225,8 +225,8 @@ function BuyersCount({ sales }: { sales: number }) {
   if (!sales || sales <= 0) return null;
   const display = sales > 500 ? `${Math.round(sales / 100) * 100}+` : `${sales}`;
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 10, background: "#F0F8F0", marginBottom: 18 }} dir="rtl">
-      <Users size={14} style={{ color: "#5A8A4A", flexShrink: 0 }} />
+    <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "9px 12px", borderRadius: 10, background: "#FFF7F0", marginBottom: 18 }} dir="rtl">
+      <Users size={14} style={{ color: "#F97316", flexShrink: 0 }} />
       <span style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "#3A7A2A", fontWeight: 600 }}>
         اشتراه أكثر من {display} مشترٍ
       </span>
@@ -339,7 +339,7 @@ function ReviewsSection({ product }: { product: Product }) {
                 </div>
                 <div>
                   <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", lineHeight: 1.2 }}>{r.user_name}</p>
-                  {r.verified === 1 && <span style={{ fontSize: 10, color: "#5A8A4A", fontWeight: 600 }}>✓ مشتري موثّق</span>}
+                  {r.verified === 1 && <span style={{ fontSize: 10, color: "#F97316", fontWeight: 600 }}>✓ مشتري موثّق</span>}
                 </div>
               </div>
               {r.created_at && (
