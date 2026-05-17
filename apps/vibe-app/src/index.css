@@ -2,34 +2,34 @@
 
 /* ═══════════════════════════════════════════════════════════════
    THAWQ Visual Identity — Applied to نخبة
-   Palette: #A67C52 · #D4B99A · #F6F2EE · #1A1A1A · #FFFFFF
-   Accent:  #B85C00 (urgency — discounts, flash, notifications)
+   Palette: #B88A44 · #E8C98A · #FAF7F2 · #2A241C · #FFFFFF
+   Accent:  #C53A2B (urgency — discounts, flash, notifications)
    Dark:    Warm dark #1A1612 base
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* ─── THAWQ Primary Brown Scale ─────────────────────────────── */
-  --gold:                  #A67C52;
-  --gold-dark:             #6B4A00;
-  --gold-mid:              #C09060;
-  --gold-light:            #EDE0D0;
-  --gold-pale:             #F8F2EB;
-  --gold-accent:           #8B5E38;
-  --gold-gradient-start:   #D4B99A;
-  --gold-warm:             #C09060;
+  --gold:                  #B88A44;
+  --gold-dark:             #7A5323;
+  --gold-mid:              #C89A54;
+  --gold-light:            #F3E5CC;
+  --gold-pale:             #FBF4E8;
+  --gold-accent:           #996B2E;
+  --gold-gradient-start:   #E8C98A;
+  --gold-warm:             #D0A561;
 
   /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
-  --accent:                #B85C00;
-  --accent-bg:             #FEF0E6;
-  --accent-light:          #FFF8F2;
-  --accent-text:           #B85C00;
+  --accent:                #C53A2B;
+  --accent-bg:             #FFF1EE;
+  --accent-light:          #FFF8F6;
+  --accent-text:           #B53024;
 
   /* ─── Text ───────────────────────────────────────────────────── */
-  --text-primary:          #1A1A1A;
-  --text-secondary:        #5A5856;
-  --text-muted:            #8A8480;
+  --text-primary:          #2A241C;
+  --text-secondary:        #615648;
+  --text-muted:            #908373;
   --text-price:            #1A1A1A;
-  --text-brand:            #7A5A38;
+  --text-brand:            #7B5A28;
 
   /* ─── Semantic ───────────────────────────────────────────────── */
   --discount-bg:           var(--accent-bg);
@@ -38,17 +38,17 @@
   --error:                 #D93030;
 
   /* ─── Surfaces ───────────────────────────────────────────────── */
-  --bg-body:               #CDC7BF;
-  --bg-page:               #F6F2EE;
+  --bg-body:               #EFE7DC;
+  --bg-page:               #FAF7F2;
   --bg-card:               #FFFFFF;
   --bg-surface-warm:       #F8F3EE;
   --bg-surface-subtle:     #F5F0E9;
   --bg-cta-dark:           #1A1A1A;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
-  --card-bg:               #F9F5F1;
-  --card-border:           rgba(166, 124, 82, 0.22);
-  --card-img-bg:           linear-gradient(145deg, #fdfcfb 0%, #f5ede4 100%);
+  --card-bg:               #FFFFFF;
+  --card-border:           rgba(184, 138, 68, 0.22);
+  --card-img-bg:           linear-gradient(145deg, #fffdfa 0%, #f5ead8 100%);
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
   --input-bg:              #F2ECE5;
@@ -61,14 +61,14 @@
 
   /* ─── Shadows (warm-tinted) ──────────────────────────────────── */
   --shadow-sm:      0 1px 3px rgba(90, 60, 20, 0.06);
-  --shadow-md:      0 3px 12px rgba(166, 124, 82, 0.28);
-  --shadow-lg:      0 0 80px rgba(30, 20, 10, 0.22);
+  --shadow-md:      0 6px 20px rgba(42, 28, 12, 0.14);
+  --shadow-lg:      0 12px 42px rgba(30, 20, 10, 0.20);
   --shadow-sheet:   0 -4px 40px rgba(30, 20, 10, 0.14);
-  --shadow-feature: 0 1px 6px rgba(166, 124, 82, 0.12), 0 0 0 1px rgba(166, 124, 82, 0.10);
+  --shadow-feature: 0 3px 10px rgba(28, 20, 10, 0.10), 0 0 0 1px rgba(184, 138, 68, 0.14);
   --shadow-success: 0 2px 8px rgba(74, 138, 58, 0.30);
-  --shadow-glow:    0 0 10px rgba(166, 124, 82, 0.50);
+  --shadow-glow:    0 0 12px rgba(184, 138, 68, 0.35);
   --shadow-sticky:  0 -2px 16px rgba(30, 20, 10, 0.10), 0 -1px 4px rgba(30, 20, 10, 0.06);
-  --shadow-accent:  0 2px 8px rgba(184, 92, 0, 0.28);
+  --shadow-accent:  0 4px 12px rgba(197, 58, 43, 0.24);
 
   /* ─── Typography — Fluid Scale ───────────────────────────────── */
   --text-2xs:      clamp(8.5px, 2.3vw, 10px);
@@ -88,13 +88,13 @@
 
   /* ─── Gradients ──────────────────────────────────────────────── */
   --gradient-brand-text:
-    linear-gradient(160deg, #A67C52 0%, #6B4A00 35%, #D4B99A 65%, #4A3018 100%);
+    linear-gradient(160deg, #B88A44 0%, #7A5323 35%, #E8C98A 65%, #4A341A 100%);
   --gradient-gold:
-    linear-gradient(135deg, #D4B99A, #A67C52, #8B5E38);
+    linear-gradient(135deg, #EFD8AD, #B88A44, #8A642D);
   --gradient-cta:
-    linear-gradient(135deg, #1A1A1A, #2A2520);
+    linear-gradient(135deg, #111111, #2A231B);
   --gradient-accent:
-    linear-gradient(135deg, #B85C00, #8B4400);
+    linear-gradient(135deg, #C53A2B, #8F2118);
 
   /* ─── Font & Layout ──────────────────────────────────────────── */
   --font-main:     'Tajawal', sans-serif;
@@ -115,22 +115,22 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Gold becomes luminous on dark */
-    --gold:                 #C09060;
-    --gold-dark:            #A07040;
-    --gold-mid:             #D4A870;
+    --gold:                 #D9B06A;
+    --gold-dark:            #B78845;
+    --gold-mid:             #D7A75A;
     --gold-light:           #2E2018;
     --gold-pale:            #261A10;
     --gold-accent:          #D4A060;
     --gold-gradient-start:  #8A6840;
     --gold-warm:            #D4A870;
 
-    --accent:               #E07020;
+    --accent:               #E15C4D;
     --accent-bg:            #3A1E08;
     --accent-light:         #2E1804;
-    --accent-text:          #E07020;
+    --accent-text:          #E15C4D;
 
     --text-primary:         #F0EAE2;
-    --text-secondary:       #B0A090;
+    --text-secondary:       #B9AC9B;
     --text-muted:           #807060;
     --text-price:           #F5EDE0;
     --text-brand:           #C9956A;
@@ -141,8 +141,8 @@
     --error:                #FF5555;
 
     --bg-body:              #120E0B;
-    --bg-page:              #1A1612;
-    --bg-card:              #231F1A;
+    --bg-page:              #18140F;
+    --bg-card:              #211C17;
     --bg-surface-warm:      #1E1A15;
     --bg-surface-subtle:    #221D18;
     --bg-cta-dark:          #1A1A1A;
@@ -169,11 +169,11 @@
     --shadow-accent:  0 2px 8px rgba(224, 112, 32, 0.38);
 
     --gradient-brand-text:
-      linear-gradient(160deg, #D4A870 0%, #B88040 35%, #EAC890 65%, #A06030 100%);
+      linear-gradient(160deg, #D9B06A 0%, #BC8D4A 35%, #E8C88E 65%, #8C6633 100%);
     --gradient-gold:
       linear-gradient(135deg, #8A6840, #C09060, #D4A870);
     --gradient-cta:
-      linear-gradient(135deg, #1A1A1A, #2A2520);
+      linear-gradient(135deg, #111111, #2A231B);
     --gradient-accent:
       linear-gradient(135deg, #E07020, #A85010);
   }
