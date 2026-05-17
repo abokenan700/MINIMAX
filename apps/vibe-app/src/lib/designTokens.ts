@@ -1,7 +1,7 @@
 /**
  * THAWQ Visual Identity — Applied to نخبة
- * Palette: #A67C52 · #D4B99A · #F6F2EE · #1A1A1A · #FFFFFF
- * Accent:  #B85C00 (urgency — discounts, flash, notifications)
+ * Palette: #B88A44 · #E8C98A · #FAF7F2 · #2A241C · #FFFFFF
+ * Accent:  #C53A2B (urgency — discounts, flash, notifications)
  *
  * استخدم CSS vars في style={{}} بدلاً من القيم المباشرة:
  *   var(--gold), var(--text-brand), var(--accent) ... إلخ
