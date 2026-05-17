@@ -2,7 +2,7 @@ import express, { type Express } from "express";
 import cors from "cors";
 import pinoHttp from "pino-http";
 import router from "./routes";
-import { logger } from "./packages/logger";
+import { logger } from "./lib/logger";
 import { errorHandler } from "./middlewares/error-handler";
 
 const app: Express = express();

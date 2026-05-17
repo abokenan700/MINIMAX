@@ -31,9 +31,9 @@ var require_src = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/packages/indexes.js
+// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/lib/indexes.js
 var require_indexes = __commonJS({
-  "../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/packages/indexes.js"(exports, module) {
+  "../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/lib/indexes.js"(exports, module) {
     "use strict";
     var WRITE_INDEX2 = 4;
     var READ_INDEX2 = 8;
@@ -44,9 +44,9 @@ var require_indexes = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/packages/wait.js
+// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/lib/wait.js
 var require_wait = __commonJS({
-  "../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/packages/wait.js"(exports, module) {
+  "../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/lib/wait.js"(exports, module) {
     "use strict";
     var MAX_TIMEOUT = 1e3;
     function wait(state2, index, expected, timeout, done) {
@@ -102,7 +102,7 @@ var require_wait = __commonJS({
   }
 });
 
-// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/packages/worker.js
+// ../../node_modules/.pnpm/thread-stream@3.1.0/node_modules/thread-stream/lib/worker.js
 var { realImport, realRequire } = require_src();
 var { workerData, parentPort } = __require("worker_threads");
 var { WRITE_INDEX, READ_INDEX } = require_indexes();
