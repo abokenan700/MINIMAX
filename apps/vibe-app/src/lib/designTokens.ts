@@ -1,44 +1,54 @@
 /**
  * نخبة Visual Identity
- * Palette: #F97316 · #FED7AA · #FFFFFF · #2A241C · #FFFFFF
- * Accent:  #C53A2B (urgency — discounts, flash, notifications)
+ * Palette: #F97316 (orange) · #FFFFFF (white) · #111111 (text)
+ * Semantic: #16A34A (success) · #DC2626 (error) · #D97706 (warning)
  *
  * استخدم CSS vars في style={{}} بدلاً من القيم المباشرة:
  *   var(--gold), var(--text-brand), var(--accent) ... إلخ
  */
 
 export const BRAND = {
-  gold:          "var(--gold)",              /* #F97316 — orange */
-  goldDark:      "var(--gold-dark)",         /* #C2410C */
+  gold:          "var(--gold)",              /* #F97316 — bright orange */
+  goldDark:      "var(--gold-dark)",         /* #EA580C — darker orange */
   goldAccent:    "var(--gold-accent)",       /* #EA580C */
-  goldLight:     "var(--gold-light)",        /* #F0F0F0 */
-  goldMid:       "var(--gold-mid)",          /* #FB923C */
-  gradientGold:  "var(--gradient-gold)",
+  goldLight:     "var(--gold-light)",        /* #FFF7F0 — pale orange tint */
+  goldMid:       "var(--gold-mid)",          /* #FB923C — mid orange */
+  gradientGold:  "var(--gradient-gold)",     /* #F97316 → #EA580C */
   gradientText:  "var(--gradient-brand-text)",
-  gradientCta:   "var(--gradient-cta)",
+  gradientCta:   "var(--gradient-cta)",      /* #F97316 → #EA580C */
 } as const;
 
 export const ACCENT = {
-  main:    "var(--accent)",       /* #B85C00 — urgency / discount / alert */
-  bg:      "var(--accent-bg)",    /* #FEF0E6 */
-  light:   "var(--accent-light)", /* #FFF8F2 */
-  text:    "var(--accent-text)",  /* #B85C00 */
+  main:    "var(--accent)",       /* #F97316 — urgency / discount / alert */
+  bg:      "var(--accent-bg)",    /* #FFF7F0 */
+  light:   "var(--accent-light)", /* #FFF3E8 */
+  text:    "var(--accent-text)",  /* #EA580C */
 } as const;
 
 export const TEXT = {
-  primary:   "var(--text-primary)",   /* #1A1A1A */
-  secondary: "var(--text-secondary)", /* #5A5856 */
-  muted:     "var(--text-muted)",     /* #8A8480 */
-  price:     "var(--text-price)",     /* #1A1A1A */
-  brand:     "var(--text-brand)",     /* #7A5A38 */
+  primary:   "var(--text-primary)",   /* #111111 */
+  secondary: "var(--text-secondary)", /* #444444 */
+  muted:     "var(--text-muted)",     /* #888888 */
+  price:     "var(--text-price)",     /* #111111 */
+  brand:     "var(--text-brand)",     /* #F97316 */
 } as const;
 
 export const SURFACE = {
-  page:    "var(--bg-page)",           /* #F6F2EE — THAWQ cream */
+  page:    "var(--bg-page)",           /* #FFFFFF */
   card:    "var(--bg-card)",           /* #FFFFFF */
-  warm:    "var(--bg-surface-warm)",   /* #F8F3EE */
-  subtle:  "var(--bg-surface-subtle)", /* #F5F0E9 */
-  ctaDark: "var(--bg-cta-dark)",       /* #1A1A1A */
+  warm:    "var(--bg-surface-warm)",   /* #FAFAFA */
+  subtle:  "var(--bg-surface-subtle)", /* #F5F5F5 */
+  bgSubtle:"var(--bg-subtle)",         /* #F8F8F8 */
+  ctaDark: "var(--bg-cta-dark)",       /* #F97316 — orange, not dark! */
+} as const;
+
+export const SEMANTIC = {
+  success:    "var(--success)",    /* #16A34A */
+  successBg:  "var(--success-bg)", /* #F0FDF4 */
+  error:      "var(--error)",      /* #DC2626 */
+  errorBg:    "var(--error-bg)",   /* #FEF2F2 */
+  warning:    "var(--warning)",    /* #D97706 */
+  warningBg:  "var(--warning-bg)", /* #FFFBEB */
 } as const;
 
 export const RADIUS = {
@@ -60,13 +70,13 @@ export const ICON_SIZE = {
 } as const;
 
 export const FONT_SIZE = {
-  "2xs": "var(--text-2xs)",  /* clamp(8.5px, 2.3vw, 10px) */
-  xs:    "var(--text-xs)",   /* clamp(10px,  2.8vw, 12px) */
-  sm:    "var(--text-sm)",   /* clamp(11px,  3vw,   13px) */
-  base:  "var(--text-base)", /* clamp(13px,  3.6vw, 15px) */
-  lg:    "var(--text-lg)",   /* clamp(14px,  4vw,   17px) */
-  xl:    "var(--text-xl)",   /* clamp(18px,  5.5vw, 22px) */
-  priceLg: "var(--text-price-lg)", /* clamp(24px, 7vw, 28px) */
+  "2xs": "var(--text-2xs)",  /* clamp(10px, 2.6vw, 11px) */
+  xs:    "var(--text-xs)",   /* clamp(11px, 3vw,   12.5px) */
+  sm:    "var(--text-sm)",   /* clamp(12px, 3.2vw, 13.5px) */
+  base:  "var(--text-base)", /* clamp(13.5px, 3.8vw, 15px) */
+  lg:    "var(--text-lg)",   /* clamp(15px, 4.2vw, 17px) */
+  xl:    "var(--text-xl)",   /* clamp(19px, 5.5vw, 23px) */
+  priceLg: "var(--text-price-lg)", /* clamp(24px, 7vw, 29px) */
 } as const;
 
 export const SPACING = {

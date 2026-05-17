@@ -1,82 +1,88 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   نخبة — Single Orange + Pure White
-   Orange: #F97316 — everything orange is exactly this shade
-   White:  #FFFFFF — all backgrounds pure white
+   نخبة — Pure Orange #F97316 + Snow White #FFFFFF
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* ─── Primary Orange Scale ──────────────────────────────────── */
-  --gold:                  #EA580C;
+  --gold:                  #F97316;
   --gold-dark:             #EA580C;
-  --gold-mid:              #EA580C;
-  --gold-light:            #FFFFFF;
-  --gold-pale:             #FFFFFF;
+  --gold-mid:              #FB923C;
+  --gold-light:            #FFF7F0;
+  --gold-pale:             #FFF3E8;
   --gold-accent:           #EA580C;
-  --gold-gradient-start:   #EA580C;
-  --gold-warm:             #EA580C;
+  --gold-gradient-start:   #F97316;
+  --gold-warm:             #F97316;
 
   /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
-  --accent:                #EA580C;
-  --accent-bg:             #FFFFFF;
-  --accent-light:          #FFFFFF;
+  --accent:                #F97316;
+  --accent-bg:             #FFF7F0;
+  --accent-light:          #FFF3E8;
   --accent-text:           #EA580C;
 
   /* ─── Text ───────────────────────────────────────────────────── */
-  --text-primary:          #1A1A1A;
+  --text-primary:          #111111;
   --text-secondary:        #444444;
   --text-muted:            #888888;
-  --text-price:            #1A1A1A;
-  --text-brand:            #EA580C;
+  --text-price:            #111111;
+  --text-brand:            #F97316;
 
-  /* ─── Semantic ───────────────────────────────────────────────── */
-  --discount-bg:           #FFFFFF;
+  /* ─── Semantic — مستقلة تماماً ──────────────────────────────── */
+  --success:               #16A34A;
+  --success-bg:            #F0FDF4;
+  --error:                 #DC2626;
+  --error-bg:              #FEF2F2;
+  --warning:               #D97706;
+  --warning-bg:            #FFFBEB;
+  --discount-bg:           #FFF7F0;
   --discount-text:         #EA580C;
-  --success:               #EA580C;
-  --error:                 #EA580C;
 
-  /* ─── Surfaces — pure white everywhere ──────────────────────── */
+  /* ─── Surfaces — white everywhere ───────────────────────────── */
   --bg-body:               #FFFFFF;
   --bg-page:               #FFFFFF;
   --bg-card:               #FFFFFF;
-  --bg-surface-warm:       #FFFFFF;
-  --bg-surface-subtle:     #FFFFFF;
-  --bg-cta-dark:           #EA580C;
+  --bg-surface-warm:       #FAFAFA;
+  --bg-surface-subtle:     #F5F5F5;
+  --bg-subtle:             #F8F8F8;
+  --bg-cta-dark:           #F97316;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
-  --card-border:           rgba(234, 88, 12, 0.20);
-  --card-img-bg:           #FFFFFF;
+  --card-border:           rgba(0, 0, 0, 0.07);
+  --card-img-bg:           #FAFAFA;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
   --input-bg:              #FFFFFF;
-  --input-bg-soft:         #FFFFFF;
+  --input-bg-soft:         #FAFAFA;
 
   /* ─── Borders ────────────────────────────────────────────────── */
-  --border:                rgba(234, 88, 12, 0.20);
-  --border-warm:           rgba(234, 88, 12, 0.25);
-  --border-separator:      rgba(234, 88, 12, 0.15);
+  --border:                rgba(0, 0, 0, 0.08);
+  --border-warm:           rgba(0, 0, 0, 0.10);
+  --border-separator:      rgba(0, 0, 0, 0.06);
+  --border-orange:         rgba(249, 115, 22, 0.25);
 
   /* ─── Shadows ────────────────────────────────────────────────── */
-  --shadow-sm:      0 1px 3px rgba(234, 88, 12, 0.10);
-  --shadow-md:      0 6px 20px rgba(234, 88, 12, 0.15);
-  --shadow-lg:      0 12px 42px rgba(234, 88, 12, 0.18);
-  --shadow-sheet:   0 -4px 40px rgba(234, 88, 12, 0.14);
-  --shadow-feature: 0 3px 10px rgba(234, 88, 12, 0.12), 0 0 0 1px rgba(234, 88, 12, 0.16);
-  --shadow-success: 0 2px 8px rgba(234, 88, 12, 0.28);
-  --shadow-glow:    0 0 16px rgba(234, 88, 12, 0.40);
-  --shadow-sticky:  0 -2px 16px rgba(234, 88, 12, 0.10), 0 -1px 4px rgba(234, 88, 12, 0.06);
-  --shadow-accent:  0 4px 12px rgba(234, 88, 12, 0.24);
+  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md:      0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-lg:      0 12px 40px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-sheet:   0 -4px 32px rgba(0, 0, 0, 0.10), 0 -1px 6px rgba(0, 0, 0, 0.05);
+  --shadow-feature: 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-success: 0 4px 14px rgba(249, 115, 22, 0.35);
+  --shadow-glow:    0 0 20px rgba(249, 115, 22, 0.30);
+  --shadow-sticky:  0 -2px 20px rgba(0, 0, 0, 0.08), 0 -1px 4px rgba(0, 0, 0, 0.04);
+  --shadow-accent:  0 4px 14px rgba(249, 115, 22, 0.30);
+  --shadow-card:    0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-btn:     0 4px 14px rgba(249, 115, 22, 0.38);
 
   /* ─── Typography — Fluid Scale ───────────────────────────────── */
-  --text-2xs:      clamp(8.5px, 2.3vw, 10px);
-  --text-xs:       clamp(10px, 2.8vw, 12px);
-  --text-sm:       clamp(11px, 3vw, 13px);
-  --text-base:     clamp(13px, 3.6vw, 15px);
-  --text-lg:       clamp(14px, 4vw, 17px);
-  --text-xl:       clamp(18px, 5.5vw, 22px);
-  --text-price-lg: clamp(24px, 7vw, 28px);
+  --text-2xs:      clamp(10px, 2.6vw, 11px);
+  --text-xs:       clamp(11px, 3vw, 12.5px);
+  --text-sm:       clamp(12px, 3.2vw, 13.5px);
+  --text-base:     clamp(13.5px, 3.8vw, 15px);
+  --text-lg:       clamp(15px, 4.2vw, 17px);
+  --text-xl:       clamp(19px, 5.5vw, 23px);
+  --text-price-lg: clamp(24px, 7vw, 29px);
 
   /* ─── Border Radius ──────────────────────────────────────────── */
   --radius-sm:     0.5rem;
@@ -87,13 +93,15 @@
 
   /* ─── Gradients ──────────────────────────────────────────────── */
   --gradient-brand-text:
-    linear-gradient(160deg, #F97316 0%, #F97316 100%);
+    linear-gradient(145deg, #F97316 0%, #EA580C 100%);
   --gradient-gold:
-    linear-gradient(135deg, #F97316, #F97316);
+    linear-gradient(135deg, #F97316 0%, #EA580C 100%);
   --gradient-cta:
-    linear-gradient(135deg, #F97316, #F97316);
+    linear-gradient(135deg, #F97316 0%, #EA580C 100%);
   --gradient-accent:
-    linear-gradient(135deg, #F97316, #F97316);
+    linear-gradient(135deg, #FB923C 0%, #F97316 100%);
+  --gradient-warm:
+    linear-gradient(135deg, #FFF7F0 0%, #FFF3E8 100%);
 
   /* ─── Font & Layout ──────────────────────────────────────────── */
   --font-main:     'Tajawal', sans-serif;
@@ -110,51 +118,55 @@
   --ease-sheet:      cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-/* ─── Dark Mode — keeps orange, darkens backgrounds ─────────────── */
+/* ─── Dark Mode ──────────────────────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
     --gold:                 #F97316;
-    --gold-dark:            #F97316;
-    --gold-mid:             #F97316;
-    --gold-light:           #1A1A1A;
-    --gold-pale:            #111111;
-    --gold-accent:          #F97316;
+    --gold-dark:            #EA580C;
+    --gold-mid:             #FB923C;
+    --gold-light:           #1E1A16;
+    --gold-pale:            #161210;
+    --gold-accent:          #EA580C;
     --gold-gradient-start:  #F97316;
     --gold-warm:            #F97316;
 
     --accent:               #F97316;
-    --accent-bg:            #1A1A1A;
-    --accent-light:         #111111;
-    --accent-text:          #F97316;
+    --accent-bg:            #1E1A16;
+    --accent-light:         #161210;
+    --accent-text:          #FB923C;
 
-    --text-primary:         #FFFFFF;
+    --text-primary:         #F5F5F5;
     --text-secondary:       #CCCCCC;
     --text-muted:           #888888;
-    --text-price:           #FFFFFF;
+    --text-price:           #F5F5F5;
     --text-brand:           #F97316;
 
-    --discount-bg:          #1A1A1A;
-    --discount-text:        #F97316;
-    --success:              #F97316;
-    --error:                #F97316;
+    --success:              #22C55E;
+    --success-bg:           #052E16;
+    --error:                #F87171;
+    --error-bg:             #2D0A0A;
+    --discount-bg:          #1E1A16;
+    --discount-text:        #FB923C;
 
     --bg-body:              #0D0D0D;
     --bg-page:              #111111;
     --bg-card:              #1A1A1A;
     --bg-surface-warm:      #1A1A1A;
     --bg-surface-subtle:    #141414;
+    --bg-subtle:            #161616;
     --bg-cta-dark:          #F97316;
 
     --card-bg:              #1A1A1A;
-    --card-border:          rgba(249, 115, 22, 0.22);
-    --card-img-bg:          #1A1A1A;
+    --card-border:          rgba(255, 255, 255, 0.07);
+    --card-img-bg:          #1F1F1F;
 
     --input-bg:             #1A1A1A;
     --input-bg-soft:        #141414;
 
-    --border:               rgba(249, 115, 22, 0.20);
-    --border-warm:          rgba(249, 115, 22, 0.25);
-    --border-separator:     rgba(249, 115, 22, 0.15);
+    --border:               rgba(255, 255, 255, 0.08);
+    --border-warm:          rgba(255, 255, 255, 0.10);
+    --border-separator:     rgba(255, 255, 255, 0.06);
+    --border-orange:        rgba(249, 115, 22, 0.22);
 
     --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.40);
     --shadow-md:      0 3px 12px rgba(0, 0, 0, 0.55);
@@ -162,24 +174,17 @@
     --shadow-sheet:   0 -4px 40px rgba(0, 0, 0, 0.55);
     --shadow-sticky:  0 -2px 16px rgba(0, 0, 0, 0.45), 0 -1px 4px rgba(0, 0, 0, 0.25);
     --shadow-feature: 0 1px 6px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(249, 115, 22, 0.14);
-    --shadow-success: 0 2px 8px rgba(249, 115, 22, 0.35);
-    --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.55);
-    --shadow-accent:  0 2px 8px rgba(249, 115, 22, 0.38);
-
-    --gradient-brand-text:
-      linear-gradient(160deg, #F97316 0%, #F97316 100%);
-    --gradient-gold:
-      linear-gradient(135deg, #F97316, #F97316);
-    --gradient-cta:
-      linear-gradient(135deg, #F97316, #F97316);
-    --gradient-accent:
-      linear-gradient(135deg, #F97316, #F97316);
+    --shadow-success: 0 4px 14px rgba(249, 115, 22, 0.40);
+    --shadow-glow:    0 0 20px rgba(249, 115, 22, 0.55);
+    --shadow-accent:  0 4px 14px rgba(249, 115, 22, 0.40);
+    --shadow-card:    0 2px 8px rgba(0, 0, 0, 0.40);
+    --shadow-btn:     0 4px 14px rgba(249, 115, 22, 0.45);
   }
 
   .bg-white { background-color: var(--bg-card) !important; }
 }
 
-/* ─── Reset ──────────────────────────────────────────────────── */
+/* ─── Reset ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 
 html, body {
@@ -298,14 +303,14 @@ html, body {
 .sticky-buy-bar { animation: slideUp var(--duration-base) var(--ease-slide) both; }
 
 @keyframes newBadgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(166, 124, 82, 0.45); }
-  50%       { box-shadow: 0 0 0 5px rgba(166, 124, 82, 0);  }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.35); }
+  50%       { box-shadow: 0 0 0 5px rgba(249, 115, 22, 0);  }
 }
 .new-badge-pulse { animation: newBadgePulse 2.4s ease-in-out infinite; }
 
 @keyframes accentPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 92, 0, 0.45); }
-  50%       { box-shadow: 0 0 0 5px rgba(184, 92, 0, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.35); }
+  50%       { box-shadow: 0 0 0 5px rgba(249, 115, 22, 0); }
 }
 .accent-badge-pulse { animation: accentPulse 2.4s ease-in-out infinite; }
 
@@ -342,22 +347,22 @@ html, body {
 .page-enter { animation: pageEnter 0.22s var(--ease-out) both; }
 
 @keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position: 200% 0;  }
+  0%   { background-position: -400% 0; }
+  100% { background-position: 400% 0;  }
 }
 
-/* ─── Gold Divider ───────────────────────────────────────────── */
+/* ─── Brand Divider ──────────────────────────────────────────── */
 .gold-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  opacity: 0.35;
+  background: var(--border);
+  opacity: 1;
 }
 
 /* ─── Accent Divider ─────────────────────────────────────────── */
 .accent-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.40;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.35;
 }
 
 /* ─── Card press feedback ────────────────────────────────────── */
@@ -374,7 +379,7 @@ html, body {
 .bottom-sheet-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(18, 14, 10, 0.50);
+  background: rgba(0, 0, 0, 0.50);
   z-index: 100;
   backdrop-filter: blur(3px);
   animation: fadeInUp 0.2s var(--ease-out);
@@ -394,10 +399,10 @@ html, body {
 }
 
 .bottom-sheet-handle {
-  width: 36px;
+  width: 40px;
   height: 4px;
   border-radius: 2px;
-  background: var(--border);
+  background: rgba(0, 0, 0, 0.12);
   margin: 12px auto 4px;
 }
 
@@ -405,12 +410,12 @@ html, body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--bg-surface-warm) 25%,
-    var(--gold-pale) 50%,
-    var(--bg-surface-warm) 75%
+    #F0F0F0 25%,
+    #E8E8E8 50%,
+    #F0F0F0 75%
   );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s var(--ease-standard) infinite;
+  background-size: 400% 100%;
+  animation: shimmer 1.6s var(--ease-standard) infinite;
   border-radius: var(--radius-sm);
 }
 
@@ -420,7 +425,7 @@ html, body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 2.5px solid var(--gold-light);
+  border: 2.5px solid #F0F0F0;
   border-top-color: var(--gold);
   animation: spin 0.7s linear infinite;
 }
@@ -437,6 +442,7 @@ html, body {
   font-weight: 800;
   line-height: 1.15;
   color: var(--text-primary);
+  letter-spacing: -0.3px;
 }
 
 .type-heading {
@@ -477,7 +483,7 @@ html, body {
   font-weight: 700;
   line-height: 1;
   color: var(--text-brand);
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
 }
 
 .type-price {
@@ -524,4 +530,34 @@ html, body {
   75%  { transform: translateX(-2px); }
   90%  { transform: translateX(1px); }
   100% { transform: translateX(0); }
+}
+
+/* ─── Orange CTA Button ──────────────────────────────────────── */
+.btn-cta {
+  background: var(--gradient-cta);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-md);
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-btn);
+  transition:
+    opacity var(--duration-fast) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+.btn-cta:hover   { opacity: 0.92; }
+.btn-cta:active  { transform: scale(0.97); opacity: 0.85; }
+
+/* ─── Discount Badge ─────────────────────────────────────────── */
+.badge-discount {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-size: var(--text-2xs);
+  font-weight: 700;
+  background: #FFF7F0;
+  color: #EA580C;
+  border: 1px solid rgba(249, 115, 22, 0.20);
 }

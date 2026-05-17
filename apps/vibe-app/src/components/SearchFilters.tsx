@@ -181,7 +181,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
           </div>
 
           <button onClick={() => { onApply(local); onClose(); }}
-            style={{ width: "100%", padding: "14px 0", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+            style={{ width: "100%", padding: "14px 0", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
             تطبيق الفلاتر {activeCount > 0 ? `(${activeCount})` : ""}
           </button>
         </div>

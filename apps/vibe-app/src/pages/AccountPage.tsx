@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import {
   User, ShoppingBag, Heart, MapPin, CreditCard,
   Bell, HelpCircle, LogOut, ChevronRight, Star, Gift, Trophy, TrendingDown, AlertTriangle,
+  Package, Gem, TrendingDown as PriceAlert,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
@@ -315,15 +316,17 @@ export function AccountPage() {
                   احتفظ بمفضلتك وسلّتك ونقاط الولاء في أي جهاز
                 </p>
 
-                <div dir="rtl" style={{ display: "flex", flexDirection: "column", gap: 8, width: "100%", marginTop: 4 }}>
+                <div dir="rtl" style={{ display: "flex", flexDirection: "column", gap: 10, width: "100%", marginTop: 4 }}>
                   {[
-                    { icon: "🛍️", text: "تتبع طلباتك في الوقت الفعلي" },
-                    { icon: "💎", text: "اكسب نقاط مع كل عملية شراء" },
-                    { icon: "🔔", text: "تنبيهات انخفاض الأسعار" },
-                  ].map(({ icon, text }) => (
-                    <div key={text} style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                      <span style={{ fontSize: 15 }}>{icon}</span>
-                      <span style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "var(--text-secondary)" }}>{text}</span>
+                    { Icon: Package,   text: "تتبع طلباتك في الوقت الفعلي" },
+                    { Icon: Gem,       text: "اكسب نقاط مع كل عملية شراء" },
+                    { Icon: PriceAlert,text: "تنبيهات انخفاض الأسعار" },
+                  ].map(({ Icon, text }) => (
+                    <div key={text} style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                      <div style={{ width: 32, height: 32, borderRadius: 10, background: "var(--gold-pale)", border: "1px solid var(--border-orange)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <Icon size={15} style={{ color: "var(--gold)" }} strokeWidth={1.8} />
+                      </div>
+                      <span style={{ fontFamily: "var(--font-main)", fontSize: 12.5, color: "var(--text-secondary)" }}>{text}</span>
                     </div>
                   ))}
                 </div>
@@ -333,10 +336,10 @@ export function AccountPage() {
                   aria-label="تسجيل الدخول أو إنشاء حساب جديد"
                   style={{
                     padding: "13px 28px", borderRadius: 14, border: "none",
-                    background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)",
+                    background: "var(--gradient-cta)",
                     color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700,
                     cursor: "pointer", marginTop: 4,
-                    boxShadow: "0 4px 16px rgba(0,0,0,0.20)",
+                    boxShadow: "var(--shadow-btn)",
                   }}
                 >
                   دخول / إنشاء حساب

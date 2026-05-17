@@ -23,8 +23,9 @@ export function DealCard({ product }: { product: Product }) {
       style={{
         width: "clamp(112px, 30vw, 138px)",
         background: "var(--card-bg)",
-        border: "1px solid var(--gold)",
+        border: "1px solid var(--card-border)",
         borderRadius: "var(--radius-card)",
+        boxShadow: "var(--shadow-card)",
         cursor: "pointer",
       }}
     >

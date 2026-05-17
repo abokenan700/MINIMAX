@@ -46,7 +46,7 @@ export function StickyBuyBar({ product, liked, added, isOOS, onAdd, onBuy, onWis
 
       {/* T3: disable buttons when OOS */}
       <button onClick={isOOS ? undefined : onAdd} disabled={isOOS}
-        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", border: "none", cursor: isOOS ? "not-allowed" : "pointer", background: isOOS ? "var(--border)" : added ? "linear-gradient(135deg,var(--gold),var(--gold-accent))" : "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", gap: 6, flexShrink: 0, transition: "background 0.3s", opacity: isOOS ? 0.6 : 1 }}>
+        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", border: "none", cursor: isOOS ? "not-allowed" : "pointer", background: isOOS ? "var(--border)" : "var(--gradient-cta)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", gap: 6, flexShrink: 0, transition: "opacity 0.2s", opacity: isOOS ? 0.6 : 1, boxShadow: isOOS ? "none" : "var(--shadow-btn)" }}>
         {isOOS ? "نفذ" : added ? <><Check size={14} />تمت ✓</> : <><ShoppingBag size={14} />أضف للسلة</>}
       </button>
       <button onClick={isOOS ? undefined : onBuy} disabled={isOOS}

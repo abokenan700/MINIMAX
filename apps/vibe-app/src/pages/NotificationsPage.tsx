@@ -88,7 +88,7 @@ export function NotificationsPage() {
           { key: "unread" as const, label: `غير مقروءة (${unreadCount})` },
         ].map(({ key, label }) => (
           <button key={key} onClick={() => setFilter(key)}
-            style={{ padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 600, background: filter === key ? "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)" : "var(--bg-page)", color: filter === key ? "#fff" : "var(--text-secondary)", transition: "background 0.2s" }}>
+            style={{ padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 600, background: filter === key ? "var(--gradient-cta)" : "var(--bg-subtle)", color: filter === key ? "#fff" : "var(--text-secondary)", transition: "background 0.2s", boxShadow: filter === key ? "var(--shadow-btn)" : "none" }}>
             {label}
           </button>
         ))}
@@ -100,7 +100,7 @@ export function NotificationsPage() {
             <Bell size={48} style={{ color: "#D4CFC9" }} strokeWidth={1.2} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 15, color: "var(--text-muted)" }}>سجّل دخولك لعرض الإشعارات</p>
             <button onClick={() => openSheet()}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--bg-cta-dark),#2E2C2A)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               تسجيل الدخول
             </button>
           </div>
