@@ -242,7 +242,7 @@ function CatalogBody({
         key={activeL2}
         onScroll={handleScroll}
         className="hide-scrollbar fade-in-up"
-        style={{ flex: 1, overflowY: "auto", background: "#fafaf8" }}
+        style={{ flex: 1, overflowY: "auto", background: "#FFFFFF" }}
         dir="rtl"
       >
         {l3Items.length > 0 ? (

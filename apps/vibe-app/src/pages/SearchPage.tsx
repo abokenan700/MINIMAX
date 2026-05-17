@@ -85,7 +85,7 @@ function ResultCard({ item }: { item: Product }) {
     <article className="card-pressable flex flex-col rounded-2xl overflow-hidden"
       style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", cursor: "pointer" }}
       aria-label={item.name} onClick={() => navigate(`/product/${item.id}`)}>
-      <div className="relative" style={{ aspectRatio: "1/1", background: "linear-gradient(145deg,#fdfcfb,#f5f0ea)" }}>
+      <div className="relative" style={{ aspectRatio: "1/1", background: "#FFFFFF" }}>
         <img src={item.image} alt={item.name} loading="lazy" className="absolute inset-0 w-full h-full object-contain p-3" onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
         <button onClick={(e) => { e.stopPropagation(); toggleWishlist(item); }}
           className="absolute top-0 end-0 flex items-start justify-end"
@@ -380,7 +380,7 @@ export function SearchPage() {
               </div>
             </div>
 
-            <div style={{ height: 8, background: "#F4F3F1" }} />
+            <div style={{ height: 8, background: "#F5F5F5" }} />
 
             {/* اقتراحات */}
             <div style={{ paddingTop: 16, paddingBottom: 4 }}>
@@ -395,7 +395,7 @@ export function SearchPage() {
               </div>
             </div>
 
-            <div style={{ height: 8, background: "#F4F3F1", marginTop: 12 }} />
+            <div style={{ height: 8, background: "#F5F5F5", marginTop: 12 }} />
 
             {/* الماركات الشائعة */}
             <div style={{ paddingTop: 16, paddingBottom: 18 }}>
@@ -410,7 +410,7 @@ export function SearchPage() {
               </div>
             </div>
 
-            <div style={{ height: 8, background: "#F4F3F1" }} />
+            <div style={{ height: 8, background: "#F5F5F5" }} />
 
             {/* شوهد مؤخراً */}
             {recentProducts.length > 0 && (
@@ -438,7 +438,7 @@ export function SearchPage() {
                     ))}
                   </div>
                 </div>
-                <div style={{ height: 8, background: "#F4F3F1" }} />
+                <div style={{ height: 8, background: "#F5F5F5" }} />
               </>
             )}
 

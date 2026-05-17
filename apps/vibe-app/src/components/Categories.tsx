@@ -55,7 +55,7 @@ export function Categories({
                   style={{
                     width: "100%",
                     height: "100%",
-                    background: "linear-gradient(145deg, #faf8f5 0%, #f2ebe0 100%)",
+                    background: "#FFFFFF",
                   }}
                 >
                   <img

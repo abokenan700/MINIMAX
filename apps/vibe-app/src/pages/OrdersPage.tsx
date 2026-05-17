@@ -136,13 +136,13 @@ function OrderSkeleton() {
     <div style={{ borderRadius: 18, background: "var(--bg-card)", border: "1px solid var(--border-warm)", padding: "16px", overflow: "hidden" }}>
       <div className="animate-pulse" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ height: 14, width: "40%", borderRadius: 6, background: "#EDE8E2" }} />
-          <div style={{ height: 22, width: "28%", borderRadius: 20, background: "#EDE8E2" }} />
+          <div style={{ height: 14, width: "40%", borderRadius: 6, background: "#F0F0F0" }} />
+          <div style={{ height: 22, width: "28%", borderRadius: 20, background: "#F0F0F0" }} />
         </div>
         <div style={{ display: "flex", gap: 8 }}>
-          {[1, 2, 3].map((i) => <div key={i} style={{ width: 52, height: 52, borderRadius: 10, background: "#EDE8E2" }} />)}
+          {[1, 2, 3].map((i) => <div key={i} style={{ width: 52, height: 52, borderRadius: 10, background: "#F0F0F0" }} />)}
         </div>
-        <div style={{ height: 36, borderRadius: 10, background: "#EDE8E2" }} />
+        <div style={{ height: 36, borderRadius: 10, background: "#F0F0F0" }} />
       </div>
     </div>
   );

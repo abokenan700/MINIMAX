@@ -108,10 +108,10 @@ export function NotificationsPage() {
           <div style={{ display: "flex", flexDirection: "column" }}>
             {[1, 2, 3].map((i) => (
               <div key={i} className="animate-pulse" style={{ display: "flex", gap: 12, padding: "14px 16px", borderBottom: "1px solid var(--border)" }}>
-                <div style={{ width: 42, height: 42, borderRadius: 14, background: "#EDE8E2", flexShrink: 0 }} />
+                <div style={{ width: 42, height: 42, borderRadius: 14, background: "#F0F0F0", flexShrink: 0 }} />
                 <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
-                  <div style={{ height: 12, width: "60%", borderRadius: 4, background: "#EDE8E2" }} />
-                  <div style={{ height: 10, width: "90%", borderRadius: 4, background: "#EDE8E2" }} />
+                  <div style={{ height: 12, width: "60%", borderRadius: 4, background: "#F0F0F0" }} />
+                  <div style={{ height: 10, width: "90%", borderRadius: 4, background: "#F0F0F0" }} />
                 </div>
               </div>
             ))}

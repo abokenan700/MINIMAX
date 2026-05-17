@@ -32,7 +32,7 @@ const CountdownDisplay = memo(function CountdownDisplay() {
   return (
     <div
       className="border rounded-[4px] px-2 py-0.5"
-      style={{ background: "#F1E5D9", borderColor: "#F5ECE3" }}
+      style={{ background: "#F5F5F5", borderColor: "#EEEEEE" }}
     >
       <span
         className="text-[#5D5854] font-medium tabular-nums"
@@ -65,18 +65,18 @@ export function Products() {
                   className="flex-shrink-0 rounded-2xl overflow-hidden animate-pulse"
                   style={{ width: "clamp(112px, 30vw, 138px)", background: "var(--card-bg)", border: "1px solid var(--gold)" }}
                 >
-                  <div style={{ aspectRatio: "1 / 0.95", background: "#EDE8E2" }} />
+                  <div style={{ aspectRatio: "1 / 0.95", background: "#F0F0F0" }} />
                   <div style={{ height: 1, background: "var(--gold)", opacity: 0.25 }} />
                   <div className="px-2 pt-1.5 pb-2 flex flex-col gap-1.5">
-                    <div className="rounded" style={{ height: 8, width: "48%", background: "#DDD8CF" }} />
-                    <div className="rounded" style={{ height: 10, width: "84%", background: "#DDD8CF" }} />
+                    <div className="rounded" style={{ height: 8, width: "48%", background: "#E5E5E5" }} />
+                    <div className="rounded" style={{ height: 10, width: "84%", background: "#E5E5E5" }} />
                     <div className="flex items-center justify-between">
-                      <div className="rounded" style={{ height: 12, width: "44%", background: "#DDD8CF" }} />
-                      <div className="rounded" style={{ height: 8, width: "28%", background: "#DDD8CF" }} />
+                      <div className="rounded" style={{ height: 12, width: "44%", background: "#E5E5E5" }} />
+                      <div className="rounded" style={{ height: 8, width: "28%", background: "#E5E5E5" }} />
                     </div>
                     <div className="flex items-center justify-between">
-                      <div className="rounded-full" style={{ height: 18, width: "44%", background: "#DDD8CF" }} />
-                      <div className="rounded-full" style={{ height: 22, width: 22, background: "#DDD8CF" }} />
+                      <div className="rounded-full" style={{ height: 18, width: "44%", background: "#E5E5E5" }} />
+                      <div className="rounded-full" style={{ height: 22, width: 22, background: "#E5E5E5" }} />
                     </div>
                   </div>
                 </div>

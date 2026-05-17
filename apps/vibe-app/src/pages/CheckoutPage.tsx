@@ -118,7 +118,7 @@ function PaymentCard({ id, icon, title, subtitle, selected, onSelect, disabled, 
       {badge && (
         <span style={{ position: "absolute", top: 8, insetInlineStart: 8, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--border)", color: "var(--text-muted)" }}>{badge}</span>
       )}
-      <div style={{ width: 42, height: 42, borderRadius: 12, background: selected ? "var(--gold-light)" : "#F4F3F1", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{icon}</div>
+      <div style={{ width: 42, height: 42, borderRadius: 12, background: selected ? "#F0F0F0" : "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{icon}</div>
       <div style={{ flex: 1 }}>
         <p style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", marginBottom: 2 }}>{title}</p>
         <p style={{ fontSize: 11, color: "var(--text-muted)" }}>{subtitle}</p>

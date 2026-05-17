@@ -164,7 +164,7 @@ export function AddressBookPage() {
 
         {isLoading ? (
           Array.from({ length: 2 }).map((_, i) => (
-            <div key={i} className="animate-pulse" style={{ height: 110, borderRadius: 16, background: "#EDE8E2", marginBottom: 10 }} />
+            <div key={i} className="animate-pulse" style={{ height: 110, borderRadius: 16, background: "#F0F0F0", marginBottom: 10 }} />
           ))
         ) : addresses.length === 0 ? (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14, paddingTop: 80 }}>
@@ -187,7 +187,7 @@ export function AddressBookPage() {
                 {/* Label row */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 7 }}>
-                    <div style={{ width: 30, height: 30, borderRadius: 8, background: addr.is_default ? "var(--gold-pale)" : "#F4F3F1", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 30, height: 30, borderRadius: 8, background: addr.is_default ? "#F5F5F5" : "#F5F5F5", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <LabelIcon label={addr.label} />
                     </div>
                     <span style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)" }}>{addr.label}</span>

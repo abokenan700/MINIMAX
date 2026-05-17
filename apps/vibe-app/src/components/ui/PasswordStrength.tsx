@@ -33,7 +33,7 @@ export function PasswordStrength({ password }: PasswordStrengthProps) {
               flex: 1,
               height: 4,
               borderRadius: 2,
-              background: i < score ? color : "#E8E4DE",
+              background: i < score ? color : "#E8E8E8",
               transition: "background 0.3s ease",
             }}
           />

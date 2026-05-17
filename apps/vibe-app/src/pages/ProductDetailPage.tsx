@@ -323,7 +323,7 @@ function ReviewsSection({ product }: { product: Product }) {
       {/* Review list */}
       {isLoading ? (
         <div style={{ padding: "16px 0" }}>
-          {[1, 2].map(i => <div key={i} className="animate-pulse" style={{ height: 80, borderRadius: 12, background: "#EDE8E2", marginBottom: 12 }} />)}
+          {[1, 2].map(i => <div key={i} className="animate-pulse" style={{ height: 80, borderRadius: 12, background: "#F0F0F0", marginBottom: 12 }} />)}
         </div>
       ) : reviews.length === 0 ? (
         <p style={{ textAlign: "center", color: "var(--text-muted)", fontSize: 13, padding: "16px 0 8px" }}>
@@ -387,9 +387,9 @@ function RelatedProducts({ currentId }: { currentId: number }) {
   const related = useMemo(() => products.filter((p) => p.id !== currentId).slice(0, 8), [products, currentId]);
   if (isLoading) return (
     <div style={{ borderTop: "6px solid var(--border-separator)", padding: "20px 16px 8px" }}>
-      <div className="animate-pulse rounded" style={{ height: 18, width: "40%", background: "#EDE8E2", marginBottom: 14 }} />
+      <div className="animate-pulse rounded" style={{ height: 18, width: "40%", background: "#F0F0F0", marginBottom: 14 }} />
       <div style={{ display: "flex", gap: 10, overflowX: "hidden" }}>
-        {[1, 2, 3].map((i) => <div key={i} className="animate-pulse" style={{ flexShrink: 0, width: 130, height: 190, borderRadius: 14, background: "#EDE8E2" }} />)}
+        {[1, 2, 3].map((i) => <div key={i} className="animate-pulse" style={{ flexShrink: 0, width: 130, height: 190, borderRadius: 14, background: "#F0F0F0" }} />)}
       </div>
     </div>
   );
@@ -481,9 +481,9 @@ export function ProductDetailPage() {
   if (isLoading) {
     return (
       <div style={{ flex: "1 1 auto", overflowY: "auto", paddingBottom: 90 }}>
-        <div className="animate-pulse" style={{ width: "100%", aspectRatio: "1/1", background: "#EDE8E2" }} />
+        <div className="animate-pulse" style={{ width: "100%", aspectRatio: "1/1", background: "#F0F0F0" }} />
         <div style={{ padding: "18px 16px" }}>
-          {[150, 200, 100].map((w, i) => <div key={i} className="animate-pulse rounded" style={{ height: 16, width: w, background: "#EDE8E2", marginBottom: 14 }} />)}
+          {[150, 200, 100].map((w, i) => <div key={i} className="animate-pulse rounded" style={{ height: 16, width: w, background: "#F0F0F0", marginBottom: 14 }} />)}
         </div>
       </div>
     );

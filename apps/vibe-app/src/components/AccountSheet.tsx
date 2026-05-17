@@ -336,8 +336,8 @@ export function AccountSheet() {
             {/* ── Header ── */}
             <div style={{
               padding: "26px 22px 22px",
-              background: "#FAFAF9",
-              borderBottom: "1px solid #EDEAE5",
+              background: "#FFFFFF",
+              borderBottom: "1px solid #EEEEEE",
               position: "relative",
               flexShrink: 0,
             }}>
@@ -348,7 +348,7 @@ export function AccountSheet() {
                 style={{
                   position: "absolute", top: 14, left: 14,
                   width: 30, height: 30, borderRadius: "50%",
-                  border: "1px solid #E2DED8", background: "#fff",
+                  border: "1px solid #E8E8E8", background: "#FFFFFF",
                   cursor: "pointer", display: "flex",
                   alignItems: "center", justifyContent: "center",
                   boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
@@ -416,7 +416,7 @@ export function AccountSheet() {
                         <span style={{
                           position: "absolute", bottom: -1, right: -1,
                           width: 14, height: 14, borderRadius: "50%",
-                          background: "#E8E4DE", border: "1.5px solid #fff",
+                          background: "#E8E8E8", border: "1.5px solid #fff",
                           display: "flex", alignItems: "center", justifyContent: "center",
                           fontSize: 8, color: "#8A8480", fontWeight: 700,
                         }}>⋯</span>
@@ -432,11 +432,11 @@ export function AccountSheet() {
 
               {/* Divider */}
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-                <div style={{ flex: 1, height: 1, background: "#ECEAE6" }} />
+                <div style={{ flex: 1, height: 1, background: "#EEEEEE" }} />
                 <span style={{ fontSize: 11.5, color: "#A09C96", fontFamily: "var(--font-main)", whiteSpace: "nowrap" }}>
                   أو {mode === "login" ? "الدخول" : "التسجيل"} بالبريد الإلكتروني
                 </span>
-                <div style={{ flex: 1, height: 1, background: "#ECEAE6" }} />
+                <div style={{ flex: 1, height: 1, background: "#EEEEEE" }} />
               </div>
 
               {/* Form */}
@@ -519,7 +519,7 @@ export function AccountSheet() {
                   type="submit" disabled={busy}
                   style={{
                     width: "100%", padding: "14px 0", borderRadius: 13, border: "none",
-                    background: busy ? "#C0B8AE" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)",
+                    background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)",
                     color: "#fff", fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700,
                     cursor: busy ? "not-allowed" : "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -539,7 +539,7 @@ export function AccountSheet() {
               </div>
 
               {/* Switch mode */}
-              <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px solid #F0EDE8", textAlign: "center" }}>
+              <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px solid #EEEEEE", textAlign: "center" }}>
                 {mode === "login" ? (
                   <p style={{ margin: 0, fontSize: 13.5, color: "#6B6560", fontFamily: "var(--font-main)" }}>
                     ليس لديك حساب؟{" "}
@@ -563,9 +563,9 @@ export function AccountSheet() {
         {/* ══════════════ FORGOT / RESET ══════════════ */}
         {mode === "forgot" && (
           <>
-            <div dir="rtl" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "17px 20px 15px", flexShrink: 0, borderBottom: "1px solid #EDEAE5", background: "#FAFAF9" }}>
+            <div dir="rtl" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "17px 20px 15px", flexShrink: 0, borderBottom: "1px solid #EEEEEE", background: "#FFFFFF" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <button onClick={() => switchMode("login")} aria-label="رجوع" style={{ width: 33, height: 33, borderRadius: "50%", border: "1px solid #E2DED8", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+                <button onClick={() => switchMode("login")} aria-label="رجوع" style={{ width: 33, height: 33, borderRadius: "50%", border: "1px solid #E8E8E8", background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
                   <ArrowRight size={14} color="#6B6560" />
                 </button>
                 <div>
@@ -573,7 +573,7 @@ export function AccountSheet() {
                   <p style={{ margin: "2px 0 0", fontSize: 11, color: "#8A8480", fontFamily: "var(--font-main)" }}>استعد الوصول إلى حسابك</p>
                 </div>
               </div>
-              <button onClick={closeSheet} aria-label="إغلاق" style={{ width: 33, height: 33, borderRadius: "50%", border: "1px solid #E2DED8", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <button onClick={closeSheet} aria-label="إغلاق" style={{ width: 33, height: 33, borderRadius: "50%", border: "1px solid #E8E8E8", background: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <X size={13} color="#6B6560" />
               </button>
             </div>
@@ -594,13 +594,13 @@ export function AccountSheet() {
                 </div>
               ) : !otpSent ? (
                 <form onSubmit={e => { void handleForgot(e); }}>
-                  <div style={{ padding: "11px 13px", borderRadius: 11, background: "#FDF9F3", border: "1px solid #EDE8DE", marginBottom: 16, display: "flex", gap: 10 }}>
+                  <div style={{ padding: "11px 13px", borderRadius: 11, background: "#F8F8F8", border: "1px solid #EEEEEE", marginBottom: 16, display: "flex", gap: 10 }}>
                     <span style={{ fontSize: 17, flexShrink: 0 }}>💡</span>
                     <p style={{ fontSize: 13, color: "#6B6560", margin: 0, fontFamily: "var(--font-main)", lineHeight: 1.7 }}>أدخل بريدك المسجّل وسنرسل لك رمز تحقق مكوّن من 6 أرقام</p>
                   </div>
                   <Input ref={firstRef} icon={<Mail size={17} color="#B8A88C" />} type="email" placeholder="البريد الإلكتروني المسجّل" value={forgotEmail} onChange={e => { setForgotEmail(e.target.value); setErr(""); }} autoComplete="email" required />
                   {err && <div role="alert" style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "11px 13px", borderRadius: 11, background: "#FEF0EE", border: "1px solid #FECACA", marginBottom: 13 }}><span style={{ fontSize: 14, flexShrink: 0 }}>⚠️</span><p style={{ fontSize: 13, color: "#DC2626", margin: 0, fontFamily: "var(--font-main)", lineHeight: 1.5 }}>{err}</p></div>}
-                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", marginTop: 4, borderRadius: 13, border: "none", background: busy ? "#C0B8AE" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
+                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", marginTop: 4, borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
                     {busy && <Loader size={16} className="animate-spin" />}إرسال رمز التحقق
                   </button>
                 </form>
@@ -609,7 +609,7 @@ export function AccountSheet() {
                   <p style={{ fontSize: 13, color: "#6B6560", marginBottom: 3, lineHeight: 1.7, fontFamily: "var(--font-main)" }}>أدخل رمز التحقق المُرسَل إلى</p>
                   <p style={{ fontSize: 14, fontWeight: 700, color: "#1A1814", marginBottom: 16, fontFamily: "var(--font-main)" }}>{forgotEmail}</p>
                   {import.meta.env.DEV && devOtp && (
-                    <div style={{ padding: "9px 13px", borderRadius: 10, background: "#FFF9E6", border: "1px solid #F0D060", marginBottom: 13, display: "flex", alignItems: "center", gap: 8 }}>
+                    <div style={{ padding: "9px 13px", borderRadius: 10, background: "#FFFBEC", border: "1px solid #F0D060", marginBottom: 13, display: "flex", alignItems: "center", gap: 8 }}>
                       <span style={{ fontSize: 13 }}>🧪</span>
                       <p style={{ fontSize: 12, color: "#7A6000", margin: 0, fontFamily: "var(--font-main)" }}>رمز التطوير: <strong style={{ fontSize: 14, letterSpacing: 2 }}>{devOtp}</strong></p>
                     </div>
@@ -618,7 +618,7 @@ export function AccountSheet() {
                   <Input icon={<Lock size={17} color="#B8A88C" />} type={showNewPass ? "text" : "password"} placeholder="كلمة المرور الجديدة (6 أحرف على الأقل)" value={newPass} onChange={e => { setNewPass(e.target.value); setErr(""); }} autoComplete="new-password" suffix={<button type="button" onClick={() => setShowNewPass(s => !s)} aria-label={showNewPass ? "إخفاء" : "إظهار"} style={{ background: "none", border: "none", cursor: "pointer", padding: 6, display: "flex" }}>{showNewPass ? <EyeOff size={16} color="var(--text-muted)" /> : <Eye size={16} color="var(--text-muted)" />}</button>} />
                   {newPass && <PasswordStrength password={newPass} />}
                   {err && <div role="alert" style={{ display: "flex", alignItems: "flex-start", gap: 8, padding: "11px 13px", borderRadius: 11, background: "#FEF0EE", border: "1px solid #FECACA", marginBottom: 13 }}><span style={{ fontSize: 14, flexShrink: 0 }}>⚠️</span><p style={{ fontSize: 13, color: "#DC2626", margin: 0, fontFamily: "var(--font-main)", lineHeight: 1.5 }}>{err}</p></div>}
-                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", borderRadius: 13, border: "none", background: busy ? "#C0B8AE" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 11, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
+                  <button type="submit" disabled={busy} style={{ width: "100%", padding: "14px 0", borderRadius: 13, border: "none", background: busy ? "#CCCCCC" : "linear-gradient(135deg,#C8A060 0%,#8B6230 100%)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14.5, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginBottom: 11, boxShadow: busy ? "none" : "0 5px 18px rgba(168,120,60,0.32)" }}>
                     {busy && <Loader size={16} className="animate-spin" />}تغيير كلمة المرور
                   </button>
                   <div style={{ display: "flex", justifyContent: "center" }}>

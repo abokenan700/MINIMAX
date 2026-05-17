@@ -16,7 +16,7 @@ function FreeShippingBar({ total }: { total: number }) {
   const reached = total >= FREE_SHIPPING_THRESHOLD;
 
   return (
-    <div dir="rtl" style={{ padding: "10px 12px", background: reached ? "#E8F5E9" : "var(--gold-pale)", borderBottom: "1px solid var(--border-warm)" }}>
+    <div dir="rtl" style={{ padding: "10px 12px", background: reached ? "#E8F5E9" : "#F8F8F8", borderBottom: "1px solid var(--border-warm)" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
         <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: reached ? "#5A8A4A" : "var(--text-brand)" }}>
           {reached ? "🎉 تأهّلت للشحن المجاني!" : `أضف ${remaining.toLocaleString("ar-SA")} ر.س للحصول على شحن مجاني 🚚`}
@@ -156,7 +156,7 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
                   <Trash2 size={12} />
                 </div>
               </button>
-              <div className="flex items-center rounded-full" style={{ background: "var(--gold-light)", border: "1px solid #e8d9c0" }}>
+              <div className="flex items-center rounded-full" style={{ background: "#F0F0F0", border: "1px solid #E8E8E8" }}>
                 <button onClick={() => onQtyChange(item.id, item.color, -1)}
                   style={{ minWidth: 40, minHeight: 40, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer" }}
                   aria-label="تقليل الكمية">
@@ -318,7 +318,7 @@ export function CartPage() {
           </div>
 
           {!editMode && (
-            <div className="px-3 pt-2 pb-3" style={{ flexShrink: 0, background: "#fafaf8", borderTop: "1px solid var(--border-warm)" }}>
+            <div className="px-3 pt-2 pb-3" style={{ flexShrink: 0, background: "#FFFFFF", borderTop: "1px solid var(--border-warm)" }}>
               {/* T24: Trust microcopy in cart CTA */}
               <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 10 }} dir="rtl">
                 {[

@@ -36,7 +36,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
             justifyContent: "center",
             gap: 16,
             padding: "32px 24px",
-            background: "#fafaf8",
+            background: "#FFFFFF",
             textAlign: "center",
           }}
         >
@@ -45,7 +45,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
               width: 64,
               height: 64,
               borderRadius: "50%",
-              background: "#FEF0EE",
+              background: "#FFF0EE",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",

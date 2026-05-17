@@ -12,8 +12,8 @@
   --gold:                  #B88A44;
   --gold-dark:             #7A5323;
   --gold-mid:              #C89A54;
-  --gold-light:            #F3E5CC;
-  --gold-pale:             #FBF4E8;
+  --gold-light:            #F0F0F0;
+  --gold-pale:             #FFFFFF;
   --gold-accent:           #996B2E;
   --gold-gradient-start:   #E8C98A;
   --gold-warm:             #D0A561;
@@ -38,26 +38,26 @@
   --error:                 #D93030;
 
   /* ─── Surfaces ───────────────────────────────────────────────── */
-  --bg-body:               #EFE7DC;
-  --bg-page:               #FAF7F2;
+  --bg-body:               #FFFFFF;
+  --bg-page:               #FFFFFF;
   --bg-card:               #FFFFFF;
-  --bg-surface-warm:       #F8F3EE;
-  --bg-surface-subtle:     #F5F0E9;
+  --bg-surface-warm:       #FFFFFF;
+  --bg-surface-subtle:     #FFFFFF;
   --bg-cta-dark:           #1A1A1A;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
   --card-border:           rgba(184, 138, 68, 0.22);
-  --card-img-bg:           linear-gradient(145deg, #fffdfa 0%, #f5ead8 100%);
+  --card-img-bg:           #FFFFFF;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
-  --input-bg:              #F2ECE5;
-  --input-bg-soft:         #F8F3EE;
+  --input-bg:              #F5F5F5;
+  --input-bg-soft:         #F5F5F5;
 
   /* ─── Borders ────────────────────────────────────────────────── */
-  --border:                #E5DDD3;
-  --border-warm:           #E8E0D5;
-  --border-separator:      #EDE5D8;
+  --border:                #E8E8E8;
+  --border-warm:           #EBEBEB;
+  --border-separator:      #EEEEEE;
 
   /* ─── Shadows (warm-tinted) ──────────────────────────────────── */
   --shadow-sm:      0 1px 3px rgba(90, 60, 20, 0.06);

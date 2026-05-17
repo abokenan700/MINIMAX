@@ -51,12 +51,12 @@ export function NewArrivals() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, padding: "0 12px" }} dir="rtl">
         {isLoading
           ? Array.from({ length: 6 }).map((_, i) => (
-            <div key={i} className="animate-pulse" style={{ borderRadius: "var(--radius-card)", overflow: "hidden", background: "#EDE8E2" }}>
+            <div key={i} className="animate-pulse" style={{ borderRadius: "var(--radius-card)", overflow: "hidden", background: "#F0F0F0" }}>
               <div style={{ aspectRatio: "1/1" }} />
               <div style={{ padding: "10px 10px 12px", display: "flex", flexDirection: "column", gap: 6 }}>
-                <div style={{ height: 9, width: "50%", background: "#DDD8CF", borderRadius: 4 }} />
-                <div style={{ height: 11, width: "80%", background: "#DDD8CF", borderRadius: 4 }} />
-                <div style={{ height: 14, width: "40%", background: "#DDD8CF", borderRadius: 4 }} />
+                <div style={{ height: 9, width: "50%", background: "#E5E5E5", borderRadius: 4 }} />
+                <div style={{ height: 11, width: "80%", background: "#E5E5E5", borderRadius: 4 }} />
+                <div style={{ height: 14, width: "40%", background: "#E5E5E5", borderRadius: 4 }} />
               </div>
             </div>
           ))
