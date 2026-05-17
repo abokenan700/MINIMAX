@@ -4,7 +4,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowRight, MapPin, Home, Briefcase, Plus, Trash2, Pencil, Check } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
-import { apiFetch } from "../packages/apiFetch";
+import { apiFetch } from "../lib/apiFetch";
 import { Input, Button } from "../components/ui";
 
 type Address = {

@@ -8,10 +8,10 @@
   "include": ["src"],
   "references": [
     {
-      "path": "../../packages/db"
+      "path": "../../lib/db"
     },
     {
-      "path": "../../packages/api-zod"
+      "path": "../../lib/api-zod"
     }
   ]
 }

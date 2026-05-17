@@ -9,11 +9,11 @@ import {
 import { toast } from "sonner";
 import type { Product } from "@workspace/api-client-react";
 import { useGetProducts } from "@workspace/api-client-react";
-import { API_BASE } from "../packages/apiBase";
+import { API_BASE } from "../lib/apiBase";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
 import { useAuth } from "../context/AuthContext";
-import { apiFetch } from "../packages/apiFetch";
+import { apiFetch } from "../lib/apiFetch";
 import { StickyBuyBar } from "../components/StickyBuyBar";
 import { Stars } from "../components/Stars";
 import { Button } from "../components/ui";

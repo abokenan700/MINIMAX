@@ -7,7 +7,7 @@ import { useCart } from "../context/CartContext";
 import { useGetProducts } from "@workspace/api-client-react";
 import type { CartItem } from "../context/CartContext";
 import { Button } from "../components/ui";
-import { calcShipping, FREE_SHIPPING_THRESHOLD } from "../packages/shippingPolicy";
+import { calcShipping, FREE_SHIPPING_THRESHOLD } from "../lib/shippingPolicy";
 
 /* ── Free Shipping Bar ──────────────────────────────────────────── */
 function FreeShippingBar({ total }: { total: number }) {

@@ -5,8 +5,8 @@ import { ChevronRight, User, Mail, Lock, Eye, EyeOff, Loader, CheckCircle2, Came
 import { useAuth } from "../context/AuthContext";
 import { Input } from "../components/ui/Input";
 import { PasswordStrength } from "../components/ui/PasswordStrength";
-import { friendlyError } from "../packages/errors";
-import { getAuthToken } from "../packages/apiFetch";
+import { friendlyError } from "../lib/errors";
+import { getAuthToken } from "../lib/apiFetch";
 
 function resizeImage(file: File, maxSize = 300): Promise<string> {
   return new Promise((resolve, reject) => {

@@ -43092,7 +43092,7 @@ var nullableType = ZodNullable.create;
 var preprocessType = ZodEffects.createWithPreprocess;
 var pipelineType = ZodPipeline.create;
 
-// ../../packages/api-zod/src/generated/api.ts
+// ../../lib/api-zod/src/generated/api.ts
 var HealthCheckResponse = objectType({
   status: stringType()
 });
@@ -50369,7 +50369,7 @@ function drizzle(...params) {
   drizzle2.mock = mock;
 })(drizzle || (drizzle = {}));
 
-// ../../packages/db/src/schema/index.ts
+// ../../lib/db/src/schema/index.ts
 var schema_exports = {};
 __export(schema_exports, {
   addressesTable: () => addressesTable,
@@ -50386,7 +50386,7 @@ __export(schema_exports, {
   wishlistItemsTable: () => wishlistItemsTable
 });
 
-// ../../packages/db/src/schema/products.ts
+// ../../lib/db/src/schema/products.ts
 var productsTable = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -50405,14 +50405,14 @@ var productsTable = pgTable("products", {
   sizes: text("sizes").array().notNull().default([])
 });
 
-// ../../packages/db/src/schema/brands.ts
+// ../../lib/db/src/schema/brands.ts
 var brandsTable = pgTable("brands", {
   id: text("id").primaryKey(),
   label: text("label").notNull(),
   icon: text("icon")
 });
 
-// ../../packages/db/src/schema/categories.ts
+// ../../lib/db/src/schema/categories.ts
 var categoriesTable = pgTable("categories", {
   id: serial("id").primaryKey(),
   slug: text("slug").notNull().unique(),
@@ -50420,7 +50420,7 @@ var categoriesTable = pgTable("categories", {
   image_url: text("image_url").notNull()
 });
 
-// ../../packages/db/src/schema/cart.ts
+// ../../lib/db/src/schema/cart.ts
 var cartItemsTable = pgTable("cart_items", {
   id: serial("id").primaryKey(),
   device_id: text("device_id").notNull(),
@@ -50430,7 +50430,7 @@ var cartItemsTable = pgTable("cart_items", {
   updated_at: timestamp("updated_at").defaultNow()
 }, (t) => [unique("cart_unique_item").on(t.device_id, t.product_id, t.color)]);
 
-// ../../packages/db/src/schema/wishlist.ts
+// ../../lib/db/src/schema/wishlist.ts
 var wishlistItemsTable = pgTable("wishlist_items", {
   id: serial("id").primaryKey(),
   device_id: text("device_id").notNull(),
@@ -50438,7 +50438,7 @@ var wishlistItemsTable = pgTable("wishlist_items", {
   created_at: timestamp("created_at").defaultNow()
 }, (t) => [unique("wishlist_unique_item").on(t.device_id, t.product_id)]);
 
-// ../../packages/db/src/schema/users.ts
+// ../../lib/db/src/schema/users.ts
 var usersTable = pgTable("users", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -50455,7 +50455,7 @@ var usersTable = pgTable("users", {
   created_at: timestamp("created_at").defaultNow()
 });
 
-// ../../packages/db/src/schema/orders.ts
+// ../../lib/db/src/schema/orders.ts
 var ordersTable = pgTable("orders", {
   id: serial("id").primaryKey(),
   user_id: integer("user_id").notNull(),
@@ -50507,7 +50507,7 @@ var priceAlertsTable = pgTable("price_alerts", {
   triggered_at: timestamp("triggered_at")
 });
 
-// ../../packages/db/src/schema/reviews.ts
+// ../../lib/db/src/schema/reviews.ts
 var reviewsTable = pgTable("reviews", {
   id: serial("id").primaryKey(),
   product_id: integer("product_id").notNull(),
@@ -50519,7 +50519,7 @@ var reviewsTable = pgTable("reviews", {
   created_at: timestamp("created_at").defaultNow()
 });
 
-// ../../packages/db/src/schema/addresses.ts
+// ../../lib/db/src/schema/addresses.ts
 var addressesTable = pgTable("addresses", {
   id: serial("id").primaryKey(),
   user_id: integer("user_id").notNull().references(() => usersTable.id, { onDelete: "cascade" }),
@@ -50535,7 +50535,7 @@ var addressesTable = pgTable("addresses", {
   created_at: timestamp("created_at").defaultNow()
 });
 
-// ../../packages/db/src/index.ts
+// ../../lib/db/src/index.ts
 var { Pool: Pool3 } = esm_default;
 if (!process.env.DATABASE_URL) {
   throw new Error(

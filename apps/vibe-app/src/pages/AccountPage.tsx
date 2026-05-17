@@ -8,7 +8,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
 import { useWishlist } from "../context/WishlistContext";
-import { apiFetch } from "../packages/apiFetch";
+import { apiFetch } from "../lib/apiFetch";
 import { useAccountSheet } from "../context/AccountSheetContext";
 
 /* ── LogoutConfirmDialog ─────────────────────────────────────────── */
