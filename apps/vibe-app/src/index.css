@@ -1,76 +1,73 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   نخبة — Orange-Only Palette
-   Primary:  #F97316 (orange-500)
-   Dark:     #C2410C (orange-700)
-   Deeper:   #9A3412 (orange-800)
-   Light:    #FFF7ED (orange-50)
-   Pale:     #FFEDD5 (orange-100)
+   نخبة — Single Orange + Pure White
+   Orange: #F97316 — everything orange is exactly this shade
+   White:  #FFFFFF — all backgrounds pure white
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
   /* ─── Primary Orange Scale ──────────────────────────────────── */
   --gold:                  #F97316;
-  --gold-dark:             #C2410C;
-  --gold-mid:              #FB923C;
-  --gold-light:            #FFEDD5;
-  --gold-pale:             #FFF7ED;
-  --gold-accent:           #EA580C;
-  --gold-gradient-start:   #FED7AA;
+  --gold-dark:             #F97316;
+  --gold-mid:              #F97316;
+  --gold-light:            #FFFFFF;
+  --gold-pale:             #FFFFFF;
+  --gold-accent:           #F97316;
+  --gold-gradient-start:   #F97316;
   --gold-warm:             #F97316;
 
-  /* ─── Accent — Urgency / Discount / Alert (deep orange) ─────── */
-  --accent:                #C2410C;
-  --accent-bg:             #FFEDD5;
-  --accent-light:          #FFF7ED;
-  --accent-text:           #9A3412;
+  /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
+  --accent:                #F97316;
+  --accent-bg:             #FFFFFF;
+  --accent-light:          #FFFFFF;
+  --accent-text:           #F97316;
 
   /* ─── Text ───────────────────────────────────────────────────── */
-  --text-primary:          #431407;
-  --text-secondary:        #7C2D12;
-  --text-muted:            #C2410C;
-  --text-price:            #1C0A00;
-  --text-brand:            #EA580C;
+  --text-primary:          #1A1A1A;
+  --text-secondary:        #444444;
+  --text-muted:            #888888;
+  --text-price:            #1A1A1A;
+  --text-brand:            #F97316;
 
   /* ─── Semantic ───────────────────────────────────────────────── */
-  --discount-bg:           var(--accent-bg);
-  --discount-text:         var(--accent);
-  --success:               #EA580C;
-  --error:                 #9A3412;
+  --discount-bg:           #FFFFFF;
+  --discount-text:         #F97316;
+  --success:               #F97316;
+  --error:                 #F97316;
 
-  /* ─── Surfaces ───────────────────────────────────────────────── */
-  --bg-body:               #FFF7ED;
-  --bg-page:               #FFF7ED;
+  /* ─── Surfaces — pure white everywhere ──────────────────────── */
+  --bg-body:               #FFFFFF;
+  --bg-page:               #FFFFFF;
   --bg-card:               #FFFFFF;
-  --bg-surface-warm:       #FFEDD5;
-  --bg-surface-subtle:     #FFF7ED;
-  --bg-cta-dark:           #431407;
+  --bg-surface-warm:       #FFFFFF;
+  --bg-surface-subtle:     #FFFFFF;
+  --bg-cta-dark:           #F97316;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
-  --card-border:           rgba(249, 115, 22, 0.25);
-  --card-img-bg:           #FFF7ED;
+  --card-border:           rgba(249, 115, 22, 0.20);
+  --card-img-bg:           #FFFFFF;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
-  --input-bg:              #FFEDD5;
-  --input-bg-soft:         #FFF7ED;
+  --input-bg:              #FFFFFF;
+  --input-bg-soft:         #FFFFFF;
 
   /* ─── Borders ────────────────────────────────────────────────── */
-  --border:                #FED7AA;
-  --border-warm:           #FDBA74;
-  --border-separator:      #FED7AA;
+  --border:                rgba(249, 115, 22, 0.20);
+  --border-warm:           rgba(249, 115, 22, 0.25);
+  --border-separator:      rgba(249, 115, 22, 0.15);
 
-  /* ─── Shadows (orange-tinted) ────────────────────────────────── */
-  --shadow-sm:      0 1px 3px rgba(249, 115, 22, 0.12);
-  --shadow-md:      0 6px 20px rgba(194, 65, 12, 0.18);
-  --shadow-lg:      0 12px 42px rgba(154, 52, 18, 0.22);
-  --shadow-sheet:   0 -4px 40px rgba(194, 65, 12, 0.16);
-  --shadow-feature: 0 3px 10px rgba(249, 115, 22, 0.14), 0 0 0 1px rgba(249, 115, 22, 0.18);
-  --shadow-success: 0 2px 8px rgba(234, 88, 12, 0.30);
-  --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.45);
-  --shadow-sticky:  0 -2px 16px rgba(194, 65, 12, 0.12), 0 -1px 4px rgba(249, 115, 22, 0.08);
-  --shadow-accent:  0 4px 12px rgba(194, 65, 12, 0.28);
+  /* ─── Shadows ────────────────────────────────────────────────── */
+  --shadow-sm:      0 1px 3px rgba(249, 115, 22, 0.10);
+  --shadow-md:      0 6px 20px rgba(249, 115, 22, 0.15);
+  --shadow-lg:      0 12px 42px rgba(249, 115, 22, 0.18);
+  --shadow-sheet:   0 -4px 40px rgba(249, 115, 22, 0.14);
+  --shadow-feature: 0 3px 10px rgba(249, 115, 22, 0.12), 0 0 0 1px rgba(249, 115, 22, 0.16);
+  --shadow-success: 0 2px 8px rgba(249, 115, 22, 0.28);
+  --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.40);
+  --shadow-sticky:  0 -2px 16px rgba(249, 115, 22, 0.10), 0 -1px 4px rgba(249, 115, 22, 0.06);
+  --shadow-accent:  0 4px 12px rgba(249, 115, 22, 0.24);
 
   /* ─── Typography — Fluid Scale ───────────────────────────────── */
   --text-2xs:      clamp(8.5px, 2.3vw, 10px);
@@ -90,13 +87,13 @@
 
   /* ─── Gradients ──────────────────────────────────────────────── */
   --gradient-brand-text:
-    linear-gradient(160deg, #F97316 0%, #C2410C 35%, #FED7AA 65%, #EA580C 100%);
+    linear-gradient(160deg, #F97316 0%, #F97316 100%);
   --gradient-gold:
-    linear-gradient(135deg, #FED7AA, #F97316, #C2410C);
+    linear-gradient(135deg, #F97316, #F97316);
   --gradient-cta:
-    linear-gradient(135deg, #C2410C, #431407);
+    linear-gradient(135deg, #F97316, #F97316);
   --gradient-accent:
-    linear-gradient(135deg, #EA580C, #9A3412);
+    linear-gradient(135deg, #F97316, #F97316);
 
   /* ─── Font & Layout ──────────────────────────────────────────── */
   --font-main:     'Tajawal', sans-serif;
@@ -113,70 +110,70 @@
   --ease-sheet:      cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-/* ─── Dark Mode — Deep Orange Night ─────────────────────────────── */
+/* ─── Dark Mode — keeps orange, darkens backgrounds ─────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    --gold:                 #FB923C;
-    --gold-dark:            #EA580C;
-    --gold-mid:             #FDBA74;
-    --gold-light:           #431407;
-    --gold-pale:            #3A1200;
+    --gold:                 #F97316;
+    --gold-dark:            #F97316;
+    --gold-mid:             #F97316;
+    --gold-light:           #1A1A1A;
+    --gold-pale:            #111111;
     --gold-accent:          #F97316;
-    --gold-gradient-start:  #7C2D12;
-    --gold-warm:            #FB923C;
+    --gold-gradient-start:  #F97316;
+    --gold-warm:            #F97316;
 
     --accent:               #F97316;
-    --accent-bg:            #431407;
-    --accent-light:         #3A1200;
-    --accent-text:          #FB923C;
+    --accent-bg:            #1A1A1A;
+    --accent-light:         #111111;
+    --accent-text:          #F97316;
 
-    --text-primary:         #FFEDD5;
-    --text-secondary:       #FED7AA;
-    --text-muted:           #FDBA74;
-    --text-price:           #FFF7ED;
-    --text-brand:           #FB923C;
+    --text-primary:         #FFFFFF;
+    --text-secondary:       #CCCCCC;
+    --text-muted:           #888888;
+    --text-price:           #FFFFFF;
+    --text-brand:           #F97316;
 
-    --discount-bg:          var(--accent-bg);
-    --discount-text:        var(--accent);
-    --success:              #FB923C;
-    --error:                #FDBA74;
+    --discount-bg:          #1A1A1A;
+    --discount-text:        #F97316;
+    --success:              #F97316;
+    --error:                #F97316;
 
-    --bg-body:              #1C0A00;
-    --bg-page:              #230D00;
-    --bg-card:              #2D1100;
-    --bg-surface-warm:      #3A1200;
-    --bg-surface-subtle:    #2D1100;
-    --bg-cta-dark:          #0F0500;
+    --bg-body:              #0D0D0D;
+    --bg-page:              #111111;
+    --bg-card:              #1A1A1A;
+    --bg-surface-warm:      #1A1A1A;
+    --bg-surface-subtle:    #141414;
+    --bg-cta-dark:          #F97316;
 
-    --card-bg:              #2D1100;
+    --card-bg:              #1A1A1A;
     --card-border:          rgba(249, 115, 22, 0.22);
-    --card-img-bg:          #3A1200;
+    --card-img-bg:          #1A1A1A;
 
-    --input-bg:             #3A1200;
-    --input-bg-soft:        #2D1100;
+    --input-bg:             #1A1A1A;
+    --input-bg-soft:        #141414;
 
-    --border:               #7C2D12;
-    --border-warm:          #9A3412;
-    --border-separator:     #6B2410;
+    --border:               rgba(249, 115, 22, 0.20);
+    --border-warm:          rgba(249, 115, 22, 0.25);
+    --border-separator:     rgba(249, 115, 22, 0.15);
 
-    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.45);
-    --shadow-md:      0 3px 12px rgba(0, 0, 0, 0.60);
-    --shadow-lg:      0 0 80px rgba(0, 0, 0, 0.70);
-    --shadow-sheet:   0 -4px 40px rgba(0, 0, 0, 0.60);
-    --shadow-sticky:  0 -2px 16px rgba(0, 0, 0, 0.50), 0 -1px 4px rgba(0, 0, 0, 0.30);
-    --shadow-feature: 0 1px 6px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(249, 115, 22, 0.15);
-    --shadow-success: 0 2px 8px rgba(251, 146, 60, 0.38);
-    --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.60);
-    --shadow-accent:  0 2px 8px rgba(234, 88, 12, 0.42);
+    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.40);
+    --shadow-md:      0 3px 12px rgba(0, 0, 0, 0.55);
+    --shadow-lg:      0 0 80px rgba(0, 0, 0, 0.65);
+    --shadow-sheet:   0 -4px 40px rgba(0, 0, 0, 0.55);
+    --shadow-sticky:  0 -2px 16px rgba(0, 0, 0, 0.45), 0 -1px 4px rgba(0, 0, 0, 0.25);
+    --shadow-feature: 0 1px 6px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(249, 115, 22, 0.14);
+    --shadow-success: 0 2px 8px rgba(249, 115, 22, 0.35);
+    --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.55);
+    --shadow-accent:  0 2px 8px rgba(249, 115, 22, 0.38);
 
     --gradient-brand-text:
-      linear-gradient(160deg, #FB923C 0%, #EA580C 35%, #FED7AA 65%, #F97316 100%);
+      linear-gradient(160deg, #F97316 0%, #F97316 100%);
     --gradient-gold:
-      linear-gradient(135deg, #7C2D12, #C2410C, #FB923C);
+      linear-gradient(135deg, #F97316, #F97316);
     --gradient-cta:
-      linear-gradient(135deg, #431407, #1C0A00);
+      linear-gradient(135deg, #F97316, #F97316);
     --gradient-accent:
-      linear-gradient(135deg, #F97316, #C2410C);
+      linear-gradient(135deg, #F97316, #F97316);
   }
 
   .bg-white { background-color: var(--bg-card) !important; }
