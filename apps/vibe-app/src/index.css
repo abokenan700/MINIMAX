@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════
-   THAWQ Visual Identity — Applied to نخبة
-   Palette: #B88A44 · #E8C98A · #FAF7F2 · #2A241C · #FFFFFF
-   Accent:  #C53A2B (urgency — discounts, flash, notifications)
-   Dark:    Warm dark #1A1612 base
+   نخبة — Orange-Only Palette
+   Primary:  #F97316 (orange-500)
+   Dark:     #C2410C (orange-700)
+   Deeper:   #9A3412 (orange-800)
+   Light:    #FFF7ED (orange-50)
+   Pale:     #FFEDD5 (orange-100)
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
@@ -12,63 +14,63 @@
   --gold:                  #F97316;
   --gold-dark:             #C2410C;
   --gold-mid:              #FB923C;
-  --gold-light:            #F0F0F0;
-  --gold-pale:             #FFFFFF;
+  --gold-light:            #FFEDD5;
+  --gold-pale:             #FFF7ED;
   --gold-accent:           #EA580C;
   --gold-gradient-start:   #FED7AA;
   --gold-warm:             #F97316;
 
-  /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
-  --accent:                #C53A2B;
-  --accent-bg:             #FFF1EE;
-  --accent-light:          #FFF8F6;
-  --accent-text:           #B53024;
+  /* ─── Accent — Urgency / Discount / Alert (deep orange) ─────── */
+  --accent:                #C2410C;
+  --accent-bg:             #FFEDD5;
+  --accent-light:          #FFF7ED;
+  --accent-text:           #9A3412;
 
   /* ─── Text ───────────────────────────────────────────────────── */
-  --text-primary:          #2A241C;
-  --text-secondary:        #615648;
-  --text-muted:            #908373;
-  --text-price:            #1A1A1A;
-  --text-brand:            #C2410C;
+  --text-primary:          #431407;
+  --text-secondary:        #7C2D12;
+  --text-muted:            #C2410C;
+  --text-price:            #1C0A00;
+  --text-brand:            #EA580C;
 
   /* ─── Semantic ───────────────────────────────────────────────── */
   --discount-bg:           var(--accent-bg);
   --discount-text:         var(--accent);
-  --success:               #F97316;
-  --error:                 #D93030;
+  --success:               #EA580C;
+  --error:                 #9A3412;
 
   /* ─── Surfaces ───────────────────────────────────────────────── */
-  --bg-body:               #FFFFFF;
-  --bg-page:               #FFFFFF;
+  --bg-body:               #FFF7ED;
+  --bg-page:               #FFF7ED;
   --bg-card:               #FFFFFF;
-  --bg-surface-warm:       #FFFFFF;
-  --bg-surface-subtle:     #FFFFFF;
-  --bg-cta-dark:           #1A1A1A;
+  --bg-surface-warm:       #FFEDD5;
+  --bg-surface-subtle:     #FFF7ED;
+  --bg-cta-dark:           #431407;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
-  --card-border:           rgba(249, 115, 22, 0.22);
-  --card-img-bg:           #FFFFFF;
+  --card-border:           rgba(249, 115, 22, 0.25);
+  --card-img-bg:           #FFF7ED;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
-  --input-bg:              #F5F5F5;
-  --input-bg-soft:         #F5F5F5;
+  --input-bg:              #FFEDD5;
+  --input-bg-soft:         #FFF7ED;
 
   /* ─── Borders ────────────────────────────────────────────────── */
-  --border:                #E8E8E8;
-  --border-warm:           #EBEBEB;
-  --border-separator:      #EEEEEE;
+  --border:                #FED7AA;
+  --border-warm:           #FDBA74;
+  --border-separator:      #FED7AA;
 
-  /* ─── Shadows (warm-tinted) ──────────────────────────────────── */
-  --shadow-sm:      0 1px 3px rgba(90, 60, 20, 0.06);
-  --shadow-md:      0 6px 20px rgba(42, 28, 12, 0.14);
-  --shadow-lg:      0 12px 42px rgba(30, 20, 10, 0.20);
-  --shadow-sheet:   0 -4px 40px rgba(30, 20, 10, 0.14);
-  --shadow-feature: 0 3px 10px rgba(28, 20, 10, 0.10), 0 0 0 1px rgba(249, 115, 22, 0.14);
-  --shadow-success: 0 2px 8px rgba(74, 138, 58, 0.30);
-  --shadow-glow:    0 0 12px rgba(249, 115, 22, 0.35);
-  --shadow-sticky:  0 -2px 16px rgba(30, 20, 10, 0.10), 0 -1px 4px rgba(30, 20, 10, 0.06);
-  --shadow-accent:  0 4px 12px rgba(197, 58, 43, 0.24);
+  /* ─── Shadows (orange-tinted) ────────────────────────────────── */
+  --shadow-sm:      0 1px 3px rgba(249, 115, 22, 0.12);
+  --shadow-md:      0 6px 20px rgba(194, 65, 12, 0.18);
+  --shadow-lg:      0 12px 42px rgba(154, 52, 18, 0.22);
+  --shadow-sheet:   0 -4px 40px rgba(194, 65, 12, 0.16);
+  --shadow-feature: 0 3px 10px rgba(249, 115, 22, 0.14), 0 0 0 1px rgba(249, 115, 22, 0.18);
+  --shadow-success: 0 2px 8px rgba(234, 88, 12, 0.30);
+  --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.45);
+  --shadow-sticky:  0 -2px 16px rgba(194, 65, 12, 0.12), 0 -1px 4px rgba(249, 115, 22, 0.08);
+  --shadow-accent:  0 4px 12px rgba(194, 65, 12, 0.28);
 
   /* ─── Typography — Fluid Scale ───────────────────────────────── */
   --text-2xs:      clamp(8.5px, 2.3vw, 10px);
@@ -80,11 +82,11 @@
   --text-price-lg: clamp(24px, 7vw, 28px);
 
   /* ─── Border Radius ──────────────────────────────────────────── */
-  --radius-sm:     0.5rem;    /* 8px  */
-  --radius-md:     0.875rem;  /* 14px */
-  --radius-lg:     1.25rem;   /* 20px */
-  --radius-card:   1rem;      /* 16px */
-  --radius-xl:     1.5rem;    /* 24px */
+  --radius-sm:     0.5rem;
+  --radius-md:     0.875rem;
+  --radius-lg:     1.25rem;
+  --radius-card:   1rem;
+  --radius-xl:     1.5rem;
 
   /* ─── Gradients ──────────────────────────────────────────────── */
   --gradient-brand-text:
@@ -92,15 +94,15 @@
   --gradient-gold:
     linear-gradient(135deg, #FED7AA, #F97316, #C2410C);
   --gradient-cta:
-    linear-gradient(135deg, #111111, #2A231B);
+    linear-gradient(135deg, #C2410C, #431407);
   --gradient-accent:
-    linear-gradient(135deg, #C53A2B, #8F2118);
+    linear-gradient(135deg, #EA580C, #9A3412);
 
   /* ─── Font & Layout ──────────────────────────────────────────── */
   --font-main:     'Tajawal', sans-serif;
   --nav-h:         68px;
 
-  /* ─── Motion System — 3 canonical speeds ─────────────────────── */
+  /* ─── Motion System ──────────────────────────────────────────── */
   --duration-fast:   0.15s;
   --duration-base:   0.28s;
   --duration-slow:   0.50s;
@@ -111,71 +113,70 @@
   --ease-sheet:      cubic-bezier(0.32, 0.72, 0, 1);
 }
 
-/* ─── Dark Mode — Warm THAWQ Night ──────────────────────────────── */
+/* ─── Dark Mode — Deep Orange Night ─────────────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Gold becomes luminous on dark */
-    --gold:                 #D9B06A;
-    --gold-dark:            #B78845;
-    --gold-mid:             #D7A75A;
-    --gold-light:           #2E2018;
-    --gold-pale:            #261A10;
-    --gold-accent:          #D4A060;
-    --gold-gradient-start:  #8A6840;
-    --gold-warm:            #D4A870;
+    --gold:                 #FB923C;
+    --gold-dark:            #EA580C;
+    --gold-mid:             #FDBA74;
+    --gold-light:           #431407;
+    --gold-pale:            #3A1200;
+    --gold-accent:          #F97316;
+    --gold-gradient-start:  #7C2D12;
+    --gold-warm:            #FB923C;
 
-    --accent:               #E15C4D;
-    --accent-bg:            #3A1E08;
-    --accent-light:         #2E1804;
-    --accent-text:          #E15C4D;
+    --accent:               #F97316;
+    --accent-bg:            #431407;
+    --accent-light:         #3A1200;
+    --accent-text:          #FB923C;
 
-    --text-primary:         #F0EAE2;
-    --text-secondary:       #B9AC9B;
-    --text-muted:           #807060;
-    --text-price:           #F5EDE0;
-    --text-brand:           #C9956A;
+    --text-primary:         #FFEDD5;
+    --text-secondary:       #FED7AA;
+    --text-muted:           #FDBA74;
+    --text-price:           #FFF7ED;
+    --text-brand:           #FB923C;
 
     --discount-bg:          var(--accent-bg);
     --discount-text:        var(--accent);
-    --success:              #F97316;
-    --error:                #FF5555;
+    --success:              #FB923C;
+    --error:                #FDBA74;
 
-    --bg-body:              #120E0B;
-    --bg-page:              #18140F;
-    --bg-card:              #211C17;
-    --bg-surface-warm:      #1E1A15;
-    --bg-surface-subtle:    #221D18;
-    --bg-cta-dark:          #1A1A1A;
+    --bg-body:              #1C0A00;
+    --bg-page:              #230D00;
+    --bg-card:              #2D1100;
+    --bg-surface-warm:      #3A1200;
+    --bg-surface-subtle:    #2D1100;
+    --bg-cta-dark:          #0F0500;
 
-    --card-bg:              #2A241E;
-    --card-border:          rgba(192, 152, 96, 0.18);
-    --card-img-bg:          linear-gradient(145deg, #2A241C 0%, #231C14 100%);
+    --card-bg:              #2D1100;
+    --card-border:          rgba(249, 115, 22, 0.22);
+    --card-img-bg:          #3A1200;
 
-    --input-bg:             #2E2820;
-    --input-bg-soft:        #2A2420;
+    --input-bg:             #3A1200;
+    --input-bg-soft:        #2D1100;
 
-    --border:               #3A3028;
-    --border-warm:          #342C24;
-    --border-separator:     #302820;
+    --border:               #7C2D12;
+    --border-warm:          #9A3412;
+    --border-separator:     #6B2410;
 
-    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.35);
-    --shadow-md:      0 3px 12px rgba(0, 0, 0, 0.55);
-    --shadow-lg:      0 0 80px rgba(0, 0, 0, 0.65);
-    --shadow-sheet:   0 -4px 40px rgba(0, 0, 0, 0.55);
-    --shadow-sticky:  0 -2px 16px rgba(0, 0, 0, 0.45), 0 -1px 4px rgba(0, 0, 0, 0.25);
-    --shadow-feature: 0 1px 6px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(192, 152, 96, 0.10);
-    --shadow-success: 0 2px 8px rgba(90, 175, 72, 0.38);
-    --shadow-glow:    0 0 12px rgba(208, 160, 80, 0.55);
-    --shadow-accent:  0 2px 8px rgba(224, 112, 32, 0.38);
+    --shadow-sm:      0 1px 4px rgba(0, 0, 0, 0.45);
+    --shadow-md:      0 3px 12px rgba(0, 0, 0, 0.60);
+    --shadow-lg:      0 0 80px rgba(0, 0, 0, 0.70);
+    --shadow-sheet:   0 -4px 40px rgba(0, 0, 0, 0.60);
+    --shadow-sticky:  0 -2px 16px rgba(0, 0, 0, 0.50), 0 -1px 4px rgba(0, 0, 0, 0.30);
+    --shadow-feature: 0 1px 6px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(249, 115, 22, 0.15);
+    --shadow-success: 0 2px 8px rgba(251, 146, 60, 0.38);
+    --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.60);
+    --shadow-accent:  0 2px 8px rgba(234, 88, 12, 0.42);
 
     --gradient-brand-text:
-      linear-gradient(160deg, #D9B06A 0%, #BC8D4A 35%, #E8C88E 65%, #8C6633 100%);
+      linear-gradient(160deg, #FB923C 0%, #EA580C 35%, #FED7AA 65%, #F97316 100%);
     --gradient-gold:
-      linear-gradient(135deg, #8A6840, #C09060, #D4A870);
+      linear-gradient(135deg, #7C2D12, #C2410C, #FB923C);
     --gradient-cta:
-      linear-gradient(135deg, #111111, #2A231B);
+      linear-gradient(135deg, #431407, #1C0A00);
     --gradient-accent:
-      linear-gradient(135deg, #E07020, #A85010);
+      linear-gradient(135deg, #F97316, #C2410C);
   }
 
   .bg-white { background-color: var(--bg-card) !important; }
