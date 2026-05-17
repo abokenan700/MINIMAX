@@ -8,33 +8,33 @@
 
 :root {
   /* ─── Primary Orange Scale ──────────────────────────────────── */
-  --gold:                  #F97316;
-  --gold-dark:             #F97316;
-  --gold-mid:              #F97316;
+  --gold:                  #EA580C;
+  --gold-dark:             #EA580C;
+  --gold-mid:              #EA580C;
   --gold-light:            #FFFFFF;
   --gold-pale:             #FFFFFF;
-  --gold-accent:           #F97316;
-  --gold-gradient-start:   #F97316;
-  --gold-warm:             #F97316;
+  --gold-accent:           #EA580C;
+  --gold-gradient-start:   #EA580C;
+  --gold-warm:             #EA580C;
 
   /* ─── Accent — Urgency / Discount / Alert ────────────────────── */
-  --accent:                #F97316;
+  --accent:                #EA580C;
   --accent-bg:             #FFFFFF;
   --accent-light:          #FFFFFF;
-  --accent-text:           #F97316;
+  --accent-text:           #EA580C;
 
   /* ─── Text ───────────────────────────────────────────────────── */
   --text-primary:          #1A1A1A;
   --text-secondary:        #444444;
   --text-muted:            #888888;
   --text-price:            #1A1A1A;
-  --text-brand:            #F97316;
+  --text-brand:            #EA580C;
 
   /* ─── Semantic ───────────────────────────────────────────────── */
   --discount-bg:           #FFFFFF;
-  --discount-text:         #F97316;
-  --success:               #F97316;
-  --error:                 #F97316;
+  --discount-text:         #EA580C;
+  --success:               #EA580C;
+  --error:                 #EA580C;
 
   /* ─── Surfaces — pure white everywhere ──────────────────────── */
   --bg-body:               #FFFFFF;
@@ -42,11 +42,11 @@
   --bg-card:               #FFFFFF;
   --bg-surface-warm:       #FFFFFF;
   --bg-surface-subtle:     #FFFFFF;
-  --bg-cta-dark:           #F97316;
+  --bg-cta-dark:           #EA580C;
 
   /* ─── Cards ──────────────────────────────────────────────────── */
   --card-bg:               #FFFFFF;
-  --card-border:           rgba(249, 115, 22, 0.20);
+  --card-border:           rgba(234, 88, 12, 0.20);
   --card-img-bg:           #FFFFFF;
 
   /* ─── Inputs ─────────────────────────────────────────────────── */
@@ -54,20 +54,20 @@
   --input-bg-soft:         #FFFFFF;
 
   /* ─── Borders ────────────────────────────────────────────────── */
-  --border:                rgba(249, 115, 22, 0.20);
-  --border-warm:           rgba(249, 115, 22, 0.25);
-  --border-separator:      rgba(249, 115, 22, 0.15);
+  --border:                rgba(234, 88, 12, 0.20);
+  --border-warm:           rgba(234, 88, 12, 0.25);
+  --border-separator:      rgba(234, 88, 12, 0.15);
 
   /* ─── Shadows ────────────────────────────────────────────────── */
-  --shadow-sm:      0 1px 3px rgba(249, 115, 22, 0.10);
-  --shadow-md:      0 6px 20px rgba(249, 115, 22, 0.15);
-  --shadow-lg:      0 12px 42px rgba(249, 115, 22, 0.18);
-  --shadow-sheet:   0 -4px 40px rgba(249, 115, 22, 0.14);
-  --shadow-feature: 0 3px 10px rgba(249, 115, 22, 0.12), 0 0 0 1px rgba(249, 115, 22, 0.16);
-  --shadow-success: 0 2px 8px rgba(249, 115, 22, 0.28);
-  --shadow-glow:    0 0 16px rgba(249, 115, 22, 0.40);
-  --shadow-sticky:  0 -2px 16px rgba(249, 115, 22, 0.10), 0 -1px 4px rgba(249, 115, 22, 0.06);
-  --shadow-accent:  0 4px 12px rgba(249, 115, 22, 0.24);
+  --shadow-sm:      0 1px 3px rgba(234, 88, 12, 0.10);
+  --shadow-md:      0 6px 20px rgba(234, 88, 12, 0.15);
+  --shadow-lg:      0 12px 42px rgba(234, 88, 12, 0.18);
+  --shadow-sheet:   0 -4px 40px rgba(234, 88, 12, 0.14);
+  --shadow-feature: 0 3px 10px rgba(234, 88, 12, 0.12), 0 0 0 1px rgba(234, 88, 12, 0.16);
+  --shadow-success: 0 2px 8px rgba(234, 88, 12, 0.28);
+  --shadow-glow:    0 0 16px rgba(234, 88, 12, 0.40);
+  --shadow-sticky:  0 -2px 16px rgba(234, 88, 12, 0.10), 0 -1px 4px rgba(234, 88, 12, 0.06);
+  --shadow-accent:  0 4px 12px rgba(234, 88, 12, 0.24);
 
   /* ─── Typography — Fluid Scale ───────────────────────────────── */
   --text-2xs:      clamp(8.5px, 2.3vw, 10px);
