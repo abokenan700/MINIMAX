@@ -46,8 +46,7 @@ export function Categories({
                   background: isActive
                     ? "linear-gradient(135deg, #FED7AA, #F97316, #C2410C)"
                     : "linear-gradient(135deg, #FED7AA, #EA580C)",
-                  boxShadow: isActive ? "var(--shadow-glow)" : "none",
-                  transition: "background var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard)",
+                  transition: "background var(--duration-fast) var(--ease-standard)",
                 }}
               >
                 <div
@@ -80,16 +79,6 @@ export function Categories({
                   >
                     {cat.label}
                   </span>
-                  <div
-                    className="h-[2px] rounded-full"
-                    style={{
-                      width: 18,
-                      background: "var(--gold)",
-                      transform: `scaleX(${isActive ? 1 : 0})`,
-                      transformOrigin: "center",
-                      transition: "transform var(--duration-fast) var(--ease-standard)",
-                    }}
-                  />
                 </>
               )}
             </button>
