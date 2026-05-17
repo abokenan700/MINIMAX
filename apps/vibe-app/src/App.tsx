@@ -10,7 +10,6 @@ import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
 import { NewArrivals } from "./components/NewArrivals";
 import { TrendingSection } from "./components/TrendingSection";
-import { CollectionBanners } from "./components/CollectionBanners";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
@@ -120,7 +119,6 @@ function HomePage() {
         <Products />
       </div>
       <TrendingSection />
-      <CollectionBanners />
       <NewArrivals />
       <div style={{ padding: "8px 0" }}>
         <Brands />
