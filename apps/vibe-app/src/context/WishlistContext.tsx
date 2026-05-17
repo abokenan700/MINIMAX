@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import type { Product } from "@workspace/api-client-react";
-import { getDeviceHeaders } from "../lib/apiFetch";
-import { API_BASE } from "../lib/apiBase";
+import { getDeviceHeaders } from "../packages/apiFetch";
+import { API_BASE } from "../packages/apiBase";
 
 interface WishlistContextValue {
   wishlist: Product[];

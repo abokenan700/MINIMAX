@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { ArrowRight, Bell, Trash2 } from "lucide-react";
-import { apiFetch } from "../lib/apiFetch";
+import { apiFetch } from "../packages/apiFetch";
 import { useAuth } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
 

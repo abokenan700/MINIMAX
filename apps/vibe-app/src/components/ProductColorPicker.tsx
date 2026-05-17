@@ -1,4 +1,4 @@
-import { colorToCss, needsBorder } from "../lib/colorMap";
+import { colorToCss, needsBorder } from "../packages/colorMap";
 
 interface ProductColorPickerProps {
   colors:      string[];

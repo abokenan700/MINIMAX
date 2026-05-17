@@ -1,8 +1,8 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 import type { Product } from "@workspace/api-client-react";
-import { getDeviceHeaders, apiFetch } from "../lib/apiFetch";
-import { API_BASE } from "../lib/apiBase";
+import { getDeviceHeaders, apiFetch } from "../packages/apiFetch";
+import { API_BASE } from "../packages/apiBase";
 
 export const MAX_QTY = 10;
 

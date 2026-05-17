@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, Package, Truck, CheckCircle, XCircle, RotateCcw } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
-import { apiFetch } from "../lib/apiFetch";
+import { apiFetch } from "../packages/apiFetch";
 
 type OrderStatus = "processing" | "shipped" | "delivered" | "cancelled";
 

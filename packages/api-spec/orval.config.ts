@@ -42,7 +42,7 @@ export default defineConfig({
     },
   },
   /*
-   * مشكلة 152: lib/api-zod يُولَّد لكن vibe-app لا يستورده حالياً.
+   * مشكلة 152: packages/api-zod يُولَّد لكن vibe-app لا يستورده حالياً.
    * الكود موجود للاستخدام المستقبلي (server-side validation في api-server)
    * وللتحقق من صحة بيانات الـ API في التطوير.
    * إذا أُريد حذفه، يكفي تعطيل هذا القسم فقط.

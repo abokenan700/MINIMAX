@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { l1Categories, type L1Category } from "../data/catalog";
-import { queryKeys } from "../lib/queryKeys";
-import { API_BASE } from "../lib/apiBase";
+import { queryKeys } from "../packages/queryKeys";
+import { API_BASE } from "../packages/apiBase";
 
 interface ApiCategory {
   slug: string;

@@ -5,7 +5,7 @@ import {
   LayoutGrid, Trash2, Sparkles, Clock, Heart,
 } from "lucide-react";
 import type { Product } from "@workspace/api-client-react";
-import { API_BASE } from "../lib/apiBase";
+import { API_BASE } from "../packages/apiBase";
 import { CartButton } from "../components/CartButton";
 import { SearchBar } from "../components/SearchBar";
 import { SectionHeader } from "../components/SectionHeader";

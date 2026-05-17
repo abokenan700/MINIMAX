@@ -9,7 +9,7 @@ import { useLocation } from "wouter";
 import type { Product } from "@workspace/api-client-react";
 import { CartButton } from "./CartButton";
 import { useWishlist } from "../context/WishlistContext";
-import { colorToCss, needsBorder } from "../lib/colorMap";
+import { colorToCss, needsBorder } from "../packages/colorMap";
 
 import { Stars } from "./Stars";
 

@@ -1,0 +1,7 @@
+$ vite --config vite.config.ts --host 0.0.0.0
+9:13:36 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+
+  VITE v7.3.3  ready in 520 ms
+
+  ➜  Local:   http://localhost:3000/
+  ➜  Network: http://169.254.0.21:3000/

@@ -4,7 +4,7 @@ import { db } from "@workspace/db";
 import { usersTable } from "@workspace/db/schema";
 import { eq } from "drizzle-orm";
 import { JWT_SECRET, type JwtPayload } from "../middlewares/auth";
-import { logger } from "../lib/logger";
+import { logger } from "../packages/logger";
 
 const router: IRouter = Router();
 

@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { ArrowRight, Bell, Tag, Truck, TrendingDown, Star } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import { apiFetch } from "../lib/apiFetch";
+import { apiFetch } from "../packages/apiFetch";
 import { useAccountSheet } from "../context/AccountSheetContext";
 
 type NotifType = "promo" | "order" | "price" | "review";

@@ -1,5 +1,5 @@
 import { type Request, type Response, type NextFunction } from "express";
-import { logger } from "../lib/logger";
+import { logger } from "../packages/logger";
 
 export interface ApiError {
   error: string;
