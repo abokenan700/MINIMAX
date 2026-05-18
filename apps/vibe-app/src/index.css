@@ -1008,8 +1008,36 @@ html, body {
 .deal-card-divider { height: 1px; background: var(--border-separator); }
 
 .deal-card-body {
-  padding: 10px 10px 10px;
+  padding: 8px 10px 10px;
   display: flex; flex-direction: column; gap: 3px;
+}
+
+.deal-card-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.deal-card-discount-inline {
+  background: linear-gradient(135deg, #F97316, #EA580C);
+  color: #fff;
+  font-family: var(--font-main);
+  font-size: clamp(8px, 2.2vw, 9.5px);
+  font-weight: 800;
+  border-radius: var(--radius-pill);
+  padding: 1.5px 5px;
+  line-height: 1.3;
+}
+
+.deal-card-cart-btn {
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #F97316, #EA580C);
+  border-radius: 50%;
+  border: none; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(249,115,22,0.40);
+  flex-shrink: 0;
 }
 
 .deal-card-brand {

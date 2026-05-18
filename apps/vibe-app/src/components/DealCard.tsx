@@ -2,11 +2,12 @@
  * DealCard — عروض اليوم (تمرير أفقي)
  * نظيره للشبكة: FeaturedCard.tsx
  */
-import { Heart, Flame } from "lucide-react";
+import { Heart, Flame, ShoppingBag, Check } from "lucide-react";
 import { useLocation } from "wouter";
+import { motion } from "framer-motion";
 import type { Product } from "@workspace/api-client-react";
-import { CartButton } from "./CartButton";
 import { useWishlist } from "../context/WishlistContext";
+import { useCartButton } from "../hooks/useCartButton";
 
 function getRemaining(product: Product): number | null {
   if (product.discount < 20) return null;
@@ -20,6 +21,7 @@ function getViewers(product: Product): number {
 
 export function DealCard({ product }: { product: Product }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
+  const { added, handleAdd } = useCartButton(product, product.colors?.[0]);
   const [, navigate] = useLocation();
   const liked     = isWishlisted(product.id);
   const remaining = getRemaining(product);
@@ -42,12 +44,6 @@ export function DealCard({ product }: { product: Product }) {
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
 
-        {/* Discount badge — top left */}
-        <span className="deal-card-discount-badge">
-          {isFire && <Flame size={9} className="fill-white stroke-none inline -mt-0.5" />}
-          {product.discount}%
-        </span>
-
         {/* Wishlist — top right */}
         <button
           onClick={(e) => { e.stopPropagation(); toggleWishlist(product); }}
@@ -69,15 +65,6 @@ export function DealCard({ product }: { product: Product }) {
       <div className="deal-card-body" dir="rtl">
         <p className="deal-card-brand">{product.brand}</p>
         <p className="deal-card-name line-clamp-2">{product.name}</p>
-
-        {/* Price row */}
-        <div className="deal-card-price-row">
-          <div className="flex items-baseline gap-0.5">
-            <span className="deal-card-price">{product.price.toLocaleString("ar-SA")}</span>
-            <span className="deal-card-currency">ر.س</span>
-          </div>
-          <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
-        </div>
 
         {/* Viewers */}
         <p className="deal-card-viewers">
@@ -103,9 +90,34 @@ export function DealCard({ product }: { product: Product }) {
           </div>
         )}
 
-        {/* Cart button */}
-        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
-          <CartButton size="sm" product={product} selectedColor={product.colors?.[0]} />
+        {/* Price + discount + cart — all in one row */}
+        <div className="deal-card-bottom-row" onClick={(e) => e.stopPropagation()}>
+          <div className="flex flex-col leading-none gap-0.5">
+            <div className="flex items-center gap-1">
+              <span className="deal-card-discount-inline">
+                {isFire && <Flame size={8} className="fill-white stroke-none inline -mt-0.5" />}
+                {product.discount}%
+              </span>
+              <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
+            </div>
+            <div className="flex items-baseline gap-0.5">
+              <span className="deal-card-price">{product.price.toLocaleString("ar-SA")}</span>
+              <span className="deal-card-currency">ر.س</span>
+            </div>
+          </div>
+
+          <motion.button
+            onClick={handleAdd}
+            aria-label={added ? "تمت الإضافة للسلة" : "أضف للسلة"}
+            whileTap={{ scale: 0.82 }}
+            transition={{ type: "spring", stiffness: 500, damping: 18 }}
+            className="deal-card-cart-btn"
+          >
+            {added
+              ? <Check size={15} strokeWidth={2.5} style={{ color: "#fff" }} />
+              : <ShoppingBag size={15} strokeWidth={2} style={{ color: "#fff" }} />
+            }
+          </motion.button>
         </div>
       </div>
     </article>
