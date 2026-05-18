@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
@@ -132,53 +132,179 @@ function AccordionRow({ title, body }: { title: string; body: string }) {
   );
 }
 
-/* ─── T13: Multi-image Gallery with T1: RTL swipe fix ──────────── */
+/* ─── T13: Multi-image Gallery with pinch-to-zoom + double-tap ── */
 function ImageGallery({ images, name, badges }: {
   images: string[]; name: string; badges: { isNew: boolean; discount: number };
 }) {
   const [active, setActive] = useState(0);
-  const [touchX, setTouchX] = useState<number | null>(null);
-  const [delta, setDelta]   = useState(0);
-  const n = images.length;
 
-  function onStart(x: number) { setTouchX(x); setDelta(0); }
-  function onMove(x: number) { if (touchX === null) return; setDelta(x - touchX); }
-  function onEnd() {
-    if (touchX === null) return;
-    /* T1: RTL swipe — delta > 0 (swipe right) = next image */
-    if (delta > 40  && active < n - 1) setActive((a) => a + 1);
-    if (delta < -40 && active > 0)     setActive((a) => a - 1);
-    setTouchX(null); setDelta(0);
+  // Swipe state (only active when not zoomed)
+  const [swipeDelta, setSwipeDelta] = useState(0);
+  const swipeStartX = useRef<number | null>(null);
+
+  // Zoom state for active image
+  const [scale, setScale]   = useState(1);
+  const [panX, setPanX]     = useState(0);
+  const [panY, setPanY]     = useState(0);
+
+  // Refs for imperatively tracking multi-touch without stale closures
+  const pinchStartDist  = useRef<number | null>(null);
+  const pinchStartScale = useRef(1);
+  const panStart        = useRef<{ x: number; y: number; px: number; py: number } | null>(null);
+  const lastTap         = useRef(0);
+  const zoomed          = scale > 1.05;
+
+  const resetZoom = useCallback(() => {
+    setScale(1); setPanX(0); setPanY(0);
+  }, []);
+
+  // Reset zoom when switching images
+  useEffect(() => { resetZoom(); }, [active, resetZoom]);
+
+  function dist(t: React.TouchList) {
+    const dx = t[0].clientX - t[1].clientX;
+    const dy = t[0].clientY - t[1].clientY;
+    return Math.sqrt(dx * dx + dy * dy);
   }
 
+  function clampPan(px: number, py: number, s: number) {
+    const maxX = Math.max(0, (s - 1) * 150);
+    const maxY = Math.max(0, (s - 1) * 150);
+    return {
+      x: Math.min(maxX, Math.max(-maxX, px)),
+      y: Math.min(maxY, Math.max(-maxY, py)),
+    };
+  }
+
+  function onTouchStart(e: React.TouchEvent) {
+    if (e.touches.length === 2) {
+      // Pinch start
+      pinchStartDist.current  = dist(e.touches);
+      pinchStartScale.current = scale;
+      swipeStartX.current     = null;
+      panStart.current        = null;
+    } else if (e.touches.length === 1) {
+      const now = Date.now();
+      // Double-tap detection
+      if (now - lastTap.current < 300) {
+        e.preventDefault();
+        if (zoomed) { resetZoom(); }
+        else { setScale(2.5); setPanX(0); setPanY(0); }
+        lastTap.current = 0;
+        return;
+      }
+      lastTap.current = now;
+
+      if (zoomed) {
+        // Start pan
+        panStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, px: panX, py: panY };
+      } else {
+        // Start swipe
+        swipeStartX.current = e.touches[0].clientX;
+        setSwipeDelta(0);
+      }
+    }
+  }
+
+  function onTouchMove(e: React.TouchEvent) {
+    if (e.touches.length === 2 && pinchStartDist.current !== null) {
+      e.preventDefault();
+      const newDist  = dist(e.touches);
+      const newScale = Math.min(4, Math.max(1, pinchStartScale.current * (newDist / pinchStartDist.current)));
+      setScale(newScale);
+      if (newScale <= 1.05) { setPanX(0); setPanY(0); }
+    } else if (e.touches.length === 1) {
+      if (panStart.current) {
+        e.preventDefault();
+        const dx  = e.touches[0].clientX - panStart.current.x;
+        const dy  = e.touches[0].clientY - panStart.current.y;
+        const { x, y } = clampPan(panStart.current.px + dx, panStart.current.py + dy, scale);
+        setPanX(x); setPanY(y);
+      } else if (swipeStartX.current !== null) {
+        setSwipeDelta(e.touches[0].clientX - swipeStartX.current);
+      }
+    }
+  }
+
+  function onTouchEnd(e: React.TouchEvent) {
+    if (pinchStartDist.current !== null) {
+      pinchStartDist.current = null;
+      if (scale < 1.05) resetZoom();
+      return;
+    }
+    if (panStart.current) {
+      panStart.current = null;
+      return;
+    }
+    if (swipeStartX.current !== null && !zoomed) {
+      const n = images.length;
+      if (swipeDelta > 40  && active < n - 1) setActive((a) => a + 1);
+      if (swipeDelta < -40 && active > 0)     setActive((a) => a - 1);
+      swipeStartX.current = null;
+      setSwipeDelta(0);
+    }
+    if (e.touches.length === 0) { panStart.current = null; }
+  }
+
+  const n = images.length;
+
   return (
-    <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "var(--card-img-bg)", overflow: "hidden", userSelect: "none" }}>
+    <div
+      style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "var(--card-img-bg)", overflow: "hidden", userSelect: "none" }}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Slide strip — disabled while zoomed */}
       <div
         style={{
           display: "flex", width: `${n * 100}%`, height: "100%",
-          transform: `translateX(calc(-${active * 100 / n}% + ${delta}px))`,
-          transition: touchX !== null ? "none" : "transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94)",
+          transform: `translateX(calc(-${active * 100 / n}% + ${zoomed ? 0 : swipeDelta}px))`,
+          transition: swipeStartX.current !== null || zoomed ? "none" : "transform 0.32s cubic-bezier(0.25,0.46,0.45,0.94)",
         }}
-        onTouchStart={(e) => onStart(e.touches[0].clientX)}
-        onTouchMove={(e)  => onMove(e.touches[0].clientX)}
-        onTouchEnd={onEnd}
       >
         {images.map((src, i) => (
-          <div key={i} style={{ width: `${100 / n}%`, flexShrink: 0, position: "relative" }}>
-            <img src={src} alt={`${name} — صورة ${i + 1}`} loading={i === 0 ? "eager" : "lazy"}
-              style={{ width: "100%", height: "100%", objectFit: "contain", padding: 28 }}
-              onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
+          <div key={i} style={{ width: `${100 / n}%`, flexShrink: 0, position: "relative", overflow: "hidden" }}>
+            <img
+              src={src}
+              alt={`${name} — صورة ${i + 1}`}
+              loading={i === 0 ? "eager" : "lazy"}
+              draggable={false}
+              style={{
+                width: "100%", height: "100%", objectFit: "contain", padding: 28,
+                transform: i === active ? `scale(${scale}) translate(${panX / scale}px, ${panY / scale}px)` : "none",
+                transition: pinchStartDist.current !== null || panStart.current !== null ? "none" : "transform 0.2s ease",
+                transformOrigin: "center center",
+                willChange: "transform",
+              }}
+              onError={(e) => { e.currentTarget.style.opacity = "0"; }}
+            />
           </div>
         ))}
       </div>
+
+      {/* Zoom hint */}
+      {zoomed && (
+        <button
+          onClick={resetZoom}
+          style={{
+            position: "absolute", top: 12, insetInlineEnd: 12, zIndex: 20,
+            background: "rgba(0,0,0,0.45)", border: "none", borderRadius: 20,
+            padding: "4px 10px", cursor: "pointer",
+            color: "#fff", fontSize: 11, fontWeight: 600, fontFamily: "var(--font-main)",
+          }}
+        >
+          إعادة الضبط
+        </button>
+      )}
 
       <div style={{ position: "absolute", top: 14, insetInlineStart: 14, display: "flex", flexDirection: "column", gap: 6 }} dir="rtl">
         {badges.isNew && <span style={{ background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20 }}>جديد</span>}
         {badges.discount > 0 && <span style={{ background: "var(--discount-bg)", color: "var(--discount-text)", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20 }}>خصم {badges.discount}%</span>}
       </div>
 
-      {/* Thumbnail strip — side */}
-      {n > 1 && (
+      {/* Thumbnail strip — side (hidden while zoomed) */}
+      {n > 1 && !zoomed && (
         <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", insetInlineEnd: 10, display: "flex", flexDirection: "column", gap: 6 }}>
           {images.map((src, i) => (
             <button key={i} onClick={() => setActive(i)} aria-label={`صورة ${i + 1}`}
@@ -189,8 +315,8 @@ function ImageGallery({ images, name, badges }: {
         </div>
       )}
 
-      {/* Dot indicators */}
-      {n > 1 && (
+      {/* Dot indicators (hidden while zoomed) */}
+      {n > 1 && !zoomed && (
         <div style={{ position: "absolute", bottom: 10, insetInlineStart: 0, insetInlineEnd: 0, display: "flex", justifyContent: "center", gap: 5 }}>
           {images.map((_, i) => (
             <button key={i} onClick={() => setActive(i)} aria-label={`اذهب للصورة ${i + 1}`}
