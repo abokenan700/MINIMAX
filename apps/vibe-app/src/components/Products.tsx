@@ -14,14 +14,11 @@ export function Products() {
   return (
     <div className="py-3">
       <div style={{
-        borderTop: "none",
-        borderLeft: "2px solid #F97316",
-        borderRight: "2px solid #F97316",
-        borderBottom: "2px solid #F97316",
+        border: "none",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
         background: "#FFF8F2",
-        boxShadow: "0 6px 18px rgba(249,115,22,0.18)",
+        boxShadow: "0 8px 28px rgba(249,115,22,0.32)",
       }}>
         <FlashSaleStrip />
 
