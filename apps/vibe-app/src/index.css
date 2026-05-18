@@ -1008,7 +1008,7 @@ html, body {
 .deal-card-divider { height: 1px; background: var(--border-separator); }
 
 .deal-card-body {
-  padding: 8px 10px 2px;
+  padding: 8px 10px 1px;
   display: flex; flex-direction: column; gap: 3px;
 }
 
