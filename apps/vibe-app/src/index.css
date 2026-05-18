@@ -964,7 +964,7 @@ html, body {
   flex-shrink: 0;
   overflow: hidden;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border: 1px solid rgba(249, 115, 22, 0.15);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   cursor: pointer;
