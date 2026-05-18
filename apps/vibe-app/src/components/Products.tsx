@@ -12,7 +12,7 @@ export function Products() {
   const { data: products = [], isLoading } = useGetProducts();
 
   return (
-    <div className="py-2 px-3">
+    <div className="py-2 px-1.5">
       <div style={{
         border: "1px solid rgba(249,115,22,0.28)",
         borderRadius: 14,
@@ -21,7 +21,7 @@ export function Products() {
         <FlashSaleStrip />
 
         <div className="overflow-x-auto pb-2 pt-2 hide-scrollbar" dir="rtl">
-          <div className="flex gap-2.5 px-3" style={{ width: "max-content" }}>
+          <div className="flex gap-2.5 px-1.5" style={{ width: "max-content" }}>
             {isLoading
               ? Array.from({ length: 3 }).map((_, i) => (
                   <div
