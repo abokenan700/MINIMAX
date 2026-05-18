@@ -1036,7 +1036,7 @@ html, body {
   background: linear-gradient(135deg, #F97316, #EA580C);
   border-radius: 50%;
   border: none; cursor: pointer;
-  box-shadow: 0 2px 8px rgba(249,115,22,0.40);
+  box-shadow: none;
   flex-shrink: 0;
 }
 
