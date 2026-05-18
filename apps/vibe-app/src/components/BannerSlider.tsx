@@ -176,8 +176,8 @@ export function BannerSlider() {
               onClick={(e) => { e.stopPropagation(); setCurrent(i); resumeAfterDelay(); }}
               className="banner-dot"
               style={{
-                width:   i === current ? 7 : 5,
-                height:  i === current ? 7 : 5,
+                width:   i === current ? 5 : 4,
+                height:  i === current ? 5 : 4,
                 opacity: i === current ? 1 : 0.45,
                 background: "#fff",
               }}

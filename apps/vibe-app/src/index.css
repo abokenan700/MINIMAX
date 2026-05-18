@@ -793,7 +793,7 @@ html, body {
 .banner-text-block {
   position: absolute;
   left: 0; right: 0; bottom: 0;
-  padding: 0 14px 14px;
+  padding: 0 14px 28px;
   z-index: 5;
   pointer-events: none;
 }
@@ -840,9 +840,9 @@ html, body {
 
 .banner-dots {
   position: absolute;
-  bottom: 12px; left: 50%;
+  bottom: 6px; left: 50%;
   transform: translateX(-50%);
-  display: flex; gap: 5px; align-items: center;
+  display: flex; gap: 4px; align-items: center;
   z-index: 6;
 }
 .banner-dot {
