@@ -14,10 +14,10 @@ export function Products() {
   return (
     <div className="py-2">
       <div style={{
-        borderTop: "1px solid rgba(249,115,22,0.28)",
-        borderLeft: "2.5px solid rgba(249,115,22,0.38)",
-        borderRight: "2.5px solid rgba(249,115,22,0.38)",
-        borderBottom: "2.5px solid rgba(249,115,22,0.38)",
+        borderTop: "1px solid rgba(249,115,22,0.35)",
+        borderLeft: "3px solid #F97316",
+        borderRight: "3px solid #F97316",
+        borderBottom: "3px solid #F97316",
         borderRadius: 0,
         overflow: "hidden",
       }}>
