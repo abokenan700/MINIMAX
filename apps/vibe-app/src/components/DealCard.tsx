@@ -32,7 +32,7 @@ export function DealCard({ product }: { product: Product }) {
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain p-2.5"
+          className="absolute inset-0 w-full h-full object-contain"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
         <button

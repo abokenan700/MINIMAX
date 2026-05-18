@@ -98,7 +98,7 @@ export function FeaturedCard({ item }: { item: Product }) {
           src={item.image}
           alt={item.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain p-3"
+          className="absolute inset-0 w-full h-full object-contain"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
       </div>
