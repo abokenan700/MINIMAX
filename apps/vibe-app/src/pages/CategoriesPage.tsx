@@ -302,6 +302,7 @@ export function CategoriesPage() {
           placeholder="ابحث عن فئة أو منتج..."
           readOnly
           navigateTo="/search"
+          hideTrending
         />
         <Categories value={activeL1} onChange={handleL1Change} />
       </div>
