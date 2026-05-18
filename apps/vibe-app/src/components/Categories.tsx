@@ -48,17 +48,17 @@ export function Categories({
                 className="category-ring"
                 style={{
                   background: isActive
-                    ? "linear-gradient(145deg, #F97316, #C2410C)"
-                    : "linear-gradient(145deg, #FED7AA, #F97316)",
-                  padding: isActive ? "2.5px" : "1.5px",
-                  transform: isActive ? "scale(1.08)" : "scale(1)",
-                  boxShadow: isActive ? "0 4px 14px rgba(249,115,22,0.35)" : "none",
+                    ? "linear-gradient(145deg, #0F0F0F, #3D3D3D)"
+                    : "transparent",
+                  padding: isActive ? "2px" : "1px",
+                  transform: isActive ? "scale(1.06)" : "scale(1)",
+                  boxShadow: isActive ? "0 3px 10px rgba(0,0,0,0.18)" : "none",
                   transition: "transform 0.22s var(--ease-spring), box-shadow 0.22s, padding 0.22s, background 0.18s",
                 }}
               >
                 <div
                   className="category-img-wrap"
-                  style={{ background: isActive ? "#FFF7F0" : "#FFFFFF" }}
+                  style={{ background: "#FFFFFF" }}
                 >
                   {imgFailed ? (
                     <div className="category-fallback" style={{ background: isActive ? "var(--gold-light)" : "#F5F5F5" }}>
@@ -78,13 +78,19 @@ export function Categories({
               </div>
 
               {/* Active indicator dot */}
-              {isActive && <span className="category-active-dot" aria-hidden="true" />}
+              {isActive && (
+                <span
+                  className="category-active-dot"
+                  aria-hidden="true"
+                  style={{ background: "#0F0F0F", boxShadow: "none" }}
+                />
+              )}
 
               {showLabels && (
                 <span
                   className="category-label"
                   style={{
-                    color: isActive ? "var(--text-brand)" : "var(--text-secondary)",
+                    color: isActive ? "var(--text-primary)" : "var(--text-secondary)",
                     fontWeight: isActive ? 700 : 500,
                   }}
                 >
