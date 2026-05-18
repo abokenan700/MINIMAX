@@ -1031,7 +1031,7 @@ html, body {
 }
 
 .deal-card-cart-btn {
-  width: 30px; height: 30px;
+  width: 26px; height: 26px;
   display: flex; align-items: center; justify-content: center;
   background: linear-gradient(135deg, #F97316, #EA580C);
   border-radius: 50%;
