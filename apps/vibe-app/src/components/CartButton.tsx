@@ -38,21 +38,12 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
       <motion.div
         whileTap={{ scale: 0.80 }}
         transition={{ type: "spring", stiffness: 500, damping: 18 }}
-        className="flex items-center justify-center rounded-full transition-colors duration-300"
-        style={{
-          width: dim,
-          height: dim,
-          background: added
-            ? "linear-gradient(135deg,var(--gold),var(--gold-accent))"
-            : "linear-gradient(135deg, var(--gold-gradient-start), var(--gold), var(--gold-accent))",
-          boxShadow: added
-            ? "var(--shadow-success)"
-            : "var(--shadow-md), inset 0 1px 0 rgba(255,255,255,0.22)",
-        }}
+        className="flex items-center justify-center"
+        style={{ width: dim, height: dim }}
       >
         {added
-          ? <Check size={icon} strokeWidth={2.5} color="#fff" />
-          : <ShoppingBag size={icon} strokeWidth={2} color="#fff" />
+          ? <Check size={icon} strokeWidth={2.5} style={{ color: "var(--gold)" }} />
+          : <ShoppingBag size={icon} strokeWidth={2} style={{ color: "var(--gold)" }} />
         }
       </motion.div>
     </button>
