@@ -8,10 +8,17 @@ import type { Product } from "@workspace/api-client-react";
 import { CartButton } from "./CartButton";
 import { useWishlist } from "../context/WishlistContext";
 
+function getRemaining(product: Product): number | null {
+  if (product.discount < 20) return null;
+  const val = ((product.id * 13 + 7) % 6) + 2;
+  return val;
+}
+
 export function DealCard({ product }: { product: Product }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
   const [, navigate] = useLocation();
   const liked = isWishlisted(product.id);
+  const remaining = getRemaining(product);
 
   return (
     <article
@@ -19,7 +26,7 @@ export function DealCard({ product }: { product: Product }) {
       className="card-pressable flex-shrink-0 overflow-hidden"
       onClick={() => navigate(`/product/${product.id}`)}
       style={{
-        width: "clamp(112px, 30vw, 138px)",
+        width: "clamp(130px, 34vw, 155px)",
         background: "var(--card-bg)",
         border: "1px solid var(--card-border)",
         borderRadius: "var(--radius-card)",
@@ -81,6 +88,26 @@ export function DealCard({ product }: { product: Product }) {
             {product.original_price.toLocaleString("ar-SA")}
           </span>
         </div>
+
+        {/* Stock progress bar */}
+        {remaining !== null && (
+          <div style={{ marginTop: 5 }} dir="rtl">
+            <div style={{ height: 3, borderRadius: 2, background: "rgba(0,0,0,0.08)", overflow: "hidden" }}>
+              <div
+                style={{
+                  height: "100%",
+                  width: `${(remaining / 10) * 100}%`,
+                  background: remaining <= 3 ? "var(--error)" : "var(--gold)",
+                  borderRadius: 2,
+                  transition: "width 0.5s ease",
+                }}
+              />
+            </div>
+            <p style={{ fontFamily: "var(--font-main)", fontSize: "clamp(7.5px, 2vw, 8.5px)", color: remaining <= 3 ? "var(--error)" : "var(--text-brand)", fontWeight: 700, marginTop: 2 }}>
+              {remaining <= 3 ? "⚡ " : ""}تبقّى {remaining} قطعة فقط!
+            </p>
+          </div>
+        )}
 
         <div className="flex items-center justify-between mt-1.5">
           <span

@@ -11,11 +11,7 @@ export function Brands() {
   const [failedIds, setFailedIds] = useState<Set<string>>(new Set());
 
   function handleImgError(id: string) {
-    setFailedIds((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      return next;
-    });
+    setFailedIds((prev) => new Set([...prev, id]));
   }
 
   return (
@@ -48,6 +44,8 @@ export function Brands() {
                   border: "1px solid var(--border)",
                   boxShadow: "var(--shadow-sm)",
                   cursor: "pointer",
+                  overflow: "hidden",
+                  padding: "4px 6px",
                 }}
                 aria-label={`تصفح منتجات ${brand.label}`}
               >
@@ -64,10 +62,15 @@ export function Brands() {
                   <span
                     style={{
                       fontFamily: "var(--font-main)",
-                      fontSize: "clamp(9px, 2.8vw, 12px)",
+                      fontSize: "clamp(8.5px, 2.4vw, 11px)",
                       fontWeight: 700,
-                      letterSpacing: "1.8px",
+                      letterSpacing: "0.8px",
                       color: "var(--text-primary)",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      maxWidth: "100%",
+                      textAlign: "center",
                     }}
                   >
                     {brand.label}

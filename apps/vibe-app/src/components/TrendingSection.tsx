@@ -94,7 +94,7 @@ export function TrendingSection() {
                   {/* Image */}
                   <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "var(--card-img-bg)" }}>
                     <img src={p.image} alt={p.name} loading="lazy"
-                      className="absolute inset-0 w-full h-full object-contain p-3"
+                      className="absolute inset-0 w-full h-full object-contain"
                       onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
                   </div>
 

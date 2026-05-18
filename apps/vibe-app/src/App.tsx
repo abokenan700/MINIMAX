@@ -1,5 +1,6 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Switch, Route, useLocation } from "wouter";
+import { useQueryClient } from "@tanstack/react-query";
 import { Header } from "./components/Header";
 import { SearchBar } from "./components/SearchBar";
 import { Categories } from "./components/Categories";
@@ -10,6 +11,7 @@ import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
 import { NewArrivals } from "./components/NewArrivals";
 import { TrendingSection } from "./components/TrendingSection";
+import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
@@ -85,7 +87,6 @@ function OAuthCapture() {
 
     if (token) {
       try { localStorage.setItem(TOKEN_KEY, token); } catch { /* ignore */ }
-      // Strip query params then reload so AuthContext picks up the new token
       const clean = window.location.pathname;
       window.history.replaceState({}, "", clean);
       window.location.reload();
@@ -107,23 +108,163 @@ function OAuthCapture() {
   return null;
 }
 
-function HomePage() {
+/* ── Section Divider ─────────────────────────────────────────────── */
+function SectionDivider() {
   return (
-    <div className="scroll-area">
+    <div
+      style={{
+        height: 7,
+        background: "var(--bg-surface-subtle)",
+        borderTop: "1px solid var(--border-separator)",
+        borderBottom: "1px solid var(--border-separator)",
+      }}
+    />
+  );
+}
+
+/* ── Scroll-reveal wrapper ───────────────────────────────────────── */
+function RevealSection({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.transitionDelay = delay ? `${delay}ms` : "0ms";
+          el.style.opacity = "1";
+          el.style.transform = "translateY(0)";
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.05, rootMargin: "0px 0px -16px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: 0,
+        transform: "translateY(16px)",
+        transition: "opacity 0.40s var(--ease-out), transform 0.40s var(--ease-out)",
+        willChange: "opacity, transform",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+/* ── Home Page ───────────────────────────────────────────────────── */
+function HomePage() {
+  const scrollRef  = useRef<HTMLDivElement>(null);
+  const qc         = useQueryClient();
+  const startYRef  = useRef<number | null>(null);
+  const [pullY, setPullY]           = useState(0);
+  const [refreshing, setRefreshing] = useState(false);
+  const THRESHOLD  = 62;
+
+  function onTouchStart(e: React.TouchEvent) {
+    const el = scrollRef.current;
+    if (el && el.scrollTop === 0) {
+      startYRef.current = e.touches[0].clientY;
+    }
+  }
+
+  function onTouchMove(e: React.TouchEvent) {
+    if (startYRef.current === null) return;
+    const el = scrollRef.current;
+    if (!el || el.scrollTop > 2) { startYRef.current = null; setPullY(0); return; }
+    const dy = e.touches[0].clientY - startYRef.current;
+    if (dy > 0) setPullY(Math.min(dy * 0.44, THRESHOLD));
+  }
+
+  async function onTouchEnd() {
+    if (pullY >= THRESHOLD * 0.78 && !refreshing) {
+      setRefreshing(true);
+      await qc.invalidateQueries();
+      setTimeout(() => setRefreshing(false), 950);
+    }
+    startYRef.current = null;
+    setPullY(0);
+  }
+
+  const indicatorH = refreshing ? 48 : pullY;
+
+  return (
+    <div
+      className="scroll-area"
+      ref={scrollRef}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Pull-to-refresh indicator */}
+      <div
+        aria-live="polite"
+        aria-label={refreshing ? "جاري التحديث..." : undefined}
+        style={{
+          height: indicatorH,
+          overflow: "hidden",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: pullY > 0 ? "none" : "height 0.30s var(--ease-out)",
+        }}
+      >
+        <div
+          className="page-spinner"
+          style={{
+            opacity: pullY > 16 || refreshing ? 1 : 0,
+            transform: `scale(${pullY > 16 || refreshing ? 1 : 0.55})`,
+            transition: "opacity 0.18s, transform 0.18s",
+          }}
+        />
+      </div>
+
       <h1 className="sr-only">نخبة — الرئيسية</h1>
       <Header />
       <SearchBar readOnly navigateTo="/search" />
       <Categories />
       <BannerSlider />
-      <div style={{ padding: "0 0 4px" }}>
-        <Products />
-      </div>
-      <TrendingSection />
-      <NewArrivals />
-      <div style={{ padding: "8px 0" }}>
-        <Brands />
-      </div>
-      <FeaturedProducts />
+
+      <SectionDivider />
+      <RevealSection>
+        <div style={{ padding: "0 0 4px" }}>
+          <Products />
+        </div>
+      </RevealSection>
+
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <TrendingSection />
+      </RevealSection>
+
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <NewArrivals />
+      </RevealSection>
+
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <div style={{ padding: "8px 0" }}>
+          <Brands />
+        </div>
+      </RevealSection>
+
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <FeaturedProducts />
+      </RevealSection>
+
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <RecentlyViewed />
+      </RevealSection>
     </div>
   );
 }

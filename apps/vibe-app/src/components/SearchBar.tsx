@@ -1,4 +1,4 @@
-import { Search, X } from "lucide-react";
+import { Search, X, TrendingUp } from "lucide-react";
 import { useState } from "react";
 import { useLocation } from "wouter";
 
@@ -15,6 +15,15 @@ interface SearchBarProps {
   navigateTo?: string;
 }
 
+const TRENDING_TERMS = [
+  "عطر شانيل",
+  "حذاء نايك",
+  "حقيبة ديور",
+  "ساعة فاخرة",
+  "عروض اليوم",
+  "ملابس فاخرة",
+];
+
 export function SearchBar({
   placeholder = "ابحث عن منتجات، ماركات والمزيد...",
   value,
@@ -30,6 +39,8 @@ export function SearchBar({
   const [, navigate] = useLocation();
   const [focused, setFocused] = useState(false);
 
+  const showTrending = readOnly && !!navigateTo;
+
   function handleFocus() {
     setFocused(true);
     if (navigateTo) navigate(navigateTo);
@@ -44,7 +55,7 @@ export function SearchBar({
     <div
       style={{
         background: "var(--bg-card)",
-        borderBottom: filtersRow ? undefined : "1px solid var(--border)",
+        borderBottom: (filtersRow || showTrending) ? undefined : "1px solid var(--border)",
         flexShrink: 0,
       }}
     >
@@ -106,6 +117,61 @@ export function SearchBar({
           )}
         </div>
       </div>
+
+      {/* Trending keywords — shown only on home page (readOnly mode) */}
+      {showTrending && (
+        <div
+          className="hide-scrollbar"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 7,
+            padding: "2px 12px 10px",
+            overflowX: "auto",
+            borderBottom: "1px solid var(--border)",
+          }}
+          dir="rtl"
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: 4, flexShrink: 0 }}>
+            <TrendingUp size={11} style={{ color: "var(--text-brand)" }} />
+            <span style={{ fontFamily: "var(--font-main)", fontSize: "clamp(9.5px, 2.5vw, 11px)", color: "var(--text-muted)", fontWeight: 600, whiteSpace: "nowrap" }}>
+              الأكثر بحثاً:
+            </span>
+          </div>
+          {TRENDING_TERMS.map((term) => (
+            <button
+              key={term}
+              onClick={() => navigate(`/search?q=${encodeURIComponent(term)}`)}
+              style={{
+                flexShrink: 0,
+                padding: "4px 10px",
+                borderRadius: 20,
+                border: "1px solid var(--border-warm)",
+                background: "var(--bg-surface-subtle)",
+                color: "var(--text-secondary)",
+                fontFamily: "var(--font-main)",
+                fontSize: "clamp(10px, 2.6vw, 11.5px)",
+                fontWeight: 500,
+                cursor: "pointer",
+                whiteSpace: "nowrap",
+                transition: "background 0.15s, color 0.15s, border-color 0.15s",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--gold-light)";
+                (e.currentTarget as HTMLElement).style.color = "var(--text-brand)";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-orange)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLElement).style.background = "var(--bg-surface-subtle)";
+                (e.currentTarget as HTMLElement).style.color = "var(--text-secondary)";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-warm)";
+              }}
+            >
+              {term}
+            </button>
+          ))}
+        </div>
+      )}
 
       {filtersRow && (
         <div
