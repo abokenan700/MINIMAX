@@ -9,6 +9,31 @@ import { rm } from "node:fs/promises";
 globalThis.require = createRequire(import.meta.url);
 
 const artifactDir = path.dirname(fileURLToPath(import.meta.url));
+const workspaceRoot = path.resolve(artifactDir, "../..");
+
+// Plugin to resolve workspace TypeScript packages by mapping their exports
+// to the actual .ts source files (since workspace packages export .ts directly)
+function workspaceTsPlugin() {
+  const workspacePackages = {
+    "@workspace/db": path.resolve(workspaceRoot, "packages/db/src/index.ts"),
+    "@workspace/db/schema": path.resolve(workspaceRoot, "packages/db/src/schema/index.ts"),
+    "@workspace/api-zod": path.resolve(workspaceRoot, "packages/api-zod/src/index.ts"),
+    "@workspace/api-client-react": path.resolve(workspaceRoot, "packages/api-client-react/src/index.ts"),
+  };
+
+  return {
+    name: "workspace-ts-resolver",
+    setup(build) {
+      build.onResolve({ filter: /^@workspace\// }, (args) => {
+        const resolved = workspacePackages[args.path];
+        if (resolved) {
+          return { path: resolved };
+        }
+        return null;
+      });
+    },
+  };
+}
 
 async function buildAll() {
   const distDir = path.resolve(artifactDir, "dist");
@@ -103,6 +128,7 @@ async function buildAll() {
     ],
     sourcemap: "linked",
     plugins: [
+      workspaceTsPlugin(),
       // pino relies on workers to handle logging, instead of externalizing it we use a plugin to handle it
       esbuildPluginPino({ transports: ["pino-pretty"] })
     ],
