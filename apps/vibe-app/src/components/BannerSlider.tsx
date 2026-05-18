@@ -127,28 +127,6 @@ export function BannerSlider() {
         {/* Deep gradient overlay — bottom-weighted for text */}
         <div className="banner-gradient-overlay" aria-hidden="true" />
 
-        {/* Top gradient for slide counter */}
-        <div className="banner-gradient-top" aria-hidden="true" />
-
-        {/* Slide counter top-right */}
-        {loaded && (
-          <div className="banner-counter" dir="ltr" aria-hidden="true">
-            <span className="banner-counter-current">{current + 1}</span>
-            <span className="banner-counter-sep">/</span>
-            <span className="banner-counter-total">{n}</span>
-          </div>
-        )}
-
-        {/* Badge top-left */}
-        {loaded && slide.badge && (
-          <div
-            key={`badge-${current}`}
-            className="banner-badge"
-            style={{ animation: "fadeInDown 0.38s var(--ease-spring) both" }}
-          >
-            {slide.badge}
-          </div>
-        )}
 
         {/* Text + CTA overlay */}
         {loaded && (
@@ -198,8 +176,9 @@ export function BannerSlider() {
               onClick={(e) => { e.stopPropagation(); setCurrent(i); resumeAfterDelay(); }}
               className="banner-dot"
               style={{
-                width:   i === current ? 22 : 6,
-                opacity: i === current ? 1 : 0.52,
+                width:   i === current ? 7 : 5,
+                height:  i === current ? 7 : 5,
+                opacity: i === current ? 1 : 0.45,
                 background: "#fff",
               }}
             />
