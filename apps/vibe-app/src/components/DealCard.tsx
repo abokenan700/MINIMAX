@@ -72,23 +72,32 @@ export function DealCard({ product }: { product: Product }) {
           {viewers} يشاهدون الآن
         </p>
 
-        {/* Stock dot counter */}
+        {/* Stock heat gauge */}
         {remaining !== null && (
-          <div className="deal-card-stock-dots" dir="rtl">
-            {Array.from({ length: 7 }).map((_, i) => (
-              <span
-                key={i}
-                className="deal-card-stock-dot"
-                style={{
-                  background: i < remaining
-                    ? (remaining <= 3 ? "#EF4444" : "var(--gold)")
-                    : "rgba(0,0,0,0.10)",
-                }}
-              />
-            ))}
-            <span className="deal-card-stock-label" style={{ color: remaining <= 3 ? "#EF4444" : "var(--text-brand)" }}>
-              {remaining <= 3 ? "⚡" : ""} {remaining} قطعة
+          <div className="deal-card-heat-wrap" dir="rtl">
+            <span className="deal-card-heat-label" style={{ color: remaining <= 3 ? "#EF4444" : "var(--text-muted)" }}>
+              {remaining <= 3 ? "⚡" : "●"} {remaining}
             </span>
+            <div className="deal-card-heat-bars">
+              {Array.from({ length: 6 }).map((_, i) => {
+                const filled = i < remaining;
+                const low = remaining <= 3;
+                return (
+                  <span
+                    key={i}
+                    className={`deal-card-heat-bar${filled && low ? " deal-card-heat-bar--pulse" : ""}`}
+                    style={{
+                      height: `${6 + i * 2}px`,
+                      background: filled
+                        ? low
+                          ? `rgba(239,68,68,${0.55 + i * 0.08})`
+                          : `rgba(249,115,22,${0.40 + i * 0.10})`
+                        : "rgba(0,0,0,0.08)",
+                    }}
+                  />
+                );
+              })}
+            </div>
           </div>
         )}
 
