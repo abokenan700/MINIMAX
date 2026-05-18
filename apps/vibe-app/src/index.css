@@ -964,7 +964,10 @@ html, body {
   flex-shrink: 0;
   overflow: hidden;
   background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  border-top: 1px solid var(--card-border);
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-card);
   cursor: pointer;
