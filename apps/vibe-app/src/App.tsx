@@ -230,12 +230,7 @@ function HomePage() {
       {/* ③ Category bubbles */}
       <Categories />
 
-      {/* ④ Flash sale urgency strip */}
-      <RevealSection>
-        <FlashSaleStrip />
-      </RevealSection>
-
-      {/* ⑤ Hero banner slider */}
+      {/* ④ Hero banner slider */}
       <RevealSection>
         <BannerSlider />
       </RevealSection>

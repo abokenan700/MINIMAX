@@ -4,57 +4,18 @@
  * مشكلة 127: CountdownDisplay مكوّن منفصل → هو الوحيد الذي يُعاد رسمه كل ثانية
  *            بدلاً من Products بأكملها (DealCards + queries + ...)
  */
-import { memo } from "react";
 import { useGetProducts } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
-import { SectionHeader } from "./SectionHeader";
 import { DealCard } from "./DealCard";
-import { useCountdown } from "../hooks/useCountdown";
-
-const DEALS_SESSION_KEY = "nakhba_deals_end_ms";
-
-function getDealEndMs(): number {
-  try {
-    const stored = sessionStorage.getItem(DEALS_SESSION_KEY);
-    if (stored) return Number(stored);
-    const end = Date.now() + (2 * 3600 + 18 * 60 + 43) * 1000;
-    sessionStorage.setItem(DEALS_SESSION_KEY, String(end));
-    return end;
-  } catch {
-    return Date.now() + (2 * 3600 + 18 * 60 + 43) * 1000;
-  }
-}
-
-const DAILY_DEALS_END_MS = getDealEndMs();
-
-const CountdownDisplay = memo(function CountdownDisplay() {
-  const countdown = useCountdown(DAILY_DEALS_END_MS);
-  return (
-    <div
-      className="border rounded-[4px] px-2 py-0.5"
-      style={{ background: "#F5F5F5", borderColor: "#EEEEEE" }}
-    >
-      <span
-        className="text-[#5D5854] font-medium tabular-nums"
-        style={{ fontSize: "clamp(9px, 2.8vw, 11px)" }}
-      >
-        {countdown}
-      </span>
-    </div>
-  );
-});
+import { FlashSaleStrip } from "./FlashSaleStrip";
 
 export function Products() {
   const { data: products = [], isLoading } = useGetProducts();
   const [, navigate] = useLocation();
 
   return (
-    <div className="px-3 py-2">
-      <SectionHeader
-        title="عروض اليوم"
-        extra={<CountdownDisplay />}
-        onViewAll={() => navigate("/categories")}
-      />
+    <div className="py-2">
+      <FlashSaleStrip />
 
       <div className="overflow-x-auto pb-1 hide-scrollbar -mx-3" dir="rtl">
         <div className="flex gap-2.5 px-3" style={{ width: "max-content" }}>
