@@ -116,7 +116,7 @@ export function FeaturedCard({ item }: { item: Product }) {
           {item.colors.length > 0 && (
             <div
               className="flex items-center"
-              style={{ gap: 0 }}
+              style={{ gap: 4 }}
               onClick={(e) => e.stopPropagation()}
             >
               {item.colors.slice(0, 4).map((c, i) => (
@@ -126,44 +126,32 @@ export function FeaturedCard({ item }: { item: Product }) {
                   aria-label={`اللون ${c}`}
                   aria-pressed={i === activeColor}
                   style={{
-                    width: 24, height: 24, padding: 0, border: "none",
+                    width: 22, height: 22, padding: 0, border: "none",
                     background: "transparent", cursor: "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0,
-                    marginInlineStart: i === 0 ? 0 : -5,
-                    position: "relative",
-                    zIndex: i === activeColor ? 10 : item.colors.length - i,
+                    flexShrink: 0, position: "relative",
                   }}
                 >
                   <span
                     className="rounded-full block"
                     style={{
-                      width: i === activeColor ? 16 : 13,
-                      height: i === activeColor ? 16 : 13,
+                      width: 13,
+                      height: 13,
                       background: colorToCss(c),
-                      border: i === activeColor
-                        ? "2px solid var(--gold)"
-                        : "2px solid #fff",
-                      boxShadow: i === activeColor
-                        ? "0 0 0 1.5px rgba(249,115,22,0.40), 0 1px 3px rgba(0,0,0,0.15)"
-                        : needsBorder(c)
-                          ? "0 0 0 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)"
-                          : "0 1px 2px rgba(0,0,0,0.12)",
-                      transition: "width 0.15s ease, height 0.15s ease",
+                      boxShadow: "0 1px 4px rgba(0,0,0,0.22)",
+                      transition: "transform 0.15s ease",
+                      transform: i === activeColor ? "scale(1.35)" : "scale(1)",
                     }}
                   />
                 </button>
               ))}
               {item.colors.length > 4 && (
-                <span
-                  style={{
-                    marginInlineStart: 2,
-                    fontSize: "9px",
-                    color: "var(--text-muted)",
-                    fontWeight: 600,
-                    lineHeight: 1,
-                  }}
-                >
+                <span style={{
+                  fontSize: "9px",
+                  color: "var(--text-muted)",
+                  fontWeight: 600,
+                  lineHeight: 1,
+                }}>
                   +{item.colors.length - 4}
                 </span>
               )}
