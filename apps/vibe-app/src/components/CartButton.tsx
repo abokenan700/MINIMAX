@@ -43,7 +43,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
       >
         {added
           ? <Check size={icon} strokeWidth={2.5} style={{ color: "var(--gold)" }} />
-          : <ShoppingBag size={icon} strokeWidth={1.5} style={{ color: "var(--gold)", fill: "var(--gold)" }} />
+          : <ShoppingBag size={icon} strokeWidth={1.5} style={{ color: "#fff", fill: "var(--gold)" }} />
         }
       </motion.div>
     </button>
