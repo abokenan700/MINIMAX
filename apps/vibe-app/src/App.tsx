@@ -247,6 +247,14 @@ function HomePage() {
         </div>
       </RevealSection>
 
+      {/* ⑧ Featured brands */}
+      <SectionDivider />
+      <RevealSection delay={40}>
+        <div style={{ padding: "8px 0" }}>
+          <Brands />
+        </div>
+      </RevealSection>
+
       {/* ⑨ Mid-page promo banner */}
       <SectionDivider />
       <RevealSection delay={40}>
@@ -257,14 +265,6 @@ function HomePage() {
       <SectionDivider />
       <RevealSection delay={40}>
         <NewArrivals />
-      </RevealSection>
-
-      {/* ⑪ Featured brands */}
-      <SectionDivider />
-      <RevealSection delay={40}>
-        <div style={{ padding: "8px 0" }}>
-          <Brands />
-        </div>
       </RevealSection>
 
       {/* ⑫ Featured products grid */}
