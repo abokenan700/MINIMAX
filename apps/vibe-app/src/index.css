@@ -633,7 +633,7 @@ html, body {
   align-items: center;
   gap: 10px;
   padding: 4px 14px;
-  background: linear-gradient(100deg, #1E1C1A 0%, #2E2A24 60%, #3A3328 100%);
+  background: transparent;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
@@ -650,7 +650,7 @@ html, body {
 .flash-icon-wrap {
   width: 28px; height: 28px;
   border-radius: 8px;
-  background: rgba(0,0,0,0.18);
+  background: rgba(249,115,22,0.12);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
@@ -659,21 +659,21 @@ html, body {
   font-family: var(--font-main);
   font-size: clamp(12px, 3.4vw, 14px);
   font-weight: 900;
-  color: #fff;
+  color: var(--text-primary);
   line-height: 1;
 }
 .flash-subtitle {
   font-family: var(--font-main);
   font-size: clamp(9.5px, 2.6vw, 11px);
   font-weight: 500;
-  color: rgba(255,255,255,0.85);
+  color: var(--text-tertiary);
   line-height: 1;
 }
 
 .flash-ends-label {
   font-family: var(--font-main);
   font-size: clamp(8.5px, 2.4vw, 10px);
-  color: rgba(255,255,255,0.80);
+  color: var(--text-tertiary);
   font-weight: 500;
   white-space: nowrap;
 }
@@ -683,12 +683,12 @@ html, body {
   align-items: center;
   justify-content: center;
   min-width: 26px; height: 24px;
-  background: rgba(0,0,0,0.25);
+  background: rgba(249,115,22,0.10);
   border-radius: 5px;
   font-family: var(--font-main);
   font-size: clamp(11px, 3vw, 13px);
   font-weight: 800;
-  color: #fff;
+  color: var(--gold-dark);
   letter-spacing: 0;
   padding: 0 4px;
   font-variant-numeric: tabular-nums;
@@ -696,8 +696,8 @@ html, body {
 
 .flash-cta-btn {
   display: flex; align-items: center;
-  background: rgba(255,255,255,0.22);
-  border: 1px solid rgba(255,255,255,0.40);
+  background: var(--gold);
+  border: 1px solid var(--gold-dark);
   border-radius: var(--radius-pill);
   padding: 5px 12px;
   flex-shrink: 0;
