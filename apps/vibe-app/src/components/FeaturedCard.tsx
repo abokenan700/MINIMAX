@@ -60,8 +60,6 @@ export function FeaturedCard({ item }: { item: Product }) {
           onClick={(e) => { e.stopPropagation(); toggleWishlist(item); }}
           aria-label={liked ? "إزالة من المفضلة" : "إضافة للمفضلة"}
           style={{
-            minWidth: 44,
-            minHeight: 44,
             background: "transparent",
             border: "none",
             cursor: "pointer",
@@ -71,21 +69,11 @@ export function FeaturedCard({ item }: { item: Product }) {
             justifyContent: "center",
           }}
         >
-          <span
-            className="flex items-center justify-center rounded-full"
-            style={{
-              width: 26,
-              height: 26,
-              background: "rgba(255,255,255,0.90)",
-              boxShadow: "0 1px 4px rgba(0,0,0,0.10)",
-            }}
-          >
-            <Heart
-              size={12}
-              className={liked ? "fill-red-400 stroke-red-400" : "fill-none"}
-              style={{ color: liked ? undefined : "#BBBBBB" }}
-            />
-          </span>
+          <Heart
+            size={13}
+            className={liked ? "fill-red-400 stroke-red-400" : "fill-none"}
+            style={{ color: liked ? undefined : "#BBBBBB" }}
+          />
         </button>
       </div>
 
@@ -98,7 +86,7 @@ export function FeaturedCard({ item }: { item: Product }) {
           src={item.image}
           alt={item.name}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
       </div>

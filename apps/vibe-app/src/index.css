@@ -995,12 +995,11 @@ html, body {
 
 .deal-card-wish-btn {
   position: absolute;
-  top: 4px; right: 4px;
-  width: 34px; height: 34px;
+  top: 6px; right: 6px;
+  width: 22px; height: 22px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.90);
+  background: transparent;
   border-radius: 50%;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.12);
   border: none; cursor: pointer; z-index: 2;
   transition: transform 0.18s var(--ease-spring);
 }
