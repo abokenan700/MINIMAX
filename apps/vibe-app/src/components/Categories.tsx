@@ -47,8 +47,8 @@ export function Categories({
               <div
                 className="category-ring"
                 style={{
-                  background: "linear-gradient(145deg, #E0E0E0, #BDBDBD)",
-                  padding: "1.5px",
+                  background: "linear-gradient(145deg, #C45500, #A03D00)",
+                  padding: "1px",
                 }}
               >
                 <div
