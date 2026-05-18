@@ -633,7 +633,7 @@ html, body {
   align-items: center;
   gap: 10px;
   padding: 4px 14px;
-  background: linear-gradient(100deg, #EA580C 0%, #F97316 50%, #FB923C 100%);
+  background: linear-gradient(100deg, #B45309 0%, #D97706 50%, #F59E0B 100%);
   overflow: hidden;
   cursor: pointer;
   user-select: none;
