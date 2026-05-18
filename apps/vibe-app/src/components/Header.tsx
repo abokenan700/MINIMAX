@@ -1,8 +1,9 @@
 import logoCoin from "/logo-coin-orig.png";
-import { Bell, User } from "lucide-react";
+import { Bell, User, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
+import { useCart } from "../context/CartContext";
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -14,110 +15,70 @@ function getGreeting(): string {
 
 export function Header() {
   const [, navigate] = useLocation();
-  const { user } = useAuth();
-  const { openSheet } = useAccountSheet();
-  const greeting = getGreeting();
+  const { user }     = useAuth();
+  const { openSheet} = useAccountSheet();
+  const { count }    = useCart();
+  const greeting     = getGreeting();
 
   return (
-    <header
-      className="flex items-center justify-between px-4"
-      style={{
-        background: "var(--bg-card)",
-        borderBottom: "1px solid var(--border-separator)",
-        height: "var(--header-h)",
-        flexShrink: 0,
-      }}
-    >
+    <header className="header-bar">
       {/* ─── Logo + Brand ─────────────────────────────────────────── */}
       <div className="flex items-center gap-2">
-        <img
-          src={logoCoin}
-          alt="نخبة"
-          className="object-cover flex-shrink-0 rounded-full"
-          style={{ width: 42, height: 42 }}
-          decoding="async"
-        />
-        <div style={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          <span
-            style={{
-              fontFamily: "var(--font-main)",
-              background: "var(--gradient-brand-text)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              fontSize: "22px",
-              fontWeight: 900,
-              letterSpacing: "3px",
-              lineHeight: 1,
-            }}
-          >
-            نخبة
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-main)",
-              fontSize: "10.5px",
-              color: "var(--text-muted)",
-              lineHeight: 1,
-              letterSpacing: "0.2px",
-            }}
-          >
-            {user ? `${greeting}، ${user.name.split(" ")[0]}` : greeting}
+        <div className="header-logo-ring">
+          <img
+            src={logoCoin}
+            alt="نخبة"
+            className="header-logo-img"
+            decoding="async"
+          />
+        </div>
+        <div className="flex flex-col" style={{ gap: 2 }}>
+          <span className="header-brand-name">نخبة</span>
+          <span className="header-greeting">
+            {user ? `${greeting}، ${user.name.split(" ")[0]} 👋` : greeting}
           </span>
         </div>
       </div>
 
       {/* ─── Actions ──────────────────────────────────────────────── */}
       <div className="flex items-center gap-0.5">
+        {/* Cart shortcut */}
+        <button
+          className="header-icon-btn"
+          aria-label={count > 0 ? `السلة — ${count} عناصر` : "السلة"}
+          onClick={() => navigate("/cart")}
+        >
+          <ShoppingBag size={19} strokeWidth={1.6} className="header-icon-svg" />
+          {count > 0 && (
+            <span className="header-cart-badge" aria-hidden="true">
+              {count > 9 ? "9+" : count}
+            </span>
+          )}
+        </button>
+
         {/* Notifications */}
         <button
-          className="flex items-center justify-center rounded-full"
-          style={{
-            width: 40,
-            height: 40,
-            position: "relative",
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            transition: "background var(--duration-fast) var(--ease-out)",
-          }}
+          className="header-icon-btn"
           aria-label="الإشعارات"
           onClick={() => navigate("/notifications")}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--gold-light)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
         >
-          <Bell size={19} strokeWidth={1.6} style={{ color: "var(--text-tertiary)" }} />
-          <span
-            style={{
-              position: "absolute",
-              top: 7,
-              insetInlineEnd: 7,
-              width: 7,
-              height: 7,
-              borderRadius: "50%",
-              background: "var(--error)",
-              border: "1.5px solid var(--bg-card)",
-            }}
-          />
+          <Bell size={19} strokeWidth={1.6} className="header-icon-svg" />
+          <span className="header-notif-dot" aria-hidden="true" />
         </button>
 
         {/* Account */}
         <button
-          className="flex items-center justify-center rounded-full"
-          style={{
-            width: 40,
-            height: 40,
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            transition: "background var(--duration-fast) var(--ease-out)",
-          }}
+          className="header-icon-btn header-account-btn"
           aria-label={user ? "حسابي" : "تسجيل الدخول"}
           onClick={() => user ? navigate("/account") : openSheet()}
-          onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "var(--gold-light)"; }}
-          onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "transparent"; }}
         >
-          <User size={19} strokeWidth={1.6} style={{ color: "var(--text-tertiary)" }} />
+          {user ? (
+            <div className="header-avatar">
+              {user.name.charAt(0).toUpperCase()}
+            </div>
+          ) : (
+            <User size={19} strokeWidth={1.6} className="header-icon-svg" />
+          )}
         </button>
       </div>
     </header>

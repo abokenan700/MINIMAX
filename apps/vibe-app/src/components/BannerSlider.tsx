@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
+import { ShoppingBag, ChevronLeft } from "lucide-react";
 
 interface Slide {
   id: number;
@@ -7,40 +8,50 @@ interface Slide {
   bgSet: string;
   title: string;
   subtitle: string;
+  badge?: string;
+  cta: string;
 }
 
 const slides: Slide[] = [
   {
     id: 0,
-    bg:    "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80&fm=webp",
-    bgSet: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80&fm=webp 1x, https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600&q=80&fm=webp 2x",
+    bg:    "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=85&fm=webp",
+    bgSet: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=85&fm=webp 1x, https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1600&q=85&fm=webp 2x",
     title: "تشكيلة جديدة",
     subtitle: "تصاميم راقية تعبّر عن ذوقك",
+    badge: "⚡ جديد الموسم",
+    cta: "تسوق الآن",
   },
   {
     id: 1,
-    bg:    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&fm=webp",
-    bgSet: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=80&fm=webp 1x, https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=80&fm=webp 2x",
+    bg:    "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=85&fm=webp",
+    bgSet: "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&q=85&fm=webp 1x, https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=85&fm=webp 2x",
     title: "عروض حصرية",
     subtitle: "أفضل الأسعار لأجمل المنتجات",
+    badge: "🔥 حتى 70% خصم",
+    cta: "اكتشف الآن",
   },
   {
     id: 2,
-    bg:    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80&fm=webp",
-    bgSet: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80&fm=webp 1x, https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1600&q=80&fm=webp 2x",
+    bg:    "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=85&fm=webp",
+    bgSet: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=85&fm=webp 1x, https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=1600&q=85&fm=webp 2x",
     title: "أحدث الموضة",
     subtitle: "اكتشف أحدث صيحات الموضة",
+    badge: "✨ كولكشن 2025",
+    cta: "تصفح الكولكشن",
   },
   {
     id: 3,
-    bg:    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80&fm=webp",
-    bgSet: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=80&fm=webp 1x, https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1600&q=80&fm=webp 2x",
+    bg:    "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=85&fm=webp",
+    bgSet: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=800&q=85&fm=webp 1x, https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=1600&q=85&fm=webp 2x",
     title: "إكسسوارات فاخرة",
     subtitle: "أناقة لا مثيل لها في كل مناسبة",
+    badge: "💎 ماركات عالمية",
+    cta: "اطّلع عليها",
   },
 ];
 
-const INTERVAL_MS = 3800;
+const INTERVAL_MS = 4200;
 const n = slides.length;
 
 export function BannerSlider() {
@@ -61,52 +72,34 @@ export function BannerSlider() {
 
   function resumeAfterDelay() {
     if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    resumeTimer.current = setTimeout(() => { pausedRef.current = false; }, 2500);
+    resumeTimer.current = setTimeout(() => { pausedRef.current = false; }, 2800);
   }
 
-  function onTouchStart(x: number) {
-    pausedRef.current = true;
-    setTouchX(x);
-    setDelta(0);
-  }
-
-  function onTouchMove(x: number) {
-    if (touchX === null) return;
-    setDelta(x - touchX);
-  }
-
+  function onTouchStart(x: number) { pausedRef.current = true; setTouchX(x); setDelta(0); }
+  function onTouchMove(x: number)  { if (touchX === null) return; setDelta(x - touchX); }
   function onTouchEnd() {
     if (touchX === null) return;
     if (delta > 50 && current < n - 1) setCurrent((c) => c + 1);
     if (delta < -50 && current > 0)    setCurrent((c) => c - 1);
-    setTouchX(null);
-    setDelta(0);
-    resumeAfterDelay();
+    setTouchX(null); setDelta(0); resumeAfterDelay();
   }
 
+  const slide = slides[current];
+
   return (
-    <div className="px-3 pt-3 pb-2">
+    <div className="banner-slider-wrap">
       <div
-        className="relative rounded-2xl overflow-hidden"
-        style={{ aspectRatio: "2 / 1", background: "var(--gold-light)", userSelect: "none" }}
+        className="banner-slider-inner"
         onMouseEnter={() => { pausedRef.current = true; }}
         onMouseLeave={() => { pausedRef.current = false; }}
-        onFocus={() => { pausedRef.current = true; }}
-        onBlur={() => { pausedRef.current = false; }}
         onTouchStart={(e) => onTouchStart(e.touches[0].clientX)}
         onTouchMove={(e)  => onTouchMove(e.touches[0].clientX)}
         onTouchEnd={onTouchEnd}
-        onClick={() => navigate("/categories")}
       >
-        {/* Skeleton shimmer until first image loads */}
-        {!loaded && (
-          <div
-            className="absolute inset-0 z-10 skeleton"
-            style={{ borderRadius: 0 }}
-          />
-        )}
+        {/* Skeleton */}
+        {!loaded && <div className="absolute inset-0 z-10 skeleton" style={{ borderRadius: 0 }} />}
 
-        {/* Images */}
+        {/* Slide images */}
         {slides.map((s, i) => (
           <img
             key={s.id}
@@ -120,93 +113,94 @@ export function BannerSlider() {
             className="absolute inset-0 w-full h-full object-cover"
             style={{
               opacity: i === current ? 1 : 0,
-              transform: `translateX(${delta !== 0 && touchX !== null ? (i === current ? `${delta * 0.05}px` : "0") : "0"})`,
-              transition: touchX !== null ? "opacity 0.1s" : "opacity var(--duration-slow) var(--ease-standard)",
-              willChange: (i === current || i === (current + 1) % n) ? "opacity" : "auto",
+              transform: `scale(${i === current ? 1.03 : 1})`,
+              transition: touchX !== null
+                ? "opacity 0.1s"
+                : "opacity 0.55s var(--ease-standard), transform 4.5s var(--ease-standard)",
+              willChange: (i === current || i === (current + 1) % n) ? "opacity, transform" : "auto",
             }}
             onLoad={() => { if (i === 0) setLoaded(true); }}
             onError={(e) => { e.currentTarget.style.opacity = "0"; if (i === 0) setLoaded(true); }}
           />
         ))}
 
-        {/* Bottom gradient for text readability */}
+        {/* Deep gradient overlay — bottom-weighted for text */}
+        <div className="banner-gradient-overlay" aria-hidden="true" />
+
+        {/* Top gradient for slide counter */}
+        <div className="banner-gradient-top" aria-hidden="true" />
+
+        {/* Slide counter top-right */}
         {loaded && (
-          <div
-            className="absolute inset-x-0 bottom-0"
-            style={{
-              height: "70%",
-              background: "linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.22) 45%, transparent 100%)",
-              pointerEvents: "none",
-            }}
-          />
+          <div className="banner-counter" dir="ltr" aria-hidden="true">
+            <span className="banner-counter-current">{current + 1}</span>
+            <span className="banner-counter-sep">/</span>
+            <span className="banner-counter-total">{n}</span>
+          </div>
         )}
 
-        {/* Text overlay */}
+        {/* Badge top-left */}
+        {loaded && slide.badge && (
+          <div
+            key={`badge-${current}`}
+            className="banner-badge"
+            style={{ animation: "fadeInDown 0.38s var(--ease-spring) both" }}
+          >
+            {slide.badge}
+          </div>
+        )}
+
+        {/* Text + CTA overlay */}
         {loaded && (
           <div
-            className="absolute bottom-0 inset-x-0 pb-8 px-4"
+            className="banner-text-block"
             dir="rtl"
-            style={{ pointerEvents: "none" }}
+            onClick={() => navigate("/categories")}
           >
             <p
               key={`title-${current}`}
-              style={{
-                fontFamily: "var(--font-main)",
-                fontSize: "clamp(14px, 4vw, 18px)",
-                fontWeight: 800,
-                color: "#fff",
-                margin: 0,
-                lineHeight: 1.2,
-                textShadow: "0 1px 6px rgba(0,0,0,0.35)",
-                animation: "fadeInUp 0.32s var(--ease-out) both",
-              }}
+              className="banner-title"
+              style={{ animation: "fadeInUp 0.36s var(--ease-out) both" }}
             >
-              {slides[current].title}
+              {slide.title}
             </p>
             <p
               key={`sub-${current}`}
-              style={{
-                fontFamily: "var(--font-main)",
-                fontSize: "clamp(10.5px, 2.8vw, 12.5px)",
-                fontWeight: 500,
-                color: "rgba(255,255,255,0.90)",
-                margin: "4px 0 0",
-                lineHeight: 1.4,
-                textShadow: "0 1px 4px rgba(0,0,0,0.28)",
-                animation: "fadeInUp 0.32s var(--ease-out) 0.06s both",
-              }}
+              className="banner-subtitle"
+              style={{ animation: "fadeInUp 0.36s var(--ease-out) 0.07s both" }}
             >
-              {slides[current].subtitle}
+              {slide.subtitle}
             </p>
+
+            {/* CTA Button */}
+            <button
+              key={`cta-${current}`}
+              className="banner-cta-btn"
+              style={{ animation: "fadeInUp 0.36s var(--ease-out) 0.13s both" }}
+              onClick={(e) => { e.stopPropagation(); navigate("/categories"); }}
+              aria-label={slide.cta}
+            >
+              <ShoppingBag size={13} strokeWidth={2.2} />
+              <span>{slide.cta}</span>
+              <ChevronLeft size={12} strokeWidth={2.5} />
+            </button>
           </div>
         )}
 
         {/* Dot indicators */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 10,
-            insetInlineEnd: 12,
-            display: "flex",
-            gap: 5,
-            alignItems: "center",
-          }}
-        >
+        <div className="banner-dots" role="tablist" aria-label="شرائح البانر">
           {slides.map((_, i) => (
             <button
               key={i}
-              onClick={(e) => { e.stopPropagation(); setCurrent(i); resumeAfterDelay(); }}
+              role="tab"
+              aria-selected={i === current}
               aria-label={`الشريحة ${i + 1}`}
+              onClick={(e) => { e.stopPropagation(); setCurrent(i); resumeAfterDelay(); }}
+              className="banner-dot"
               style={{
-                width: i === current ? 18 : 6,
-                height: 6,
-                borderRadius: 3,
-                background: i === current ? "#fff" : "rgba(255,255,255,0.48)",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                flexShrink: 0,
-                transition: "width 0.28s var(--ease-spring), background 0.28s",
+                width:   i === current ? 22 : 6,
+                opacity: i === current ? 1 : 0.52,
+                background: "#fff",
               }}
             />
           ))}

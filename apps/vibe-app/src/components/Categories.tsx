@@ -17,7 +17,7 @@ export function Categories({
 }: CategoriesProps) {
   const [internalId, setInternalId] = useState(l1Categories[0].id);
   const [failedIds, setFailedIds]   = useState<Set<string>>(new Set());
-  const activeId = value ?? internalId;
+  const activeId  = value ?? internalId;
   const { categories } = useCategories();
 
   function handleSelect(id: string) {
@@ -30,57 +30,39 @@ export function Categories({
   }
 
   return (
-    <div className="px-3 pt-3 pb-2" style={{ background: bg }}>
-      <div className="flex items-start justify-between overflow-x-auto hide-scrollbar gap-1">
+    <div className="categories-strip" style={{ background: bg }}>
+      <div className="categories-row hide-scrollbar" dir="rtl">
         {categories.map((cat) => {
-          const isActive   = activeId === cat.id;
-          const imgFailed  = failedIds.has(cat.id);
+          const isActive  = activeId === cat.id;
+          const imgFailed = failedIds.has(cat.id);
+
           return (
             <button
               key={cat.id}
               onClick={() => handleSelect(cat.id)}
-              className="flex flex-col items-center gap-1.5 flex-1"
+              className="category-item"
+              aria-pressed={isActive}
             >
-              {/* THAWQ gradient border ring */}
+              {/* Ring wrap */}
               <div
+                className="category-ring"
                 style={{
-                  width: "clamp(48px, 13vw, 62px)",
-                  height: "clamp(48px, 13vw, 62px)",
-                  flexShrink: 0,
-                  borderRadius: "50%",
-                  padding: "1px",
                   background: isActive
-                    ? "linear-gradient(135deg, #FED7AA, #F97316, #C2410C)"
-                    : "linear-gradient(135deg, #FED7AA, #EA580C)",
-                  transition: "background var(--duration-fast) var(--ease-standard)",
+                    ? "linear-gradient(145deg, #F97316, #C2410C)"
+                    : "linear-gradient(145deg, #FED7AA, #F97316)",
+                  padding: isActive ? "2.5px" : "1.5px",
+                  transform: isActive ? "scale(1.08)" : "scale(1)",
+                  boxShadow: isActive ? "0 4px 14px rgba(249,115,22,0.35)" : "none",
+                  transition: "transform 0.22s var(--ease-spring), box-shadow 0.22s, padding 0.22s, background 0.18s",
                 }}
               >
                 <div
-                  className="rounded-full overflow-hidden"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "#FFFFFF",
-                  }}
+                  className="category-img-wrap"
+                  style={{ background: isActive ? "#FFF7F0" : "#FFFFFF" }}
                 >
                   {imgFailed ? (
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        background: isActive ? "var(--gold-light)" : "var(--bg-surface-subtle)",
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontSize: "clamp(17px, 5vw, 22px)",
-                          color: isActive ? "var(--text-brand)" : "var(--text-muted)",
-                          lineHeight: 1,
-                        }}
-                      >
+                    <div className="category-fallback" style={{ background: isActive ? "var(--gold-light)" : "#F5F5F5" }}>
+                      <span className="category-fallback-letter" style={{ color: isActive ? "var(--text-brand)" : "var(--text-muted)" }}>
                         {cat.label[0]}
                       </span>
                     </div>
@@ -88,21 +70,22 @@ export function Categories({
                     <img
                       src={cat.img}
                       alt={cat.label}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      className="category-img"
                       onError={() => handleImgError(cat.id)}
                     />
                   )}
                 </div>
               </div>
 
+              {/* Active indicator dot */}
+              {isActive && <span className="category-active-dot" aria-hidden="true" />}
+
               {showLabels && (
                 <span
-                  className="text-center"
+                  className="category-label"
                   style={{
-                    fontSize: "clamp(9px, 2.8vw, 11.5px)",
-                    lineHeight: 1.5,
                     color: isActive ? "var(--text-brand)" : "var(--text-secondary)",
-                    fontWeight: isActive ? 700 : 400,
+                    fontWeight: isActive ? 700 : 500,
                   }}
                 >
                   {cat.label}

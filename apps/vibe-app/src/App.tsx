@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { SearchBar } from "./components/SearchBar";
 import { Categories } from "./components/Categories";
 import { BannerSlider } from "./components/BannerSlider";
+import { FlashSaleStrip } from "./components/FlashSaleStrip";
 import { Products } from "./components/Products";
 import { FeaturedProducts } from "./components/FeaturedProducts";
 import { Brands } from "./components/Brands";
@@ -15,11 +16,12 @@ import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
+import { PromoBanners, MidPagePromoBanner } from "./components/PromoBanners";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
 
-const RETURN_TO_KEY  = "nakhba_return_to";
-const TOKEN_KEY      = "nakhba_token";
+const RETURN_TO_KEY = "nakhba_return_to";
+const TOKEN_KEY     = "nakhba_token";
 
 /* ── Lazy-load page chunks ──────────────────────────────────────── */
 const CategoriesPage    = lazy(() => import("./pages/CategoriesPage").then(m => ({ default: m.CategoriesPage })));
@@ -45,7 +47,6 @@ function PageLoader() {
   );
 }
 
-/** ProtectedRoute — saves current path before redirecting to login */
 function ProtectedRoute({ component: Component }: { component: React.ComponentType }) {
   const { user, loading } = useAuth();
   const [location, navigate] = useLocation();
@@ -76,7 +77,6 @@ function FocusOnNavigation() {
   return null;
 }
 
-/** Capture OAuth token from query-param after social login redirect */
 function OAuthCapture() {
   const [, navigate] = useLocation();
 
@@ -108,17 +108,12 @@ function OAuthCapture() {
   return null;
 }
 
-/* ── Section Divider ─────────────────────────────────────────────── */
+/* ── Elegant gradient section divider ────────────────────────────── */
 function SectionDivider() {
   return (
-    <div
-      style={{
-        height: 7,
-        background: "var(--bg-surface-subtle)",
-        borderTop: "1px solid var(--border-separator)",
-        borderBottom: "1px solid var(--border-separator)",
-      }}
-    />
+    <div className="section-divider" aria-hidden="true">
+      <div className="section-divider-line" />
+    </div>
   );
 }
 
@@ -138,7 +133,7 @@ function RevealSection({ children, delay = 0 }: { children: React.ReactNode; del
           observer.disconnect();
         }
       },
-      { threshold: 0.05, rootMargin: "0px 0px -16px 0px" }
+      { threshold: 0.04, rootMargin: "0px 0px -12px 0px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -149,8 +144,8 @@ function RevealSection({ children, delay = 0 }: { children: React.ReactNode; del
       ref={ref}
       style={{
         opacity: 0,
-        transform: "translateY(16px)",
-        transition: "opacity 0.40s var(--ease-out), transform 0.40s var(--ease-out)",
+        transform: "translateY(18px)",
+        transition: "opacity 0.42s var(--ease-out), transform 0.42s var(--ease-out)",
         willChange: "opacity, transform",
       }}
     >
@@ -170,9 +165,7 @@ function HomePage() {
 
   function onTouchStart(e: React.TouchEvent) {
     const el = scrollRef.current;
-    if (el && el.scrollTop === 0) {
-      startYRef.current = e.touches[0].clientY;
-    }
+    if (el && el.scrollTop === 0) startYRef.current = e.touches[0].clientY;
   }
 
   function onTouchMove(e: React.TouchEvent) {
@@ -227,11 +220,32 @@ function HomePage() {
       </div>
 
       <h1 className="sr-only">نخبة — الرئيسية</h1>
-      <Header />
-      <SearchBar readOnly navigateTo="/search" />
-      <Categories />
-      <BannerSlider />
 
+      {/* ① Header */}
+      <Header />
+
+      {/* ② Search + trending chips */}
+      <SearchBar readOnly navigateTo="/search" />
+
+      {/* ③ Category bubbles */}
+      <Categories />
+
+      {/* ④ Flash sale urgency strip */}
+      <RevealSection>
+        <FlashSaleStrip />
+      </RevealSection>
+
+      {/* ⑤ Hero banner slider */}
+      <RevealSection>
+        <BannerSlider />
+      </RevealSection>
+
+      {/* ⑥ Trust badges row */}
+      <RevealSection>
+        <PromoBanners />
+      </RevealSection>
+
+      {/* ⑦ Daily deals (عروض اليوم) */}
       <SectionDivider />
       <RevealSection>
         <div style={{ padding: "0 0 4px" }}>
@@ -239,30 +253,41 @@ function HomePage() {
         </div>
       </RevealSection>
 
+      {/* ⑧ Trending best-sellers */}
       <SectionDivider />
-      <RevealSection delay={50}>
+      <RevealSection delay={40}>
         <TrendingSection />
       </RevealSection>
 
+      {/* ⑨ Mid-page promo banner */}
       <SectionDivider />
-      <RevealSection delay={50}>
+      <RevealSection delay={40}>
+        <MidPagePromoBanner />
+      </RevealSection>
+
+      {/* ⑩ New arrivals (grid with tabs) */}
+      <SectionDivider />
+      <RevealSection delay={40}>
         <NewArrivals />
       </RevealSection>
 
+      {/* ⑪ Featured brands */}
       <SectionDivider />
-      <RevealSection delay={50}>
+      <RevealSection delay={40}>
         <div style={{ padding: "8px 0" }}>
           <Brands />
         </div>
       </RevealSection>
 
+      {/* ⑫ Featured products grid */}
       <SectionDivider />
-      <RevealSection delay={50}>
+      <RevealSection delay={40}>
         <FeaturedProducts />
       </RevealSection>
 
+      {/* ⑬ Recently viewed */}
       <SectionDivider />
-      <RevealSection delay={50}>
+      <RevealSection delay={40}>
         <RecentlyViewed />
       </RevealSection>
     </div>

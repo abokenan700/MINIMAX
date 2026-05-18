@@ -10,37 +10,12 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderProps) {
   return (
-    <div className="flex items-center justify-between mb-3">
+    <div className="section-header-row">
       <div className="flex items-center gap-2">
-        {/* Orange accent bar — brand identity marker */}
-        <span
-          aria-hidden="true"
-          style={{
-            display: "inline-block",
-            width: "3px",
-            height: "17px",
-            borderRadius: "2px",
-            background: "var(--gradient-cta)",
-            flexShrink: 0,
-          }}
-        />
-        <h2
-          style={{
-            fontFamily: "var(--font-main)",
-            fontSize: "var(--text-lg)",
-            fontWeight: 700,
-            color: "var(--text-primary)",
-            margin: 0,
-            lineHeight: 1.25,
-            letterSpacing: "-0.1px",
-          }}
-        >
-          {title}
-        </h2>
+        <span aria-hidden="true" className="section-accent-bar" />
+        <h2 className="section-header-title">{title}</h2>
         {icon && (
-          <span style={{ display: "flex", alignItems: "center", color: "var(--text-brand)" }}>
-            {icon}
-          </span>
+          <span className="section-header-icon">{icon}</span>
         )}
         {extra}
       </div>
@@ -48,22 +23,11 @@ export function SectionHeader({ title, icon, extra, onViewAll }: SectionHeaderPr
       {onViewAll && (
         <button
           onClick={onViewAll}
-          className="flex items-center gap-0.5 transition-opacity active:opacity-60"
-          style={{
-            color: "var(--text-brand)",
-            fontSize: "var(--text-xs)",
-            fontFamily: "var(--font-main)",
-            fontWeight: 600,
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "4px 0 4px 2px",
-            opacity: 0.85,
-          }}
+          className="view-all-btn"
           aria-label={`عرض كل ${title}`}
         >
           <span>عرض الكل</span>
-          <ChevronLeft size={12} strokeWidth={2.5} />
+          <ChevronLeft size={13} strokeWidth={2.5} />
         </button>
       )}
     </div>
