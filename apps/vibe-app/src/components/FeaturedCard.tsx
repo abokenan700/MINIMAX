@@ -114,38 +114,59 @@ export function FeaturedCard({ item }: { item: Product }) {
             {item.brand}
           </p>
           {item.colors.length > 0 && (
-            <div className="flex items-center" style={{ gap: 0 }}>
-              {item.colors.map((c, i) => (
+            <div
+              className="flex items-center"
+              style={{ gap: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {item.colors.slice(0, 4).map((c, i) => (
                 <button
                   key={i}
                   onClick={(e) => { e.stopPropagation(); setActiveColor(i); }}
                   aria-label={`اللون ${c}`}
                   aria-pressed={i === activeColor}
                   style={{
-                    width: 32, height: 32, padding: 0, border: "none",
+                    width: 20, height: 20, padding: 0, border: "none",
                     background: "transparent", cursor: "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0,
+                    marginInlineStart: i === 0 ? 0 : -4,
+                    position: "relative",
+                    zIndex: i === activeColor ? 10 : item.colors.length - i,
                   }}
                 >
                   <span
                     className="rounded-full block"
                     style={{
-                      width: i === activeColor ? 13 : 9,
-                      height: i === activeColor ? 13 : 9,
+                      width: i === activeColor ? 12 : 10,
+                      height: i === activeColor ? 12 : 10,
                       background: colorToCss(c),
                       border: i === activeColor
                         ? "2px solid var(--gold)"
+                        : "1.5px solid #fff",
+                      boxShadow: i === activeColor
+                        ? "0 0 0 1.5px rgba(249,115,22,0.35)"
                         : needsBorder(c)
-                          ? "1px solid rgba(0,0,0,0.15)"
-                          : "1px solid rgba(0,0,0,0.08)",
-                      outline: i === activeColor ? "2px solid rgba(249,115,22,0.30)" : "none",
-                      outlineOffset: "1px",
-                      transition: "width 0.18s var(--ease-out), height 0.18s var(--ease-out)",
+                          ? "0 0 0 0.5px rgba(0,0,0,0.12)"
+                          : "none",
+                      transition: "width 0.15s ease, height 0.15s ease",
                     }}
                   />
                 </button>
               ))}
+              {item.colors.length > 4 && (
+                <span
+                  style={{
+                    marginInlineStart: 2,
+                    fontSize: "9px",
+                    color: "var(--text-muted)",
+                    fontWeight: 600,
+                    lineHeight: 1,
+                  }}
+                >
+                  +{item.colors.length - 4}
+                </span>
+              )}
             </div>
           )}
         </div>
