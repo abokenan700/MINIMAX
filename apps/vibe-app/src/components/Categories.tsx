@@ -47,13 +47,8 @@ export function Categories({
               <div
                 className="category-ring"
                 style={{
-                  background: isActive
-                    ? "linear-gradient(145deg, #0F0F0F, #3D3D3D)"
-                    : "transparent",
-                  padding: isActive ? "2px" : "1px",
-                  transform: isActive ? "scale(1.06)" : "scale(1)",
-                  boxShadow: isActive ? "0 3px 10px rgba(0,0,0,0.18)" : "none",
-                  transition: "transform 0.22s var(--ease-spring), box-shadow 0.22s, padding 0.22s, background 0.18s",
+                  background: "linear-gradient(145deg, #E0E0E0, #BDBDBD)",
+                  padding: "1.5px",
                 }}
               >
                 <div
@@ -77,14 +72,6 @@ export function Categories({
                 </div>
               </div>
 
-              {/* Active indicator dot */}
-              {isActive && (
-                <span
-                  className="category-active-dot"
-                  aria-hidden="true"
-                  style={{ background: "#0F0F0F", boxShadow: "none" }}
-                />
-              )}
 
               {showLabels && (
                 <span
