@@ -11,7 +11,6 @@ import { FeaturedProducts } from "./components/FeaturedProducts";
 import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
 import { NewArrivals } from "./components/NewArrivals";
-import { TrendingSection } from "./components/TrendingSection";
 import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
@@ -246,12 +245,6 @@ function HomePage() {
         <div style={{ padding: "0 0 4px" }}>
           <Products />
         </div>
-      </RevealSection>
-
-      {/* ⑧ Trending best-sellers */}
-      <SectionDivider />
-      <RevealSection delay={40}>
-        <TrendingSection />
       </RevealSection>
 
       {/* ⑨ Mid-page promo banner */}
