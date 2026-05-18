@@ -16,17 +16,16 @@ function getDevDomain(): string {
 
 function apiBase(): string {
   const domain = getDevDomain();
-  // In Replit, the API runs on port 8080 (external port 8080)
   const isLocalhost = domain.startsWith("localhost");
   return isLocalhost
     ? `http://${domain}`
-    : `https://${domain}:8080`;
+    : `https://${domain}`;
 }
 
 function frontendBase(): string {
   const domain = getDevDomain();
   const isLocalhost = domain.startsWith("localhost");
-  return isLocalhost ? "http://localhost:24678" : `https://${domain}`;
+  return isLocalhost ? "http://localhost:5000" : `https://${domain}`;
 }
 
 function issueToken(userId: number, email: string): string {

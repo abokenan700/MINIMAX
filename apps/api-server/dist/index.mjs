@@ -53080,12 +53080,12 @@ function getDevDomain() {
 function apiBase() {
   const domain = getDevDomain();
   const isLocalhost = domain.startsWith("localhost");
-  return isLocalhost ? `http://${domain}` : `https://${domain}:8080`;
+  return isLocalhost ? `http://${domain}` : `https://${domain}`;
 }
 function frontendBase() {
   const domain = getDevDomain();
   const isLocalhost = domain.startsWith("localhost");
-  return isLocalhost ? "http://localhost:24678" : `https://${domain}`;
+  return isLocalhost ? "http://localhost:5000" : `https://${domain}`;
 }
 function issueToken(userId, email) {
   return import_jsonwebtoken3.default.sign(
