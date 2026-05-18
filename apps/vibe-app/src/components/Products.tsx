@@ -14,7 +14,7 @@ export function Products() {
   return (
     <div className="py-2">
       <div style={{
-        borderTop: "1px solid rgba(249,115,22,0.35)",
+        borderTop: "none",
         borderLeft: "4px solid #F97316",
         borderRight: "4px solid #F97316",
         borderBottom: "4px solid #F97316",
