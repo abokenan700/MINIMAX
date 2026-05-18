@@ -225,7 +225,7 @@ function HomePage() {
       <Header />
 
       {/* ② Search + trending chips */}
-      <SearchBar readOnly navigateTo="/search" />
+      <SearchBar readOnly navigateTo="/search" hideTrending />
 
       {/* ③ Category bubbles */}
       <Categories />

@@ -13,6 +13,7 @@ interface SearchBarProps {
   autoFocus?: boolean;
   filtersRow?: React.ReactNode;
   navigateTo?: string;
+  hideTrending?: boolean;
 }
 
 const TRENDING_TERMS = [
@@ -35,11 +36,12 @@ export function SearchBar({
   autoFocus = false,
   filtersRow,
   navigateTo,
+  hideTrending = false,
 }: SearchBarProps) {
   const [, navigate] = useLocation();
   const [focused, setFocused] = useState(false);
 
-  const showTrending = readOnly && !!navigateTo;
+  const showTrending = readOnly && !!navigateTo && !hideTrending;
 
   function handleFocus() {
     setFocused(true);
