@@ -15,9 +15,9 @@ export function Products() {
     <div className="py-3">
       <div style={{
         borderTop: "none",
-        borderLeft: "4px solid #F97316",
-        borderRight: "4px solid #F97316",
-        borderBottom: "4px solid #F97316",
+        borderLeft: "2px solid #F97316",
+        borderRight: "2px solid #F97316",
+        borderBottom: "2px solid #F97316",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
         background: "#FFF8F2",
