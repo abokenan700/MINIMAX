@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
-import { SectionHeader } from "./SectionHeader";
 
 const BRAND_SLOT_COUNT = 5;
 
@@ -16,11 +15,6 @@ export function Brands() {
 
   return (
     <div className="px-3 pt-1 pb-4">
-      <SectionHeader
-        title="الماركات المميزة"
-        onViewAll={() => navigate("/search")}
-      />
-
       <div className="flex items-center justify-between gap-1.5">
         {isLoading
           ? Array.from({ length: BRAND_SLOT_COUNT }).map((_, i) => (
