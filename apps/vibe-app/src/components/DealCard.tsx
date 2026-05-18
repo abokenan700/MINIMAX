@@ -72,21 +72,23 @@ export function DealCard({ product }: { product: Product }) {
           {viewers} يشاهدون الآن
         </p>
 
-        {/* Stock bar */}
+        {/* Stock dot counter */}
         {remaining !== null && (
-          <div className="deal-card-stock-wrap">
-            <div className="deal-card-stock-bar-bg">
-              <div
-                className="deal-card-stock-bar-fill"
+          <div className="deal-card-stock-dots" dir="rtl">
+            {Array.from({ length: 7 }).map((_, i) => (
+              <span
+                key={i}
+                className="deal-card-stock-dot"
                 style={{
-                  width: `${(remaining / 10) * 100}%`,
-                  background: remaining <= 3 ? "var(--error)" : "var(--gold)",
+                  background: i < remaining
+                    ? (remaining <= 3 ? "#EF4444" : "var(--gold)")
+                    : "rgba(0,0,0,0.10)",
                 }}
               />
-            </div>
-            <p className="deal-card-stock-text" style={{ color: remaining <= 3 ? "var(--error)" : "var(--text-brand)" }}>
-              {remaining <= 3 ? "⚡ " : ""}تبقّى {remaining} قطعة!
-            </p>
+            ))}
+            <span className="deal-card-stock-label" style={{ color: remaining <= 3 ? "#EF4444" : "var(--text-brand)" }}>
+              {remaining <= 3 ? "⚡" : ""} {remaining} قطعة
+            </span>
           </div>
         )}
 
