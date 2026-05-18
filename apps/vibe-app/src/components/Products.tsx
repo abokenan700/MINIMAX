@@ -17,8 +17,7 @@ export function Products() {
         border: "none",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
-        background: "#FFF8F2",
-        boxShadow: "0 8px 28px rgba(249,115,22,0.14)",
+        background: "#FDFBF8",
       }}>
         <FlashSaleStrip />
 
