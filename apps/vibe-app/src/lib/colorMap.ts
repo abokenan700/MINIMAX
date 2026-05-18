@@ -20,10 +20,22 @@ const MAP: Record<string, string> = {
 };
 
 export function colorToCss(name: string): string {
-  return MAP[name.trim()] ?? "#D0CBC4";
+  const trimmed = name.trim();
+  if (trimmed.startsWith("#") || trimmed.startsWith("rgb")) return trimmed;
+  return MAP[trimmed] ?? "#D0CBC4";
 }
 
 export function needsBorder(name: string): boolean {
   const css = colorToCss(name);
-  return css === "#FFFFFF" || css === "#F5F0E8" || css === "#F5F0DC";
+  const light = ["#ffffff","#f5f0e8","#f5f0dc","#ffffffff"];
+  return light.includes(css.toLowerCase()) || isVeryLight(css);
+}
+
+function isVeryLight(hex: string): boolean {
+  const c = hex.replace("#","");
+  if (c.length < 6) return false;
+  const r = parseInt(c.slice(0,2),16);
+  const g = parseInt(c.slice(2,4),16);
+  const b = parseInt(c.slice(4,6),16);
+  return (r*0.299 + g*0.587 + b*0.114) > 220;
 }

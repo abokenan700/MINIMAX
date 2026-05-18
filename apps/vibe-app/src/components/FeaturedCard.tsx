@@ -126,11 +126,11 @@ export function FeaturedCard({ item }: { item: Product }) {
                   aria-label={`اللون ${c}`}
                   aria-pressed={i === activeColor}
                   style={{
-                    width: 20, height: 20, padding: 0, border: "none",
+                    width: 24, height: 24, padding: 0, border: "none",
                     background: "transparent", cursor: "pointer",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     flexShrink: 0,
-                    marginInlineStart: i === 0 ? 0 : -4,
+                    marginInlineStart: i === 0 ? 0 : -5,
                     position: "relative",
                     zIndex: i === activeColor ? 10 : item.colors.length - i,
                   }}
@@ -138,17 +138,17 @@ export function FeaturedCard({ item }: { item: Product }) {
                   <span
                     className="rounded-full block"
                     style={{
-                      width: i === activeColor ? 12 : 10,
-                      height: i === activeColor ? 12 : 10,
+                      width: i === activeColor ? 16 : 13,
+                      height: i === activeColor ? 16 : 13,
                       background: colorToCss(c),
                       border: i === activeColor
                         ? "2px solid var(--gold)"
-                        : "1.5px solid #fff",
+                        : "2px solid #fff",
                       boxShadow: i === activeColor
-                        ? "0 0 0 1.5px rgba(249,115,22,0.35)"
+                        ? "0 0 0 1.5px rgba(249,115,22,0.40), 0 1px 3px rgba(0,0,0,0.15)"
                         : needsBorder(c)
-                          ? "0 0 0 0.5px rgba(0,0,0,0.12)"
-                          : "none",
+                          ? "0 0 0 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.08)"
+                          : "0 1px 2px rgba(0,0,0,0.12)",
                       transition: "width 0.15s ease, height 0.15s ease",
                     }}
                   />
