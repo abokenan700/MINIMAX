@@ -12,13 +12,13 @@ export function Products() {
   const { data: products = [], isLoading } = useGetProducts();
 
   return (
-    <div className="py-2 px-1.5">
+    <div className="py-2">
       <div style={{
         borderTop: "1px solid rgba(249,115,22,0.28)",
         borderLeft: "2.5px solid rgba(249,115,22,0.38)",
         borderRight: "2.5px solid rgba(249,115,22,0.38)",
         borderBottom: "2.5px solid rgba(249,115,22,0.38)",
-        borderRadius: 14,
+        borderRadius: 0,
         overflow: "hidden",
       }}>
         <FlashSaleStrip />
