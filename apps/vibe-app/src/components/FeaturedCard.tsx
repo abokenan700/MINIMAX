@@ -84,7 +84,7 @@ export function FeaturedCard({ item }: { item: Product }) {
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
-        {/* Quick-view button — show on hover (desktop) or always (mobile) */}
+        {/* Quick-view button — icon only, bottom-left corner */}
         <button
           onClick={(e) => { e.stopPropagation(); openQuickView(item); }}
           aria-label="نظرة سريعة"
@@ -92,29 +92,25 @@ export function FeaturedCard({ item }: { item: Product }) {
           style={{
             position: "absolute",
             bottom: 6,
-            left: "50%",
-            transform: "translateX(-50%)",
+            insetInlineStart: 6,
+            width: 26,
+            height: 26,
             display: "flex",
             alignItems: "center",
-            gap: 5,
-            padding: "5px 12px",
-            borderRadius: 20,
+            justifyContent: "center",
+            borderRadius: "50%",
             border: "none",
-            background: "rgba(255,255,255,0.92)",
+            background: "rgba(255,255,255,0.88)",
             backdropFilter: "blur(6px)",
             WebkitBackdropFilter: "blur(6px)",
             color: "var(--text-primary)",
-            fontSize: 10.5,
-            fontWeight: 700,
-            fontFamily: "var(--font-main)",
             cursor: "pointer",
-            whiteSpace: "nowrap",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.14)",
+            boxShadow: "0 1px 6px rgba(0,0,0,0.16)",
             transition: "opacity 0.2s, transform 0.2s",
+            flexShrink: 0,
           }}
         >
-          <Eye size={12} strokeWidth={2} />
-          نظرة سريعة
+          <Eye size={13} strokeWidth={2} />
         </button>
 
         {/* Discount badge */}

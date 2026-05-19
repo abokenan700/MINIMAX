@@ -21,7 +21,6 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
     <button
       onClick={handleAdd}
       aria-label={added ? "تمت الإضافة للسلة" : "أضف للسلة"}
-      /* minWidth/minHeight 44px تضمن مساحة لمس كافية حتى لو الدائرة أصغر */
       style={{
         display: "flex",
         alignItems: "center",
@@ -39,11 +38,18 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
         whileTap={{ scale: 0.80 }}
         transition={{ type: "spring", stiffness: 500, damping: 18 }}
         className="flex items-center justify-center"
-        style={{ width: dim, height: dim }}
+        style={{
+          width: dim,
+          height: dim,
+          borderRadius: "50%",
+          background: added ? "rgba(249,115,22,0.15)" : "linear-gradient(135deg, #F97316, #EA580C)",
+          boxShadow: added ? "none" : "0 2px 8px rgba(249,115,22,0.35)",
+          transition: "background 0.2s",
+        }}
       >
         {added
-          ? <Check size={icon} strokeWidth={2.5} style={{ color: "var(--gold)" }} />
-          : <ShoppingBag size={icon} strokeWidth={2} style={{ color: "var(--gold)" }} />
+          ? <Check size={icon} strokeWidth={2.5} style={{ color: "#F97316" }} />
+          : <ShoppingBag size={icon} strokeWidth={2} style={{ color: "#fff" }} />
         }
       </motion.div>
     </button>
