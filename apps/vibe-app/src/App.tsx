@@ -15,7 +15,7 @@ import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
-import { PromoBanners, MidPagePromoBanner } from "./components/PromoBanners";
+import { PromoBanners } from "./components/PromoBanners";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
 
@@ -253,12 +253,6 @@ function HomePage() {
         <div style={{ padding: "8px 0" }}>
           <Brands />
         </div>
-      </RevealSection>
-
-      {/* ⑨ Mid-page promo banner */}
-      <SectionDivider />
-      <RevealSection delay={40}>
-        <MidPagePromoBanner />
       </RevealSection>
 
       {/* ⑩ New arrivals (grid with tabs) */}
