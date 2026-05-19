@@ -49,7 +49,7 @@ export function Brands() {
                     alt={brand.label}
                     loading="lazy"
                     className="object-contain"
-                    style={{ maxHeight: "clamp(16px, 5vw, 22px)", maxWidth: "clamp(32px, 10vw, 48px)" }}
+                    style={{ maxHeight: "clamp(20px, 5.5vw, 26px)", maxWidth: "clamp(60px, 16vw, 90px)" }}
                     onError={() => handleImgError(brand.id)}
                   />
                 ) : (

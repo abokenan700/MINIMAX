@@ -43715,11 +43715,11 @@ var products_default = router2;
 var import_express3 = __toESM(require_express2(), 1);
 var router3 = (0, import_express3.Router)();
 var mockBrands = [
-  { id: "chanel", label: "CHANEL", icon: null },
-  { id: "dior", label: "DIOR", icon: null },
-  { id: "gucci", label: "GUCCI", icon: null },
-  { id: "lv", label: "LV", icon: null },
-  { id: "versace", label: "VERSACE", icon: null }
+  { id: "chanel", label: "CHANEL", icon: "/brands/chanel.svg" },
+  { id: "dior", label: "DIOR", icon: "/brands/dior.svg" },
+  { id: "gucci", label: "GUCCI", icon: "/brands/gucci.svg" },
+  { id: "lv", label: "LOUIS VUITTON", icon: "/brands/lv.svg" },
+  { id: "versace", label: "VERSACE", icon: "/brands/versace.svg" }
 ];
 router3.get("/brands", (_req, res) => {
   res.json(mockBrands);
