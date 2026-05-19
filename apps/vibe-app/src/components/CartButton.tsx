@@ -14,8 +14,8 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
   const { added, handleAdd } = useCartButton(product, selectedColor);
 
   /* الحجم البصري للدائرة */
-  const dim  = size === "sm" ? 32 : 36;
-  const icon = size === "sm" ? 16 : 18;
+  const dim  = size === "sm" ? 28 : 30;
+  const icon = size === "sm" ? 13 : 14;
 
   return (
     <button
@@ -26,8 +26,8 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
         alignItems: "center",
         justifyContent: "center",
         flexShrink: 0,
-        minWidth: 44,
-        minHeight: 44,
+        minWidth: 36,
+        minHeight: 36,
         background: "transparent",
         border: "none",
         padding: 0,
@@ -43,7 +43,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
           height: dim,
           borderRadius: "50%",
           background: added ? "rgba(249,115,22,0.15)" : "linear-gradient(135deg, #F97316, #EA580C)",
-          boxShadow: added ? "none" : "0 2px 8px rgba(249,115,22,0.35)",
+          boxShadow: added ? "none" : "0 2px 6px rgba(249,115,22,0.35)",
           transition: "background 0.2s",
         }}
       >

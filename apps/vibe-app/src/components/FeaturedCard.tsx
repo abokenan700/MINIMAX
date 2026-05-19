@@ -125,7 +125,7 @@ export function FeaturedCard({ item }: { item: Product }) {
       <div style={{ height: "1px", background: "var(--border-separator)" }} />
 
       {/* Content */}
-      <div className="flex flex-col gap-1 px-2.5 pt-2 pb-2.5">
+      <div className="flex flex-col gap-0.5 px-2 pt-1.5 pb-2">
         {/* Brand + Colors */}
         <div className="flex items-center justify-between">
           <p style={{ fontSize: "clamp(9.5px, 2.6vw, 11px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.3px" }}>
@@ -181,7 +181,7 @@ export function FeaturedCard({ item }: { item: Product }) {
         </div>
 
         {/* Price */}
-        <div className="flex items-center justify-between mt-0.5">
+        <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-0.5">
             <span style={{ fontSize: "clamp(13px, 3.6vw, 15px)", fontWeight: 800, color: "var(--text-price)" }}>
               {item.price.toLocaleString("ar-SA")}
@@ -194,7 +194,7 @@ export function FeaturedCard({ item }: { item: Product }) {
         </div>
 
         {/* Discount + Cart */}
-        <div className="flex items-center justify-between mt-0.5">
+        <div className="flex items-center justify-between">
           <span
             style={{
               fontSize: "clamp(8.5px, 2.3vw, 9.5px)",
