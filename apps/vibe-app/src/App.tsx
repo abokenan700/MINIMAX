@@ -7,7 +7,8 @@ import { Categories } from "./components/Categories";
 import { BannerSlider } from "./components/BannerSlider";
 import { FlashSaleStrip } from "./components/FlashSaleStrip";
 import { Products } from "./components/Products";
-import { FeaturedProducts } from "./components/FeaturedProducts";
+import { BestSellers } from "./components/BestSellers";
+import { TopRated } from "./components/TopRated";
 import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
 import { NewArrivals } from "./components/NewArrivals";
@@ -255,16 +256,22 @@ function HomePage() {
         </div>
       </RevealSection>
 
-      {/* ⑩ New arrivals (grid with tabs) */}
+      {/* ⑩ New arrivals */}
       <SectionDivider />
       <RevealSection delay={40}>
         <NewArrivals />
       </RevealSection>
 
-      {/* ⑫ Featured products grid */}
+      {/* ⑪ Best sellers */}
       <SectionDivider />
       <RevealSection delay={40}>
-        <FeaturedProducts />
+        <BestSellers />
+      </RevealSection>
+
+      {/* ⑫ Top rated */}
+      <SectionDivider />
+      <RevealSection delay={40}>
+        <TopRated />
       </RevealSection>
 
       {/* ⑬ Recently viewed */}

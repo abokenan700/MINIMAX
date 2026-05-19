@@ -4,22 +4,19 @@ import { useGetProducts } from "@workspace/api-client-react";
 import { SectionHeader } from "./SectionHeader";
 import { FeaturedCard } from "./FeaturedCard";
 
-export function NewArrivals() {
+export function TopRated() {
   const { data: products = [], isLoading } = useGetProducts();
   const [, navigate] = useLocation();
 
-  const newProducts = useMemo(
-    () =>
-      [...products]
-        .sort((a, b) => b.id - a.id)
-        .slice(0, 6),
+  const topRated = useMemo(
+    () => [...products].sort((a, b) => b.rating - a.rating).slice(0, 6),
     [products],
   );
 
   return (
     <div style={{ background: "var(--bg-page)", paddingBottom: 8 }}>
       <div style={{ padding: "18px 12px 12px" }}>
-        <SectionHeader title="وصل حديثاً" onViewAll={() => navigate("/search")} />
+        <SectionHeader title="الأعلى تقييماً" onViewAll={() => navigate("/search")} />
       </div>
 
       <div
@@ -46,7 +43,7 @@ export function NewArrivals() {
                 </div>
               </div>
             ))
-          : newProducts.map((p) => <FeaturedCard key={p.id} item={p} />)}
+          : topRated.map((p) => <FeaturedCard key={p.id} item={p} />)}
       </div>
     </div>
   );
