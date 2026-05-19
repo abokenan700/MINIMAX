@@ -30,8 +30,8 @@ export function Brands() {
                 key={i}
                 className="rounded-xl skeleton flex-shrink-0"
                 style={{
-                  width: "clamp(90px, 26vw, 120px)",
-                  height: "clamp(46px, 13vw, 60px)",
+                  width: "clamp(72px, 19vw, 88px)",
+                  height: "clamp(36px, 9.5vw, 44px)",
                   border: "1px solid var(--border)",
                 }}
               />
@@ -42,14 +42,14 @@ export function Brands() {
                 onClick={() => navigate(`/search?brand=${encodeURIComponent(brand.label)}`)}
                 className="rounded-xl flex items-center justify-center flex-shrink-0 transition-[transform,opacity] active:scale-95 active:opacity-70"
                 style={{
-                  width: "clamp(90px, 26vw, 120px)",
-                  height: "clamp(46px, 13vw, 60px)",
+                  width: "clamp(72px, 19vw, 88px)",
+                  height: "clamp(36px, 9.5vw, 44px)",
                   background: "var(--bg-card)",
                   border: "1px solid var(--border)",
                   boxShadow: "var(--shadow-sm)",
                   cursor: "pointer",
                   overflow: "hidden",
-                  padding: "8px 10px",
+                  padding: "6px 8px",
                 }}
                 aria-label={`تصفح منتجات ${brand.label}`}
               >
