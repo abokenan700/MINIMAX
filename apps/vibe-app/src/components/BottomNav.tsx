@@ -5,13 +5,15 @@ import { useCart } from "../context/CartContext";
 import { motion } from "framer-motion";
 
 const ACTIVE_COLOR = "#F97316";
-const INACTIVE     = "#AAAAAA";
-const BADGE_BG     = "var(--error)";
+const INACTIVE     = "#9CA3AF";
+const BADGE_BG     = "#EF4444";
 
-const PILL_H   = 56;   // bar height
-const CORNER_R = 22;   // pill corner radius
-const CIRCLE_R = 24;   // active circle radius → diameter 48px
-const NOTCH_R  = 28;   // concave arc radius (slightly larger than circle for a smooth rim)
+// Dimensions — matched to the reference image proportions
+const PILL_H      = 60;   // bar height px
+const CORNER_R    = 24;   // bar corner radius
+const CIRCLE_R    = 24;   // active bubble radius (diameter = 48px)
+const NOTCH_HALF  = 32;   // half-width of the concave notch (notch = 64px wide)
+const NOTCH_ARC   = 32;   // arc radius = NOTCH_HALF → perfect semicircle, depth = 32px
 
 export type NavId = "home" | "categories" | "wishlist" | "cart";
 
@@ -23,24 +25,27 @@ const NAV_ROUTE: Record<NavId, string> = {
 };
 
 const navItems: { id: NavId; label: string; Icon: React.ElementType }[] = [
-  { id: "home",       label: "الرئيسية",  Icon: Home       },
-  { id: "categories", label: "التصنيفات", Icon: LayoutGrid },
-  { id: "wishlist",   label: "المفضلة",   Icon: Heart      },
-  { id: "cart",       label: "السلة",     Icon: ShoppingBag},
+  { id: "home",       label: "الرئيسية",  Icon: Home        },
+  { id: "categories", label: "التصنيفات", Icon: LayoutGrid  },
+  { id: "wishlist",   label: "المفضلة",   Icon: Heart       },
+  { id: "cart",       label: "السلة",     Icon: ShoppingBag },
 ];
 
 /**
- * SVG path for a rounded pill with a smooth concave (inward) arc at the top.
- * The concave goes from (cx - NOTCH_R, 0) → curves DOWN → (cx + NOTCH_R, 0).
- * sweep-flag=0 (counter-clockwise) = concave from above.
+ * Rounded-rectangle pill with a smooth CONCAVE semicircular notch at the top.
+ *
+ * Arc direction: sweep-flag=1 (clockwise in SVG = curves DOWNWARD into the bar).
+ * The notch center sits at (cx, 0) — the bar's top edge.
+ * The arc dips NOTCH_ARC px downward at its deepest point.
  */
-function makePillPath(W: number, H: number, cx: number): string {
-  const nL = Math.max(CORNER_R + 1, cx - NOTCH_R);
-  const nR = Math.min(W - CORNER_R - 1, cx + NOTCH_R);
+function pillPath(W: number, H: number, cx: number): string {
+  const nL = Math.max(CORNER_R + 1,     cx - NOTCH_HALF);
+  const nR = Math.min(W - CORNER_R - 1, cx + NOTCH_HALF);
+
   return [
     `M ${CORNER_R} 0`,
     `L ${nL} 0`,
-    `A ${NOTCH_R} ${NOTCH_R} 0 0 1 ${nR} 0`,
+    `A ${NOTCH_ARC} ${NOTCH_ARC} 0 0 1 ${nR} 0`,   // concave notch ↓
     `L ${W - CORNER_R} 0`,
     `Q ${W} 0 ${W} ${CORNER_R}`,
     `L ${W} ${H - CORNER_R}`,
@@ -72,30 +77,29 @@ export function BottomNav() {
   function activeIdFromPath(path: string): NavId {
     if (path === "/" || path === "") return "home";
     const match = Object.entries(NAV_ROUTE).find(
-      ([, route]) => path.startsWith(route) && route !== "/"
+      ([, r]) => path.startsWith(r) && r !== "/"
     );
     const id = match?.[0];
-    return id !== undefined && id in NAV_ROUTE ? (id as NavId) : "home";
+    return id && id in NAV_ROUTE ? (id as NavId) : "home";
   }
 
   const activeId  = activeIdFromPath(location);
   const activeIdx = navItems.findIndex(n => n.id === activeId);
 
-  // RTL layout: idx 0 (home) is visually rightmost → cx% = 87.5 − idx×25
+  // RTL: idx 0 (home) is the RIGHTMOST tab visually.
+  // Physical left % of each tab center: 87.5 − idx×25
   const notchPct = 87.5 - activeIdx * 25;
-  const cx = (notchPct / 100) * barW;
+  const cx       = (notchPct / 100) * barW;
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent<HTMLElement>) => {
+    (e: React.KeyboardEvent) => {
       const total = navItems.length;
       let next = activeIdx;
-      switch (e.key) {
-        case "ArrowLeft":  next = (activeIdx + 1) % total;         break;
-        case "ArrowRight": next = (activeIdx - 1 + total) % total; break;
-        case "Home":       next = 0;                                break;
-        case "End":        next = total - 1;                        break;
-        default: return;
-      }
+      if      (e.key === "ArrowLeft")  next = (activeIdx + 1) % total;
+      else if (e.key === "ArrowRight") next = (activeIdx - 1 + total) % total;
+      else if (e.key === "Home")       next = 0;
+      else if (e.key === "End")        next = total - 1;
+      else return;
       e.preventDefault();
       navigate(NAV_ROUTE[navItems[next].id]);
       btnRefs.current[next]?.focus();
@@ -104,6 +108,11 @@ export function BottomNav() {
   );
 
   return (
+    /*
+     * The nav's background MUST match the page background so the transparent
+     * concave notch in the pill exposes this colour — creating the visible gap
+     * between the floating circle and the bar body.
+     */
     <nav
       role="tablist"
       aria-label="التنقل الرئيسي"
@@ -112,42 +121,42 @@ export function BottomNav() {
         height: "100%",
         display: "flex",
         alignItems: "flex-end",
-        paddingBottom: "max(8px, env(safe-area-inset-bottom, 0px))",
-        paddingInline: 10,
+        paddingBottom: "max(10px, env(safe-area-inset-bottom, 0px))",
+        paddingInline: 12,
         overflow: "visible",
-        background: "transparent",
+        background: "var(--bg-page)", // ← exposes bg colour through notch
       }}
     >
       <div
         ref={wrapRef}
-        style={{ position: "relative", width: "100%", height: PILL_H, overflow: "visible" }}
+        style={{
+          position: "relative",
+          width: "100%",
+          height: PILL_H,
+          overflow: "visible",
+        }}
       >
-        {/* ── SVG pill with true concave notch ── */}
+        {/* ── White pill with SVG concave notch ── */}
         <svg
           aria-hidden="true"
           viewBox={`0 0 ${barW} ${PILL_H}`}
-          width="100%"
+          width={barW}
           height={PILL_H}
           style={{
             position: "absolute",
-            inset: 0,
+            top: 0,
+            left: 0,
             overflow: "visible",
             filter:
-              "drop-shadow(0 -2px 10px rgba(0,0,0,0.06)) drop-shadow(0 4px 14px rgba(0,0,0,0.10))",
+              "drop-shadow(0px -1px 8px rgba(0,0,0,0.08))" +
+              " drop-shadow(0px 4px 12px rgba(0,0,0,0.10))",
           }}
         >
-          <path d={makePillPath(barW, PILL_H, cx)} fill="#ffffff" />
+          <path d={pillPath(barW, PILL_H, cx)} fill="#ffffff" />
         </svg>
 
-        {/* ── Tab buttons ── */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            height: "100%",
-            zIndex: 1,
-          }}
-        >
+        {/* ── Buttons ── */}
+        <div style={{ position: "relative", display: "flex", height: "100%", zIndex: 1 }}>
           {navItems.map(({ id, label, Icon }, idx) => {
             const isActive  = activeId === id;
             const showBadge = id === "cart" && count > 0;
@@ -158,9 +167,7 @@ export function BottomNav() {
                 ref={el => { btnRefs.current[idx] = el; }}
                 role="tab"
                 aria-selected={isActive}
-                aria-label={
-                  id === "cart" && count > 0 ? `${label} — ${count} عناصر` : label
-                }
+                aria-label={showBadge ? `${label} — ${count} عناصر` : label}
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => navigate(NAV_ROUTE[id])}
                 style={{
@@ -170,58 +177,53 @@ export function BottomNav() {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "flex-end",
-                  paddingBottom: 8,
-                  gap: 3,
+                  paddingBottom: 10,
+                  gap: 4,
                   background: "transparent",
                   border: "none",
                   cursor: "pointer",
                   position: "relative",
                 }}
               >
-                {/* Floating bubble — center sits exactly at the bar top edge */}
+                {/* Floating white bubble — sits half-above / half-inside the notch */}
                 {isActive && (
                   <motion.div
                     layoutId="nav-bubble"
                     style={{
                       position: "absolute",
+                      // center of circle = top edge of bar (y=0 of pill)
                       top: -CIRCLE_R,
                       left: "50%",
                       x: "-50%",
-                      width: CIRCLE_R * 2,
+                      width:  CIRCLE_R * 2,
                       height: CIRCLE_R * 2,
                       borderRadius: "50%",
-                      background: "linear-gradient(145deg, #FB923C, #EA580C)",
-                      boxShadow:
-                        "0 6px 20px rgba(234,88,12,0.45), 0 2px 6px rgba(0,0,0,0.12)",
+                      background: "#ffffff",
+                      boxShadow: "0 4px 16px rgba(0,0,0,0.14)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       zIndex: 10,
                     }}
-                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
                   >
-                    <Icon
-                      size={22}
-                      strokeWidth={2.2}
-                      style={{ color: "#ffffff" }}
-                    />
+                    <Icon size={22} strokeWidth={2.2} style={{ color: ACTIVE_COLOR }} />
+
                     {showBadge && (
                       <span
                         aria-hidden="true"
                         style={{
                           position: "absolute",
-                          top: 3,
-                          right: 3,
+                          top: 3, right: 3,
                           background: BADGE_BG,
+                          color: "#fff",
                           fontSize: 8,
                           fontWeight: 800,
-                          width: 14,
-                          height: 14,
+                          width: 14, height: 14,
                           borderRadius: "50%",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          color: "#fff",
                           border: "1.5px solid #fff",
                         }}
                       >
@@ -233,38 +235,23 @@ export function BottomNav() {
 
                 {/* Inactive icon */}
                 {!isActive && (
-                  <div
-                    style={{
-                      position: "relative",
-                      width: 24,
-                      height: 24,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Icon
-                      size={20}
-                      strokeWidth={1.6}
-                      style={{ color: INACTIVE }}
-                    />
+                  <div style={{ position: "relative" }}>
+                    <Icon size={20} strokeWidth={1.6} style={{ color: INACTIVE }} />
                     {showBadge && (
                       <span
                         aria-hidden="true"
                         style={{
                           position: "absolute",
-                          top: -6,
-                          right: -6,
+                          top: -6, right: -6,
                           background: BADGE_BG,
+                          color: "#fff",
                           fontSize: 8,
                           fontWeight: 800,
-                          width: 14,
-                          height: 14,
+                          width: 14, height: 14,
                           borderRadius: "50%",
                           display: "flex",
                           alignItems: "center",
                           justifyContent: "center",
-                          color: "#fff",
                           border: "1.5px solid #fff",
                         }}
                       >
@@ -274,10 +261,9 @@ export function BottomNav() {
                   </div>
                 )}
 
-                {/* Label */}
                 <span
                   style={{
-                    fontSize: "var(--text-2xs)",
+                    fontSize: 10,
                     fontFamily: "var(--font-main)",
                     color: isActive ? ACTIVE_COLOR : INACTIVE,
                     fontWeight: isActive ? 700 : 500,
