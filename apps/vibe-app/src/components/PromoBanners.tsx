@@ -83,7 +83,6 @@ export function MidPagePromoBanner() {
           <Tag size={18} strokeWidth={2} className="fill-white stroke-white" />
         </div>
         <div className="flex flex-col gap-0.5 min-w-0">
-          <span className="mid-promo-title">عضوية نخبة المميزة</span>
           <span className="mid-promo-subtitle">وفّر حتى 40% إضافية على كل طلب</span>
         </div>
       </div>
