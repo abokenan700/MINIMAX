@@ -22,7 +22,7 @@ export function Brands() {
                 key={i}
                 className="flex-1 rounded-xl skeleton"
                 style={{
-                  height: "clamp(34px, 9vw, 44px)",
+                  height: "clamp(52px, 14vw, 64px)",
                   border: "1px solid var(--border)",
                 }}
               />
@@ -33,13 +33,13 @@ export function Brands() {
                 onClick={() => navigate(`/search?brand=${encodeURIComponent(brand.label)}`)}
                 className="flex-1 rounded-xl flex items-center justify-center transition-[transform,opacity,box-shadow] active:scale-95 active:opacity-70"
                 style={{
-                  height: "clamp(34px, 9vw, 44px)",
+                  height: "clamp(52px, 14vw, 64px)",
                   background: "var(--bg-card)",
                   border: "1px solid var(--border)",
                   boxShadow: "var(--shadow-sm)",
                   cursor: "pointer",
                   overflow: "hidden",
-                  padding: "4px 6px",
+                  padding: "6px 8px",
                 }}
                 aria-label={`تصفح منتجات ${brand.label}`}
               >
@@ -49,7 +49,7 @@ export function Brands() {
                     alt={brand.label}
                     loading="lazy"
                     className="object-contain"
-                    style={{ maxHeight: "clamp(20px, 5.5vw, 26px)", maxWidth: "clamp(60px, 16vw, 90px)" }}
+                    style={{ maxHeight: "clamp(30px, 8vw, 40px)", maxWidth: "clamp(70px, 18vw, 100px)" }}
                     onError={() => handleImgError(brand.id)}
                   />
                 ) : (
