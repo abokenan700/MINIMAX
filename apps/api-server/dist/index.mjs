@@ -43451,214 +43451,22 @@ var health_default = router;
 var import_express2 = __toESM(require_express2(), 1);
 var router2 = (0, import_express2.Router)();
 var mockProducts = [
-  {
-    id: 1,
-    name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 No.5",
-    brand: "CHANEL",
-    price: 385,
-    original_price: 550,
-    discount: 30,
-    image: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400",
-    is_new: false,
-    rating: 4.9,
-    sales: 1420,
-    colors: ["#F5F0E8", "#E8D5B7", "#C0A882"]
-  },
-  {
-    id: 2,
-    name: "\u062D\u0642\u064A\u0628\u0629 \u062F\u064A\u0648\u0631 \u0633\u0627\u062F\u0644",
-    brand: "DIOR",
-    price: 890,
-    original_price: 1200,
-    discount: 25,
-    image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400",
-    is_new: true,
-    rating: 4.8,
-    sales: 870,
-    colors: ["#8B7355", "#2E2C2A", "#C0A882"]
-  },
-  {
-    id: 3,
-    name: "\u0646\u0638\u0627\u0631\u0629 \u0642\u0648\u062A\u0634\u064A \u0634\u0645\u0633\u064A\u0629",
-    brand: "GUCCI",
-    price: 295,
-    original_price: 420,
-    discount: 30,
-    image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400",
-    is_new: false,
-    rating: 4.7,
-    sales: 2100,
-    colors: ["#2E2C2A", "#8B7355"]
-  },
-  {
-    id: 4,
-    name: "\u0633\u0627\u0639\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A",
-    brand: "VERSACE",
-    price: 1250,
-    original_price: 1800,
-    discount: 30,
-    image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400",
-    is_new: false,
-    rating: 4.8,
-    sales: 540,
-    colors: ["#C0A882", "#2E2C2A"]
-  },
-  {
-    id: 5,
-    name: "\u0645\u062D\u0641\u0638\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646",
-    brand: "LV",
-    price: 650,
-    original_price: 850,
-    discount: 23,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400",
-    is_new: false,
-    rating: 4.9,
-    sales: 3200,
-    colors: ["#8B7355", "#C0A882"]
-  },
-  {
-    id: 6,
-    name: "\u062D\u0630\u0627\u0621 \u0642\u0648\u062A\u0634\u064A \u062C\u0644\u062F",
-    brand: "GUCCI",
-    price: 780,
-    original_price: 1050,
-    discount: 25,
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400",
-    is_new: true,
-    rating: 4.7,
-    sales: 680,
-    colors: ["#2E2C2A", "#8B7355", "#F5F0E8"]
-  },
-  {
-    id: 7,
-    name: "\u0648\u0634\u0627\u062D \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0643\u0644\u0627\u0633\u064A\u0643",
-    brand: "BURBERRY",
-    price: 420,
-    original_price: 600,
-    discount: 30,
-    image: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400",
-    is_new: false,
-    rating: 4.6,
-    sales: 1850,
-    colors: ["#C0A882", "#8B7355", "#2E2C2A"]
-  },
-  {
-    id: 8,
-    name: "\u0639\u0637\u0631 \u062F\u064A\u0648\u0631 \u0633\u0648\u0641\u0627\u062C",
-    brand: "DIOR",
-    price: 320,
-    original_price: 440,
-    discount: 27,
-    image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400",
-    is_new: true,
-    rating: 4.9,
-    sales: 4100,
-    colors: ["#2E2C2A", "#C0A882"]
-  },
-  {
-    id: 9,
-    name: "\u062D\u0642\u064A\u0628\u0629 \u0634\u0627\u0646\u064A\u0644 \u0643\u0644\u0627\u0633\u064A\u0643",
-    brand: "CHANEL",
-    price: 2100,
-    original_price: 2800,
-    discount: 25,
-    image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400",
-    is_new: false,
-    rating: 5,
-    sales: 290,
-    colors: ["#2E2C2A", "#F5F0E8", "#C0A882"]
-  },
-  {
-    id: 10,
-    name: "\u0628\u064A\u0644\u062A \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646",
-    brand: "LV",
-    price: 380,
-    original_price: 520,
-    discount: 26,
-    image: "https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400",
-    is_new: false,
-    rating: 4.8,
-    sales: 960,
-    colors: ["#8B7355", "#2E2C2A"]
-  },
-  {
-    id: 11,
-    name: "\u0646\u0638\u0627\u0631\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0630\u0647\u0628\u064A\u0629",
-    brand: "VERSACE",
-    price: 340,
-    original_price: 480,
-    discount: 29,
-    image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400",
-    is_new: true,
-    rating: 4.6,
-    sales: 720,
-    colors: ["#C0A882", "#2E2C2A"]
-  },
-  {
-    id: 12,
-    name: "\u062D\u0630\u0627\u0621 \u062F\u064A\u0648\u0631 \u0647\u064A\u0644\u0632",
-    brand: "DIOR",
-    price: 960,
-    original_price: 1300,
-    discount: 26,
-    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400",
-    is_new: true,
-    rating: 4.7,
-    sales: 430,
-    colors: ["#F5F0E8", "#C0A882", "#2E2C2A"]
-  },
-  {
-    id: 13,
-    name: "\u0642\u0645\u064A\u0635 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0645\u0631\u0628\u0639\u0627\u062A",
-    brand: "BURBERRY",
-    price: 480,
-    original_price: 680,
-    discount: 29,
-    image: "https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400",
-    is_new: false,
-    rating: 4.5,
-    sales: 1120,
-    colors: ["#8B7355", "#C0A882"]
-  },
-  {
-    id: 14,
-    name: "\u062E\u0627\u062A\u0645 \u0642\u0648\u062A\u0634\u064A \u0630\u0647\u0628\u064A",
-    brand: "GUCCI",
-    price: 185,
-    original_price: 260,
-    discount: 28,
-    image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400",
-    is_new: false,
-    rating: 4.6,
-    sales: 2400,
-    colors: ["#C0A882", "#F5F0E8"]
-  },
-  {
-    id: 15,
-    name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 Coco Mademoiselle",
-    brand: "CHANEL",
-    price: 410,
-    original_price: 570,
-    discount: 28,
-    image: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400",
-    is_new: false,
-    rating: 4.9,
-    sales: 3800,
-    colors: ["#F5F0E8", "#C0A882"]
-  },
-  {
-    id: 16,
-    name: "\u0633\u0627\u0639\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u062A\u0627\u0646\u0628\u0648\u0631",
-    brand: "LV",
-    price: 1850,
-    original_price: 2500,
-    discount: 26,
-    image: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400",
-    is_new: true,
-    rating: 4.9,
-    sales: 190,
-    colors: ["#C0A882", "#2E2C2A"]
-  }
+  { id: 1, name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 No.5", brand: "CHANEL", price: 385, original_price: 550, discount: 30, image: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400", images: ["https://images.unsplash.com/photo-1541643600914-78b084683702?w=400", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400"], is_new: false, rating: 4.9, sales: 1420, stock: 18, colors: ["#F5F0E8", "#E8D5B7", "#C0A882"], sizes: [], description: "\u0639\u0637\u0631 \u0641\u0627\u062E\u0631 \u0645\u0646 \u0628\u064A\u062A \u0634\u0627\u0646\u064A\u0644 \u0628\u0645\u0632\u064A\u062C \u0645\u0646 \u0627\u0644\u0632\u0647\u0648\u0631 \u0627\u0644\u062E\u0644\u0627\u0628\u0629 \u0648\u0627\u0644\u0645\u0633\u0643 \u0627\u0644\u0631\u0627\u0642\u064A. \u0627\u0633\u062A\u0644\u0647\u0627\u0645 \u062F\u0627\u0626\u0645 \u0644\u0644\u0623\u0646\u0627\u0642\u0629 \u0648\u0627\u0644\u0631\u0642\u064A \u0627\u0644\u0630\u064A \u0644\u0627 \u064A\u064F\u0636\u0627\u0647\u0649." },
+  { id: 2, name: "\u062D\u0642\u064A\u0628\u0629 \u062F\u064A\u0648\u0631 \u0633\u0627\u062F\u0644", brand: "DIOR", price: 890, original_price: 1200, discount: 25, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400", images: ["https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400", "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400"], is_new: true, rating: 4.8, sales: 870, stock: 4, colors: ["#8B7355", "#2E2C2A", "#C0A882"], sizes: [], description: "\u062D\u0642\u064A\u0628\u0629 \u0633\u0627\u062F\u0644 \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629 \u0645\u0646 \u062F\u0627\u0631 \u062F\u064A\u0648\u0631\u060C \u0645\u0635\u0646\u0648\u0639\u0629 \u064A\u062F\u0648\u064A\u0627\u064B \u0645\u0646 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A \u0627\u0644\u0641\u0627\u062E\u0631. \u0631\u0645\u0632 \u062E\u0627\u0644\u062F \u0644\u0644\u0623\u0646\u0627\u0642\u0629 \u0627\u0644\u0628\u0627\u0631\u064A\u0633\u064A\u0629." },
+  { id: 3, name: "\u0646\u0638\u0627\u0631\u0629 \u0642\u0648\u062A\u0634\u064A \u0634\u0645\u0633\u064A\u0629", brand: "GUCCI", price: 295, original_price: 420, discount: 30, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", images: ["https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=400"], is_new: false, rating: 4.7, sales: 2100, stock: 22, colors: ["#2E2C2A", "#8B7355"], sizes: ["One Size"], description: "\u0646\u0638\u0627\u0631\u0629 \u0634\u0645\u0633\u064A\u0629 \u0645\u0646 \u0643\u0648\u0644\u0643\u0634\u0646 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u062D\u0635\u0631\u064A\u060C \u0628\u0625\u0637\u0627\u0631 \u0645\u0645\u064A\u0632 \u0648\u0639\u062F\u0633\u0627\u062A UV400 \u0644\u0644\u062D\u0645\u0627\u064A\u0629 \u0627\u0644\u0643\u0627\u0645\u0644\u0629." },
+  { id: 4, name: "\u0633\u0627\u0639\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A", brand: "VERSACE", price: 1250, original_price: 1800, discount: 30, image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400", images: ["https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400", "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400"], is_new: false, rating: 4.8, sales: 540, stock: 7, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0633\u0627\u0639\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0627\u0644\u0630\u0647\u0628\u064A\u0629 \u2014 \u0631\u0645\u0632 \u0627\u0644\u0641\u062E\u0627\u0645\u0629 \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A\u0629. \u062D\u0631\u0643\u0629 \u0633\u0648\u064A\u0633\u0631\u064A\u0629 \u062F\u0642\u064A\u0642\u0629 \u0628\u062A\u0635\u0645\u064A\u0645 \u062C\u0631\u064A\u0621 \u0644\u0627 \u064A\u064F\u0646\u0633\u0649." },
+  { id: 5, name: "\u0645\u062D\u0641\u0638\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646", brand: "LV", price: 650, original_price: 850, discount: 23, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", "https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400"], is_new: false, rating: 4.9, sales: 3200, stock: 11, colors: ["#8B7355", "#C0A882"], sizes: [], description: "\u0645\u062D\u0641\u0638\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A\u0629 \u0628\u0627\u0644\u0645\u0648\u0646\u0648\u063A\u0631\u0627\u0645 \u0627\u0644\u0634\u0647\u064A\u0631\u060C \u0645\u0646 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633 \u0627\u0644\u0645\u0637\u0644\u064A. \u0642\u0637\u0639\u0629 \u062E\u0627\u0644\u062F\u0629 \u0644\u0643\u0644 \u0623\u0646\u0627\u0642\u0629." },
+  { id: 6, name: "\u062D\u0630\u0627\u0621 \u0642\u0648\u062A\u0634\u064A \u062C\u0644\u062F", brand: "GUCCI", price: 780, original_price: 1050, discount: 25, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400"], is_new: true, rating: 4.7, sales: 680, stock: 3, colors: ["#2E2C2A", "#8B7355", "#F5F0E8"], sizes: ["38", "39", "40", "41", "42", "43"], description: "\u062D\u0630\u0627\u0621 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u062C\u0644\u062F\u064A \u0627\u0644\u0623\u0646\u064A\u0642 \u0628\u0646\u0639\u0644 \u0645\u0631\u064A\u062D \u0648\u062A\u0635\u0645\u064A\u0645 \u0643\u0644\u0627\u0633\u064A\u0643\u064A. \u0645\u0635\u0646\u0648\u0639 \u0645\u0646 \u0623\u062C\u0648\u062F \u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A." },
+  { id: 7, name: "\u0648\u0634\u0627\u062D \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0643\u0644\u0627\u0633\u064A\u0643", brand: "BURBERRY", price: 420, original_price: 600, discount: 30, image: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400", images: ["https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400"], is_new: false, rating: 4.6, sales: 1850, stock: 29, colors: ["#C0A882", "#8B7355", "#2E2C2A"], sizes: ["One Size"], description: "\u0627\u0644\u0648\u0634\u0627\u062D \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A \u0645\u0646 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0628\u0646\u0642\u0634\u0629 \u0627\u0644\u0643\u0627\u0631\u0648\u0647\u0627\u062A \u0627\u0644\u0634\u0647\u064A\u0631\u0629. \u0645\u0635\u0646\u0648\u0639 \u0645\u0646 \u0627\u0644\u0643\u0634\u0645\u064A\u0631 \u0627\u0644\u0646\u0627\u0639\u0645 \u0627\u0644\u0641\u0627\u062E\u0631." },
+  { id: 8, name: "\u0639\u0637\u0631 \u062F\u064A\u0648\u0631 \u0633\u0648\u0641\u0627\u062C", brand: "DIOR", price: 320, original_price: 440, discount: 27, image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", images: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400"], is_new: true, rating: 4.9, sales: 4100, stock: 0, colors: ["#2E2C2A", "#C0A882"], sizes: [], description: "\u0633\u0648\u0641\u0627\u062C \u2014 \u0627\u0644\u062A\u0639\u0628\u064A\u0631 \u0627\u0644\u062C\u0627\u0645\u062D \u0648\u0627\u0644\u0623\u0635\u064A\u0644 \u0639\u0646 \u0627\u0644\u0631\u062C\u0648\u0644\u0629. \u0645\u0632\u064A\u062C \u0645\u0645\u064A\u0632 \u0645\u0646 \u0627\u0644\u0641\u0644\u0641\u0644 \u0627\u0644\u0623\u0633\u0648\u062F \u0648\u0627\u0644\u0639\u0646\u0628\u0631 \u0648\u0627\u0644\u062E\u0634\u0628 \u0627\u0644\u0635\u0648\u0641\u064A." },
+  { id: 9, name: "\u062D\u0642\u064A\u0628\u0629 \u0634\u0627\u0646\u064A\u0644 \u0643\u0644\u0627\u0633\u064A\u0643", brand: "CHANEL", price: 2100, original_price: 2800, discount: 25, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400", images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400", "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400"], is_new: false, rating: 5, sales: 290, stock: 2, colors: ["#2E2C2A", "#F5F0E8", "#C0A882"], sizes: [], description: "\u0627\u0644\u062D\u0642\u064A\u0628\u0629 2.55 \u0645\u0646 \u0634\u0627\u0646\u064A\u0644 \u2014 \u0623\u064A\u0642\u0648\u0646\u0629 \u0627\u0644\u0645\u0648\u0636\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064A\u0629 \u0645\u0646\u0630 \u0639\u0627\u0645 1955. \u062A\u0635\u0645\u064A\u0645 \u062A\u0642\u0644\u064A\u0644\u064A \u0644\u0627 \u064A\u062A\u0642\u0627\u062F\u0645 \u0628\u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0645\u0628\u0637\u0646." },
+  { id: 10, name: "\u0628\u064A\u0644\u062A \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646", brand: "LV", price: 380, original_price: 520, discount: 26, image: "https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400", images: ["https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400"], is_new: false, rating: 4.8, sales: 960, stock: 16, colors: ["#8B7355", "#2E2C2A"], sizes: ["85cm", "90cm", "95cm", "100cm"], description: "\u062D\u0632\u0627\u0645 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0628\u0625\u0628\u0632\u064A\u0645 \u0645\u0630\u0647\u0651\u0628 \u0648\u062C\u0644\u062F Monogram \u0623\u0635\u0644\u064A. \u0644\u0645\u0633\u0629 \u0641\u0627\u062E\u0631\u0629 \u0644\u0643\u0644 \u0625\u0637\u0644\u0627\u0644\u0629 \u0631\u062C\u0627\u0644\u064A\u0629." },
+  { id: 11, name: "\u0646\u0638\u0627\u0631\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0630\u0647\u0628\u064A\u0629", brand: "VERSACE", price: 340, original_price: 480, discount: 29, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400", images: ["https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400", "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400"], is_new: true, rating: 4.6, sales: 720, stock: 12, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0646\u0638\u0627\u0631\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0628\u0625\u0637\u0627\u0631 \u0630\u0647\u0628\u064A \u062C\u0631\u064A\u0621 \u0648\u0634\u0639\u0627\u0631 \u0645\u064A\u062F\u0648\u0633\u0627 \u0627\u0644\u0628\u0627\u0631\u0632. \u062C\u0631\u0623\u0629 \u0648\u0623\u0646\u0627\u0642\u0629 \u0641\u064A \u0622\u0646 \u0648\u0627\u062D\u062F." },
+  { id: 12, name: "\u062D\u0630\u0627\u0621 \u062F\u064A\u0648\u0631 \u0647\u064A\u0644\u0632", brand: "DIOR", price: 960, original_price: 1300, discount: 26, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400", images: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400", "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"], is_new: true, rating: 4.7, sales: 430, stock: 5, colors: ["#F5F0E8", "#C0A882", "#2E2C2A"], sizes: ["36", "37", "38", "39", "40", "41"], description: "\u062D\u0630\u0627\u0621 \u0647\u064A\u0644\u0632 \u062F\u064A\u0648\u0631 \u0628\u0643\u0639\u0628 9 \u0633\u0645 \u0648\u062A\u0635\u0645\u064A\u0645 \u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0645\u062A\u0637\u0648\u0631. \u062C\u0644\u062F \u0623\u0635\u0644\u064A \u0646\u0627\u0639\u0645 \u0645\u0639 \u0646\u0639\u0644 \u0645\u0631\u064A\u062D \u0644\u0644\u0627\u0631\u062A\u062F\u0627\u0621 \u0627\u0644\u064A\u0648\u0645\u064A." },
+  { id: 13, name: "\u0642\u0645\u064A\u0635 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0645\u0631\u0628\u0639\u0627\u062A", brand: "BURBERRY", price: 480, original_price: 680, discount: 29, image: "https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400", images: ["https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400", "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400"], is_new: false, rating: 4.5, sales: 1120, stock: 20, colors: ["#8B7355", "#C0A882"], sizes: ["XS", "S", "M", "L", "XL", "XXL"], description: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0645\u0646 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0628\u0646\u0642\u0634\u0629 \u0627\u0644\u0643\u0627\u0631\u0648\u0647\u0627\u062A \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629. \u0642\u0637\u0646 \u0645\u0635\u0631\u064A \u0639\u0627\u0644\u064A \u0627\u0644\u062C\u0648\u062F\u0629 \u0628\u0642\u0635\u0629 \u0639\u0635\u0631\u064A\u0629 \u0645\u0631\u064A\u062D\u0629." },
+  { id: 14, name: "\u062E\u0627\u062A\u0645 \u0642\u0648\u062A\u0634\u064A \u0630\u0647\u0628\u064A", brand: "GUCCI", price: 185, original_price: 260, discount: 28, image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400", images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400"], is_new: false, rating: 4.6, sales: 2400, stock: 33, colors: ["#C0A882", "#F5F0E8"], sizes: ["6", "7", "8", "9", "10"], description: "\u062E\u0627\u062A\u0645 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u0630\u0647\u0628\u064A \u0627\u0644\u0645\u0632\u062F\u0648\u062C GG \u2014 \u062A\u062D\u0641\u0629 \u0641\u0646\u064A\u0629 \u0628\u0645\u0639\u062F\u0646 \u0630\u0647\u0628\u064A \u0645\u0632\u062F\u0648\u062C \u0627\u0644\u062A\u0623\u062B\u064A\u0631 \u0648\u0634\u0639\u0627\u0631 \u0645\u0631\u0626\u064A \u0644\u0644\u0645\u0627\u0631\u0643\u0629." },
+  { id: 15, name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 Coco Mademoiselle", brand: "CHANEL", price: 410, original_price: 570, discount: 28, image: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400", images: ["https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400", "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400"], is_new: false, rating: 4.9, sales: 3800, stock: 25, colors: ["#F5F0E8", "#C0A882"], sizes: [], description: "Coco Mademoiselle \u2014 \u0623\u0643\u062B\u0631 \u0639\u0637\u0648\u0631 \u0634\u0627\u0646\u064A\u0644 \u0627\u0646\u062A\u0634\u0627\u0631\u0627\u064B. \u0645\u0632\u064A\u062C \u0645\u0646\u0639\u0634 \u0645\u0646 \u0627\u0644\u0628\u0631\u063A\u0645\u0648\u062A \u0648\u0627\u0644\u0648\u0631\u062F\u0629 \u0648\u062E\u0634\u0628 \u0627\u0644\u0632\u0646\u062C\u0628\u064A\u0644." },
+  { id: 16, name: "\u0633\u0627\u0639\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u062A\u0627\u0646\u0628\u0648\u0631", brand: "LV", price: 1850, original_price: 2500, discount: 26, image: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400", images: ["https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400", "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400"], is_new: true, rating: 4.9, sales: 190, stock: 3, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0633\u0627\u0639\u0629 \u062A\u0627\u0646\u0628\u0648\u0631 \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629 \u0645\u0646 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0628\u062D\u0631\u0643\u0629 \u0633\u0648\u064A\u0633\u0631\u064A\u0629 \u0641\u0627\u062E\u0631\u0629 \u0648\u0642\u0631\u0635 \u0645\u0645\u064A\u0632 \u0628\u0627\u0644\u0645\u0648\u0646\u0648\u063A\u0631\u0627\u0645." }
 ];
 function normalizeArabic(term) {
   return term.replace(/[\u064B-\u065F\u0670]/g, "").replace(/\u0640/g, "").replace(/[أإآا]/g, "\u0627").replace(/^ال/, "").trim();
@@ -43677,7 +43485,7 @@ router2.get("/products/:id", (req, res) => {
   res.json(product);
 });
 router2.get("/products", (req, res) => {
-  const { q, brand, minPrice, maxPrice, page, limit: limitQ } = req.query;
+  const { q, brand, minPrice, maxPrice, minDiscount, minRating, color, size, inStock, isNew, sort, page, limit: limitQ } = req.query;
   const pageNum = Math.max(1, Number(page ?? 1));
   const pageSize = Math.min(100, Math.max(1, Number(limitQ ?? 20)));
   let filtered = [...mockProducts];
@@ -43692,13 +43500,56 @@ router2.get("/products", (req, res) => {
     });
   }
   if (brand && brand.trim()) {
-    filtered = filtered.filter((p) => p.brand === brand.trim());
+    const brands = brand.split(",").map((b) => b.trim().toUpperCase());
+    filtered = filtered.filter((p) => brands.includes(p.brand.toUpperCase()));
   }
   if (minPrice && !isNaN(Number(minPrice))) {
     filtered = filtered.filter((p) => p.price >= Number(minPrice));
   }
   if (maxPrice && !isNaN(Number(maxPrice))) {
     filtered = filtered.filter((p) => p.price <= Number(maxPrice));
+  }
+  if (minDiscount && !isNaN(Number(minDiscount))) {
+    filtered = filtered.filter((p) => p.discount >= Number(minDiscount));
+  }
+  if (minRating && !isNaN(Number(minRating))) {
+    filtered = filtered.filter((p) => p.rating >= Number(minRating));
+  }
+  if (color && color.trim()) {
+    const c = color.trim().toLowerCase();
+    filtered = filtered.filter((p) => p.colors.some((pc) => pc.toLowerCase().includes(c)));
+  }
+  if (size && size.trim()) {
+    const sizes = size.split(",").map((s) => s.trim());
+    filtered = filtered.filter((p) => p.sizes.some((ps) => sizes.includes(ps)));
+  }
+  if (inStock === "1") {
+    filtered = filtered.filter((p) => p.stock > 0);
+  }
+  if (isNew === "1") {
+    filtered = filtered.filter((p) => p.is_new);
+  }
+  if (sort) {
+    switch (sort) {
+      case "price_asc":
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+      case "price_desc":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+      case "rating":
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "discount":
+        filtered.sort((a, b) => b.discount - a.discount);
+        break;
+      case "newest":
+        filtered.sort((a, b) => b.id - a.id);
+        break;
+      case "sales":
+        filtered.sort((a, b) => b.sales - a.sales);
+        break;
+    }
   }
   const total = filtered.length;
   const offset = (pageNum - 1) * pageSize;
@@ -43708,6 +43559,10 @@ router2.get("/products", (req, res) => {
   res.setHeader("X-Page-Size", String(pageSize));
   res.setHeader("X-Pages", String(Math.ceil(total / pageSize)));
   res.json(paginated);
+});
+router2.get("/brands-list", (_req, res) => {
+  const brands = [...new Set(mockProducts.map((p) => p.brand))].sort();
+  res.json(brands);
 });
 var products_default = router2;
 
@@ -53282,9 +53137,12 @@ router9.post("/orders", authMiddleware, async (req, res, next) => {
       address_city,
       address_district,
       address_street,
+      address_apartment,
+      address_zip,
       subtotal,
       shipping,
-      total
+      total,
+      delivery_date
     } = req.body;
     if (!items || items.length === 0) {
       res.status(400).json({ error: "\u0627\u0644\u0633\u0644\u0629 \u0641\u0627\u0631\u063A\u0629" });
@@ -53319,10 +53177,70 @@ router9.post("/orders", authMiddleware, async (req, res, next) => {
       }))
     );
     try {
-      await db.update(usersTable).set({ points: sql`${usersTable.points} + 10` }).where(eq(usersTable.id, userId));
+      const earnedPoints = Math.floor(total);
+      await db.update(usersTable).set({ points: sql`${usersTable.points} + ${earnedPoints}` }).where(eq(usersTable.id, userId));
     } catch {
     }
-    res.status(201).json({ orderId: `NKH-${String(order.id).padStart(6, "0")}`, total: order.total });
+    const orderNote = delivery_date ? ` \u2014 \u0627\u0644\u062A\u0648\u0635\u064A\u0644 \u0627\u0644\u0645\u0637\u0644\u0648\u0628: ${delivery_date}` : "";
+    res.status(201).json({
+      orderId: `NKH-${String(order.id).padStart(6, "0")}`,
+      total: order.total,
+      note: orderNote
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+router9.post("/orders/:id/cancel", authMiddleware, async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const orderId = Number(req.params.id);
+    if (isNaN(orderId)) {
+      res.status(400).json({ error: "\u0631\u0642\u0645 \u0637\u0644\u0628 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D" });
+      return;
+    }
+    const [order] = await db.select().from(ordersTable).where(eq(ordersTable.id, orderId));
+    if (!order) {
+      res.status(404).json({ error: "\u0627\u0644\u0637\u0644\u0628 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F" });
+      return;
+    }
+    if (order.user_id !== userId) {
+      res.status(403).json({ error: "\u063A\u064A\u0631 \u0645\u0635\u0631\u062D" });
+      return;
+    }
+    if (order.status !== "processing") {
+      res.status(400).json({ error: "\u0644\u0627 \u064A\u0645\u0643\u0646 \u0625\u0644\u063A\u0627\u0621 \u0647\u0630\u0627 \u0627\u0644\u0637\u0644\u0628 \u0641\u064A \u062D\u0627\u0644\u062A\u0647 \u0627\u0644\u062D\u0627\u0644\u064A\u0629" });
+      return;
+    }
+    await db.update(ordersTable).set({ status: "cancelled" }).where(eq(ordersTable.id, orderId));
+    res.json({ success: true, message: "\u062A\u0645 \u0625\u0644\u063A\u0627\u0621 \u0627\u0644\u0637\u0644\u0628 \u0628\u0646\u062C\u0627\u062D" });
+  } catch (err) {
+    next(err);
+  }
+});
+router9.post("/orders/:id/return", authMiddleware, async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const orderId = Number(req.params.id);
+    const { reason } = req.body;
+    if (isNaN(orderId)) {
+      res.status(400).json({ error: "\u0631\u0642\u0645 \u0637\u0644\u0628 \u063A\u064A\u0631 \u0635\u062D\u064A\u062D" });
+      return;
+    }
+    const [order] = await db.select().from(ordersTable).where(eq(ordersTable.id, orderId));
+    if (!order) {
+      res.status(404).json({ error: "\u0627\u0644\u0637\u0644\u0628 \u063A\u064A\u0631 \u0645\u0648\u062C\u0648\u062F" });
+      return;
+    }
+    if (order.user_id !== userId) {
+      res.status(403).json({ error: "\u063A\u064A\u0631 \u0645\u0635\u0631\u062D" });
+      return;
+    }
+    if (order.status !== "delivered") {
+      res.status(400).json({ error: "\u064A\u0645\u0643\u0646 \u0637\u0644\u0628 \u0627\u0644\u0625\u0631\u062C\u0627\u0639 \u0644\u0644\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0645\u064F\u0633\u0644\u064E\u0651\u0645\u0629 \u0641\u0642\u0637" });
+      return;
+    }
+    res.json({ success: true, message: "\u062A\u0645 \u0627\u0633\u062A\u0642\u0628\u0627\u0644 \u0637\u0644\u0628 \u0627\u0644\u0625\u0631\u062C\u0627\u0639 \u2014 \u0633\u064A\u062A\u0645 \u0627\u0644\u062A\u0648\u0627\u0635\u0644 \u0645\u0639\u0643 \u062E\u0644\u0627\u0644 24 \u0633\u0627\u0639\u0629", reason });
   } catch (err) {
     next(err);
   }
