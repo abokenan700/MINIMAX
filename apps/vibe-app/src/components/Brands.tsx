@@ -14,15 +14,24 @@ export function Brands() {
   }
 
   return (
-    <div className="px-3 pt-1 pb-4">
-      <div className="flex items-center justify-between gap-1.5">
+    <div className="pt-1 pb-4">
+      <div
+        className="flex gap-2"
+        style={{
+          overflowX: "auto",
+          scrollbarWidth: "none",
+          WebkitOverflowScrolling: "touch",
+          paddingInline: "12px",
+        }}
+      >
         {isLoading
           ? Array.from({ length: BRAND_SLOT_COUNT }).map((_, i) => (
               <div
                 key={i}
-                className="flex-1 rounded-xl skeleton"
+                className="rounded-xl skeleton flex-shrink-0"
                 style={{
-                  height: "clamp(52px, 14vw, 64px)",
+                  width: "clamp(90px, 26vw, 120px)",
+                  height: "clamp(46px, 13vw, 60px)",
                   border: "1px solid var(--border)",
                 }}
               />
@@ -31,15 +40,16 @@ export function Brands() {
               <button
                 key={brand.id}
                 onClick={() => navigate(`/search?brand=${encodeURIComponent(brand.label)}`)}
-                className="flex-1 rounded-xl flex items-center justify-center transition-[transform,opacity,box-shadow] active:scale-95 active:opacity-70"
+                className="rounded-xl flex items-center justify-center flex-shrink-0 transition-[transform,opacity] active:scale-95 active:opacity-70"
                 style={{
-                  height: "clamp(52px, 14vw, 64px)",
+                  width: "clamp(90px, 26vw, 120px)",
+                  height: "clamp(46px, 13vw, 60px)",
                   background: "var(--bg-card)",
                   border: "1px solid var(--border)",
                   boxShadow: "var(--shadow-sm)",
                   cursor: "pointer",
                   overflow: "hidden",
-                  padding: "6px 8px",
+                  padding: "8px 10px",
                 }}
                 aria-label={`تصفح منتجات ${brand.label}`}
               >
@@ -48,8 +58,7 @@ export function Brands() {
                     src={brand.icon}
                     alt={brand.label}
                     loading="lazy"
-                    className="object-contain"
-                    style={{ maxHeight: "clamp(30px, 8vw, 40px)", maxWidth: "clamp(70px, 18vw, 100px)" }}
+                    className="object-contain w-full h-full"
                     onError={() => handleImgError(brand.id)}
                   />
                 ) : (
