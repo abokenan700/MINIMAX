@@ -21,10 +21,7 @@ export function FeaturedCard({ item }: { item: Product }) {
   const liked = isWishlisted(item.id);
   const selectedColor = item.colors?.[activeColor] ?? "";
 
-  const stock = (item as Product & { stock?: number }).stock;
-  const isLowStock = typeof stock === "number" && stock > 0 && stock <= 5;
-  const isOutOfStock = typeof stock === "number" && stock === 0;
-  const stockPct = isLowStock ? (stock / 5) * 100 : 100;
+  const isOutOfStock = typeof (item as Product & { stock?: number }).stock === "number" && (item as Product & { stock?: number }).stock === 0;
 
   return (
     <article
@@ -128,21 +125,8 @@ export function FeaturedCard({ item }: { item: Product }) {
         )}
       </div>
 
-      {/* Stock urgency bar */}
-      {isLowStock && (
-        <div style={{ padding: "3px 10px 0", background: "var(--card-bg)" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-            <span style={{ fontSize: 9, fontWeight: 700, color: "var(--error)" }}>تبقى {stock} فقط!</span>
-            <span style={{ fontSize: 9, color: "var(--text-muted)" }}>{Math.round(stockPct)}%</span>
-          </div>
-          <div style={{ height: 3, borderRadius: 2, background: "rgba(220,38,38,0.15)", overflow: "hidden" }}>
-            <div style={{ height: "100%", width: `${stockPct}%`, background: "var(--error)", borderRadius: 2, transition: "width 0.4s ease" }} />
-          </div>
-        </div>
-      )}
-
       {/* Divider */}
-      <div style={{ height: "1px", background: "var(--border-separator)", marginTop: isLowStock ? 4 : 0 }} />
+      <div style={{ height: "1px", background: "var(--border-separator)" }} />
 
       {/* Content */}
       <div className="flex flex-col gap-1 px-2.5 pt-2 pb-2.5">
