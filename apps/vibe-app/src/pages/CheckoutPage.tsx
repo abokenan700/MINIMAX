@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "wouter";
 import { z } from "zod";
-import { ArrowRight, MapPin, CreditCard, Truck, CheckCircle, ChevronDown, ChevronUp, RefreshCw } from "lucide-react";
+import { ArrowRight, MapPin, CreditCard, Truck, CheckCircle, ChevronDown, ChevronUp, RefreshCw, Calendar, Coins } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "../context/CartContext";
 import { apiFetch } from "../lib/apiFetch";
@@ -157,6 +157,23 @@ export function CheckoutPage() {
   const shipping   = calcShipping(total);
   const grandTotal = total - discountAmount + shipping;
 
+  /* Delivery date options */
+  const deliveryOptions = useMemo(() => {
+    const opts = [];
+    const today = new Date();
+    for (let i = 2; i <= 5; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      opts.push({
+        label: d.toLocaleDateString("ar-SA", { weekday: "long", day: "numeric", month: "long" }),
+        value: d.toISOString().split("T")[0],
+        fast: i === 2,
+      });
+    }
+    return opts;
+  }, []);
+  const [deliveryDate, setDeliveryDate] = useState(deliveryOptions[0]?.value ?? "");
+
   /* Step 1: Address + T27: email */
   const [step, setStep]             = useState<1 | 2>(1);
   const [name, setName]             = useState("");
@@ -225,6 +242,7 @@ export function CheckoutPage() {
         subtotal: total,
         shipping,
         total:    grandTotal,
+        delivery_date: deliveryDate || undefined,
       };
 
       const result = await apiFetch<{ orderId: string; total: string }>(
@@ -333,6 +351,30 @@ export function CheckoutPage() {
               <p style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "#4A7A3A" }}>
                 {shipping === 0 ? "✓ تأهّلت للشحن المجاني!" : `أضف ${(500 - total).toLocaleString("ar-SA")} ر.س للحصول على شحن مجاني`}
               </p>
+            </div>
+
+            {/* Delivery date selection */}
+            <div dir="rtl">
+              <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 10 }}>
+                <Calendar size={15} style={{ color: "var(--text-brand)" }} />
+                <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-secondary)" }}>اختر موعد التوصيل المفضّل</p>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+                {deliveryOptions.map((opt) => (
+                  <button key={opt.value} onClick={() => setDeliveryDate(opt.value)} dir="rtl"
+                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${deliveryDate === opt.value ? "var(--gold)" : "var(--border-warm)"}`, background: deliveryDate === opt.value ? "var(--gold-pale)" : "var(--bg-card)", cursor: "pointer", textAlign: "start", transition: "border-color 0.2s, background 0.2s" }}>
+                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${deliveryDate === opt.value ? "var(--gold)" : "var(--border)"}`, background: deliveryDate === opt.value ? "var(--gold)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      {deliveryDate === opt.value && <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff" }} />}
+                    </div>
+                    <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 13, fontWeight: deliveryDate === opt.value ? 700 : 400, color: deliveryDate === opt.value ? "var(--text-brand)" : "var(--text-primary)" }}>
+                      {opt.label}
+                    </span>
+                    {opt.fast && (
+                      <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 10, background: "#F0FDF4", color: "#16A34A" }}>الأسرع</span>
+                    )}
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* T10: Order summary in step 1 */}

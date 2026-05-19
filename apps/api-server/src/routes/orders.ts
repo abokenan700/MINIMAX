@@ -41,13 +41,17 @@ router.post("/orders", authMiddleware, async (req: Request, res: Response, next:
       items,
       payment_method,
       address_name, address_phone, address_city, address_district, address_street,
+      address_apartment, address_zip,
       subtotal, shipping, total,
+      delivery_date,
     } = req.body as {
       items: { product_id: number; name: string; brand: string; price: number; qty: number; color: string; image: string }[];
       payment_method: string;
       address_name: string; address_phone: string; address_city: string;
       address_district: string; address_street: string;
+      address_apartment?: string; address_zip?: string;
       subtotal: number; shipping: number; total: number;
+      delivery_date?: string;
     };
 
     if (!items || items.length === 0) {
@@ -81,14 +85,73 @@ router.post("/orders", authMiddleware, async (req: Request, res: Response, next:
       }))
     );
 
-    /* Award loyalty points — 10 نقطة per confirmed order (non-critical) */
+    /* Award loyalty points — 1 نقطة per ر.س spent (non-critical) */
     try {
+      const earnedPoints = Math.floor(total);
       await db.update(usersTable)
-        .set({ points: sql`${usersTable.points} + 10` })
+        .set({ points: sql`${usersTable.points} + ${earnedPoints}` })
         .where(eq(usersTable.id, userId));
     } catch { /* Points award is non-critical — order already confirmed */ }
 
-    res.status(201).json({ orderId: `NKH-${String(order.id).padStart(6, "0")}`, total: order.total });
+    const orderNote = delivery_date ? ` — التوصيل المطلوب: ${delivery_date}` : "";
+    res.status(201).json({
+      orderId: `NKH-${String(order.id).padStart(6, "0")}`,
+      total: order.total,
+      note: orderNote,
+    });
+  } catch (err) { next(err); }
+});
+
+/* ── POST /api/v1/orders/:id/cancel ─────────────────────── */
+router.post("/orders/:id/cancel", authMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId  = (req as AuthReq).user.userId;
+    const orderId = Number(req.params.id);
+
+    if (isNaN(orderId)) { res.status(400).json({ error: "رقم طلب غير صحيح" }); return; }
+
+    const [order] = await db
+      .select()
+      .from(ordersTable)
+      .where(eq(ordersTable.id, orderId));
+
+    if (!order) { res.status(404).json({ error: "الطلب غير موجود" }); return; }
+    if (order.user_id !== userId) { res.status(403).json({ error: "غير مصرح" }); return; }
+    if (order.status !== "processing") {
+      res.status(400).json({ error: "لا يمكن إلغاء هذا الطلب في حالته الحالية" });
+      return;
+    }
+
+    await db.update(ordersTable)
+      .set({ status: "cancelled" })
+      .where(eq(ordersTable.id, orderId));
+
+    res.json({ success: true, message: "تم إلغاء الطلب بنجاح" });
+  } catch (err) { next(err); }
+});
+
+/* ── POST /api/v1/orders/:id/return ─────────────────────── */
+router.post("/orders/:id/return", authMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const userId  = (req as AuthReq).user.userId;
+    const orderId = Number(req.params.id);
+    const { reason } = req.body as { reason?: string };
+
+    if (isNaN(orderId)) { res.status(400).json({ error: "رقم طلب غير صحيح" }); return; }
+
+    const [order] = await db
+      .select()
+      .from(ordersTable)
+      .where(eq(ordersTable.id, orderId));
+
+    if (!order) { res.status(404).json({ error: "الطلب غير موجود" }); return; }
+    if (order.user_id !== userId) { res.status(403).json({ error: "غير مصرح" }); return; }
+    if (order.status !== "delivered") {
+      res.status(400).json({ error: "يمكن طلب الإرجاع للطلبات المُسلَّمة فقط" });
+      return;
+    }
+
+    res.json({ success: true, message: "تم استقبال طلب الإرجاع — سيتم التواصل معك خلال 24 ساعة", reason });
   } catch (err) { next(err); }
 });
 

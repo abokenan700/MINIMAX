@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { X, Star, Check, ArrowUpDown, SlidersHorizontal, List, LayoutGrid } from "lucide-react";
 
-/* ─── Types ───────────────────────────────────────────────────── */
 export interface Filters {
   minPrice:    number | null;
   maxPrice:    number | null;
   minDiscount: number | null;
   minRating:   number | null;
   isNew:       boolean;
+  brands:      string[];
+  sizes:       string[];
 }
 
 export const DEFAULT_FILTERS: Filters = {
-  minPrice: null, maxPrice: null, minDiscount: null, minRating: null, isNew: false,
+  minPrice: null, maxPrice: null, minDiscount: null, minRating: null, isNew: false, brands: [], sizes: [],
 };
 
 export const SORT_OPTIONS = [
@@ -22,6 +23,53 @@ export const SORT_OPTIONS = [
   { key: "discount",   label: "الأكثر خصماً" },
   { key: "newest",     label: "الأحدث" },
 ];
+
+const ALL_BRANDS = ["CHANEL", "DIOR", "GUCCI", "LV", "VERSACE", "BURBERRY"];
+const ALL_SIZES  = ["XS", "S", "M", "L", "XL", "XXL", "36", "37", "38", "39", "40", "41", "42", "43"];
+
+/* ─── RangeSlider ─────────────────────────────────────────────── */
+function RangeSlider({ min, max, valueMin, valueMax, onChange }: {
+  min: number; max: number; valueMin: number | null; valueMax: number | null;
+  onChange: (min: number | null, max: number | null) => void;
+}) {
+  const trackRef  = useRef<HTMLDivElement>(null);
+  const vMin = valueMin ?? min;
+  const vMax = valueMax ?? max;
+  const pctMin = ((vMin - min) / (max - min)) * 100;
+  const pctMax = ((vMax - min) / (max - min)) * 100;
+
+  function getValueFromEvent(e: React.PointerEvent, type: "min" | "max") {
+    const track = trackRef.current;
+    if (!track) return;
+    const rect  = track.getBoundingClientRect();
+    const pct   = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+    const raw   = Math.round((min + pct * (max - min)) / 50) * 50;
+    if (type === "min") onChange(Math.min(raw, vMax - 50), valueMax);
+    else                onChange(valueMin, Math.max(raw, vMin + 50));
+  }
+
+  return (
+    <div style={{ padding: "6px 0 10px" }}>
+      <div ref={trackRef} style={{ position: "relative", height: 6, borderRadius: 3, background: "var(--border-warm)", margin: "0 8px" }}>
+        <div style={{ position: "absolute", left: `${pctMin}%`, right: `${100 - pctMax}%`, height: "100%", background: "var(--gradient-cta)", borderRadius: 3 }} />
+        {(["min","max"] as const).map((type) => (
+          <div key={type}
+            style={{ position: "absolute", top: "50%", left: `${type === "min" ? pctMin : pctMax}%`, transform: "translate(-50%,-50%)", width: 20, height: 20, borderRadius: "50%", background: "#fff", border: "2.5px solid var(--gold)", cursor: "pointer", touchAction: "none", zIndex: 2 }}
+            onPointerDown={(e) => {
+              e.currentTarget.setPointerCapture(e.pointerId);
+              e.currentTarget.onpointermove = (ev) => getValueFromEvent(ev as unknown as React.PointerEvent, type);
+              e.currentTarget.onpointerup   = () => { e.currentTarget.onpointermove = null; e.currentTarget.onpointerup = null; };
+            }}
+          />
+        ))}
+      </div>
+      <div dir="rtl" style={{ display: "flex", justifyContent: "space-between", marginTop: 10 }}>
+        <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-brand)" }}>{vMin.toLocaleString("ar-SA")} ر.س</span>
+        <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-brand)" }}>{vMax.toLocaleString("ar-SA")} ر.س</span>
+      </div>
+    </div>
+  );
+}
 
 /* ─── SortSheet ───────────────────────────────────────────────── */
 export function SortSheet({ activeSort, onSelect, onClose }: {
@@ -68,37 +116,39 @@ export function FilterSheet({ filters, onApply, onClose }: {
     return () => document.removeEventListener("keydown", handleKey);
   }, [onClose]);
 
-  const priceRanges = [
-    { label: "أقل من ١٠٠ ر.س",     min: null, max: 100  },
-    { label: "١٠٠ — ٥٠٠ ر.س",    min: 100,  max: 500  },
-    { label: "٥٠٠ — ١٠٠٠ ر.س",  min: 500,  max: 1000 },
-    { label: "أكثر من ١٠٠٠ ر.س", min: 1000, max: null  },
-  ];
-
   const discountOptions = [
     { label: "١٠٪ فأكثر", val: 10 },
     { label: "٢٠٪ فأكثر", val: 20 },
     { label: "٣٠٪ فأكثر", val: 30 },
     { label: "٥٠٪ فأكثر", val: 50 },
   ];
-
   const ratingOptions = [4, 3];
 
   function reset() { setLocal(DEFAULT_FILTERS); }
+
+  function toggleBrand(b: string) {
+    setLocal(p => ({ ...p, brands: p.brands.includes(b) ? p.brands.filter(x => x !== b) : [...p.brands, b] }));
+  }
+
+  function toggleSize(s: string) {
+    setLocal(p => ({ ...p, sizes: p.sizes.includes(s) ? p.sizes.filter(x => x !== s) : [...p.sizes, s] }));
+  }
 
   const activeCount = [
     local.minPrice !== null || local.maxPrice !== null,
     local.minDiscount !== null,
     local.minRating !== null,
     local.isNew,
+    local.brands.length > 0,
+    local.sizes.length > 0,
   ].filter(Boolean).length;
 
   return (
     <div style={{ position: "absolute", inset: 0, zIndex: 200 }}>
       <div className="bottom-sheet-overlay" onClick={onClose} />
-      <div className="bottom-sheet hide-scrollbar" dir="rtl">
+      <div className="bottom-sheet hide-scrollbar" dir="rtl" style={{ maxHeight: "88vh" }}>
         <div className="bottom-sheet-handle" />
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 14px", borderBottom: "1px solid var(--border-warm)" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 14px", borderBottom: "1px solid var(--border-warm)", position: "sticky", top: 0, background: "var(--bg-card)", zIndex: 1 }}>
           <h2 style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>
             تصفية النتائج {activeCount > 0 && `(${activeCount})`}
           </h2>
@@ -116,25 +166,52 @@ export function FilterSheet({ filters, onApply, onClose }: {
           </div>
         </div>
 
-        <div style={{ padding: 16 }}>
-          {/* Price Range */}
-          <div style={{ marginBottom: 20 }}>
-            <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>نطاق السعر</p>
+        <div style={{ padding: 16, overflow: "auto" }}>
+
+          {/* ─── Brand Filter ─────────────────────────────────── */}
+          <div style={{ marginBottom: 22 }}>
+            <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>الماركة</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {priceRanges.map(({ label, min, max }) => {
-                const active = local.minPrice === min && local.maxPrice === max;
+              {ALL_BRANDS.map((b) => {
+                const active = local.brands.includes(b);
                 return (
-                  <button key={label}
-                    onClick={() => setLocal((p) => ({ ...p, minPrice: active ? null : min, maxPrice: active ? null : max }))}
-                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--gold)" : "var(--border-warm)"}`, background: active ? "var(--gold-pale)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 400, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
-                    {label}
+                  <button key={b} onClick={() => toggleBrand(b)}
+                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--gold)" : "var(--border-warm)"}`, background: active ? "var(--gold-pale)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12.5, letterSpacing: 0.5, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
+                    {b}
                   </button>
                 );
               })}
             </div>
           </div>
 
-          {/* Discount */}
+          {/* ─── Price Range Slider ───────────────────────────── */}
+          <div style={{ marginBottom: 22 }}>
+            <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 6 }}>نطاق السعر</p>
+            <RangeSlider
+              min={0} max={3000}
+              valueMin={local.minPrice}
+              valueMax={local.maxPrice}
+              onChange={(min, max) => setLocal(p => ({ ...p, minPrice: min === 0 ? null : min, maxPrice: max === 3000 ? null : max }))}
+            />
+          </div>
+
+          {/* ─── Size Filter ──────────────────────────────────── */}
+          <div style={{ marginBottom: 22 }}>
+            <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>المقاس</p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 7 }}>
+              {ALL_SIZES.map((s) => {
+                const active = local.sizes.includes(s);
+                return (
+                  <button key={s} onClick={() => toggleSize(s)}
+                    style={{ padding: "6px 14px", borderRadius: 8, border: `1.5px solid ${active ? "var(--gold)" : "var(--border-warm)"}`, background: active ? "var(--gold-pale)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", minWidth: 44, textAlign: "center" }}>
+                    {s}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* ─── Discount ─────────────────────────────────────── */}
           <div style={{ marginBottom: 20 }}>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>نسبة الخصم</p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
@@ -151,7 +228,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
             </div>
           </div>
 
-          {/* Rating */}
+          {/* ─── Rating ───────────────────────────────────────── */}
           <div style={{ marginBottom: 20 }}>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>التقييم</p>
             <div style={{ display: "flex", gap: 8 }}>
@@ -169,7 +246,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
             </div>
           </div>
 
-          {/* New only */}
+          {/* ─── New only ─────────────────────────────────────── */}
           <div style={{ marginBottom: 24 }}>
             <button onClick={() => setLocal((p) => ({ ...p, isNew: !p.isNew }))}
               style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "12px 14px", borderRadius: 14, border: `1.5px solid ${local.isNew ? "var(--gold)" : "var(--border-warm)"}`, background: local.isNew ? "var(--gold-pale)" : "var(--bg-card)", cursor: "pointer" }}>
@@ -194,16 +271,18 @@ export function FilterSheet({ filters, onApply, onClose }: {
 export function ControlsBar({ count, sort, filters, viewMode, onSortOpen, onFilterOpen, onViewToggle, onRemoveFilter }: {
   count: number; sort: string; filters: Filters; viewMode: "grid" | "list";
   onSortOpen: () => void; onFilterOpen: () => void; onViewToggle: () => void;
-  onRemoveFilter: (key: keyof Filters) => void;
+  onRemoveFilter: (key: keyof Filters, value?: string) => void;
 }) {
   const filterCount = [
     filters.minPrice !== null || filters.maxPrice !== null,
     filters.minDiscount !== null,
     filters.minRating !== null,
     filters.isNew,
+    filters.brands.length > 0,
+    filters.sizes.length > 0,
   ].filter(Boolean).length;
 
-  const activeChips: { key: keyof Filters; label: string }[] = [];
+  const activeChips: { key: keyof Filters; label: string; value?: string }[] = [];
   if (filters.minPrice !== null || filters.maxPrice !== null) {
     activeChips.push({
       key: "minPrice",
@@ -215,8 +294,10 @@ export function ControlsBar({ count, sort, filters, viewMode, onSortOpen, onFilt
     });
   }
   if (filters.minDiscount !== null) activeChips.push({ key: "minDiscount", label: `خصم ${filters.minDiscount}%+` });
-  if (filters.minRating !== null) activeChips.push({ key: "minRating", label: `${filters.minRating}+ نجوم` });
-  if (filters.isNew) activeChips.push({ key: "isNew", label: "وصل حديثاً" });
+  if (filters.minRating !== null)   activeChips.push({ key: "minRating",   label: `${filters.minRating}+ نجوم` });
+  if (filters.isNew)                activeChips.push({ key: "isNew",       label: "وصل حديثاً" });
+  filters.brands.forEach(b  => activeChips.push({ key: "brands", label: b, value: b }));
+  filters.sizes.forEach(s   => activeChips.push({ key: "sizes",  label: s, value: s }));
 
   const sortLabel = SORT_OPTIONS.find((s) => s.key === sort)?.label ?? "الافتراضي";
 
@@ -246,13 +327,13 @@ export function ControlsBar({ count, sort, filters, viewMode, onSortOpen, onFilt
 
       {activeChips.length > 0 && (
         <div className="hide-scrollbar" style={{ display: "flex", gap: 6, padding: "4px 12px 8px", overflowX: "auto" }}>
-          {activeChips.map(({ key, label }) => (
-            <div key={key}
+          {activeChips.map(({ key, label, value }, idx) => (
+            <div key={`${key}-${idx}`}
               style={{ display: "flex", alignItems: "center", gap: 4, padding: "4px 10px", borderRadius: 20, background: "var(--gold-light)", border: "1px solid rgba(192,168,130,0.4)", flexShrink: 0 }}>
               <span style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-brand)" }}>{label}</span>
               <button onClick={() => {
                 if (key === "minPrice") { onRemoveFilter("minPrice"); onRemoveFilter("maxPrice"); }
-                else onRemoveFilter(key);
+                else onRemoveFilter(key, value);
               }} style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0, display: "flex", color: "var(--text-brand)" }}>
                 <X size={10} strokeWidth={2.5} />
               </button>

@@ -10,6 +10,11 @@ import { ErrorBoundary } from "./components/ErrorBoundary";
 import App from "./App";
 import "./index.css";
 
+/* Restore dark mode preference before first paint */
+if (localStorage.getItem("nakhba_dark")) {
+  document.documentElement.classList.add("dark");
+}
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

@@ -1,11 +1,13 @@
-import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, Heart, Clock } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
 import { SearchBar } from "../components/SearchBar";
 import { useCart } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 import { useGetProducts } from "@workspace/api-client-react";
 import type { CartItem } from "../context/CartContext";
+import type { Product } from "@workspace/api-client-react";
 import { Button } from "../components/ui";
 import { calcShipping, FREE_SHIPPING_THRESHOLD } from "../lib/shippingPolicy";
 
@@ -116,6 +118,21 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
   onQtyChange: (id: number, color: string, delta: number) => void;
   onRemove: (id: number, color: string) => void;
 }) {
+  const { toggleWishlist, isWishlisted } = useWishlist();
+
+  function handleSaveForLater() {
+    const fakeProduct = {
+      id: item.id, name: item.name, brand: item.brand, price: item.price,
+      image: item.images?.[0] ?? item.image, category: "", slug: item.name,
+      stock: 10, sales: 0, rating: 0, reviewCount: 0,
+    } as unknown as Product;
+    toggleWishlist(fakeProduct);
+    if (!isWishlisted(item.id)) {
+      onRemove(item.id, item.color);
+      toast("تم حفظ المنتج للوقت لاحقاً ❤️");
+    }
+  }
+
   return (
     <div className="flex gap-3 p-3 rounded-2xl transition-[border-color,box-shadow] duration-150"
       style={{ background: "var(--bg-card)", border: `1px solid ${selected ? "var(--gold)" : "var(--border)"}`, boxShadow: selected ? "0 0 0 1px rgba(166,124,82,0.2)" : "none" }} dir="rtl">
@@ -138,6 +155,16 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
               <div className="w-3 h-3 rounded-full border" style={{ background: item.color, borderColor: "rgba(0,0,0,0.1)" }} />
               <span style={{ fontSize: 10, color: "var(--text-muted)" }}>{item.color}</span>
             </div>
+          )}
+          {/* Save for Later */}
+          {!editMode && (
+            <button onClick={handleSaveForLater} dir="rtl"
+              style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 5, background: "transparent", border: "none", cursor: "pointer", padding: 0 }}>
+              <Heart size={12} style={{ color: isWishlisted(item.id) ? "#E04545" : "var(--text-muted)" }} />
+              <span style={{ fontSize: 11, color: isWishlisted(item.id) ? "#E04545" : "var(--text-muted)", fontWeight: 600 }}>
+                {isWishlisted(item.id) ? "محفوظ في المفضلة" : "احتفظ لوقت لاحق"}
+              </span>
+            </button>
           )}
         </div>
 

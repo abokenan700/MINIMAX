@@ -4,7 +4,7 @@ import { toast } from "sonner";
 import {
   User, ShoppingBag, Heart, MapPin, CreditCard,
   Bell, HelpCircle, LogOut, ChevronRight, Star, Gift, Trophy, TrendingDown, AlertTriangle,
-  Package, Gem, TrendingDown as PriceAlert,
+  Package, Gem, TrendingDown as PriceAlert, Moon, Sun, Copy, Users,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
@@ -217,6 +217,73 @@ function AccountSkeleton() {
   );
 }
 
+/* ── ReferralCard ────────────────────────────────────────────────── */
+function ReferralCard({ user }: { user: { name: string; email: string } }) {
+  const code = `NUKHBA-${user.email.split("@")[0].toUpperCase().slice(0, 6)}`;
+  const [copied, setCopied] = useState(false);
+
+  function handleCopy() {
+    void navigator.clipboard.writeText(code).then(() => {
+      setCopied(true);
+      toast.success("تم نسخ رمز الإحالة!");
+      setTimeout(() => setCopied(false), 2500);
+    });
+  }
+
+  return (
+    <div dir="rtl" style={{ margin: "10px 12px 0", borderRadius: 16, background: "linear-gradient(135deg,#1E1C1A,#2E2A24)", border: "1px solid rgba(192,168,130,0.3)", padding: "14px 16px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+        <Users size={15} style={{ color: "var(--gold)" }} />
+        <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.9)" }}>أحضر صديقاً واكسب 50 نقطة</span>
+      </div>
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(192,168,130,0.2)" }}>
+        <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, color: "var(--gold)", letterSpacing: 1.5 }}>{code}</span>
+        <button onClick={handleCopy}
+          style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8, border: "none", background: copied ? "#22C55E" : "var(--gold)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 11.5, fontWeight: 700, cursor: "pointer", transition: "background 0.2s" }}>
+          <Copy size={12} />
+          {copied ? "تم النسخ!" : "نسخ"}
+        </button>
+      </div>
+      <p style={{ fontSize: 10.5, color: "rgba(255,255,255,0.45)", marginTop: 8 }}>شارك الرمز مع أصدقائك — سيحصل كل منكم على 50 نقطة عند أول طلب</p>
+    </div>
+  );
+}
+
+/* ── DarkModeToggle ──────────────────────────────────────────────── */
+function DarkModeToggle() {
+  const [dark, setDark] = useState(() => document.documentElement.classList.contains("dark"));
+
+  function toggle() {
+    const next = !dark;
+    setDark(next);
+    if (next) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("nakhba_dark", "1");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.removeItem("nakhba_dark");
+    }
+  }
+
+  return (
+    <div dir="rtl" style={{ margin: "10px 12px 0", borderRadius: 14, background: "var(--bg-card)", border: "1px solid var(--border)", padding: "12px 14px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{ width: 36, height: 36, borderRadius: 10, background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          {dark ? <Moon size={16} style={{ color: "var(--text-brand)" }} /> : <Sun size={16} style={{ color: "var(--text-brand)" }} />}
+        </div>
+        <div>
+          <p style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 600, color: "var(--text-primary)" }}>{dark ? "الوضع الليلي" : "الوضع النهاري"}</p>
+          <p style={{ fontSize: 11, color: "var(--text-muted)" }}>تغيير مظهر التطبيق</p>
+        </div>
+      </div>
+      <button onClick={toggle} role="switch" aria-checked={dark}
+        style={{ width: 48, height: 26, borderRadius: 13, background: dark ? "var(--gold)" : "var(--border)", border: "none", cursor: "pointer", position: "relative", transition: "background 0.3s", flexShrink: 0 }}>
+        <span style={{ position: "absolute", top: 3, insetInlineStart: dark ? 24 : 4, width: 20, height: 20, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.2)", transition: "inset-inline-start 0.3s" }} />
+      </button>
+    </div>
+  );
+}
+
 /* ── AccountPage ─────────────────────────────────────────────────── */
 export function AccountPage() {
   const [, navigate]              = useLocation();
@@ -389,6 +456,12 @@ export function AccountPage() {
 
               {/* Loyalty card */}
               <LoyaltyCard points={livePoints} />
+
+              {/* Referral card */}
+              <ReferralCard user={user} />
+
+              {/* Dark mode toggle */}
+              <DarkModeToggle />
 
               {/* Stats grid — responsive for small screens */}
               <div className="mx-3 mt-3 grid grid-cols-3 gap-2">

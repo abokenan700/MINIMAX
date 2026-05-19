@@ -19,6 +19,9 @@ import { AccountSheetProvider } from "./context/AccountSheetContext";
 import { QuickViewProvider } from "./context/QuickViewContext";
 import { QuickViewSheet } from "./components/QuickViewSheet";
 import { PromoBanners } from "./components/PromoBanners";
+import { ForYou } from "./components/ForYou";
+import { CompareProvider } from "./context/CompareContext";
+import { CompareSheet, CompareBar } from "./components/CompareSheet";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
 
@@ -281,6 +284,12 @@ function HomePage() {
       <RevealSection delay={40}>
         <RecentlyViewed />
       </RevealSection>
+
+      {/* ⑭ For You (personalized) */}
+      <SectionDivider />
+      <RevealSection delay={50}>
+        <ForYou />
+      </RevealSection>
     </div>
   );
 }
@@ -299,6 +308,7 @@ export default function App() {
   return (
     <AccountSheetProvider>
     <QuickViewProvider>
+    <CompareProvider>
       <div className="app-shell">
         <a href="#main-content" className="skip-link">تخطى للمحتوى الرئيسي</a>
         <OAuthCapture />
@@ -362,7 +372,10 @@ export default function App() {
 
         <AccountSheet />
         <QuickViewSheet />
+        <CompareSheet />
+        <CompareBar />
       </div>
+    </CompareProvider>
     </QuickViewProvider>
     </AccountSheetProvider>
   );

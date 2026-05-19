@@ -1,7 +1,3 @@
-/**
- * FeaturedCard — شبكة 2 عمود للمنتجات المميزة
- * نظيره للتمرير الأفقي: DealCard.tsx
- */
 import { useState } from "react";
 import { Heart, Eye } from "lucide-react";
 import { useLocation } from "wouter";
@@ -25,6 +21,11 @@ export function FeaturedCard({ item }: { item: Product }) {
   const liked = isWishlisted(item.id);
   const selectedColor = item.colors?.[activeColor] ?? "";
 
+  const stock = (item as Product & { stock?: number }).stock;
+  const isLowStock = typeof stock === "number" && stock > 0 && stock <= 5;
+  const isOutOfStock = typeof stock === "number" && stock === 0;
+  const stockPct = isLowStock ? (stock / 5) * 100 : 100;
+
   return (
     <article
       aria-label={`${item.name} — ${item.price.toLocaleString("ar-SA")} ريال`}
@@ -36,12 +37,14 @@ export function FeaturedCard({ item }: { item: Product }) {
         borderRadius: "var(--radius-card)",
         boxShadow: "var(--shadow-card)",
         cursor: "pointer",
+        opacity: isOutOfStock ? 0.7 : 1,
       }}
     >
       {/* Badges row */}
       <div className="absolute top-2 inset-x-2 flex items-center justify-between z-10">
         {item.is_new ? (
           <span
+            className="new-badge-pulse"
             style={{
               fontSize: "clamp(7.5px, 2vw, 9px)",
               fontWeight: 700,
@@ -55,35 +58,28 @@ export function FeaturedCard({ item }: { item: Product }) {
           >
             جديد
           </span>
+        ) : isOutOfStock ? (
+          <span style={{ fontSize: "clamp(7.5px, 2vw, 9px)", fontWeight: 700, color: "#fff", background: "rgba(0,0,0,0.55)", borderRadius: "var(--radius-pill)", padding: "2.5px 8px", lineHeight: 1.4 }}>
+            نفد
+          </span>
         ) : (
           <span />
         )}
         <button
           onClick={(e) => { e.stopPropagation(); toggleWishlist(item); }}
           aria-label={liked ? "إزالة من المفضلة" : "إضافة للمفضلة"}
-          style={{
-            background: "transparent",
-            border: "none",
-            cursor: "pointer",
-            padding: 0,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+          style={{ background: "transparent", border: "none", cursor: "pointer", padding: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
         >
           <Heart
             size={13}
-            className={liked ? "fill-red-400 stroke-red-400" : "fill-none"}
+            className={liked ? "fill-red-400 stroke-red-400 heart-pop" : "fill-none"}
             style={{ color: liked ? undefined : "#BBBBBB" }}
           />
         </button>
       </div>
 
       {/* Image */}
-      <div
-        className="relative w-full group"
-        style={{ aspectRatio: "1 / 1", background: "var(--card-img-bg)" }}
-      >
+      <div className="relative w-full group" style={{ aspectRatio: "1 / 1", background: "var(--card-img-bg)" }}>
         <img
           src={item.image}
           alt={item.name}
@@ -91,10 +87,11 @@ export function FeaturedCard({ item }: { item: Product }) {
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
-        {/* Quick-view button */}
+        {/* Quick-view button — show on hover (desktop) or always (mobile) */}
         <button
           onClick={(e) => { e.stopPropagation(); openQuickView(item); }}
           aria-label="نظرة سريعة"
+          className="quick-view-btn"
           style={{
             position: "absolute",
             bottom: 6,
@@ -116,15 +113,36 @@ export function FeaturedCard({ item }: { item: Product }) {
             cursor: "pointer",
             whiteSpace: "nowrap",
             boxShadow: "0 2px 10px rgba(0,0,0,0.14)",
+            transition: "opacity 0.2s, transform 0.2s",
           }}
         >
           <Eye size={12} strokeWidth={2} />
           نظرة سريعة
         </button>
+
+        {/* Discount badge */}
+        {item.discount > 0 && (
+          <div style={{ position: "absolute", top: 36, insetInlineStart: 4, background: "var(--error)", color: "#fff", fontSize: 9, fontWeight: 800, padding: "2px 6px", borderRadius: 6 }}>
+            -{item.discount}%
+          </div>
+        )}
       </div>
 
+      {/* Stock urgency bar */}
+      {isLowStock && (
+        <div style={{ padding: "3px 10px 0", background: "var(--card-bg)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+            <span style={{ fontSize: 9, fontWeight: 700, color: "var(--error)" }}>تبقى {stock} فقط!</span>
+            <span style={{ fontSize: 9, color: "var(--text-muted)" }}>{Math.round(stockPct)}%</span>
+          </div>
+          <div style={{ height: 3, borderRadius: 2, background: "rgba(220,38,38,0.15)", overflow: "hidden" }}>
+            <div style={{ height: "100%", width: `${stockPct}%`, background: "var(--error)", borderRadius: 2, transition: "width 0.4s ease" }} />
+          </div>
+        </div>
+      )}
+
       {/* Divider */}
-      <div style={{ height: "1px", background: "var(--border-separator)" }} />
+      <div style={{ height: "1px", background: "var(--border-separator)", marginTop: isLowStock ? 4 : 0 }} />
 
       {/* Content */}
       <div className="flex flex-col gap-1 px-2.5 pt-2 pb-2.5">
@@ -134,31 +152,21 @@ export function FeaturedCard({ item }: { item: Product }) {
             {item.brand}
           </p>
           {item.colors.length > 0 && (
-            <div
-              className="flex items-center"
-              style={{ gap: 4 }}
-              onClick={(e) => e.stopPropagation()}
-            >
+            <div className="flex items-center" style={{ gap: 4 }} onClick={(e) => e.stopPropagation()}>
               {item.colors.slice(0, 4).map((c, i) => (
                 <button
                   key={i}
                   onClick={(e) => { e.stopPropagation(); setActiveColor(i); }}
                   aria-label={`اللون ${c}`}
                   aria-pressed={i === activeColor}
-                  style={{
-                    width: 22, height: 22, padding: 0, border: "none",
-                    background: "transparent", cursor: "pointer",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    flexShrink: 0, position: "relative",
-                  }}
+                  style={{ width: 22, height: 22, padding: 0, border: "none", background: "transparent", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, position: "relative" }}
                 >
                   <span
                     className="rounded-full block"
                     style={{
-                      width: 13,
-                      height: 13,
+                      width: 13, height: 13,
                       background: colorToCss(c),
-                      boxShadow: "0 1px 4px rgba(0,0,0,0.22)",
+                      boxShadow: `0 1px 4px rgba(0,0,0,0.22)${needsBorder(c) ? ", 0 0 0 1px rgba(0,0,0,0.12)" : ""}`,
                       transition: "transform 0.15s ease",
                       transform: i === activeColor ? "scale(1.35)" : "scale(1)",
                     }}
@@ -166,12 +174,7 @@ export function FeaturedCard({ item }: { item: Product }) {
                 </button>
               ))}
               {item.colors.length > 4 && (
-                <span style={{
-                  fontSize: "9px",
-                  color: "var(--text-muted)",
-                  fontWeight: 600,
-                  lineHeight: 1,
-                }}>
+                <span style={{ fontSize: "9px", color: "var(--text-muted)", fontWeight: 600, lineHeight: 1 }}>
                   +{item.colors.length - 4}
                 </span>
               )}

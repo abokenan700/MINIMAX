@@ -1305,3 +1305,37 @@ html, body {
 /* ─── Dividers ───────────────────────────────────────────────────── */
 .gold-divider   { height: 1px; background: var(--border-separator); }
 .accent-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(249,115,22,0.20), transparent); }
+
+/* ─── Timeline Pulse ─────────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.35); }
+}
+
+/* ─── Dark Mode ──────────────────────────────────────────────────── */
+html.dark {
+  --bg-page:        #111110;
+  --bg-card:        #1C1B19;
+  --text-primary:   #F5F0E8;
+  --text-secondary: #C8C0B0;
+  --text-muted:     #8A8278;
+  --border:         rgba(255,255,255,0.09);
+  --border-warm:    rgba(192,168,130,0.18);
+  --card-img-bg:    #252320;
+  --gold-pale:      rgba(192,168,130,0.12);
+  --gold-light:     rgba(192,168,130,0.16);
+}
+
+/* ─── Compare Bar Slide-in ───────────────────────────────────────── */
+@keyframes slideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+.compare-bar-enter {
+  animation: slideUp 0.3s var(--ease-spring) both;
+}
+
+/* ─── Dark Mode Toggle Knob ──────────────────────────────────────── */
+[role="switch"] span {
+  transition: left 0.25s var(--ease-spring), right 0.25s var(--ease-spring);
+}

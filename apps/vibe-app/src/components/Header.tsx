@@ -4,6 +4,8 @@ import { useLocation } from "wouter";
 import { useAuth } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
 import { useCart } from "../context/CartContext";
+import { useQuery } from "@tanstack/react-query";
+import { apiFetch } from "../lib/apiFetch";
 
 function getGreeting(): string {
   const h = new Date().getHours();
@@ -19,6 +21,22 @@ export function Header() {
   const { openSheet} = useAccountSheet();
   const { count }    = useCart();
   const greeting     = getGreeting();
+
+  const { data: pointsData } = useQuery<{ points: number }>({
+    queryKey:  ["user-points"],
+    queryFn:   () => apiFetch<{ points: number }>("/api/v1/users/me/points", { auth: true }),
+    enabled:   !!user,
+    staleTime: 5 * 60_000,
+  });
+  const points = pointsData?.points ?? 0;
+
+  const { data: notifications = [] } = useQuery<{ id: number; read: string }[]>({
+    queryKey:  ["notifications"],
+    queryFn:   () => apiFetch<{ id: number; read: string }[]>("/api/v1/notifications", { auth: true }),
+    enabled:   !!user,
+    staleTime: 60_000,
+  });
+  const unread = notifications.filter(n => n.read !== "true").length;
 
   return (
     <header className="header-bar">
@@ -42,6 +60,19 @@ export function Header() {
 
       {/* ─── Actions ──────────────────────────────────────────────── */}
       <div className="flex items-center gap-0.5">
+        {/* Points badge — show if logged in and has points */}
+        {user && points > 0 && (
+          <button
+            className="header-icon-btn"
+            aria-label={`نقاطي: ${points}`}
+            onClick={() => navigate("/account")}
+            style={{ position: "relative", display: "flex", alignItems: "center", gap: 3, padding: "0 8px", borderRadius: 20, background: "var(--gold-pale)", border: "1px solid var(--border-orange)", height: 30, width: "auto" }}
+          >
+            <span style={{ fontSize: 12 }}>🪙</span>
+            <span style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 800, color: "var(--text-brand)" }}>{points >= 1000 ? `${(points/1000).toFixed(1)}ك` : points}</span>
+          </button>
+        )}
+
         {/* Cart shortcut */}
         <button
           className="header-icon-btn"
@@ -63,7 +94,7 @@ export function Header() {
           onClick={() => navigate("/notifications")}
         >
           <Bell size={19} strokeWidth={1.6} className="header-icon-svg" />
-          <span className="header-notif-dot" aria-hidden="true" />
+          {unread > 0 && <span className="header-notif-dot" aria-hidden="true" />}
         </button>
 
         {/* Account */}
