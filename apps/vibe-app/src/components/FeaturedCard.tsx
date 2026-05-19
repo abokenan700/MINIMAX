@@ -3,11 +3,12 @@
  * نظيره للتمرير الأفقي: DealCard.tsx
  */
 import { useState } from "react";
-import { Heart } from "lucide-react";
+import { Heart, Eye } from "lucide-react";
 import { useLocation } from "wouter";
 import type { Product } from "@workspace/api-client-react";
 import { CartButton } from "./CartButton";
 import { useWishlist } from "../context/WishlistContext";
+import { useQuickView } from "../context/QuickViewContext";
 import { colorToCss, needsBorder } from "../lib/colorMap";
 import { Stars } from "./Stars";
 
@@ -18,6 +19,7 @@ function formatSales(n: number): string {
 
 export function FeaturedCard({ item }: { item: Product }) {
   const { isWishlisted, toggleWishlist } = useWishlist();
+  const { open: openQuickView } = useQuickView();
   const [activeColor, setActiveColor] = useState(0);
   const [, navigate] = useLocation();
   const liked = isWishlisted(item.id);
@@ -79,7 +81,7 @@ export function FeaturedCard({ item }: { item: Product }) {
 
       {/* Image */}
       <div
-        className="relative w-full"
+        className="relative w-full group"
         style={{ aspectRatio: "1 / 1", background: "var(--card-img-bg)" }}
       >
         <img
@@ -89,6 +91,36 @@ export function FeaturedCard({ item }: { item: Product }) {
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
+        {/* Quick-view button */}
+        <button
+          onClick={(e) => { e.stopPropagation(); openQuickView(item); }}
+          aria-label="نظرة سريعة"
+          style={{
+            position: "absolute",
+            bottom: 6,
+            left: "50%",
+            transform: "translateX(-50%)",
+            display: "flex",
+            alignItems: "center",
+            gap: 5,
+            padding: "5px 12px",
+            borderRadius: 20,
+            border: "none",
+            background: "rgba(255,255,255,0.92)",
+            backdropFilter: "blur(6px)",
+            WebkitBackdropFilter: "blur(6px)",
+            color: "var(--text-primary)",
+            fontSize: 10.5,
+            fontWeight: 700,
+            fontFamily: "var(--font-main)",
+            cursor: "pointer",
+            whiteSpace: "nowrap",
+            boxShadow: "0 2px 10px rgba(0,0,0,0.14)",
+          }}
+        >
+          <Eye size={12} strokeWidth={2} />
+          نظرة سريعة
+        </button>
       </div>
 
       {/* Divider */}

@@ -16,6 +16,8 @@ import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
+import { QuickViewProvider } from "./context/QuickViewContext";
+import { QuickViewSheet } from "./components/QuickViewSheet";
 import { PromoBanners } from "./components/PromoBanners";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
@@ -296,6 +298,7 @@ function PageBoundary({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <AccountSheetProvider>
+    <QuickViewProvider>
       <div className="app-shell">
         <a href="#main-content" className="skip-link">تخطى للمحتوى الرئيسي</a>
         <OAuthCapture />
@@ -358,7 +361,9 @@ export default function App() {
         </div>
 
         <AccountSheet />
+        <QuickViewSheet />
       </div>
+    </QuickViewProvider>
     </AccountSheetProvider>
   );
 }
