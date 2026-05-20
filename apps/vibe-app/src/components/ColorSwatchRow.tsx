@@ -56,9 +56,7 @@ export const ColorSwatchRow = forwardRef<HTMLDivElement, ColorSwatchRowProps>(
                   width: dim, height: dim,
                   background: css,
                   boxShadow: `0 1px 4px rgba(0,0,0,0.22)${border ? ", 0 0 0 1px rgba(0,0,0,0.12)" : ""}`,
-                  transition: "transform 150ms var(--ease-spring)",
-                  transform: isActive ? "scale(1.35)" : "scale(1)",
-                  outline: isActive ? "2px solid var(--color-brand-500)" : "none",
+                  outline: isActive ? "1px solid var(--color-brand-500)" : "none",
                   outlineOffset: 2,
                 }}
               />
