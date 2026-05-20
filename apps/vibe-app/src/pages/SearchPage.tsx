@@ -90,10 +90,10 @@ function ResultCardList({ item }: { item: Product }) {
       aria-label={item.name} onClick={() => navigate(`/product/${item.id}`)}>
       <div style={{ position: "relative", width: 110, height: 110, flexShrink: 0, background: "var(--card-img-bg)" }}>
         <img src={item.image} alt={item.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 10 }} onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-        {item.is_new && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff" }}>جديد</span>}
+        {item.is_new && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", color: "#fff" }}>جديد</span>}
         {isOutOfStock && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "rgba(0,0,0,0.55)", color: "#fff" }}>نفد</span>}
       </div>
-      <div style={{ height: "auto", width: 1, background: "linear-gradient(180deg,transparent,var(--color-brand-600),transparent)", opacity: 0.4, flexShrink: 0 }} />
+      <div style={{ height: "auto", width: 1, background: "linear-gradient(180deg,transparent,var(--color-brand-500),transparent)", opacity: 0.4, flexShrink: 0 }} />
       <div className="flex flex-col justify-between flex-1 min-w-0" style={{ padding: "10px 12px" }}>
         <div>
           <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-brand)", marginBottom: 2 }}>{item.brand}</p>
@@ -310,7 +310,7 @@ export function SearchPage() {
                   <p style={{ color: "var(--text-muted)", fontSize: 13 }}>جرّب تعديل الفلاتر أو كلمات البحث</p>
                   {hasActiveFilters && (
                     <button onClick={() => handleFiltersChange(DEFAULT_FILTERS)}
-                      style={{ padding: "9px 20px", borderRadius: 12, border: "1px solid var(--color-brand-600)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+                      style={{ padding: "9px 20px", borderRadius: 12, border: "1px solid var(--color-brand-500)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
                       إعادة ضبط الفلاتر
                     </button>
                   )}
@@ -403,7 +403,7 @@ export function SearchPage() {
                         style={{ flexShrink: 0, width: 106, borderRadius: 12, overflow: "hidden", background: "var(--bg-card)", border: "1px solid var(--border-warm)", textAlign: "start", cursor: "pointer", padding: 0 }}>
                         <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "linear-gradient(145deg,#fdfcfb,#f5ede0)", overflow: "hidden" }}>
                           <img src={p.image} alt={p.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 10 }} onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-                          {p.badge && <span style={{ position: "absolute", top: 4, insetInlineStart: 4, fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 6, background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff" }}>{p.badge}</span>}
+                          {p.badge && <span style={{ position: "absolute", top: 4, insetInlineStart: 4, fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 6, background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", color: "#fff" }}>{p.badge}</span>}
                         </div>
                         <div style={{ padding: "6px 8px 8px" }}>
                           <p className="line-clamp-1" style={{ fontSize: 11, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3 }}>{p.name}</p>

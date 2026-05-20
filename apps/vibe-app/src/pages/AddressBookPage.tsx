@@ -182,7 +182,7 @@ export function AddressBookPage() {
           </div>
         ) : (
           addresses.map((addr) => (
-            <div key={addr.id} style={{ borderRadius: 16, background: "var(--bg-card)", border: `1.5px solid ${addr.is_default ? "var(--color-brand-600)" : "var(--border-warm)"}`, marginBottom: 10, overflow: "hidden" }}>
+            <div key={addr.id} style={{ borderRadius: 16, background: "var(--bg-card)", border: `1.5px solid ${addr.is_default ? "var(--color-brand-500)" : "var(--border-warm)"}`, marginBottom: 10, overflow: "hidden" }}>
               <div style={{ padding: "13px 14px" }}>
                 {/* Label row */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
@@ -243,7 +243,7 @@ export function AddressBookPage() {
             <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
               {LABELS.map((l) => (
                 <button key={l} onClick={() => setLabel(l)}
-                  style={{ flex: 1, padding: "9px 4px", borderRadius: 10, border: `1.5px solid ${label === l ? "var(--color-brand-600)" : "var(--border)"}`, background: label === l ? "var(--color-brand-50)" : "transparent", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: label === l ? 700 : 400, color: label === l ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", transition: "all 0.15s" }}>
+                  style={{ flex: 1, padding: "9px 4px", borderRadius: 10, border: `1.5px solid ${label === l ? "var(--color-brand-500)" : "var(--border)"}`, background: label === l ? "var(--color-brand-50)" : "transparent", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: label === l ? 700 : 400, color: label === l ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", transition: "all 0.15s" }}>
                   {l}
                 </button>
               ))}

@@ -68,7 +68,7 @@ function PriceAlertSection({ product }: { product: Product }) {
 
   return (
     <>
-      <div dir="rtl" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderRadius: 14, padding: "12px 14px", marginBottom: 14, background: myAlert ? "var(--color-brand-50)" : "var(--bg-card)", border: `1.5px solid ${myAlert ? "var(--color-brand-600)" : "var(--border-warm)"}` }}>
+      <div dir="rtl" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", borderRadius: 14, padding: "12px 14px", marginBottom: 14, background: myAlert ? "var(--color-brand-50)" : "var(--bg-card)", border: `1.5px solid ${myAlert ? "var(--color-brand-500)" : "var(--border-warm)"}` }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <div style={{ width: 36, height: 36, borderRadius: 10, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: myAlert ? "var(--text-brand)" : "var(--color-brand-50)" }}>
             {myAlert ? <Bell size={17} color="#fff" fill="#fff" /> : <Bell size={17} style={{ color: "var(--text-brand)" }} />}
@@ -300,7 +300,7 @@ function ImageGallery({ images, name, badges }: {
       )}
 
       <div style={{ position: "absolute", top: 14, insetInlineStart: 14, display: "flex", flexDirection: "column", gap: 6 }} dir="rtl">
-        {badges.isNew && <span style={{ background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20 }}>جديد</span>}
+        {badges.isNew && <span style={{ background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20 }}>جديد</span>}
         {badges.discount > 0 && <span style={{ background: "var(--color-brand-50)", color: "var(--color-brand-700)", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20 }}>خصم {badges.discount}%</span>}
       </div>
 
@@ -309,7 +309,7 @@ function ImageGallery({ images, name, badges }: {
         <div style={{ position: "absolute", top: "50%", transform: "translateY(-50%)", insetInlineEnd: 10, display: "flex", flexDirection: "column", gap: 6 }}>
           {images.map((src, i) => (
             <button key={i} onClick={() => setActive(i)} aria-label={`صورة ${i + 1}`}
-              style={{ width: 40, height: 40, borderRadius: 8, overflow: "hidden", border: `2px solid ${i === active ? "var(--color-brand-600)" : "rgba(255,255,255,0.7)"}`, background: "rgba(255,255,255,0.9)", padding: 3, cursor: "pointer", transition: "border-color 0.2s", flexShrink: 0 }}>
+              style={{ width: 40, height: 40, borderRadius: 8, overflow: "hidden", border: `2px solid ${i === active ? "var(--color-brand-500)" : "rgba(255,255,255,0.7)"}`, background: "rgba(255,255,255,0.9)", padding: 3, cursor: "pointer", transition: "border-color 0.2s", flexShrink: 0 }}>
               <img src={src} alt="" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
             </button>
           ))}
@@ -321,7 +321,7 @@ function ImageGallery({ images, name, badges }: {
         <div style={{ position: "absolute", bottom: 10, insetInlineStart: 0, insetInlineEnd: 0, display: "flex", justifyContent: "center", gap: 5 }}>
           {images.map((_, i) => (
             <button key={i} onClick={() => setActive(i)} aria-label={`اذهب للصورة ${i + 1}`}
-              style={{ width: 18, height: 6, borderRadius: 3, background: i === active ? "var(--color-brand-600)" : "rgba(0,0,0,0.2)", transform: `scaleX(${i === active ? 1 : 0.33})`, transformOrigin: "center", transition: "transform 0.25s, background 0.25s", border: "none", cursor: "pointer", padding: 0 }} />
+              style={{ width: 18, height: 6, borderRadius: 3, background: i === active ? "var(--color-brand-500)" : "rgba(0,0,0,0.2)", transform: `scaleX(${i === active ? 1 : 0.33})`, transformOrigin: "center", transition: "transform 0.25s, background 0.25s", border: "none", cursor: "pointer", padding: 0 }} />
           ))}
         </div>
       )}
@@ -436,7 +436,7 @@ function ReviewsSection({ product }: { product: Product }) {
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 14 }}>
         <h2 style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)" }}>التقييمات</h2>
         <button onClick={() => user ? setShowForm(v => !v) : openSheet()}
-          style={{ padding: "7px 14px", borderRadius: 10, border: "1px solid var(--color-brand-600)", background: showForm ? "var(--color-brand-50)" : "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>
+          style={{ padding: "7px 14px", borderRadius: 10, border: "1px solid var(--color-brand-500)", background: showForm ? "var(--color-brand-50)" : "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, cursor: "pointer" }}>
           {showForm ? "إلغاء" : "اكتب تقييماً"}
         </button>
       </div>
@@ -478,7 +478,7 @@ function ReviewsSection({ product }: { product: Product }) {
             <div key={i} style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <span style={{ fontSize: 10, color: "var(--text-muted)", minWidth: 18 }}>{5 - i}★</span>
               <div style={{ flex: 1, height: 5, borderRadius: 3, background: "#E8E2D8", overflow: "hidden" }}>
-                <div style={{ height: "100%", width: `${pct}%`, background: "var(--color-brand-600)", borderRadius: 3 }} />
+                <div style={{ height: "100%", width: `${pct}%`, background: "var(--color-brand-500)", borderRadius: 3 }} />
               </div>
               <span style={{ fontSize: 10, color: "var(--text-muted)", minWidth: 28 }}>{pct}%</span>
             </div>
@@ -500,7 +500,7 @@ function ReviewsSection({ product }: { product: Product }) {
           <div key={r.id} style={{ padding: "14px 0", borderBottom: i < reviews.length - 1 ? "1px solid var(--border-warm)" : "none" }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 7 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
-                <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                   <span style={{ fontSize: 13, fontWeight: 700, color: "#fff" }}>{r.user_name[0]}</span>
                 </div>
                 <div>
@@ -537,7 +537,7 @@ function SizePicker({ sizes, selected, onSelect }: { sizes: string[]; selected: 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
         {sizes.map((s) => (
           <button key={s} onClick={() => onSelect(s)}
-            style={{ padding: "8px 18px", borderRadius: 10, border: `2px solid ${selected === s ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: selected === s ? "var(--color-brand-50)" : "var(--bg-card)", color: selected === s ? "var(--text-brand)" : "var(--text-primary)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: selected === s ? 700 : 500, cursor: "pointer", transition: "all 0.15s" }}>
+            style={{ padding: "8px 18px", borderRadius: 10, border: `2px solid ${selected === s ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: selected === s ? "var(--color-brand-50)" : "var(--bg-card)", color: selected === s ? "var(--text-brand)" : "var(--text-primary)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: selected === s ? 700 : 500, cursor: "pointer", transition: "all 0.15s" }}>
             {s}
           </button>
         ))}
@@ -661,7 +661,7 @@ export function ProductDetailPage() {
       <div style={{ flex: "1 1 auto", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
         <AlertTriangle size={40} style={{ color: "var(--text-muted)" }} />
         <p style={{ fontFamily: "var(--font-main)", fontSize: 15, color: "var(--text-muted)" }}>المنتج غير موجود</p>
-        <button onClick={() => navigate(-1 as unknown as string)} style={{ padding: "10px 24px", borderRadius: 12, border: "1px solid var(--color-brand-600)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+        <button onClick={() => navigate(-1 as unknown as string)} style={{ padding: "10px 24px", borderRadius: 12, border: "1px solid var(--color-brand-500)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
           رجوع
         </button>
       </div>
@@ -767,14 +767,14 @@ export function ProductDetailPage() {
               {isOOS ? "نفذ المخزون" : added ? <><Check size={16} />تمت الإضافة</> : <><ShoppingBag size={16} />أضف للسلة</>}
             </button>
             <button onClick={handleBuyNow} disabled={isOOS}
-              style={{ flex: 1, padding: "13px", borderRadius: 14, border: `1.5px solid ${isOOS ? "var(--border)" : "var(--color-brand-600)"}`, background: "transparent", color: isOOS ? "var(--text-muted)" : "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: isOOS ? "not-allowed" : "pointer" }}>
+              style={{ flex: 1, padding: "13px", borderRadius: 14, border: `1.5px solid ${isOOS ? "var(--border)" : "var(--color-brand-500)"}`, background: "transparent", color: isOOS ? "var(--text-muted)" : "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: isOOS ? "not-allowed" : "pointer" }}>
               اشتري الآن
             </button>
           </div>
 
           {/* Compare button */}
           <button onClick={() => addToCompare(product)} dir="rtl"
-            style={{ width: "100%", padding: "11px", borderRadius: 12, border: `1.5px solid ${isInCompare(product.id) ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: isInCompare(product.id) ? "var(--color-brand-50)" : "transparent", color: isInCompare(product.id) ? "var(--text-brand)" : "var(--text-secondary)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, marginBottom: 18 }}>
+            style={{ width: "100%", padding: "11px", borderRadius: 12, border: `1.5px solid ${isInCompare(product.id) ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: isInCompare(product.id) ? "var(--color-brand-50)" : "transparent", color: isInCompare(product.id) ? "var(--text-brand)" : "var(--text-secondary)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 600, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 7, marginBottom: 18 }}>
             <GitCompareArrows size={15} />
             {isInCompare(product.id) ? "تمت الإضافة للمقارنة ✓" : "أضف للمقارنة"}
           </button>

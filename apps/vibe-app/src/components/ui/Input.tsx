@@ -18,7 +18,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>(
     const borderColor = hasError
       ? "var(--color-danger-600)"
       : focused
-      ? "var(--color-brand-600)"
+      ? "var(--color-brand-500)"
       : "var(--border-input)";
 
     const focusRing = hasError

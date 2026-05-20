@@ -79,7 +79,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
               marginTop: 8,
               padding: "10px 24px",
               borderRadius: 12,
-              background: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-600))",
+              background: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-500))",
               color: "#fff",
               fontFamily: "var(--font-main)",
               fontSize: 14,

@@ -78,7 +78,7 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
       <p style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)", marginBottom: 14 }}>مسار الطلب</p>
       <div style={{ position: "relative" }}>
         {/* Vertical connector line */}
-        <div style={{ position: "absolute", insetInlineStart: 15, top: 16, bottom: 16, width: 2, background: "linear-gradient(to bottom, var(--color-brand-600) 0%, rgba(192,168,130,0.2) 100%)" }} />
+        <div style={{ position: "absolute", insetInlineStart: 15, top: 16, bottom: 16, width: 2, background: "linear-gradient(to bottom, var(--color-brand-500) 0%, rgba(192,168,130,0.2) 100%)" }} />
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {steps.map((step, i) => {
             const isLast = i === steps.length - 1;
@@ -87,8 +87,8 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
                 {/* Circle */}
                 <div style={{
                   width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-                  background: step.isCancelled ? "#FFEBEE" : step.done ? "var(--color-brand-600)" : "var(--bg-page)",
-                  border: `2px solid ${step.isCancelled ? "#E53935" : step.done ? "var(--color-brand-600)" : "var(--border)"}`,
+                  background: step.isCancelled ? "#FFEBEE" : step.done ? "var(--color-brand-500)" : "var(--bg-page)",
+                  border: `2px solid ${step.isCancelled ? "#E53935" : step.done ? "var(--color-brand-500)" : "var(--border)"}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   boxShadow: step.done ? "0 2px 8px rgba(192,168,130,0.35)" : "none",
                   transition: "all 0.3s",
@@ -108,7 +108,7 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
                   </span>
                   {step.done && !step.isCancelled && i === steps.filter(s => s.done).length - 1 && (
                     <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 3 }}>
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--color-brand-600)", animation: "pulse 1.5s ease-in-out infinite" }} />
+                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--color-brand-500)", animation: "pulse 1.5s ease-in-out infinite" }} />
                       <span style={{ fontSize: 10.5, color: "var(--text-brand)", fontWeight: 600 }}>الحالة الحالية</span>
                     </div>
                   )}
@@ -167,8 +167,8 @@ function ReturnRequestModal({ orderId, onClose }: { orderId: number; onClose: ()
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 18 }}>
           {reasons.map(r => (
             <button key={r} onClick={() => setReason(r)}
-              style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", borderRadius: 12, border: `1.5px solid ${reason === r ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: reason === r ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start" }}>
-              <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${reason === r ? "var(--color-brand-600)" : "var(--border)"}`, background: reason === r ? "var(--color-brand-600)" : "transparent", flexShrink: 0 }} />
+              style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", borderRadius: 12, border: `1.5px solid ${reason === r ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: reason === r ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start" }}>
+              <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${reason === r ? "var(--color-brand-500)" : "var(--border)"}`, background: reason === r ? "var(--color-brand-500)" : "transparent", flexShrink: 0 }} />
               <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: reason === r ? 700 : 400, color: reason === r ? "var(--text-brand)" : "var(--text-primary)" }}>{r}</span>
             </button>
           ))}
@@ -352,7 +352,7 @@ export function OrdersPage() {
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 600, color: "var(--text-primary)", textAlign: "center" }}>لا توجد طلبات بعد</p>
             <p style={{ fontSize: 13, color: "var(--text-muted)", textAlign: "center" }}>ابدأ التسوق وستظهر طلباتك هنا</p>
             <button onClick={() => navigate("/")}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
               تسوّق الآن
             </button>
           </div>

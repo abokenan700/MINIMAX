@@ -29,12 +29,12 @@ function Stepper({ step }: { step: 1 | 2 }) {
       {steps.map((s, i) => (
         <div key={s.n} style={{ display: "flex", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--color-brand-600)" : s.n === step ? "var(--gradient-brand)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
+            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--color-brand-500)" : s.n === step ? "var(--gradient-brand)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
               {s.n < step ? <CheckCircle size={14} /> : s.n}
             </div>
             <span style={{ fontSize: 10, color: s.n === step ? "var(--text-brand)" : "var(--text-muted)", fontWeight: s.n === step ? 700 : 400, whiteSpace: "nowrap" }}>{s.label}</span>
           </div>
-          {i < steps.length - 1 && <div style={{ width: 40, height: 2, background: s.n < step ? "var(--color-brand-600)" : "var(--border)", margin: "0 4px", marginBottom: 18, transition: "background 0.3s" }} />}
+          {i < steps.length - 1 && <div style={{ width: 40, height: 2, background: s.n < step ? "var(--color-brand-500)" : "var(--border)", margin: "0 4px", marginBottom: 18, transition: "background 0.3s" }} />}
         </div>
       ))}
     </div>
@@ -114,7 +114,7 @@ function PaymentCard({ id, icon, title, subtitle, selected, onSelect, disabled, 
 }) {
   return (
     <button onClick={disabled ? undefined : onSelect} dir="rtl" disabled={disabled}
-      style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px", borderRadius: 14, border: `2px solid ${selected ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: disabled ? "var(--bg-page)" : selected ? "var(--color-brand-50)" : "var(--bg-card)", cursor: disabled ? "not-allowed" : "pointer", width: "100%", textAlign: "start", transition: "border-color 0.2s, background 0.2s", opacity: disabled ? 0.5 : 1, position: "relative" }}>
+      style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px", borderRadius: 14, border: `2px solid ${selected ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: disabled ? "var(--bg-page)" : selected ? "var(--color-brand-50)" : "var(--bg-card)", cursor: disabled ? "not-allowed" : "pointer", width: "100%", textAlign: "start", transition: "border-color 0.2s, background 0.2s", opacity: disabled ? 0.5 : 1, position: "relative" }}>
       {badge && (
         <span style={{ position: "absolute", top: 8, insetInlineStart: 8, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--border)", color: "var(--text-muted)" }}>{badge}</span>
       )}
@@ -123,7 +123,7 @@ function PaymentCard({ id, icon, title, subtitle, selected, onSelect, disabled, 
         <p style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", marginBottom: 2 }}>{title}</p>
         <p style={{ fontSize: 11, color: "var(--text-muted)" }}>{subtitle}</p>
       </div>
-      <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${selected ? "var(--color-brand-600)" : "var(--border)"}`, background: selected ? "var(--color-brand-600)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", flexShrink: 0 }}>
+      <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${selected ? "var(--color-brand-500)" : "var(--border)"}`, background: selected ? "var(--color-brand-500)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", flexShrink: 0 }}>
         {selected && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fff" }} />}
       </div>
     </button>
@@ -362,8 +362,8 @@ export function CheckoutPage() {
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 {deliveryOptions.map((opt) => (
                   <button key={opt.value} onClick={() => setDeliveryDate(opt.value)} dir="rtl"
-                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${deliveryDate === opt.value ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: deliveryDate === opt.value ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start", transition: "border-color 0.2s, background 0.2s" }}>
-                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${deliveryDate === opt.value ? "var(--color-brand-600)" : "var(--border)"}`, background: deliveryDate === opt.value ? "var(--color-brand-600)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${deliveryDate === opt.value ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: deliveryDate === opt.value ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start", transition: "border-color 0.2s, background 0.2s" }}>
+                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${deliveryDate === opt.value ? "var(--color-brand-500)" : "var(--border)"}`, background: deliveryDate === opt.value ? "var(--color-brand-500)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       {deliveryDate === opt.value && <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff" }} />}
                     </div>
                     <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 13, fontWeight: deliveryDate === opt.value ? 700 : 400, color: deliveryDate === opt.value ? "var(--text-brand)" : "var(--text-primary)" }}>

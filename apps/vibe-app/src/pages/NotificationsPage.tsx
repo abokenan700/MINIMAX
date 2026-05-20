@@ -136,7 +136,7 @@ export function NotificationsPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 3 }}>
                     <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: isRead ? 600 : 700, color: "var(--text-primary)" }}>{n.title}</p>
-                    {!isRead && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-brand-600)", flexShrink: 0 }} />}
+                    {!isRead && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-brand-500)", flexShrink: 0 }} />}
                   </div>
                   <p style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "var(--text-muted)", lineHeight: 1.65, marginBottom: 6 }}>{n.body}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

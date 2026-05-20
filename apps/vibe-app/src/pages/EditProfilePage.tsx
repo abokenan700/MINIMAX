@@ -202,7 +202,7 @@ export function EditProfilePage() {
         {/* ── Avatar ── */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "28px 0 20px", gap: 12 }}>
           <div style={{ position: "relative" }}>
-            <div style={{ width: 90, height: 90, borderRadius: "50%", background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", boxShadow: "0 4px 20px rgba(192,168,130,0.4)", border: "3px solid var(--bg-card)", outline: "2px solid var(--color-brand-600)" }}>
+            <div style={{ width: 90, height: 90, borderRadius: "50%", background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", boxShadow: "0 4px 20px rgba(192,168,130,0.4)", border: "3px solid var(--bg-card)", outline: "2px solid var(--color-brand-500)" }}>
               {avatarBusy ? (
                 <Loader size={28} color="rgba(255,255,255,0.8)" className="animate-spin" />
               ) : avatarPreview ? (
@@ -260,7 +260,7 @@ export function EditProfilePage() {
         {/* ── Personal Info ── */}
         <div className="mx-3 mb-4">
           <div style={{ padding: "4px 4px 12px", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-600)" }} />
+            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-500)" }} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>المعلومات الشخصية</p>
           </div>
           <form onSubmit={e => { void handleProfileSave(e); }} style={{ background: "var(--bg-card)", borderRadius: 16, border: "1px solid var(--border)", padding: "16px 14px" }}>
@@ -313,7 +313,7 @@ export function EditProfilePage() {
         {/* ── Change Password ── */}
         <div className="mx-3 mb-6">
           <div style={{ padding: "4px 4px 12px", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-600)" }} />
+            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-500)" }} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>تغيير كلمة المرور</p>
           </div>
           <form onSubmit={e => { void handlePasswordSave(e); }} style={{ background: "var(--bg-card)", borderRadius: 16, border: "1px solid var(--border)", padding: "16px 14px" }}>

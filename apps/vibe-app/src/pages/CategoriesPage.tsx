@@ -150,7 +150,7 @@ function L2Item({
       {isActive && (
         <div
           className="absolute inset-inline-end-0 top-1/2 -translate-y-1/2 rounded-s-full"
-          style={{ insetInlineEnd: 0, position: "absolute", width: 3, height: "55%", background: "var(--color-brand-600)" }}
+          style={{ insetInlineEnd: 0, position: "absolute", width: 3, height: "55%", background: "var(--color-brand-500)" }}
         />
       )}
       <Icon

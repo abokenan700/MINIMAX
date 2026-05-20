@@ -6,7 +6,7 @@
  * Grid:     4-pt geometric base
  *
  * Use CSS vars in style={{}} instead of raw values:
- *   var(--color-brand-600), var(--text-brand), var(--font-display) ... etc
+ *   var(--color-brand-500), var(--text-brand), var(--font-display) ... etc
  */
 
 /* ─── Brand Scale — 10-step orange ramp ─────────────────────────── */
@@ -17,7 +17,7 @@ export const BRAND_COLOR = {
   300:     "var(--color-brand-300)",
   400:     "var(--color-brand-400)",
   500:     "var(--color-brand-500)",
-  600:     "var(--color-brand-600)",   /* DEFAULT — 4.6:1 on white */
+  600:     "var(--color-brand-500)",   /* DEFAULT — 4.6:1 on white */
   700:     "var(--color-brand-700)",
   800:     "var(--color-brand-800)",
   900:     "var(--color-brand-900)",
@@ -224,8 +224,8 @@ export const MOTION = {
 /* ─── Legacy compatibility shims ─────────────────────────────────── */
 export const BRAND = {
   gold:         "var(--color-brand-500)",
-  goldDark:     "var(--color-brand-600)",
-  goldAccent:   "var(--color-brand-600)",
+  goldDark:     "var(--color-brand-500)",
+  goldAccent:   "var(--color-brand-500)",
   goldLight:    "var(--color-brand-50)",
   goldMid:      "var(--color-brand-400)",
   gradientGold: "var(--gradient-brand)",

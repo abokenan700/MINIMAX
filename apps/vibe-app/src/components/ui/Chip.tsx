@@ -7,7 +7,7 @@ const chipVariants = cva(
   [
     "inline-flex items-center gap-1 rounded-full font-medium select-none",
     "transition-[background-color,border-color,color] duration-150",
-    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
+    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
     "disabled:pointer-events-none disabled:opacity-40",
   ].join(" "),
   {
@@ -15,7 +15,7 @@ const chipVariants = cva(
       variant: {
         outline: "bg-transparent border border-[var(--border-warm)] text-[var(--text-secondary)] hover:bg-[var(--bg-surface-subtle)] hover:border-[var(--border-orange)] hover:text-[var(--text-brand)]",
         solid:   "[background:var(--gradient-brand)] text-white border border-transparent",
-        active:  "bg-[var(--color-brand-50)] border border-[var(--color-brand-600)] text-[var(--text-brand)]",
+        active:  "bg-[var(--color-brand-50)] border border-[var(--color-brand-500)] text-[var(--text-brand)]",
       },
       size: {
         xs: "h-6 px-2 text-[10px]",

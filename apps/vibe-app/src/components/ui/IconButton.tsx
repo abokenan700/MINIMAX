@@ -8,14 +8,14 @@ const iconButtonVariants = cva(
     "cursor-pointer select-none transition-[background-color,color,opacity,transform,box-shadow]",
     "disabled:pointer-events-none disabled:opacity-40",
     "active:scale-[0.94]",
-    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
+    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
   ].join(" "),
   {
     variants: {
       variant: {
-        ghost:          "bg-transparent text-[var(--text-secondary)] hover:bg-[var(--color-brand-50)] hover:text-[var(--color-brand-600)]",
-        outline:        "bg-transparent border border-[var(--border-warm)] text-[var(--text-secondary)] hover:bg-[var(--color-brand-50)] hover:border-[var(--border-orange)] hover:text-[var(--color-brand-600)]",
-        soft:           "bg-[var(--color-brand-50)] text-[var(--color-brand-600)] hover:bg-[var(--color-brand-100)]",
+        ghost:          "bg-transparent text-[var(--text-secondary)] hover:bg-[var(--color-brand-50)] hover:text-[var(--color-brand-500)]",
+        outline:        "bg-transparent border border-[var(--border-warm)] text-[var(--text-secondary)] hover:bg-[var(--color-brand-50)] hover:border-[var(--border-orange)] hover:text-[var(--color-brand-500)]",
+        soft:           "bg-[var(--color-brand-50)] text-[var(--color-brand-500)] hover:bg-[var(--color-brand-100)]",
         solid:          "[background:var(--gradient-brand)] text-white [box-shadow:var(--shadow-btn)] hover:opacity-90",
         "solid-gradient":"[background:var(--gradient-brand)] text-white [box-shadow:var(--shadow-btn)] hover:opacity-90",
         danger:         "bg-[var(--color-danger-50)] text-[var(--color-danger-600)] hover:bg-[var(--color-danger-600)] hover:text-white",

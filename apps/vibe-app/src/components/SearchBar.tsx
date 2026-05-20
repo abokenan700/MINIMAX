@@ -66,7 +66,7 @@ export function SearchBar({
           className="flex items-center gap-3 rounded-2xl px-4"
           style={{
             background: "var(--input-bg)",
-            border: "1px solid var(--color-brand-600)",
+            border: "1px solid var(--color-brand-500)",
             paddingTop: "7px",
             paddingBottom: "7px",
             boxShadow: focused ? "0 0 0 2.5px var(--color-brand-50)" : "none",
@@ -79,7 +79,7 @@ export function SearchBar({
             strokeWidth={1.8}
             className="flex-shrink-0"
             style={{
-              color: focused ? "var(--color-brand-600)" : "var(--text-muted)",
+              color: focused ? "var(--color-brand-500)" : "var(--text-muted)",
               transition: "color 0.18s ease",
             }}
           />

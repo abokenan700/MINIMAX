@@ -10,7 +10,7 @@ export const buttonVariants = cva(
     "transition-[background-color,border-color,color,opacity,transform,box-shadow]",
     "disabled:pointer-events-none disabled:opacity-40",
     "active:scale-[0.97]",
-    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
+    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
   ].join(" "),
   {
     variants: {
@@ -24,12 +24,12 @@ export const buttonVariants = cva(
 
         outline: [
           "bg-transparent text-[var(--text-brand)]",
-          "!border-[1.5px] !border-[var(--color-brand-600)]",
+          "!border-[1.5px] !border-[var(--color-brand-500)]",
           "hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
         ghost: [
-          "bg-transparent border-none text-[var(--color-brand-600)]",
+          "bg-transparent border-none text-[var(--color-brand-500)]",
           "rounded-full hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
@@ -42,7 +42,7 @@ export const buttonVariants = cva(
 
         "circle-success": [
           "rounded-full border-none text-white flex-shrink-0",
-          "[background:linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))]",
+          "[background:linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))]",
           "[box-shadow:var(--shadow-success)]",
         ].join(" "),
 

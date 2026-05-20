@@ -148,7 +148,7 @@ function LoyaltyCard({ points }: { points: number }) {
     "بلاتيني": "#A0A0A8",
     "ذهبي":    "#FFD700",
     "فضي":     "#C0C0C0",
-    "عضو":     "var(--color-brand-600)",
+    "عضو":     "var(--color-brand-500)",
   };
 
   return (
@@ -172,7 +172,7 @@ function LoyaltyCard({ points }: { points: number }) {
           <p style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "rgba(255,255,255,0.6)" }}>نقاط نخبة</p>
         </div>
         <div style={{ textAlign: "end" }}>
-          <span style={{ fontFamily: "var(--font-main)", fontSize: 26, fontWeight: 800, color: "var(--color-brand-600)", lineHeight: 1 }}>
+          <span style={{ fontFamily: "var(--font-main)", fontSize: 26, fontWeight: 800, color: "var(--color-brand-500)", lineHeight: 1 }}>
             {points.toLocaleString("ar-SA")}
           </span>
           <p style={{ fontSize: 10, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>نقطة</p>
@@ -189,7 +189,7 @@ function LoyaltyCard({ points }: { points: number }) {
             aria-label={`التقدم نحو المستوى التالي: ${Math.round(pct)}%`}
             style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.1)", overflow: "hidden", marginBottom: 5 }}
           >
-            <div style={{ height: "100%", width: `${pct}%`, borderRadius: 2, background: "linear-gradient(90deg,var(--color-brand-600),var(--color-brand-600))", transition: "width 0.6s" }} />
+            <div style={{ height: "100%", width: `${pct}%`, borderRadius: 2, background: "linear-gradient(90deg,var(--color-brand-500),var(--color-brand-500))", transition: "width 0.6s" }} />
           </div>
           <p style={{ fontSize: 10, color: "rgba(255,255,255,0.45)" }}>
             {(nextLevel - points).toLocaleString("ar-SA")} نقطة حتى المستوى التالي
@@ -233,13 +233,13 @@ function ReferralCard({ user }: { user: { name: string; email: string } }) {
   return (
     <div dir="rtl" style={{ margin: "10px 12px 0", borderRadius: 16, background: "linear-gradient(135deg,#1E1C1A,#2E2A24)", border: "1px solid rgba(192,168,130,0.3)", padding: "14px 16px" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
-        <Users size={15} style={{ color: "var(--color-brand-600)" }} />
+        <Users size={15} style={{ color: "var(--color-brand-500)" }} />
         <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "rgba(255,255,255,0.9)" }}>أحضر صديقاً واكسب 50 نقطة</span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.07)", border: "1px solid rgba(192,168,130,0.2)" }}>
-        <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, color: "var(--color-brand-600)", letterSpacing: 1.5 }}>{code}</span>
+        <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, color: "var(--color-brand-500)", letterSpacing: 1.5 }}>{code}</span>
         <button onClick={handleCopy}
-          style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8, border: "none", background: copied ? "#22C55E" : "var(--color-brand-600)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 11.5, fontWeight: 700, cursor: "pointer", transition: "background 0.2s" }}>
+          style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 12px", borderRadius: 8, border: "none", background: copied ? "#22C55E" : "var(--color-brand-500)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 11.5, fontWeight: 700, cursor: "pointer", transition: "background 0.2s" }}>
           <Copy size={12} />
           {copied ? "تم النسخ!" : "نسخ"}
         </button>
@@ -277,7 +277,7 @@ function DarkModeToggle() {
         </div>
       </div>
       <button onClick={toggle} role="switch" aria-checked={dark}
-        style={{ width: 48, height: 26, borderRadius: 13, background: dark ? "var(--color-brand-600)" : "var(--border)", border: "none", cursor: "pointer", position: "relative", transition: "background 0.3s", flexShrink: 0 }}>
+        style={{ width: 48, height: 26, borderRadius: 13, background: dark ? "var(--color-brand-500)" : "var(--border)", border: "none", cursor: "pointer", position: "relative", transition: "background 0.3s", flexShrink: 0 }}>
         <span style={{ position: "absolute", top: 3, insetInlineStart: dark ? 24 : 4, width: 20, height: 20, borderRadius: "50%", background: "#fff", boxShadow: "0 1px 4px rgba(0,0,0,0.2)", transition: "inset-inline-start 0.3s" }} />
       </button>
     </div>
@@ -372,7 +372,7 @@ export function AccountPage() {
               >
                 <div
                   className="w-16 h-16 rounded-full flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))" }}
+                  style={{ background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))" }}
                 >
                   <User size={30} color="#fff" strokeWidth={1.8} />
                 </div>
@@ -391,7 +391,7 @@ export function AccountPage() {
                   ].map(({ Icon, text }) => (
                     <div key={text} style={{ display: "flex", alignItems: "center", gap: 10 }}>
                       <div style={{ width: 32, height: 32, borderRadius: 10, background: "var(--color-brand-50)", border: "1px solid var(--border-orange)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                        <Icon size={15} style={{ color: "var(--color-brand-600)" }} strokeWidth={1.8} />
+                        <Icon size={15} style={{ color: "var(--color-brand-500)" }} strokeWidth={1.8} />
                       </div>
                       <span style={{ fontFamily: "var(--font-main)", fontSize: 12.5, color: "var(--text-secondary)" }}>{text}</span>
                     </div>
@@ -425,7 +425,7 @@ export function AccountPage() {
               >
                 <div
                   className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", border: "2px solid rgba(192,168,130,0.4)", overflow: "hidden" }}
+                  style={{ background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", border: "2px solid rgba(192,168,130,0.4)", overflow: "hidden" }}
                 >
                   {user.avatar
                     ? <img src={user.avatar} alt="صورة الملف الشخصي" style={{ width: "100%", height: "100%", objectFit: "cover" }} />

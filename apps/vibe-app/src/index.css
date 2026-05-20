@@ -446,7 +446,7 @@ html, body {
 .skip-link {
   position: absolute; inset-inline-start: 50%;
   transform: translateX(-50%); top: -100%; z-index: 9999;
-  background: var(--color-brand-600); color: #fff;
+  background: var(--color-brand-500); color: #fff;
   font-family: var(--font-text); font-size: 13px; font-weight: var(--font-weight-semibold);
   padding: var(--space-2) var(--space-4); border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   text-decoration: none; white-space: nowrap;
@@ -818,7 +818,7 @@ html, body {
 .category-active-dot {
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--color-brand-600);
+  background: var(--color-brand-500);
   position: absolute;
   bottom: 20px;
   left: 50%; transform: translateX(-50%);
@@ -922,7 +922,7 @@ html, body {
   font-family: var(--font-text);
   font-size: clamp(10px, 2.8vw, 11.5px);
   font-weight: var(--font-weight-bold);
-  color: var(--color-brand-600);
+  color: var(--color-brand-500);
   white-space: nowrap;
 }
 
@@ -1510,7 +1510,7 @@ html, body {
 .page-spinner {
   width: 28px; height: 28px; border-radius: 50%;
   border: 2.5px solid rgba(34,34,34,0.06);
-  border-top-color: var(--color-brand-600);
+  border-top-color: var(--color-brand-500);
   animation: spin 0.7s linear infinite;
 }
 

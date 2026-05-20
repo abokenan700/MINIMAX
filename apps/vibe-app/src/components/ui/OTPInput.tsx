@@ -107,8 +107,8 @@ export function OTPInput({ length = 6, value, onChange, disabled, error }: OTPIn
                 : "var(--input-bg-soft)",
               border: `2px solid ${
                 error      ? "var(--color-danger-600)"
-                : isFocused ? "var(--color-brand-600)"
-                : hasVal    ? "var(--color-brand-600)"
+                : isFocused ? "var(--color-brand-500)"
+                : hasVal    ? "var(--color-brand-500)"
                 : "#E8E4DE"
               }`,
               borderRadius: 12,

@@ -35,8 +35,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
               "w-5 h-5 rounded flex items-center justify-center flex-shrink-0",
               "border-2 border-[var(--border-input)] bg-white",
               "transition-[background-color,border-color] duration-150",
-              "peer-checked:bg-[var(--color-brand-600)] peer-checked:border-[var(--color-brand-600)]",
-              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-600)] peer-focus-visible:outline-offset-2",
+              "peer-checked:bg-[var(--color-brand-500)] peer-checked:border-[var(--color-brand-500)]",
+              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-500)] peer-focus-visible:outline-offset-2",
               "peer-focus-visible:[box-shadow:0_0_0_3px_var(--color-brand-50)]"
             )}
             aria-hidden="true"

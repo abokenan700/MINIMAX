@@ -59,7 +59,7 @@ function SortChips({
               flexShrink: 0,
               padding: "7px 14px",
               borderRadius: 30,
-              border: `1px solid ${active ? "var(--color-brand-600)" : "var(--border)"}`,
+              border: `1px solid ${active ? "var(--color-brand-500)" : "var(--border)"}`,
               background: active ? "var(--color-brand-50)" : "var(--bg-card)",
               fontFamily: "var(--font-main)",
               fontSize: 12,

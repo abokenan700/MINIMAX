@@ -38,7 +38,7 @@ export function ForYou() {
       <div style={{ paddingInline: 16, marginBottom: 12 }} dir="rtl">
         <SectionHeader
           title="مقترح لك"
-          icon={<Sparkles size={14} style={{ color: "var(--color-brand-600)" }} strokeWidth={2} />}
+          icon={<Sparkles size={14} style={{ color: "var(--color-brand-500)" }} strokeWidth={2} />}
           onViewAll={() => navigate("/search")}
         />
       </div>

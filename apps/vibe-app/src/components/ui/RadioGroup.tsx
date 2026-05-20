@@ -33,14 +33,14 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(
               "w-full h-full rounded-full border-2 border-[var(--border-input)] bg-white",
               "flex items-center justify-center",
               "transition-[border-color] duration-150",
-              "peer-checked:border-[var(--color-brand-600)]",
-              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-600)] peer-focus-visible:outline-offset-2"
+              "peer-checked:border-[var(--color-brand-500)]",
+              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-500)] peer-focus-visible:outline-offset-2"
             )}
             aria-hidden="true"
           >
             {checked && (
               <span
-                style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-brand-600)" }}
+                style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-brand-500)" }}
               />
             )}
           </span>

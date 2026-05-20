@@ -14,7 +14,7 @@ import { useWishlist } from "../context/WishlistContext";
 const RANK_STYLES = [
   { bg: "linear-gradient(135deg, #D4AF37, #B8960C)", text: "#fff" },
   { bg: "linear-gradient(135deg, #B0B0B0, #888888)", text: "#fff" },
-  { bg: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-700))", text: "#fff" },
+  { bg: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-700))", text: "#fff" },
 ];
 
 export function TrendingSection() {

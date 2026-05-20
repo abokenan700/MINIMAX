@@ -54,7 +54,7 @@ function RangeSlider({ min, max, valueMin, valueMax, onChange }: {
         <div style={{ position: "absolute", left: `${pctMin}%`, right: `${100 - pctMax}%`, height: "100%", background: "var(--gradient-brand)", borderRadius: 3 }} />
         {(["min","max"] as const).map((type) => (
           <div key={type}
-            style={{ position: "absolute", top: "50%", left: `${type === "min" ? pctMin : pctMax}%`, transform: "translate(-50%,-50%)", width: 20, height: 20, borderRadius: "50%", background: "#fff", border: "2.5px solid var(--color-brand-600)", cursor: "pointer", touchAction: "none", zIndex: 2 }}
+            style={{ position: "absolute", top: "50%", left: `${type === "min" ? pctMin : pctMax}%`, transform: "translate(-50%,-50%)", width: 20, height: 20, borderRadius: "50%", background: "#fff", border: "2.5px solid var(--color-brand-500)", cursor: "pointer", touchAction: "none", zIndex: 2 }}
             onPointerDown={(e) => {
               e.currentTarget.setPointerCapture(e.pointerId);
               e.currentTarget.onpointermove = (ev) => getValueFromEvent(ev as unknown as React.PointerEvent, type);
@@ -96,7 +96,7 @@ export function SortSheet({ activeSort, onSelect, onClose }: {
             <button key={key} onClick={() => { onSelect(key); onClose(); }}
               style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "13px 16px", background: key === activeSort ? "var(--color-brand-50)" : "transparent", border: "none", borderBottom: "1px solid var(--border)", cursor: "pointer" }}>
               <span style={{ fontFamily: "var(--font-main)", fontSize: 14, fontWeight: key === activeSort ? 700 : 400, color: key === activeSort ? "var(--text-brand)" : "var(--text-primary)" }}>{label}</span>
-              {key === activeSort && <Check size={16} style={{ color: "var(--color-brand-600)" }} />}
+              {key === activeSort && <Check size={16} style={{ color: "var(--color-brand-500)" }} />}
             </button>
           ))}
         </div>
@@ -176,7 +176,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
                 const active = local.brands.includes(b);
                 return (
                   <button key={b} onClick={() => toggleBrand(b)}
-                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12.5, letterSpacing: 0.5, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
+                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12.5, letterSpacing: 0.5, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
                     {b}
                   </button>
                 );
@@ -203,7 +203,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
                 const active = local.sizes.includes(s);
                 return (
                   <button key={s} onClick={() => toggleSize(s)}
-                    style={{ padding: "6px 14px", borderRadius: 8, border: `1.5px solid ${active ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", minWidth: 44, textAlign: "center" }}>
+                    style={{ padding: "6px 14px", borderRadius: 8, border: `1.5px solid ${active ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 500, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", minWidth: 44, textAlign: "center" }}>
                     {s}
                   </button>
                 );
@@ -220,7 +220,7 @@ export function FilterSheet({ filters, onApply, onClose }: {
                 return (
                   <button key={val}
                     onClick={() => setLocal((p) => ({ ...p, minDiscount: active ? null : val }))}
-                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 400, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
+                    style={{ padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 400, color: active ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
                     {label}
                   </button>
                 );
@@ -237,8 +237,8 @@ export function FilterSheet({ filters, onApply, onClose }: {
                 return (
                   <button key={r}
                     onClick={() => setLocal((p) => ({ ...p, minRating: active ? null : r }))}
-                    style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer" }}>
-                    <Star size={12} style={{ fill: "var(--color-brand-600)", stroke: "var(--color-brand-600)" }} />
+                    style={{ display: "flex", alignItems: "center", gap: 5, padding: "7px 14px", borderRadius: 20, border: `1.5px solid ${active ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: active ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer" }}>
+                    <Star size={12} style={{ fill: "var(--color-brand-500)", stroke: "var(--color-brand-500)" }} />
                     <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 400, color: active ? "var(--text-brand)" : "var(--text-secondary)" }}>{r}+ نجوم</span>
                   </button>
                 );
@@ -249,8 +249,8 @@ export function FilterSheet({ filters, onApply, onClose }: {
           {/* ─── New only ─────────────────────────────────────── */}
           <div style={{ marginBottom: 24 }}>
             <button onClick={() => setLocal((p) => ({ ...p, isNew: !p.isNew }))}
-              style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "12px 14px", borderRadius: 14, border: `1.5px solid ${local.isNew ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: local.isNew ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer" }}>
-              <div style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${local.isNew ? "var(--color-brand-600)" : "var(--border)"}`, background: local.isNew ? "var(--color-brand-600)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}>
+              style={{ display: "flex", alignItems: "center", gap: 10, width: "100%", padding: "12px 14px", borderRadius: 14, border: `1.5px solid ${local.isNew ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: local.isNew ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer" }}>
+              <div style={{ width: 22, height: 22, borderRadius: "50%", border: `2px solid ${local.isNew ? "var(--color-brand-500)" : "var(--border)"}`, background: local.isNew ? "var(--color-brand-500)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s" }}>
                 {local.isNew && <Check size={12} style={{ color: "#fff" }} />}
               </div>
               <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: local.isNew ? 700 : 400, color: local.isNew ? "var(--text-brand)" : "var(--text-primary)" }}>وصل حديثاً فقط</span>
@@ -311,7 +311,7 @@ export function ControlsBar({ count, sort, filters, viewMode, onSortOpen, onFilt
           {sort !== "default" ? sortLabel : "الترتيب"}
         </button>
         <button onClick={onFilterOpen}
-          style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 20, border: `1px solid ${filterCount > 0 ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: filterCount > 0 ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 600, color: filterCount > 0 ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
+          style={{ display: "flex", alignItems: "center", gap: 5, padding: "6px 12px", borderRadius: 20, border: `1px solid ${filterCount > 0 ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: filterCount > 0 ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 600, color: filterCount > 0 ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer" }}>
           <SlidersHorizontal size={12} strokeWidth={2} />
           فلترة {filterCount > 0 ? `(${filterCount})` : ""}
         </button>

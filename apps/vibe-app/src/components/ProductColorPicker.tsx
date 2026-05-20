@@ -27,7 +27,7 @@ export function ProductColorPicker({ colors, activeColor, onSelect }: ProductCol
               background: colorToCss(c),
               border: needsBorder(c) ? "1.5px solid #D0CBC4" : "none",
               cursor: "pointer",
-              outline: i === activeColor ? "2.5px solid var(--color-brand-600)" : "2.5px solid transparent",
+              outline: i === activeColor ? "2.5px solid var(--color-brand-500)" : "2.5px solid transparent",
               outlineOffset: 2,
               boxShadow: i === activeColor ? "0 0 0 1px rgba(192,168,130,0.4)" : "none",
               transition: "outline 0.15s, box-shadow 0.15s",

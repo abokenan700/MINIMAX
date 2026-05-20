@@ -498,7 +498,7 @@ export function AccountSheet() {
                     <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", userSelect: "none" }}>
                       <span style={{ position: "relative", width: 20, height: 20, flexShrink: 0 }}>
                         <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} aria-label="تذكّرني" style={{ position: "absolute", inset: 0, opacity: 0, width: "100%", height: "100%", margin: 0, cursor: "pointer" }} />
-                        <span aria-hidden="true" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 20, height: 20, borderRadius: 6, pointerEvents: "none", border: `2px solid ${remember ? "var(--color-brand-600)" : "#D1CBBC"}`, background: remember ? "var(--color-brand-600)" : "transparent", transition: "all 0.2s ease" }}>
+                        <span aria-hidden="true" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 20, height: 20, borderRadius: 6, pointerEvents: "none", border: `2px solid ${remember ? "var(--color-brand-500)" : "#D1CBBC"}`, background: remember ? "var(--color-brand-500)" : "transparent", transition: "all 0.2s ease" }}>
                           {remember && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900, lineHeight: 1 }}>✓</span>}
                         </span>
                       </span>

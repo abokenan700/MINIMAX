@@ -76,7 +76,7 @@ export function OrderSuccessPage() {
 
         <div style={{
           width: 100, height: 100, borderRadius: "50%",
-          background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))",
+          background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))",
           display: "flex", alignItems: "center", justifyContent: "center",
           marginBottom: 24,
           transform: show ? "scale(1)" : "scale(0)",

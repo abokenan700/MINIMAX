@@ -33,9 +33,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
           <span
             className={cn(
               "w-full h-full rounded-full",
-              "bg-[var(--bg-surface-subtle)] peer-checked:bg-[var(--color-brand-600)]",
+              "bg-[var(--bg-surface-subtle)] peer-checked:bg-[var(--color-brand-500)]",
               "transition-[background-color] duration-200 ease-out",
-              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-600)] peer-focus-visible:outline-offset-2"
+              "peer-focus-visible:outline-2 peer-focus-visible:outline-[var(--color-brand-500)] peer-focus-visible:outline-offset-2"
             )}
             aria-hidden="true"
           />

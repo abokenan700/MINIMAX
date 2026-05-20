@@ -142,7 +142,7 @@ export function BottomNav() {
                 aria-label={showBadge ? `${label} — ${count} عناصر` : label}
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => navigate(NAV_ROUTE[id])}
-                className="focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2"
+                className="focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2"
                 style={{
                   flex: 1, height: "100%",
                   display: "flex", flexDirection: "column",
@@ -159,7 +159,7 @@ export function BottomNav() {
                     style={{
                       position: "absolute", top: 3, left: "50%", x: "-50%",
                       width: 28, height: 3, borderRadius: 9999,
-                      background: "var(--color-brand-600)",
+                      background: "var(--color-brand-500)",
                       boxShadow: "0 1px 6px rgba(234,88,12,0.45)",
                     }}
                     transition={{ type: "spring", stiffness: 340, damping: 28 }}
@@ -180,7 +180,7 @@ export function BottomNav() {
                     }}
                     transition={{ type: "spring", stiffness: 420, damping: 30 }}
                   >
-                    <Icon size={21} strokeWidth={2.2} style={{ color: "var(--color-brand-600)" }} />
+                    <Icon size={21} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
                     {showBadge && (
                       <Badge
                         variant="count"
@@ -214,7 +214,7 @@ export function BottomNav() {
                 <span style={{
                   fontSize: 10,
                   fontFamily: "var(--font-text)",
-                  color: isActive ? "var(--color-brand-600)" : "var(--nav-inactive)",
+                  color: isActive ? "var(--color-brand-500)" : "var(--nav-inactive)",
                   fontWeight: isActive ? 700 : 500,
                   lineHeight: 1,
                   transition: "color var(--duration-base) var(--ease-out)",

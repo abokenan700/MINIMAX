@@ -20,7 +20,7 @@ export const Heart = forwardRef<HTMLButtonElement, HeartProps>(
         "inline-flex items-center justify-center",
         "cursor-pointer border-none bg-transparent p-0",
         "transition-[transform,opacity] duration-[220ms]",
-        "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
+        "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2",
         "disabled:pointer-events-none disabled:opacity-40",
         "active:scale-95",
         className

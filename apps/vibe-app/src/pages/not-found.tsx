@@ -78,7 +78,7 @@ export function NotFoundPage() {
           padding: "14px 32px",
           borderRadius: 14,
           border: "none",
-          background: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-600))",
+          background: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-500))",
           color: "#fff",
           fontFamily: "var(--font-main)",
           fontSize: 15,
