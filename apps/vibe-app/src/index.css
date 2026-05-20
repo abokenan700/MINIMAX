@@ -117,8 +117,8 @@
 
   /* ─── Typography Families ────────────────────────────────────────── */
   --font-display: 'Reem Kufi Fun', 'Reem Kufi', 'Tajawal', serif;
-  --font-text:    'IBM Plex Sans Arabic', 'Tajawal', system-ui, sans-serif;
-  --font-numeric: 'IBM Plex Sans Arabic', 'Tajawal', system-ui, sans-serif;
+  --font-text:    'Tajawal', system-ui, sans-serif;
+  --font-numeric: 'Tajawal', system-ui, sans-serif;
   --font-main:    var(--font-text);   /* backward-compat alias */
 
   /* ─── Type Scale — modular ratio 1.125 minor third ──────────────────
