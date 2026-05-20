@@ -411,7 +411,7 @@ function ReviewsSection({ product }: { product: Product }) {
 
   const { data: reviews = [], isLoading } = useQuery<Review[]>({
     queryKey: ["reviews", product.id],
-    queryFn:  () => fetch(`${API_BASE}/products/${product.id}/reviews`).then(r => r.json()),
+    queryFn:  () => fetch(`${API_BASE}/products/${product.id}/reviews`).then(r => r.json()).then(d => Array.isArray(d) ? d : []),
     staleTime: 60_000,
   });
 
