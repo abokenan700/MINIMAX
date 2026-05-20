@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { useCountdown } from "../hooks/useCountdown";
-import { Zap } from "lucide-react";
+import { Flame } from "lucide-react";
 import { useLocation } from "wouter";
 
 const FLASH_SESSION_KEY = "nakhba_flash_end_ms";
@@ -49,7 +49,7 @@ export function FlashSaleStrip() {
       {/* Left: label */}
       <div className="flex items-center gap-2 flex-1 min-w-0">
         <div className="flash-icon-wrap">
-          <Zap size={13} strokeWidth={2.5} className="fill-white stroke-white" />
+          <Flame size={14} strokeWidth={2.5} className="fill-white stroke-white" />
         </div>
         <div className="flex flex-col leading-none gap-0.5">
           <span className="flash-title">عروض</span>
@@ -59,7 +59,7 @@ export function FlashSaleStrip() {
 
       {/* Center: countdown */}
       <div className="flex items-center gap-1.5">
-        <span className="flash-ends-label">ينتهي خلال</span>
+        <span className="flash-ends-label">ينتهي</span>
         <FlashCountdown />
       </div>
 
