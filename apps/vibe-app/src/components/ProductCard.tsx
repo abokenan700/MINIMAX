@@ -171,11 +171,6 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
           {product.name}
         </p>
 
-        {/* Stock tag */}
-        {isLow && !isOOS && (
-          <Tag tone="warning" size="xs">تبقّى {stock} فقط</Tag>
-        )}
-
         {/* Rating + Sales */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
