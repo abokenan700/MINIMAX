@@ -116,10 +116,10 @@
   --gradient-surface-warm: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
 
   /* ─── Typography Families ────────────────────────────────────────── */
-  --font-display: 'Reem Kufi Fun', 'Reem Kufi', 'Tajawal', serif;
+  --font-display: 'Tajawal', system-ui, sans-serif;
   --font-text:    'Tajawal', system-ui, sans-serif;
   --font-numeric: 'Tajawal', system-ui, sans-serif;
-  --font-main:    var(--font-text);   /* backward-compat alias */
+  --font-main:    'Tajawal', system-ui, sans-serif;
 
   /* ─── Type Scale — modular ratio 1.125 minor third ──────────────────
      Base 14px @360vw → 16px @430vw. Viewport anchored, not vw-only.
