@@ -116,15 +116,11 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
           aria-label="نظرة سريعة"
           style={{
             position: "absolute", bottom: 6, insetInlineStart: 6,
-            width: 28, height: 28,
             display: "flex", alignItems: "center", justifyContent: "center",
-            borderRadius: "50%", border: "none",
-            background: "rgba(255,255,255,0.88)",
-            backdropFilter: "blur(6px)", WebkitBackdropFilter: "blur(6px)",
+            border: "none", background: "transparent",
             color: "var(--text-primary)", cursor: "pointer",
-            boxShadow: "var(--elev-2)",
+            padding: 0, flexShrink: 0,
             transition: "opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out)",
-            flexShrink: 0,
           }}
         >
           <Eye size={13} strokeWidth={2} />

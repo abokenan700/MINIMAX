@@ -17,10 +17,8 @@ export const Heart = forwardRef<HTMLButtonElement, HeartProps>(
       aria-label={pressed ? "إزالة من المفضلة" : "إضافة للمفضلة"}
       onClick={onClick}
       className={cn(
-        "inline-flex items-center justify-center rounded-full",
-        "w-7 h-7 min-w-7 min-h-7 cursor-pointer",
-        "bg-[rgba(255,255,255,0.88)] backdrop-blur-sm border-none",
-        "[box-shadow:0_2px_8px_rgba(0,0,0,0.12)]",
+        "inline-flex items-center justify-center",
+        "cursor-pointer border-none bg-transparent p-0",
         "transition-[transform,opacity] duration-[220ms]",
         "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
         "disabled:pointer-events-none disabled:opacity-40",
