@@ -1,55 +1,55 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════════════════════════════
-   نخبة — Visual Identity System v3.0
-   Brand: #EA580C (brand-600)  ·  Surface: #FBFAF8 (neutral-25)
-   Typefaces: Reem Kufi Fun (display) · IBM Plex Sans Arabic (text/UI)
+   نخبة — Visual Identity System v4.0
+   Primary: #E8674A  ·  Secondary: #222222
+   Background: #F7F3EE  ·  Surface: #FFFFFF
+   Soft Accent: #F3B29D  ·  Text Muted: #6B6B6B
+   Typefaces: Tajawal
    Grid: 4-pt geometric base
    ═══════════════════════════════════════════════════════════════════ */
 
 :root {
 
-  /* ─── Brand Scale — 10-step orange ramp ─────────────────────────
-     All light-mode text-on-brand or brand-on-white must use ≥600
-     for WCAG AA (4.5:1 body, 3:1 large).
+  /* ─── Brand Scale — coral-terracotta ramp ────────────────────────
+     Primary #E8674A sits at brand-500 (default actionable).
+     brand-600 is the pressed/dark variant.
   ─────────────────────────────────────────────────────────────────── */
-  --color-brand-50:  #FFF7ED;   /* tints, soft backgrounds */
-  --color-brand-100: #FFEDD5;   /* hover surfaces */
-  --color-brand-200: #FED7AA;   /* decorative */
-  --color-brand-300: #FDBA74;   /* glow particles, swatch accents */
-  --color-brand-400: #FB923C;   /* hover state of default */
-  --color-brand-500: #F97316;   /* legacy primary — prefer 600 */
-  --color-brand-600: #EA580C;   /* DEFAULT actionable — 4.6:1 on white */
-  --color-brand-700: #C2410C;   /* pressed, dark variant */
-  --color-brand-800: #9A3412;   /* text on tinted bg */
-  --color-brand-900: #7C2D12;   /* deep emphasis */
+  --color-brand-50:  #FEF2EE;   /* blush tint, soft backgrounds */
+  --color-brand-100: #FDDFD6;   /* hover surfaces */
+  --color-brand-200: #FAC4B2;   /* decorative */
+  --color-brand-300: #F3B29D;   /* Soft Accent — glow, swatch accents */
+  --color-brand-400: #EE8A6A;   /* hover state of default */
+  --color-brand-500: #E8674A;   /* PRIMARY — default actionable */
+  --color-brand-600: #D4503A;   /* pressed, dark variant */
+  --color-brand-700: #B84030;   /* strong emphasis */
+  --color-brand-800: #923226;   /* text on tinted bg */
+  --color-brand-900: #6E241B;   /* deep emphasis */
 
-  --color-brand-default: var(--color-brand-600);
+  --color-brand-default: var(--color-brand-500);
 
-  /* ─── Neutral Scale — warm-champagne bias ────────────────────────
-     Bias toward warm neutral (champagne) for luxury fashion signal.
+  /* ─── Neutral Scale — warm linen bias ───────────────────────────
+     Anchored to Background #F7F3EE (neutral-25) and Secondary #222222.
   ─────────────────────────────────────────────────────────────────── */
-  --color-neutral-0:   #FFFFFF;
-  --color-neutral-25:  #FBFAF8;   /* page background */
-  --color-neutral-50:  #F6F4F0;   /* surface-subtle, hover */
-  --color-neutral-100: #EDEAE3;   /* dividers */
-  --color-neutral-200: #DCD7CC;   /* borders */
-  --color-neutral-300: #BFB8A8;   /* placeholder text */
-  --color-neutral-400: #948C7C;   /* muted text — 3.4:1 on white (large ok) */
-  --color-neutral-500: #6A6256;   /* tertiary text — 5.1:1 AA */
-  --color-neutral-600: #4A443B;   /* secondary text — 8.2:1 AAA */
-  --color-neutral-700: #2E2A24;   /* emphasis text */
-  --color-neutral-900: #0E0C09;   /* primary text — 19:1 AAA */
+  --color-neutral-0:   #FFFFFF;   /* Surface */
+  --color-neutral-25:  #F7F3EE;   /* Background — page bg */
+  --color-neutral-50:  #EDE8E1;   /* surface-subtle, hover */
+  --color-neutral-100: #E0D9D0;   /* dividers */
+  --color-neutral-200: #CAC2B8;   /* borders */
+  --color-neutral-300: #AEA59A;   /* placeholder text */
+  --color-neutral-400: #8C8480;   /* muted — large text ok */
+  --color-neutral-500: #6B6B6B;   /* Text Muted — tertiary text */
+  --color-neutral-600: #4A4A4A;   /* secondary text */
+  --color-neutral-700: #333333;   /* emphasis text */
+  --color-neutral-900: #222222;   /* Secondary — primary text */
 
-  /* ─── Deep Luxury Ink ────────────────────────────────────────────
-     Replaces pure-black in CTAs, sticky bars, editorial type.
-     Leather-bound warmth vs. cold pure #000.
+  /* ─── Secondary / Ink ────────────────────────────────────────────
+     Deep charcoal — CTAs, sticky bars, editorial type.
   ─────────────────────────────────────────────────────────────────── */
-  --color-ink-luxury: #1A1410;
+  --color-ink-luxury: #222222;
 
   /* ─── Accent Bronze — ultra-luxury moments only ──────────────────
      Loyalty badges, gift wrap, premium seller mark.
-     STRICTLY FORBIDDEN as a primary action color.
   ─────────────────────────────────────────────────────────────────── */
   --color-accent-bronze: #B8763E;
 
@@ -58,62 +58,58 @@
   ─────────────────────────────────────────────────────────────────── */
   --tier-silver: #C0BCB1;
   --tier-gold:   #C49E5C;
-  --tier-onyx:   #1A1410;
+  --tier-onyx:   #222222;
 
-  /* ─── Feedback Tokens — semantic naming ──────────────────────────
-     Named by meaning, not by feeling.
-  ─────────────────────────────────────────────────────────────────── */
-  --color-success-600: #16A34A;   /* 4.5:1 on white AA */
+  /* ─── Feedback Tokens ────────────────────────────────────────────── */
+  --color-success-600: #16A34A;
   --color-success-50:  #ECFDF3;
-  --color-danger-600:  #DC2626;   /* 4.5:1 on white AA */
+  --color-danger-600:  #DC2626;
   --color-danger-50:   #FEF2F2;
-  --color-warning-600: #B45309;   /* 4.5:1 on white AA — amber-distinct from brand orange */
+  --color-warning-600: #B45309;
   --color-warning-50:  #FFFBEB;
   --color-info-600:    #1D4ED8;
   --color-info-50:     #EFF6FF;
 
   /* ─── Focus Ring ────────────────────────────────────────────────── */
-  --color-focus-ring: rgba(234, 88, 12, 0.45);
+  --color-focus-ring: rgba(232, 103, 74, 0.45);
 
-  /* ─── Semantic Surface Tokens (light mode) ───────────────────────
-     Map from primitive neutral scale above.
-  ─────────────────────────────────────────────────────────────────── */
+  /* ─── Semantic Surface Tokens (light mode) ───────────────────────── */
   --bg-body:           var(--color-neutral-0);
-  --bg-page:           var(--color-neutral-25);   /* #FBFAF8 */
+  --bg-page:           var(--color-neutral-25);   /* #F7F3EE */
   --bg-card:           var(--color-neutral-0);
   --bg-surface-warm:   var(--color-neutral-25);
-  --bg-surface-subtle: var(--color-neutral-50);   /* #F6F4F0 */
+  --bg-surface-subtle: var(--color-neutral-50);   /* #EDE8E1 */
   --bg-hover:          var(--color-neutral-50);
 
-  /* ─── Card Tokens ────────────────────────────────────────────────── */
+  /* ─── Card Tokens ─────────────────────────────────────────────────── */
   --card-bg:     var(--color-neutral-0);
-  --card-border: rgba(14, 12, 9, 0.08);           /* warm-tinted hairline */
+  --card-border: rgba(34, 34, 34, 0.08);
   --card-img-bg: var(--color-neutral-50);
 
-  /* ─── Input Tokens ───────────────────────────────────────────────── */
+  /* ─── Input Tokens ────────────────────────────────────────────────── */
   --input-bg:           var(--color-neutral-0);
   --input-bg-soft:      var(--color-neutral-25);
-  --input-border:       rgba(14, 12, 9, 0.14);
-  --input-border-focus: var(--color-brand-600);
+  --input-border:       rgba(34, 34, 34, 0.14);
+  --input-border-focus: var(--color-brand-500);
 
-  /* ─── Border Tokens ──────────────────────────────────────────────── */
-  --border:            rgba(14, 12, 9, 0.08);
-  --border-warm:       rgba(14, 12, 9, 0.10);
-  --border-separator:  rgba(14, 12, 9, 0.06);
-  --border-orange:     rgba(234, 88, 12, 0.22);
+  /* ─── Border Tokens ───────────────────────────────────────────────── */
+  --border:            rgba(34, 34, 34, 0.08);
+  --border-warm:       rgba(34, 34, 34, 0.10);
+  --border-separator:  rgba(34, 34, 34, 0.06);
+  --border-brand:      rgba(232, 103, 74, 0.22);
 
-  /* ─── Text Hierarchy ─────────────────────────────────────────────── */
-  --text-primary:     var(--color-neutral-900);   /* #0E0C09 — 19:1 AAA */
-  --text-secondary:   var(--color-neutral-600);   /* #4A443B — 8.2:1 AAA */
-  --text-tertiary:    var(--color-neutral-500);   /* #6A6256 — 5.1:1 AA */
-  --text-muted:       var(--color-neutral-400);   /* #948C7C — 3.4:1 large ok */
-  --text-placeholder: var(--color-neutral-300);   /* #BFB8A8 */
-  --text-brand:       var(--color-brand-600);     /* #EA580C — replaces --text-brand #F97316 */
+  /* ─── Text Hierarchy ──────────────────────────────────────────────── */
+  --text-primary:     var(--color-neutral-900);   /* #222222 */
+  --text-secondary:   var(--color-neutral-600);   /* #4A4A4A */
+  --text-tertiary:    var(--color-neutral-500);   /* #6B6B6B */
+  --text-muted:       var(--color-neutral-400);   /* #8C8480 */
+  --text-placeholder: var(--color-neutral-300);   /* #AEA59A */
+  --text-brand:       var(--color-brand-500);     /* #E8674A */
 
-  /* ─── Gradient System — 3 canonical definitions ──────────────────── */
-  --gradient-brand:        linear-gradient(135deg, #F97316 0%, #EA580C 100%);
-  --gradient-brand-hover:  linear-gradient(135deg, #FB923C 0%, #F97316 100%);
-  --gradient-surface-warm: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+  /* ─── Gradient System ─────────────────────────────────────────────── */
+  --gradient-brand:        linear-gradient(135deg, #EE8A6A 0%, #E8674A 100%);
+  --gradient-brand-hover:  linear-gradient(135deg, #F3B29D 0%, #EE8A6A 100%);
+  --gradient-surface-warm: linear-gradient(135deg, #FEF2EE 0%, #FDDFD6 100%);
 
   /* ─── Typography Families ────────────────────────────────────────── */
   --font-display: 'Tajawal', system-ui, sans-serif;
@@ -201,7 +197,7 @@
   --z-toast:      400;
 
   /* ─── Navigation ─────────────────────────────────────────────────── */
-  --nav-bg:       #F5EDE0;
+  --nav-bg:       #EDE8E1;
   --nav-inactive: var(--text-muted);
   --nav-badge-bg: var(--color-danger-600);
 
@@ -210,15 +206,15 @@
 
   /* ─── Elevation Ladder — neutral surfaces only ───────────────────── */
   --elev-0: none;
-  --elev-1: 0 1px 2px rgba(14,12,9,0.05);
-  --elev-2: 0 2px 4px rgba(14,12,9,0.06), 0 1px 2px rgba(14,12,9,0.04);
-  --elev-3: 0 4px 8px rgba(14,12,9,0.06), 0 2px 4px rgba(14,12,9,0.04);
-  --elev-4: 0 8px 16px rgba(14,12,9,0.08), 0 4px 8px rgba(14,12,9,0.05);
-  --elev-5: 0 16px 32px rgba(14,12,9,0.10), 0 6px 12px rgba(14,12,9,0.06);
-  --elev-6: 0 24px 64px rgba(14,12,9,0.14), 0 8px 16px rgba(14,12,9,0.08);
+  --elev-1: 0 1px 2px rgba(34,34,34,0.05);
+  --elev-2: 0 2px 4px rgba(34,34,34,0.06), 0 1px 2px rgba(34,34,34,0.04);
+  --elev-3: 0 4px 8px rgba(34,34,34,0.06), 0 2px 4px rgba(34,34,34,0.04);
+  --elev-4: 0 8px 16px rgba(34,34,34,0.08), 0 4px 8px rgba(34,34,34,0.05);
+  --elev-5: 0 16px 32px rgba(34,34,34,0.10), 0 6px 12px rgba(34,34,34,0.06);
+  --elev-6: 0 24px 64px rgba(34,34,34,0.14), 0 8px 16px rgba(34,34,34,0.08);
 
   /* ─── Brand Glow — primary CTAs and brand highlights only ───────── */
-  --glow-brand-sm: 0 2px 6px rgba(234,88,12,0.22);
+  --glow-brand-sm: 0 2px 6px rgba(232,103,74,0.22);
 
   /* ─── Legacy shadow aliases → new elevation ladder ──────────────── */
   --shadow-xs:      var(--elev-1);
@@ -228,12 +224,12 @@
   --shadow-xl:      var(--elev-5);
   --shadow-feature: var(--elev-3);
   --shadow-card:    var(--elev-2);
-  --shadow-sheet:   0 -2px 8px rgba(14,12,9,0.04), 0 -8px 32px rgba(14,12,9,0.08);
-  --shadow-sticky:  0 -1px 0 rgba(14,12,9,0.06), 0 -4px 16px rgba(14,12,9,0.06);
-  --shadow-btn:          0 2px 4px rgba(234,88,12,0.22), 0 6px 16px rgba(234,88,12,0.28);
-  --shadow-btn-hover:    0 4px 8px rgba(234,88,12,0.30), 0 8px 20px rgba(234,88,12,0.36);
-  --shadow-success:      0 2px 8px rgba(234,88,12,0.26), 0 4px 12px rgba(234,88,12,0.18);
-  --shadow-glow:         0 0 24px rgba(234,88,12,0.25);
+  --shadow-sheet:   0 -2px 8px rgba(34,34,34,0.04), 0 -8px 32px rgba(34,34,34,0.08);
+  --shadow-sticky:  0 -1px 0 rgba(34,34,34,0.06), 0 -4px 16px rgba(34,34,34,0.06);
+  --shadow-btn:          0 2px 4px rgba(232,103,74,0.22), 0 6px 16px rgba(232,103,74,0.28);
+  --shadow-btn-hover:    0 4px 8px rgba(232,103,74,0.30), 0 8px 20px rgba(232,103,74,0.36);
+  --shadow-success:      0 2px 8px rgba(232,103,74,0.26), 0 4px 12px rgba(232,103,74,0.18);
+  --shadow-glow:         0 0 24px rgba(232,103,74,0.25);
 
   /* ─── Motion System ──────────────────────────────────────────────── */
   --duration-fast:   0.14s;
@@ -303,9 +299,9 @@
     --elev-6: 0 24px 64px rgba(0,0,0,0.62), 0 8px 16px rgba(0,0,0,0.44);
     --shadow-sheet:  0 -2px 8px rgba(0,0,0,0.40), 0 -8px 32px rgba(0,0,0,0.55);
     --shadow-sticky: 0 -1px 0 rgba(255,255,255,0.04), 0 -4px 16px rgba(0,0,0,0.45);
-    --shadow-btn:         0 2px 4px rgba(234,88,12,0.28), 0 6px 16px rgba(234,88,12,0.36);
-    --shadow-btn-hover:   0 4px 8px rgba(234,88,12,0.36), 0 8px 20px rgba(234,88,12,0.46);
-    --glow-brand-sm:      0 2px 6px rgba(234,88,12,0.36);
+    --shadow-btn:         0 2px 4px rgba(232,103,74,0.28), 0 6px 16px rgba(232,103,74,0.36);
+    --shadow-btn-hover:   0 4px 8px rgba(232,103,74,0.36), 0 8px 20px rgba(232,103,74,0.46);
+    --glow-brand-sm:      0 2px 6px rgba(232,103,74,0.36);
   }
   .bg-white { background-color: var(--bg-card) !important; }
 }
@@ -496,14 +492,14 @@ html, body {
 .scale-in { animation: scaleIn var(--duration-fast) var(--ease-spring) both; }
 
 @keyframes newBadgePulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,0.30); }
-  50%       { box-shadow: 0 0 0 5px rgba(234,88,12,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,103,74,0.30); }
+  50%       { box-shadow: 0 0 0 5px rgba(232,103,74,0); }
 }
 .new-badge-pulse { animation: newBadgePulse 2.4s ease-in-out infinite; }
 
 @keyframes accentPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(234,88,12,0.30); }
-  50%       { box-shadow: 0 0 0 5px rgba(234,88,12,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,103,74,0.30); }
+  50%       { box-shadow: 0 0 0 5px rgba(232,103,74,0); }
 }
 .accent-badge-pulse { animation: accentPulse 2.4s ease-in-out infinite; }
 
@@ -701,7 +697,7 @@ html, body {
   border-radius: 3px;
   background: var(--gradient-brand);
   flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(234,88,12,0.30);
+  box-shadow: 0 2px 6px rgba(232,103,74,0.30);
 }
 
 .section-header-title {
@@ -741,7 +737,7 @@ html, body {
   padding: var(--space-1) 0 var(--space-1) var(--space-1);
   min-height: 40px;   /* ≥40px hit target */
   opacity: 0.9;
-  border-bottom: 1px dashed rgba(234,88,12,0.35);
+  border-bottom: 1px dashed rgba(232,103,74,0.35);
   transition: opacity 0.15s;
 }
 .view-all-btn:hover { opacity: 1; }
@@ -826,7 +822,7 @@ html, body {
   position: absolute;
   bottom: 20px;
   left: 50%; transform: translateX(-50%);
-  box-shadow: 0 0 6px rgba(234,88,12,0.5);
+  box-shadow: 0 0 6px rgba(232,103,74,0.5);
 }
 
 .category-label {
@@ -849,8 +845,8 @@ html, body {
   padding: 5px 10px;
   margin: 0 2px;
   border-radius: 12px;
-  background: linear-gradient(110deg, #EA580C 0%, #f97316 45%, #fb923c 100%);
-  box-shadow: 0 6px 28px rgba(234,88,12,0.28), 0 2px 8px rgba(0,0,0,0.10);
+  background: linear-gradient(110deg, #E8674A 0%, #EE8A6A 45%, #F3B29D 100%);
+  box-shadow: 0 6px 28px rgba(232,103,74,0.28), 0 2px 8px rgba(0,0,0,0.10);
   overflow: hidden;
   cursor: pointer;
   user-select: none;
@@ -988,7 +984,7 @@ html, body {
   position: absolute;
   top: var(--space-2); right: var(--space-3);
   z-index: 10;
-  background: rgba(234,88,12,0.92);
+  background: rgba(232,103,74,0.92);
   border: 1px solid rgba(255,255,255,0.30);
   border-radius: var(--radius-pill);
   padding: var(--space-1) var(--space-3);
@@ -1043,12 +1039,12 @@ html, body {
   font-family: var(--font-text);
   font-size: clamp(11px, 3vw, 13px);
   font-weight: var(--font-weight-bold);
-  box-shadow: 0 3px 12px rgba(234,88,12,0.45), 0 1px 3px rgba(0,0,0,0.25);
+  box-shadow: 0 3px 12px rgba(232,103,74,0.45), 0 1px 3px rgba(0,0,0,0.25);
   transition: transform 0.15s var(--ease-spring), box-shadow 0.15s;
   white-space: nowrap;
   min-height: 40px;   /* ≥40px hit target */
 }
-.banner-cta-btn:hover  { transform: scale(1.04); box-shadow: 0 5px 16px rgba(234,88,12,0.55); }
+.banner-cta-btn:hover  { transform: scale(1.04); box-shadow: 0 5px 16px rgba(232,103,74,0.55); }
 .banner-cta-btn:active { transform: scale(0.96); }
 
 .banner-dots {
@@ -1142,8 +1138,8 @@ html, body {
 .mid-promo-icon-wrap {
   width: 44px; height: 44px;
   border-radius: var(--space-3);
-  background: rgba(234,88,12,0.20);
-  border: 1px solid rgba(234,88,12,0.30);
+  background: rgba(232,103,74,0.20);
+  border: 1px solid rgba(232,103,74,0.30);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
@@ -1188,7 +1184,7 @@ html, body {
   flex-shrink: 0;
   overflow: hidden;
   background: var(--card-bg);
-  border: 1px solid rgba(234,88,12,0.15);
+  border: 1px solid rgba(232,103,74,0.15);
   border-radius: var(--radius-card);
   box-shadow: var(--elev-2);
   cursor: pointer;
@@ -1219,7 +1215,7 @@ html, body {
   border-radius: var(--radius-pill);
   padding: var(--space-1) var(--space-2);
   z-index: 2;
-  box-shadow: 0 2px 6px rgba(234,88,12,0.35);
+  box-shadow: 0 2px 6px rgba(232,103,74,0.35);
   line-height: var(--leading-snug);
   font-variant-numeric: tabular-nums;
 }
@@ -1471,7 +1467,7 @@ html, body {
   color: var(--color-brand-700);
   border-radius: var(--radius-pill);
   padding: 2.5px var(--space-2);
-  border: 1px solid rgba(234,88,12,0.15);
+  border: 1px solid rgba(232,103,74,0.15);
   font-variant-numeric: tabular-nums;
 }
 
@@ -1513,7 +1509,7 @@ html, body {
 /* ─── Page Spinner ───────────────────────────────────────────────── */
 .page-spinner {
   width: 28px; height: 28px; border-radius: 50%;
-  border: 2.5px solid rgba(14,12,9,0.06);
+  border: 2.5px solid rgba(34,34,34,0.06);
   border-top-color: var(--color-brand-600);
   animation: spin 0.7s linear infinite;
 }
@@ -1551,13 +1547,13 @@ html, body {
   font-weight: var(--font-weight-bold);
   background: var(--color-brand-50);
   color: var(--color-brand-700);
-  border: 1px solid rgba(234,88,12,0.18);
+  border: 1px solid rgba(232,103,74,0.18);
   font-variant-numeric: tabular-nums;
 }
 
 /* ─── Dividers ───────────────────────────────────────────────────── */
 .gold-divider   { height: 1px; background: var(--border-separator); }
-.accent-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(234,88,12,0.20), transparent); }
+.accent-divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(232,103,74,0.20), transparent); }
 
 /* ─── Dark Mode Toggle Knob ──────────────────────────────────────── */
 [role="switch"] span {
