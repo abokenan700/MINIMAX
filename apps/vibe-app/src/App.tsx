@@ -11,7 +11,6 @@ import { TopRated } from "./components/TopRated";
 import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
 import { NewArrivals } from "./components/NewArrivals";
-import { RecentlyViewed } from "./components/RecentlyViewed";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
 import { AccountSheetProvider } from "./context/AccountSheetContext";
@@ -276,12 +275,6 @@ function HomePage() {
       <SectionDivider />
       <RevealSection delay={40}>
         <TopRated />
-      </RevealSection>
-
-      {/* ⑬ Recently viewed */}
-      <SectionDivider />
-      <RevealSection delay={40}>
-        <RecentlyViewed />
       </RevealSection>
 
       {/* ⑭ For You (personalized) */}
