@@ -258,35 +258,6 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
           {viewers} يشاهدون الآن
         </p>
 
-        {/* Stock heat gauge */}
-        {remaining !== null && (
-          <div className="deal-card-heat-wrap" dir="rtl">
-            <span className="deal-card-heat-label" style={{ color: remaining <= 3 ? "var(--color-danger-600)" : "var(--text-muted)" }}>
-              {remaining <= 3 ? <Zap size={9} className="inline -mt-0.5" /> : "●"} {remaining}
-            </span>
-            <div className="deal-card-heat-bars">
-              {Array.from({ length: 6 }).map((_, i) => {
-                const filled = i < remaining;
-                const low    = remaining <= 3;
-                return (
-                  <span
-                    key={i}
-                    className={`deal-card-heat-bar${filled && low ? " deal-card-heat-bar--pulse" : ""}`}
-                    style={{
-                      height: `${6 + i * 2}px`,
-                      background: filled
-                        ? low
-                          ? `rgba(220,38,38,${0.55 + i * 0.08})`
-                          : `rgba(234,88,12,${0.40 + i * 0.10})`
-                        : "rgba(0,0,0,0.08)",
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </div>
-        )}
-
         {/* Price + discount + cart */}
         <div className="deal-card-bottom-row" onClick={(e) => e.stopPropagation()}>
           <div className="flex flex-col leading-none gap-0.5">

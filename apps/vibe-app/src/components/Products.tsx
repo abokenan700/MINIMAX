@@ -20,12 +20,12 @@ export function Products() {
           <div className="flex gap-2.5 px-1.5" style={{ width: "max-content" }}>
             {isLoading
               ? Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="flex-shrink-0" style={{ width: "clamp(112px, 30vw, 138px)" }}>
+                  <div key={i} className="flex-shrink-0" style={{ width: "clamp(138px, 36vw, 162px)" }}>
                     <ProductCardSkeleton />
                   </div>
                 ))
               : products.map((p) => (
-                  <div key={p.id} className="flex-shrink-0" style={{ width: "clamp(112px, 30vw, 138px)" }}>
+                  <div key={p.id} className="flex-shrink-0" style={{ width: "clamp(138px, 36vw, 162px)" }}>
                     <ProductCard product={p} layout="horizontal" density="compact" />
                   </div>
                 ))}
