@@ -52,7 +52,7 @@ export function FlashSaleStrip() {
           <Zap size={13} strokeWidth={2.5} className="fill-white stroke-white" />
         </div>
         <div className="flex flex-col leading-none gap-0.5">
-          <span className="flash-title">عرض خاطف</span>
+          <span className="flash-title">عروض</span>
           <span className="flash-subtitle">أسعار لن تتكرر</span>
         </div>
       </div>
