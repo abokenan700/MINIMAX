@@ -88,7 +88,7 @@ export function NotificationsPage() {
           { key: "unread" as const, label: `غير مقروءة (${unreadCount})` },
         ].map(({ key, label }) => (
           <button key={key} onClick={() => setFilter(key)}
-            style={{ padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 600, background: filter === key ? "var(--gradient-cta)" : "var(--bg-subtle)", color: filter === key ? "#fff" : "var(--text-secondary)", transition: "background 0.2s", boxShadow: filter === key ? "var(--shadow-btn)" : "none" }}>
+            style={{ padding: "7px 14px", borderRadius: 20, border: "none", cursor: "pointer", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 600, background: filter === key ? "var(--gradient-brand)" : "var(--bg-surface-subtle)", color: filter === key ? "#fff" : "var(--text-secondary)", transition: "background 0.2s", boxShadow: filter === key ? "var(--shadow-btn)" : "none" }}>
             {label}
           </button>
         ))}
@@ -100,7 +100,7 @@ export function NotificationsPage() {
             <Bell size={48} style={{ color: "#D4CFC9" }} strokeWidth={1.2} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 15, color: "var(--text-muted)" }}>سجّل دخولك لعرض الإشعارات</p>
             <button onClick={() => openSheet()}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               تسجيل الدخول
             </button>
           </div>
@@ -128,7 +128,7 @@ export function NotificationsPage() {
             return (
               <button key={n.id}
                 onClick={() => { if (!isRead) markReadMutation.mutate(n.id); }}
-                style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "14px 16px", width: "100%", background: isRead ? "var(--bg-card)" : "var(--gold-pale)", border: "none", borderBottom: "1px solid var(--border)", cursor: "pointer", textAlign: "start", transition: "background 0.2s" }}
+                style={{ display: "flex", alignItems: "flex-start", gap: 12, padding: "14px 16px", width: "100%", background: isRead ? "var(--bg-card)" : "var(--color-brand-50)", border: "none", borderBottom: "1px solid var(--border)", cursor: "pointer", textAlign: "start", transition: "background 0.2s" }}
                 dir="rtl">
                 <div style={{ width: 42, height: 42, borderRadius: 14, background: cfg.bg, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, color: cfg.color }}>
                   {cfg.icon}
@@ -136,7 +136,7 @@ export function NotificationsPage() {
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 3 }}>
                     <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: isRead ? 600 : 700, color: "var(--text-primary)" }}>{n.title}</p>
-                    {!isRead && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--gold)", flexShrink: 0 }} />}
+                    {!isRead && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--color-brand-600)", flexShrink: 0 }} />}
                   </div>
                   <p style={{ fontFamily: "var(--font-main)", fontSize: 12, color: "var(--text-muted)", lineHeight: 1.65, marginBottom: 6 }}>{n.body}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

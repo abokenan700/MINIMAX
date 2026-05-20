@@ -51,7 +51,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
               justifyContent: "center",
             }}
           >
-            <AlertCircle size={28} style={{ color: "var(--error)" }} strokeWidth={1.6} />
+            <AlertCircle size={28} style={{ color: "var(--color-danger-600)" }} strokeWidth={1.6} />
           </div>
           <p
             style={{
@@ -79,7 +79,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, State> {
               marginTop: 8,
               padding: "10px 24px",
               borderRadius: 12,
-              background: "linear-gradient(135deg, var(--gold), var(--gold-accent))",
+              background: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-600))",
               color: "#fff",
               fontFamily: "var(--font-main)",
               fontSize: 14,

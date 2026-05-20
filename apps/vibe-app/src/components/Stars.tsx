@@ -7,8 +7,8 @@ export function Stars({ rating, size = 12 }: { rating: number; size?: number }) 
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
         <Star key={i} size={size} strokeWidth={1.4} style={{
-          fill: i <= full ? "var(--gold)" : i === full + 1 && half ? "rgba(192,168,130,0.55)" : "none",
-          stroke: i <= full || (i === full + 1 && half) ? "var(--gold)" : "#D4CFC9",
+          fill: i <= full ? "var(--color-brand-600)" : i === full + 1 && half ? "rgba(192,168,130,0.55)" : "none",
+          stroke: i <= full || (i === full + 1 && half) ? "var(--color-brand-600)" : "#D4CFC9",
         }} />
       ))}
     </div>

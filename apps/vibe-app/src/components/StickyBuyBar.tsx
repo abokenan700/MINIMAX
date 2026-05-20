@@ -39,18 +39,18 @@ export function StickyBuyBar({ product, liked, added, isOOS, onAdd, onBuy, onWis
         {!isOOS && product.stock >= 5 && (
           <p style={{ fontFamily: "var(--font-main)", fontSize: "var(--text-2xs)", color: "var(--text-muted)", lineHeight: 1, marginBottom: 2 }}>السعر الآن</p>
         )}
-        <p style={{ fontFamily: "var(--font-main)", fontSize: "var(--text-lg)", fontWeight: 800, color: isOOS ? "var(--text-muted)" : "var(--text-price)", lineHeight: 1 }}>
+        <p style={{ fontFamily: "var(--font-main)", fontSize: "var(--text-lg)", fontWeight: 800, color: isOOS ? "var(--text-muted)" : "var(--text-primary)", lineHeight: 1 }}>
           {product.price.toLocaleString("ar-SA")}<span style={{ fontSize: "var(--text-2xs)", fontWeight: 400, marginInlineStart: 2 }}>ر.س</span>
         </p>
       </div>
 
       {/* T3: disable buttons when OOS */}
       <button onClick={isOOS ? undefined : onAdd} disabled={isOOS}
-        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", border: "none", cursor: isOOS ? "not-allowed" : "pointer", background: isOOS ? "var(--border)" : "var(--gradient-cta)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", gap: 6, flexShrink: 0, transition: "opacity 0.2s", opacity: isOOS ? 0.6 : 1, boxShadow: isOOS ? "none" : "var(--shadow-btn)" }}>
+        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", border: "none", cursor: isOOS ? "not-allowed" : "pointer", background: isOOS ? "var(--border)" : "var(--gradient-brand)", color: isOOS ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, display: "flex", alignItems: "center", gap: 6, flexShrink: 0, transition: "opacity 0.2s", opacity: isOOS ? 0.6 : 1, boxShadow: isOOS ? "none" : "var(--shadow-btn)" }}>
         {isOOS ? "نفذ" : added ? <><Check size={14} />تمت ✓</> : <><ShoppingBag size={14} />أضف للسلة</>}
       </button>
       <button onClick={isOOS ? undefined : onBuy} disabled={isOOS}
-        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", cursor: isOOS ? "not-allowed" : "pointer", border: `1.5px solid ${isOOS ? "var(--border)" : "var(--gold)"}`, background: "transparent", color: isOOS ? "var(--text-muted)" : "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, flexShrink: 0, opacity: isOOS ? 0.5 : 1 }}>
+        style={{ padding: "11px 16px", borderRadius: "var(--radius-md)", cursor: isOOS ? "not-allowed" : "pointer", border: `1.5px solid ${isOOS ? "var(--border)" : "var(--color-brand-600)"}`, background: "transparent", color: isOOS ? "var(--text-muted)" : "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, flexShrink: 0, opacity: isOOS ? 0.5 : 1 }}>
         اشتري الآن
       </button>
     </div>

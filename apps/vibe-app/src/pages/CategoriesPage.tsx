@@ -55,7 +55,7 @@ function StickyHeader({
             width: 44,
             height: 44,
             borderRadius: "50%",
-            background: "var(--gold-light)",
+            background: "var(--color-brand-50)",
             border: "none",
             display: "flex",
             alignItems: "center",
@@ -145,12 +145,12 @@ function L2Item({
     <button
       onClick={onClick}
       className="w-full flex flex-col items-center gap-1 py-3 px-1.5 relative transition-colors duration-150"
-      style={{ background: isActive ? "var(--gold-light)" : "transparent" }}
+      style={{ background: isActive ? "var(--color-brand-50)" : "transparent" }}
     >
       {isActive && (
         <div
           className="absolute inset-inline-end-0 top-1/2 -translate-y-1/2 rounded-s-full"
-          style={{ insetInlineEnd: 0, position: "absolute", width: 3, height: "55%", background: "var(--gold-accent)" }}
+          style={{ insetInlineEnd: 0, position: "absolute", width: 3, height: "55%", background: "var(--color-brand-600)" }}
         />
       )}
       <Icon

@@ -47,8 +47,8 @@ function FormField({
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
       <label style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)" }}>{label}</label>
       <Input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
-        style={error ? { borderColor: "var(--error)" } : undefined} />
-      {error && <span style={{ fontSize: 11, color: "var(--error)" }}>{error}</span>}
+        style={error ? { borderColor: "var(--color-danger-600)" } : undefined} />
+      {error && <span style={{ fontSize: 11, color: "var(--color-danger-600)" }}>{error}</span>}
     </div>
   );
 }
@@ -153,7 +153,7 @@ export function AddressBookPage() {
         </button>
         <h1 style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 700, color: "var(--text-primary)", flex: 1, textAlign: "center" }}>عناويني</h1>
         <button onClick={openAdd}
-          style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--gradient-cta)", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: "var(--shadow-btn)" }}
+          style={{ width: 40, height: 40, borderRadius: "50%", background: "var(--gradient-brand)", border: "none", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", boxShadow: "var(--shadow-btn)" }}
           aria-label="إضافة عنوان">
           <Plus size={18} color="#fff" />
         </button>
@@ -168,7 +168,7 @@ export function AddressBookPage() {
           ))
         ) : addresses.length === 0 ? (
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 14, paddingTop: 80 }}>
-            <div style={{ width: 72, height: 72, borderRadius: "50%", background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ width: 72, height: 72, borderRadius: "50%", background: "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center" }}>
               <MapPin size={32} style={{ color: "var(--text-brand)" }} />
             </div>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 700, color: "var(--text-primary)" }}>لا توجد عناوين محفوظة</p>
@@ -176,13 +176,13 @@ export function AddressBookPage() {
               أضف عنوانك لتسريع عملية الطلب في المرة القادمة
             </p>
             <button onClick={openAdd}
-              style={{ padding: "12px 28px", borderRadius: 12, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
+              style={{ padding: "12px 28px", borderRadius: 12, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               إضافة عنوان
             </button>
           </div>
         ) : (
           addresses.map((addr) => (
-            <div key={addr.id} style={{ borderRadius: 16, background: "var(--bg-card)", border: `1.5px solid ${addr.is_default ? "var(--gold)" : "var(--border-warm)"}`, marginBottom: 10, overflow: "hidden" }}>
+            <div key={addr.id} style={{ borderRadius: 16, background: "var(--bg-card)", border: `1.5px solid ${addr.is_default ? "var(--color-brand-600)" : "var(--border-warm)"}`, marginBottom: 10, overflow: "hidden" }}>
               <div style={{ padding: "13px 14px" }}>
                 {/* Label row */}
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
@@ -192,7 +192,7 @@ export function AddressBookPage() {
                     </div>
                     <span style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)" }}>{addr.label}</span>
                     {addr.is_default && (
-                      <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 9px", borderRadius: 20, background: "var(--gold-pale)", color: "var(--text-brand)", border: "1px solid rgba(192,168,130,0.45)" }}>
+                      <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 9px", borderRadius: 20, background: "var(--color-brand-50)", color: "var(--text-brand)", border: "1px solid rgba(192,168,130,0.45)" }}>
                         افتراضي
                       </span>
                     )}
@@ -243,7 +243,7 @@ export function AddressBookPage() {
             <div style={{ display: "flex", gap: 8, marginBottom: 18 }}>
               {LABELS.map((l) => (
                 <button key={l} onClick={() => setLabel(l)}
-                  style={{ flex: 1, padding: "9px 4px", borderRadius: 10, border: `1.5px solid ${label === l ? "var(--gold)" : "var(--border)"}`, background: label === l ? "var(--gold-pale)" : "transparent", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: label === l ? 700 : 400, color: label === l ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", transition: "all 0.15s" }}>
+                  style={{ flex: 1, padding: "9px 4px", borderRadius: 10, border: `1.5px solid ${label === l ? "var(--color-brand-600)" : "var(--border)"}`, background: label === l ? "var(--color-brand-50)" : "transparent", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: label === l ? 700 : 400, color: label === l ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", transition: "all 0.15s" }}>
                   {l}
                 </button>
               ))}

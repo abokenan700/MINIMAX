@@ -90,10 +90,10 @@ function ResultCardList({ item }: { item: Product }) {
       aria-label={item.name} onClick={() => navigate(`/product/${item.id}`)}>
       <div style={{ position: "relative", width: 110, height: 110, flexShrink: 0, background: "var(--card-img-bg)" }}>
         <img src={item.image} alt={item.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 10 }} onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-        {item.is_new && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", color: "#fff" }}>جديد</span>}
+        {item.is_new && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff" }}>جديد</span>}
         {isOutOfStock && <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "rgba(0,0,0,0.55)", color: "#fff" }}>نفد</span>}
       </div>
-      <div style={{ height: "auto", width: 1, background: "linear-gradient(180deg,transparent,var(--gold),transparent)", opacity: 0.4, flexShrink: 0 }} />
+      <div style={{ height: "auto", width: 1, background: "linear-gradient(180deg,transparent,var(--color-brand-600),transparent)", opacity: 0.4, flexShrink: 0 }} />
       <div className="flex flex-col justify-between flex-1 min-w-0" style={{ padding: "10px 12px" }}>
         <div>
           <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-brand)", marginBottom: 2 }}>{item.brand}</p>
@@ -102,9 +102,9 @@ function ResultCardList({ item }: { item: Product }) {
         </div>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
           <div>
-            <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text-price)" }}>{item.price.toLocaleString("ar-SA")}</span>
+            <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text-primary)" }}>{item.price.toLocaleString("ar-SA")}</span>
             <span style={{ fontSize: 10, color: "var(--text-secondary)", marginInlineStart: 2 }}>ر.س</span>
-            {item.discount > 0 && <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--discount-bg)", color: "var(--discount-text)", marginInlineStart: 6 }}>{item.discount}%</span>}
+            {item.discount > 0 && <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--color-brand-50)", color: "var(--color-brand-700)", marginInlineStart: 6 }}>{item.discount}%</span>}
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <button onClick={(e) => { e.stopPropagation(); toggleWishlist(item); }}
@@ -303,14 +303,14 @@ export function SearchPage() {
                 </div>
               ) : processedResults.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-16 gap-4">
-                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "var(--gold-light)" }}>
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
                     <LayoutGrid size={24} style={{ color: "var(--text-brand)" }} strokeWidth={1.5} />
                   </div>
                   <p className="font-semibold" style={{ color: "var(--text-primary)", fontSize: 15 }}>لا توجد نتائج</p>
                   <p style={{ color: "var(--text-muted)", fontSize: 13 }}>جرّب تعديل الفلاتر أو كلمات البحث</p>
                   {hasActiveFilters && (
                     <button onClick={() => handleFiltersChange(DEFAULT_FILTERS)}
-                      style={{ padding: "9px 20px", borderRadius: 12, border: "1px solid var(--gold)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
+                      style={{ padding: "9px 20px", borderRadius: 12, border: "1px solid var(--color-brand-600)", background: "transparent", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: "pointer" }}>
                       إعادة ضبط الفلاتر
                     </button>
                   )}
@@ -403,7 +403,7 @@ export function SearchPage() {
                         style={{ flexShrink: 0, width: 106, borderRadius: 12, overflow: "hidden", background: "var(--bg-card)", border: "1px solid var(--border-warm)", textAlign: "start", cursor: "pointer", padding: 0 }}>
                         <div style={{ position: "relative", width: "100%", aspectRatio: "1/1", background: "linear-gradient(145deg,#fdfcfb,#f5ede0)", overflow: "hidden" }}>
                           <img src={p.image} alt={p.name} loading="lazy" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 10 }} onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-                          {p.badge && <span style={{ position: "absolute", top: 4, insetInlineStart: 4, fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 6, background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", color: "#fff" }}>{p.badge}</span>}
+                          {p.badge && <span style={{ position: "absolute", top: 4, insetInlineStart: 4, fontSize: 8, fontWeight: 700, padding: "2px 5px", borderRadius: 6, background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff" }}>{p.badge}</span>}
                         </div>
                         <div style={{ padding: "6px 8px 8px" }}>
                           <p className="line-clamp-1" style={{ fontSize: 11, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3 }}>{p.name}</p>

@@ -26,7 +26,7 @@ function FreeShippingBar({ total }: { total: number }) {
         <span style={{ fontSize: 10, color: "var(--text-muted)" }}>{Math.round(pct)}%</span>
       </div>
       <div style={{ height: 5, borderRadius: 3, background: reached ? "#FED7AA" : "rgba(192,168,130,0.25)", overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${pct}%`, borderRadius: 3, background: reached ? "linear-gradient(90deg,#F97316,#4A7A3A)" : "linear-gradient(90deg,var(--gold),var(--gold-accent))", transition: "width 0.5s ease" }} />
+        <div style={{ height: "100%", width: `${pct}%`, borderRadius: 3, background: reached ? "linear-gradient(90deg,#F97316,#4A7A3A)" : "linear-gradient(90deg,var(--color-brand-600),var(--color-brand-600))", transition: "width 0.5s ease" }} />
       </div>
     </div>
   );
@@ -81,7 +81,7 @@ function CouponInput() {
         </div>
         {!applied && (
           <button onClick={() => void apply()} disabled={busy}
-            style={{ padding: "10px 16px", borderRadius: 12, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: busy ? 0.7 : 1, boxShadow: "var(--shadow-btn)" }}>
+            style={{ padding: "10px 16px", borderRadius: 12, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: busy ? 0.7 : 1, boxShadow: "var(--shadow-btn)" }}>
             {busy ? "..." : "تطبيق"}
           </button>
         )}
@@ -101,7 +101,7 @@ function CartActionsRow({ editMode, hasItems, selectedCount, onToggleEdit, onDel
     <div dir="rtl" style={{ display: "flex", alignItems: "center", gap: 8, paddingInline: 16, paddingTop: 2 }}>
       <button
         onClick={editMode && selectedCount > 0 ? onDeleteSelected : onToggleEdit}
-        style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 30, border: `1px solid ${editMode ? (selectedCount > 0 ? "var(--error)" : "var(--gold)") : "var(--border)"}`, background: editMode ? (selectedCount > 0 ? "var(--accent-bg)" : "var(--gold-light)") : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: editMode ? (selectedCount > 0 ? "var(--error)" : "var(--text-brand)") : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.15s, background 0.15s" }}>
+        style={{ display: "flex", alignItems: "center", gap: 6, padding: "7px 14px", borderRadius: 30, border: `1px solid ${editMode ? (selectedCount > 0 ? "var(--color-danger-600)" : "var(--color-brand-600)") : "var(--border)"}`, background: editMode ? (selectedCount > 0 ? "var(--color-brand-50)" : "var(--color-brand-50)") : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: editMode ? (selectedCount > 0 ? "var(--color-danger-600)" : "var(--text-brand)") : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap", transition: "color 0.15s, background 0.15s" }}>
         {editMode ? (selectedCount > 0 ? <><Trash2 size={12} strokeWidth={2} />حذف ({selectedCount})</> : "تم") : "تعديل"}
       </button>
       {editMode && selectedCount === 0 && (
@@ -135,7 +135,7 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
 
   return (
     <div className="flex gap-3 p-3 rounded-2xl transition-[border-color,box-shadow] duration-150"
-      style={{ background: "var(--bg-card)", border: `1px solid ${selected ? "var(--gold)" : "var(--border)"}`, boxShadow: selected ? "0 0 0 1px rgba(166,124,82,0.2)" : "none" }} dir="rtl">
+      style={{ background: "var(--bg-card)", border: `1px solid ${selected ? "var(--color-brand-600)" : "var(--border)"}`, boxShadow: selected ? "0 0 0 1px rgba(166,124,82,0.2)" : "none" }} dir="rtl">
       {editMode && (
         <button onClick={() => onSelect(item.id)} className="flex-shrink-0 flex items-center justify-center self-center" style={{ color: selected ? "var(--text-brand)" : "var(--border)", marginInlineEnd: -4 }} aria-label={selected ? "إلغاء تحديد العنصر" : "تحديد العنصر"}>
           {selected ? <CheckSquare size={20} strokeWidth={2} /> : <Square size={20} strokeWidth={1.5} />}
@@ -169,7 +169,7 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
         </div>
 
         <div className="flex items-center justify-between mt-2">
-          <span className="font-bold" style={{ fontSize: "15px", color: "var(--text-price)" }}>
+          <span className="font-bold" style={{ fontSize: "15px", color: "var(--text-primary)" }}>
             {(item.price * item.qty).toLocaleString("ar-SA")}
             <span className="text-[10px] font-normal" style={{ color: "var(--text-secondary)", marginInlineStart: 2 }}>ر.س</span>
           </span>
@@ -179,7 +179,7 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
               <button onClick={() => onRemove(item.id, item.color)}
                 style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
                 aria-label="إزالة من السلة">
-                <div className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "#FEF0EE", color: "var(--error)" }}>
+                <div className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "#FEF0EE", color: "var(--color-danger-600)" }}>
                   <Trash2 size={12} />
                 </div>
               </button>
@@ -228,11 +228,11 @@ function CartUpsell() {
             <div style={{ padding: "7px 8px 9px" }}>
               <p className="line-clamp-2" style={{ fontSize: 11, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3, marginBottom: 5 }}>{p.name}</p>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text-price)" }}>{p.price.toLocaleString("ar-SA")}</span>
+                <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text-primary)" }}>{p.price.toLocaleString("ar-SA")}</span>
                 <button onClick={(e) => { e.stopPropagation(); addToCart(p, p.colors?.[0]); }}
                   style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
                   aria-label="أضف للسلة">
-                  <span style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--gold-light)", border: "1px solid var(--gold)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                  <span style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--color-brand-50)", border: "1px solid var(--color-brand-600)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                     <Plus size={13} style={{ color: "var(--text-brand)" }} />
                   </span>
                 </button>
@@ -287,14 +287,14 @@ export function CartPage() {
 
       {items.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--gold-light)" }}>
+          <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
             <ShoppingBag size={32} style={{ color: "var(--text-brand)" }} strokeWidth={1.5} />
           </div>
           <p className="font-semibold text-center" style={{ color: "var(--text-primary)", fontSize: "16px" }}>السلة فارغة</p>
           <p className="text-center" style={{ color: "var(--text-muted)", fontSize: "13px" }}>أضف منتجاتك المفضلة وابدأ التسوق</p>
           <button onClick={() => navigate("/")}
             className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold"
-            style={{ background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", color: "#fff", fontSize: "13px", fontFamily: "var(--font-main)" }}>
+            style={{ background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff", fontSize: "13px", fontFamily: "var(--font-main)" }}>
             <ArrowRight size={15} strokeWidth={2} />
             ابدأ التسوق
           </button>
@@ -333,7 +333,7 @@ export function CartPage() {
                 ].map(({ label, value, green }) => (
                   <div key={label} className="flex items-center justify-between" style={{ padding: "11px 14px", borderBottom: "1px solid var(--border)" }}>
                     <span style={{ fontSize: "13px", color: "var(--text-secondary)" }}>{label}</span>
-                    <span className="font-semibold" style={{ fontSize: "13px", color: green ? "var(--success)" : "var(--text-primary)" }}>{value}</span>
+                    <span className="font-semibold" style={{ fontSize: "13px", color: green ? "var(--color-success-600)" : "var(--text-primary)" }}>{value}</span>
                   </div>
                 ))}
                 <div className="flex items-center justify-between" style={{ padding: "13px 14px" }}>
@@ -364,7 +364,7 @@ export function CartPage() {
                 variant="primary"
                 size="lg"
                 className="w-full rounded-2xl"
-                style={{ background: "linear-gradient(135deg, var(--gold), var(--gold-accent))" }}>
+                style={{ background: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-600))" }}>
                 إتمام الطلب — {grandTotal.toLocaleString("ar-SA")} ر.س
               </Button>
             </div>

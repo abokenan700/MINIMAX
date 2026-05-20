@@ -27,7 +27,7 @@ interface Order {
 }
 
 const STATUS_CONFIG: Record<OrderStatus, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
-  processing: { label: "قيد المعالجة",    color: "var(--text-brand)", bg: "var(--gold-pale)", icon: <Package size={13} /> },
+  processing: { label: "قيد المعالجة",    color: "var(--text-brand)", bg: "var(--color-brand-50)", icon: <Package size={13} /> },
   shipped:    { label: "في الطريق إليك",  color: "#1565C0",           bg: "#E3F2FD",          icon: <Truck size={13} /> },
   delivered:  { label: "تم التسليم",      color: "#F97316",           bg: "#FFF7F0",          icon: <CheckCircle size={13} /> },
   cancelled:  { label: "مُلغى",           color: "#C62828",           bg: "#FFEBEE",          icon: <XCircle size={13} /> },
@@ -78,7 +78,7 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
       <p style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)", marginBottom: 14 }}>مسار الطلب</p>
       <div style={{ position: "relative" }}>
         {/* Vertical connector line */}
-        <div style={{ position: "absolute", insetInlineStart: 15, top: 16, bottom: 16, width: 2, background: "linear-gradient(to bottom, var(--gold) 0%, rgba(192,168,130,0.2) 100%)" }} />
+        <div style={{ position: "absolute", insetInlineStart: 15, top: 16, bottom: 16, width: 2, background: "linear-gradient(to bottom, var(--color-brand-600) 0%, rgba(192,168,130,0.2) 100%)" }} />
         <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
           {steps.map((step, i) => {
             const isLast = i === steps.length - 1;
@@ -87,8 +87,8 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
                 {/* Circle */}
                 <div style={{
                   width: 32, height: 32, borderRadius: "50%", flexShrink: 0,
-                  background: step.isCancelled ? "#FFEBEE" : step.done ? "var(--gold)" : "var(--bg-page)",
-                  border: `2px solid ${step.isCancelled ? "#E53935" : step.done ? "var(--gold)" : "var(--border)"}`,
+                  background: step.isCancelled ? "#FFEBEE" : step.done ? "var(--color-brand-600)" : "var(--bg-page)",
+                  border: `2px solid ${step.isCancelled ? "#E53935" : step.done ? "var(--color-brand-600)" : "var(--border)"}`,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   boxShadow: step.done ? "0 2px 8px rgba(192,168,130,0.35)" : "none",
                   transition: "all 0.3s",
@@ -108,7 +108,7 @@ function VisualTimeline({ steps }: { steps: TimelineStep[] }) {
                   </span>
                   {step.done && !step.isCancelled && i === steps.filter(s => s.done).length - 1 && (
                     <div style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 3 }}>
-                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--gold)", animation: "pulse 1.5s ease-in-out infinite" }} />
+                      <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--color-brand-600)", animation: "pulse 1.5s ease-in-out infinite" }} />
                       <span style={{ fontSize: 10.5, color: "var(--text-brand)", fontWeight: 600 }}>الحالة الحالية</span>
                     </div>
                   )}
@@ -167,14 +167,14 @@ function ReturnRequestModal({ orderId, onClose }: { orderId: number; onClose: ()
         <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 18 }}>
           {reasons.map(r => (
             <button key={r} onClick={() => setReason(r)}
-              style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", borderRadius: 12, border: `1.5px solid ${reason === r ? "var(--gold)" : "var(--border-warm)"}`, background: reason === r ? "var(--gold-pale)" : "var(--bg-card)", cursor: "pointer", textAlign: "start" }}>
-              <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${reason === r ? "var(--gold)" : "var(--border)"}`, background: reason === r ? "var(--gold)" : "transparent", flexShrink: 0 }} />
+              style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 14px", borderRadius: 12, border: `1.5px solid ${reason === r ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: reason === r ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start" }}>
+              <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${reason === r ? "var(--color-brand-600)" : "var(--border)"}`, background: reason === r ? "var(--color-brand-600)" : "transparent", flexShrink: 0 }} />
               <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: reason === r ? 700 : 400, color: reason === r ? "var(--text-brand)" : "var(--text-primary)" }}>{r}</span>
             </button>
           ))}
         </div>
         <button onClick={() => mutation.mutate()} disabled={!reason || mutation.isPending}
-          style={{ width: "100%", padding: "14px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: !reason || mutation.isPending ? "not-allowed" : "pointer", opacity: !reason || mutation.isPending ? 0.5 : 1, boxShadow: "var(--shadow-btn)" }}>
+          style={{ width: "100%", padding: "14px", borderRadius: 14, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: !reason || mutation.isPending ? "not-allowed" : "pointer", opacity: !reason || mutation.isPending ? 0.5 : 1, boxShadow: "var(--shadow-btn)" }}>
           {mutation.isPending ? "جارٍ الإرسال..." : "إرسال طلب الإرجاع"}
         </button>
       </div>
@@ -216,18 +216,18 @@ function OrderCard({ order, onRefresh }: { order: Order; onRefresh: () => void }
               </div>
             ))}
             {order.items.length > 3 && (
-              <div style={{ width: 52, height: 52, borderRadius: 10, background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: 52, height: 52, borderRadius: 10, background: "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ fontSize: 12, fontWeight: 700, color: "var(--text-brand)" }}>+{order.items.length - 3}</span>
               </div>
             )}
             <div style={{ flex: 1 }} />
-            <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 800, color: "var(--text-price)" }}>
+            <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 800, color: "var(--text-primary)" }}>
               {Number(order.total).toLocaleString("ar-SA")} ر.س
             </span>
           </div>
 
           {/* Delivery estimate */}
-          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 10px", borderRadius: 10, background: order.status === "delivered" ? "#FFF7F0" : "var(--gold-pale)" }} dir="rtl">
+          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 10px", borderRadius: 10, background: order.status === "delivered" ? "#FFF7F0" : "var(--color-brand-50)" }} dir="rtl">
             <Truck size={13} style={{ color: order.status === "delivered" ? "#F97316" : "var(--text-brand)" }} />
             <span style={{ fontSize: 12, color: order.status === "delivered" ? "#F97316" : "var(--text-brand)", fontWeight: 600 }}>
               {estimateDelivery(order)}
@@ -329,7 +329,7 @@ export function OrdersPage() {
             <Package size={48} style={{ color: "#D4CFC9" }} strokeWidth={1.2} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 600, color: "var(--text-primary)", textAlign: "center" }}>سجّل دخولك لعرض طلباتك</p>
             <button onClick={() => openSheet()}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
               تسجيل الدخول
             </button>
           </div>
@@ -352,7 +352,7 @@ export function OrdersPage() {
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 600, color: "var(--text-primary)", textAlign: "center" }}>لا توجد طلبات بعد</p>
             <p style={{ fontSize: 13, color: "var(--text-muted)", textAlign: "center" }}>ابدأ التسوق وستظهر طلباتك هنا</p>
             <button onClick={() => navigate("/")}
-              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
+              style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>
               تسوّق الآن
             </button>
           </div>

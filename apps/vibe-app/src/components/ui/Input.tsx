@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         className={cn("relative", containerClassName)}
         style={{
           borderRadius: "var(--radius-md)",
-          border: `1.5px solid ${focused ? "var(--gold)" : "#E2DDD6"}`,
+          border: `1.5px solid ${focused ? "var(--color-brand-600)" : "#E2DDD6"}`,
           background: "var(--input-bg-soft)",
           transition: "border-color var(--duration-base, 0.25s) var(--ease-standard, ease)",
           marginBottom: 12,

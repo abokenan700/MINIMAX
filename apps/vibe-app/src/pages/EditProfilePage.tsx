@@ -202,7 +202,7 @@ export function EditProfilePage() {
         {/* ── Avatar ── */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "28px 0 20px", gap: 12 }}>
           <div style={{ position: "relative" }}>
-            <div style={{ width: 90, height: 90, borderRadius: "50%", background: "linear-gradient(135deg,var(--gold),var(--gold-accent))", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", boxShadow: "0 4px 20px rgba(192,168,130,0.4)", border: "3px solid var(--bg-card)", outline: "2px solid var(--gold-accent)" }}>
+            <div style={{ width: 90, height: 90, borderRadius: "50%", background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", boxShadow: "0 4px 20px rgba(192,168,130,0.4)", border: "3px solid var(--bg-card)", outline: "2px solid var(--color-brand-600)" }}>
               {avatarBusy ? (
                 <Loader size={28} color="rgba(255,255,255,0.8)" className="animate-spin" />
               ) : avatarPreview ? (
@@ -216,7 +216,7 @@ export function EditProfilePage() {
               onClick={() => fileRef.current?.click()}
               disabled={avatarBusy}
               aria-label="تغيير الصورة الشخصية"
-              style={{ position: "absolute", bottom: 0, insetInlineEnd: 0, width: 28, height: 28, borderRadius: "50%", background: "var(--bg-cta-dark)", border: "2.5px solid var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center", cursor: avatarBusy ? "not-allowed" : "pointer" }}
+              style={{ position: "absolute", bottom: 0, insetInlineEnd: 0, width: 28, height: 28, borderRadius: "50%", background: "var(--gradient-brand)", border: "2.5px solid var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center", cursor: avatarBusy ? "not-allowed" : "pointer" }}
             >
               <Camera size={13} color="#fff" />
             </button>
@@ -227,7 +227,7 @@ export function EditProfilePage() {
               type="button"
               onClick={() => fileRef.current?.click()}
               disabled={avatarBusy}
-              style={{ padding: "7px 16px", borderRadius: 10, border: "1.5px solid var(--border-warm)", background: "var(--gold-pale)", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 700, cursor: avatarBusy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 5 }}
+              style={{ padding: "7px 16px", borderRadius: 10, border: "1.5px solid var(--border-warm)", background: "var(--color-brand-50)", color: "var(--text-brand)", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 700, cursor: avatarBusy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 5 }}
             >
               <Camera size={13} /> تغيير الصورة
             </button>
@@ -237,7 +237,7 @@ export function EditProfilePage() {
                 onClick={() => { void handleRemoveAvatar(); }}
                 disabled={avatarBusy}
                 aria-label="حذف الصورة الشخصية"
-                style={{ padding: "7px 14px", borderRadius: 10, border: "1.5px solid #FECACA", background: "#FEF0EE", color: "var(--error)", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 700, cursor: avatarBusy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 5 }}
+                style={{ padding: "7px 14px", borderRadius: 10, border: "1.5px solid #FECACA", background: "#FEF0EE", color: "var(--color-danger-600)", fontFamily: "var(--font-main)", fontSize: 12.5, fontWeight: 700, cursor: avatarBusy ? "not-allowed" : "pointer", display: "flex", alignItems: "center", gap: 5 }}
               >
                 <Trash2 size={13} /> حذف
               </button>
@@ -260,7 +260,7 @@ export function EditProfilePage() {
         {/* ── Personal Info ── */}
         <div className="mx-3 mb-4">
           <div style={{ padding: "4px 4px 12px", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--gold)" }} />
+            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-600)" }} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>المعلومات الشخصية</p>
           </div>
           <form onSubmit={e => { void handleProfileSave(e); }} style={{ background: "var(--bg-card)", borderRadius: 16, border: "1px solid var(--border)", padding: "16px 14px" }}>
@@ -294,15 +294,15 @@ export function EditProfilePage() {
             )}
             {profileSuccess && (
               <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)", marginBottom: 12 }}>
-                <CheckCircle2 size={16} color="var(--success)" />
-                <p style={{ fontSize: 12.5, color: "var(--success)", margin: 0, fontFamily: "var(--font-main)" }}>تم حفظ التغييرات بنجاح</p>
+                <CheckCircle2 size={16} color="var(--color-success-600)" />
+                <p style={{ fontSize: 12.5, color: "var(--color-success-600)", margin: 0, fontFamily: "var(--font-main)" }}>تم حفظ التغييرات بنجاح</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={profileBusy || !profileChanged}
-              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (profileBusy || !profileChanged) ? "var(--bg-subtle)" : "var(--gradient-cta)", color: (profileBusy || !profileChanged) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (profileBusy || !profileChanged) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (profileBusy || !profileChanged) ? "none" : "var(--shadow-btn)" }}
+              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (profileBusy || !profileChanged) ? "var(--bg-surface-subtle)" : "var(--gradient-brand)", color: (profileBusy || !profileChanged) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (profileBusy || !profileChanged) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (profileBusy || !profileChanged) ? "none" : "var(--shadow-btn)" }}
             >
               {profileBusy ? <Loader size={16} className="animate-spin" /> : null}
               حفظ التغييرات
@@ -313,7 +313,7 @@ export function EditProfilePage() {
         {/* ── Change Password ── */}
         <div className="mx-3 mb-6">
           <div style={{ padding: "4px 4px 12px", display: "flex", alignItems: "center", gap: 6 }}>
-            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--gold)" }} />
+            <div style={{ width: 3, height: 16, borderRadius: 2, background: "var(--color-brand-600)" }} />
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>تغيير كلمة المرور</p>
           </div>
           <form onSubmit={e => { void handlePasswordSave(e); }} style={{ background: "var(--bg-card)", borderRadius: 16, border: "1px solid var(--border)", padding: "16px 14px" }}>
@@ -358,15 +358,15 @@ export function EditProfilePage() {
             )}
             {passSuccess && (
               <div role="status" style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 12px", borderRadius: 10, background: "rgba(249,115,22,0.08)", border: "1px solid rgba(249,115,22,0.3)", marginBottom: 12 }}>
-                <CheckCircle2 size={16} color="var(--success)" />
-                <p style={{ fontSize: 12.5, color: "var(--success)", margin: 0, fontFamily: "var(--font-main)" }}>تم تغيير كلمة المرور بنجاح</p>
+                <CheckCircle2 size={16} color="var(--color-success-600)" />
+                <p style={{ fontSize: 12.5, color: "var(--color-success-600)", margin: 0, fontFamily: "var(--font-main)" }}>تم تغيير كلمة المرور بنجاح</p>
               </div>
             )}
 
             <button
               type="submit"
               disabled={passBusy || !currentPass || !newPass}
-              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (passBusy || !currentPass || !newPass) ? "var(--bg-subtle)" : "var(--gradient-cta)", color: (passBusy || !currentPass || !newPass) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (passBusy || !currentPass || !newPass) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (passBusy || !currentPass || !newPass) ? "none" : "var(--shadow-btn)" }}
+              style={{ width: "100%", padding: "14px 0", borderRadius: 12, border: "none", background: (passBusy || !currentPass || !newPass) ? "var(--bg-surface-subtle)" : "var(--gradient-brand)", color: (passBusy || !currentPass || !newPass) ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: (passBusy || !currentPass || !newPass) ? "not-allowed" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "opacity 0.2s", boxShadow: (passBusy || !currentPass || !newPass) ? "none" : "var(--shadow-btn)" }}
             >
               {passBusy ? <Loader size={16} className="animate-spin" /> : null}
               تغيير كلمة المرور

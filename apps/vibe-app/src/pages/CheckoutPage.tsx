@@ -29,12 +29,12 @@ function Stepper({ step }: { step: 1 | 2 }) {
       {steps.map((s, i) => (
         <div key={s.n} style={{ display: "flex", alignItems: "center" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
-            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--gold)" : s.n === step ? "var(--gradient-cta)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
+            <div style={{ width: 30, height: 30, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: s.n < step ? "var(--color-brand-600)" : s.n === step ? "var(--gradient-brand)" : "var(--border)", color: s.n <= step ? "#fff" : "var(--text-muted)", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, transition: "background 0.3s" }}>
               {s.n < step ? <CheckCircle size={14} /> : s.n}
             </div>
             <span style={{ fontSize: 10, color: s.n === step ? "var(--text-brand)" : "var(--text-muted)", fontWeight: s.n === step ? 700 : 400, whiteSpace: "nowrap" }}>{s.label}</span>
           </div>
-          {i < steps.length - 1 && <div style={{ width: 40, height: 2, background: s.n < step ? "var(--gold)" : "var(--border)", margin: "0 4px", marginBottom: 18, transition: "background 0.3s" }} />}
+          {i < steps.length - 1 && <div style={{ width: 40, height: 2, background: s.n < step ? "var(--color-brand-600)" : "var(--border)", margin: "0 4px", marginBottom: 18, transition: "background 0.3s" }} />}
         </div>
       ))}
     </div>
@@ -50,8 +50,8 @@ function Field({ label, value, onChange, placeholder, type = "text", error }: {
     <div style={{ display: "flex", flexDirection: "column", gap: 5 }} dir="rtl">
       <label style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-secondary)" }}>{label}</label>
       <Input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder}
-        style={error ? { borderColor: "var(--error)" } : undefined} />
-      {error && <span style={{ fontSize: 11, color: "var(--error)" }}>{error}</span>}
+        style={error ? { borderColor: "var(--color-danger-600)" } : undefined} />
+      {error && <span style={{ fontSize: 11, color: "var(--color-danger-600)" }}>{error}</span>}
     </div>
   );
 }
@@ -88,7 +88,7 @@ function OrderSummaryCollapsible({ total, discountAmount, shipping, grandTotal }
                 <p style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3 }} className="line-clamp-1">{i.name}</p>
                 <p style={{ fontSize: 10, color: "var(--text-muted)", marginTop: 2 }}>الكمية: {i.qty}{i.color ? ` — ${i.color}` : ""}</p>
               </div>
-              <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-price)", flexShrink: 0 }}>{(i.price * i.qty).toLocaleString("ar-SA")} ر.س</span>
+              <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", flexShrink: 0 }}>{(i.price * i.qty).toLocaleString("ar-SA")} ر.س</span>
             </div>
           ))}
           {[
@@ -114,7 +114,7 @@ function PaymentCard({ id, icon, title, subtitle, selected, onSelect, disabled, 
 }) {
   return (
     <button onClick={disabled ? undefined : onSelect} dir="rtl" disabled={disabled}
-      style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px", borderRadius: 14, border: `2px solid ${selected ? "var(--gold)" : "var(--border-warm)"}`, background: disabled ? "var(--bg-page)" : selected ? "var(--gold-pale)" : "var(--bg-card)", cursor: disabled ? "not-allowed" : "pointer", width: "100%", textAlign: "start", transition: "border-color 0.2s, background 0.2s", opacity: disabled ? 0.5 : 1, position: "relative" }}>
+      style={{ display: "flex", alignItems: "center", gap: 12, padding: "14px", borderRadius: 14, border: `2px solid ${selected ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: disabled ? "var(--bg-page)" : selected ? "var(--color-brand-50)" : "var(--bg-card)", cursor: disabled ? "not-allowed" : "pointer", width: "100%", textAlign: "start", transition: "border-color 0.2s, background 0.2s", opacity: disabled ? 0.5 : 1, position: "relative" }}>
       {badge && (
         <span style={{ position: "absolute", top: 8, insetInlineStart: 8, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--border)", color: "var(--text-muted)" }}>{badge}</span>
       )}
@@ -123,7 +123,7 @@ function PaymentCard({ id, icon, title, subtitle, selected, onSelect, disabled, 
         <p style={{ fontFamily: "var(--font-main)", fontSize: 13.5, fontWeight: 700, color: "var(--text-primary)", marginBottom: 2 }}>{title}</p>
         <p style={{ fontSize: 11, color: "var(--text-muted)" }}>{subtitle}</p>
       </div>
-      <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${selected ? "var(--gold)" : "var(--border)"}`, background: selected ? "var(--gold)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", flexShrink: 0 }}>
+      <div style={{ width: 20, height: 20, borderRadius: "50%", border: `2px solid ${selected ? "var(--color-brand-600)" : "var(--border)"}`, background: selected ? "var(--color-brand-600)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.2s", flexShrink: 0 }}>
         {selected && <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fff" }} />}
       </div>
     </button>
@@ -288,8 +288,8 @@ export function CheckoutPage() {
 
         {step === 1 && (
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px", borderRadius: 14, background: "var(--gold-pale)", border: "1px solid rgba(192,168,130,0.3)" }} dir="rtl">
-              <div style={{ width: 40, height: 40, borderRadius: 12, background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px", borderRadius: 14, background: "var(--color-brand-50)", border: "1px solid rgba(192,168,130,0.3)" }} dir="rtl">
+              <div style={{ width: 40, height: 40, borderRadius: 12, background: "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <MapPin size={18} style={{ color: "var(--text-brand)" }} />
               </div>
               <div>
@@ -362,8 +362,8 @@ export function CheckoutPage() {
               <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
                 {deliveryOptions.map((opt) => (
                   <button key={opt.value} onClick={() => setDeliveryDate(opt.value)} dir="rtl"
-                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${deliveryDate === opt.value ? "var(--gold)" : "var(--border-warm)"}`, background: deliveryDate === opt.value ? "var(--gold-pale)" : "var(--bg-card)", cursor: "pointer", textAlign: "start", transition: "border-color 0.2s, background 0.2s" }}>
-                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${deliveryDate === opt.value ? "var(--gold)" : "var(--border)"}`, background: deliveryDate === opt.value ? "var(--gold)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    style={{ display: "flex", alignItems: "center", gap: 10, padding: "11px 13px", borderRadius: 12, border: `1.5px solid ${deliveryDate === opt.value ? "var(--color-brand-600)" : "var(--border-warm)"}`, background: deliveryDate === opt.value ? "var(--color-brand-50)" : "var(--bg-card)", cursor: "pointer", textAlign: "start", transition: "border-color 0.2s, background 0.2s" }}>
+                    <div style={{ width: 18, height: 18, borderRadius: "50%", border: `2px solid ${deliveryDate === opt.value ? "var(--color-brand-600)" : "var(--border)"}`, background: deliveryDate === opt.value ? "var(--color-brand-600)" : "transparent", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
                       {deliveryDate === opt.value && <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#fff" }} />}
                     </div>
                     <span style={{ flex: 1, fontFamily: "var(--font-main)", fontSize: 13, fontWeight: deliveryDate === opt.value ? 700 : 400, color: deliveryDate === opt.value ? "var(--text-brand)" : "var(--text-primary)" }}>
@@ -403,7 +403,7 @@ export function CheckoutPage() {
               selected={payMethod === "card"} onSelect={() => setPayMethod("card")} />
 
             {payMethod === "card" && (
-              <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: 14, borderRadius: 14, background: "var(--gold-pale)", border: "1px solid rgba(192,168,130,0.3)" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: 14, borderRadius: 14, background: "var(--color-brand-50)", border: "1px solid rgba(192,168,130,0.3)" }}>
                 {/* T19: Formatted card number */}
                 <Field label="رقم البطاقة" value={cardNum}
                   onChange={(v) => setCardNum(formatCardNumber(v))}

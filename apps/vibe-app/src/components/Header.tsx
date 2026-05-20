@@ -66,7 +66,7 @@ export function Header() {
             className="header-icon-btn"
             aria-label={`نقاطي: ${points}`}
             onClick={() => navigate("/account")}
-            style={{ position: "relative", display: "flex", alignItems: "center", gap: 3, padding: "0 8px", borderRadius: 20, background: "var(--gold-pale)", border: "1px solid var(--border-orange)", height: 30, width: "auto" }}
+            style={{ position: "relative", display: "flex", alignItems: "center", gap: 3, padding: "0 8px", borderRadius: 20, background: "var(--color-brand-50)", border: "1px solid var(--border-orange)", height: 30, width: "auto" }}
           >
             <span style={{ fontSize: 12 }}>🪙</span>
             <span style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 800, color: "var(--text-brand)" }}>{points >= 1000 ? `${(points/1000).toFixed(1)}ك` : points}</span>

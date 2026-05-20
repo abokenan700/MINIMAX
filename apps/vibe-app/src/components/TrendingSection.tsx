@@ -6,11 +6,12 @@ import { SectionHeader } from "./SectionHeader";
 import { Stars } from "./Stars";
 import { CartButton } from "./CartButton";
 import { useWishlist } from "../context/WishlistContext";
+import { colorToCss, needsBorder } from "../lib/colorMap";
 
 const RANK_STYLES = [
   { bg: "linear-gradient(135deg, #D4AF37, #B8960C)", text: "#fff", label: "🥇" },
   { bg: "linear-gradient(135deg, #B0B0B0, #888888)", text: "#fff", label: "🥈" },
-  { bg: "linear-gradient(135deg, #F97316, #C2410C)", text: "#fff", label: "🥉" },
+  { bg: "linear-gradient(135deg, #EA580C, #C2410C)", text: "#fff", label: "🥉" },
 ];
 
 export function TrendingSection() {
@@ -55,7 +56,7 @@ export function TrendingSection() {
                       style={{ background: rank.bg }}
                       aria-label={`المرتبة ${index + 1}`}
                     >
-                      <span style={{ fontSize: 11, color: rank.text, fontWeight: 800 }}>{index + 1}</span>
+                      <span style={{ fontSize: 11, color: rank.text, fontWeight: 700 }}>{index + 1}</span>
                     </div>
                   )}
 
@@ -85,6 +86,42 @@ export function TrendingSection() {
                   <div className="trending-card-body" dir="rtl">
                     <p className="trending-brand">{p.brand}</p>
                     <p className="line-clamp-2 trending-name">{p.name}</p>
+
+                    {/* Color swatches — 14px circles beneath product name */}
+                    {p.colors && p.colors.length > 0 && (
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        style={{ display: "flex", alignItems: "center", gap: 3, marginTop: 3, marginBottom: 2 }}
+                      >
+                        {p.colors.slice(0, 3).map((c, i) => (
+                          <span
+                            key={i}
+                            aria-label={c}
+                            style={{
+                              display: "block",
+                              width: 14,
+                              height: 14,
+                              borderRadius: "50%",
+                              background: colorToCss(c),
+                              flexShrink: 0,
+                              boxShadow: `0 1px 3px rgba(0,0,0,0.20)${needsBorder(c) ? ", 0 0 0 1px rgba(0,0,0,0.12)" : ""}`,
+                            }}
+                          />
+                        ))}
+                        {p.colors.length > 3 && (
+                          <span style={{
+                            fontSize: 8,
+                            fontFamily: "var(--font-text)",
+                            color: "var(--text-muted)",
+                            fontWeight: 600,
+                            lineHeight: 1,
+                          }}>
+                            +{p.colors.length - 3}
+                          </span>
+                        )}
+                      </div>
+                    )}
+
                     <div className="flex items-center gap-1 mt-0.5">
                       <Stars rating={p.rating} />
                       <span className="trending-rating">{p.rating}</span>

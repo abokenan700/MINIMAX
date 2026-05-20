@@ -41,7 +41,7 @@ export function PriceAlertsPage() {
     <div style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden", paddingBottom: "var(--nav-h)" }}>
       {/* Header */}
       <div style={{ flexShrink: 0, borderBottom: "1px solid var(--border)", background: "var(--bg-card)", padding: "16px 16px 14px", display: "flex", alignItems: "center", gap: 12 }} dir="rtl">
-        <button onClick={() => navigate("/account")} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, border: "none", background: "var(--gold-light)", cursor: "pointer" }} aria-label="رجوع">
+        <button onClick={() => navigate("/account")} style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, border: "none", background: "var(--color-brand-50)", cursor: "pointer" }} aria-label="رجوع">
           <ArrowRight size={16} style={{ color: "var(--text-brand)" }} />
         </button>
         <h1 style={{ fontFamily: "var(--font-main)", fontSize: 17, fontWeight: 700, margin: 0, color: "var(--text-primary)" }}>تنبيهات الأسعار</h1>
@@ -52,7 +52,7 @@ export function PriceAlertsPage() {
         {/* Not logged in */}
         {!user && (
           <div style={{ textAlign: "center", padding: "60px 20px" }}>
-            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
               <Bell size={28} style={{ color: "var(--text-brand)" }} />
             </div>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>سجّل دخولك أولاً</p>
@@ -76,7 +76,7 @@ export function PriceAlertsPage() {
         {/* Empty */}
         {user && !isLoading && alerts.length === 0 && (
           <div style={{ textAlign: "center", padding: "60px 20px" }}>
-            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--gold-light)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
+            <div style={{ width: 64, height: 64, borderRadius: "50%", background: "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px" }}>
               <Bell size={28} style={{ color: "var(--text-brand)" }} />
             </div>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", marginBottom: 8 }}>لا توجد تنبيهات بعد</p>

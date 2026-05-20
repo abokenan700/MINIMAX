@@ -130,7 +130,7 @@ export function QuickViewSheet() {
                   {product.is_new && (
                     <span style={{
                       fontSize: 10, fontWeight: 700, color: "#fff",
-                      background: "var(--gradient-cta)",
+                      background: "var(--gradient-brand)",
                       borderRadius: "var(--radius-pill)",
                       padding: "3px 10px",
                     }}>جديد</span>
@@ -203,7 +203,7 @@ export function QuickViewSheet() {
                             ? "1.5px solid #DDD"
                             : "2px solid transparent",
                           cursor: "pointer",
-                          outline: i === activeColor ? "2px solid var(--gold-light)" : "none",
+                          outline: i === activeColor ? "2px solid var(--color-brand-50)" : "none",
                           outlineOffset: 1,
                           transform: i === activeColor ? "scale(1.18)" : "scale(1)",
                           transition: "transform 0.15s ease, border 0.15s ease",
@@ -217,7 +217,7 @@ export function QuickViewSheet() {
 
               {/* Price row */}
               <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 20 }}>
-                <span style={{ fontSize: 22, fontWeight: 800, color: "var(--text-price)" }}>
+                <span style={{ fontSize: 22, fontWeight: 800, color: "var(--text-primary)" }}>
                   {product.price.toLocaleString("ar-SA")}
                 </span>
                 <span style={{ fontSize: 13, color: "var(--text-muted)" }}>ر.س</span>
@@ -227,8 +227,8 @@ export function QuickViewSheet() {
                 <span style={{
                   marginInlineStart: "auto",
                   fontSize: 11, fontWeight: 700,
-                  color: "var(--discount-text)",
-                  background: "var(--discount-bg)",
+                  color: "var(--color-brand-700)",
+                  background: "var(--color-brand-50)",
                   borderRadius: "var(--radius-pill)",
                   padding: "3px 10px",
                 }}>
@@ -248,7 +248,7 @@ export function QuickViewSheet() {
                     borderRadius: 16,
                     border: "none",
                     cursor: "pointer",
-                    background: added ? "#22C55E" : "var(--gradient-cta)",
+                    background: added ? "#22C55E" : "var(--gradient-brand)",
                     color: "#fff",
                     fontSize: 15,
                     fontWeight: 700,

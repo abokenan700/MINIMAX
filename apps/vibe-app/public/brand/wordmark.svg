@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 24" width="80" height="24" role="img" aria-label="نخبة">
+  <title>نخبة</title>
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@600&amp;display=swap');
+      .wm { font-family: 'Reem Kufi Fun', 'Reem Kufi', serif; font-size: 21px; font-weight: 600; fill: #C2410C; letter-spacing: 0.18em; }
+    </style>
+  </defs>
+  <text class="wm" x="50%" y="19" text-anchor="middle" dominant-baseline="auto" direction="rtl">نخبة</text>
+</svg>

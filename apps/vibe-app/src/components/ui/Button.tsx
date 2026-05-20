@@ -9,7 +9,7 @@ export const buttonVariants = cva(
     "transition-[background-color,border-color,color,opacity,transform,box-shadow]",
     "disabled:pointer-events-none disabled:opacity-40",
     "active:scale-[0.97]",
-    "focus-visible:outline-2 focus-visible:outline-[var(--gold)] focus-visible:outline-offset-2",
+    "focus-visible:outline-2 focus-visible:outline-[var(--color-brand-600)] focus-visible:outline-offset-2",
   ].join(" "),
   {
     variants: {
@@ -17,7 +17,7 @@ export const buttonVariants = cva(
         /* زر أساسي — داكن THAWQ */
         primary: [
           "text-white border-none",
-          "[background:var(--gradient-cta)]",
+          "[background:var(--gradient-brand)]",
           "[box-shadow:var(--shadow-md)]",
           "hover:opacity-90",
         ].join(" "),
@@ -25,20 +25,20 @@ export const buttonVariants = cva(
         /* زر ثانوي — حدود ذهبية THAWQ */
         outline: [
           "bg-transparent text-[var(--text-brand)]",
-          "!border-[1.5px] !border-[var(--gold)]",
-          "hover:bg-[var(--gold-pale)]",
+          "!border-[1.5px] !border-[var(--color-brand-600)]",
+          "hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
         /* زر نصي */
         ghost: [
-          "bg-transparent border-none text-[var(--gold)]",
-          "rounded-full hover:bg-[var(--gold-pale)]",
+          "bg-transparent border-none text-[var(--color-brand-600)]",
+          "rounded-full hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
         /* زر دائري ذهبي — سلة */
         circle: [
           "rounded-full border-none text-white flex-shrink-0",
-          "[background:var(--gradient-gold)]",
+          "[background:var(--gradient-brand)]",
           "[box-shadow:var(--shadow-md),inset_0_1px_0_rgba(255,255,255,0.18)]",
           "hover:opacity-90",
         ].join(" "),
@@ -46,14 +46,14 @@ export const buttonVariants = cva(
         /* زر دائري نجاح */
         "circle-success": [
           "rounded-full border-none text-white flex-shrink-0",
-          "[background:linear-gradient(135deg,var(--gold),var(--gold-accent))]",
+          "[background:linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))]",
           "[box-shadow:var(--shadow-success)]",
         ].join(" "),
 
         /* زر دائري داكن */
         "circle-dark": [
           "rounded-full border-none text-white flex-shrink-0",
-          "[background:var(--gradient-cta)]",
+          "[background:var(--gradient-brand)]",
         ].join(" "),
 
         /* تبويب غير نشط */
@@ -67,7 +67,7 @@ export const buttonVariants = cva(
         /* تبويب نشط */
         "tab-active": [
           "rounded-full font-semibold text-white border-none",
-          "[background:var(--gradient-cta)]",
+          "[background:var(--gradient-brand)]",
         ].join(" "),
 
         /* رابط نصي */

@@ -59,8 +59,8 @@ function SortChips({
               flexShrink: 0,
               padding: "7px 14px",
               borderRadius: 30,
-              border: `1px solid ${active ? "var(--gold)" : "var(--border)"}`,
-              background: active ? "var(--gold-light)" : "var(--bg-card)",
+              border: `1px solid ${active ? "var(--color-brand-600)" : "var(--border)"}`,
+              background: active ? "var(--color-brand-50)" : "var(--bg-card)",
               fontFamily: "var(--font-main)",
               fontSize: 12,
               fontWeight: active ? 700 : 500,
@@ -111,7 +111,7 @@ function WishCard({ item, onRemove }: { item: Product; onRemove: (id: number) =>
         {item.discount > 0 && (
           <span
             className="absolute top-2 start-2 rounded-full px-2 py-0.5 font-bold leading-none"
-            style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", background: "var(--discount-bg)", color: "var(--discount-text)" }}
+            style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", background: "var(--color-brand-50)", color: "var(--color-brand-700)" }}
           >
             {item.discount}%
           </span>
@@ -125,7 +125,7 @@ function WishCard({ item, onRemove }: { item: Product; onRemove: (id: number) =>
         <p className="leading-snug line-clamp-1 font-semibold" style={{ fontSize: "12px", color: "var(--text-primary)" }}>{item.name}</p>
         <div className="flex items-center justify-between mt-0.5">
           <div className="flex items-baseline gap-0.5">
-            <span className="font-bold" style={{ fontSize: "14px", color: "var(--text-price)" }}>
+            <span className="font-bold" style={{ fontSize: "14px", color: "var(--text-primary)" }}>
               {item.price.toLocaleString("ar-SA")}
             </span>
             <span style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-secondary)" }}>ر.س</span>
@@ -182,14 +182,14 @@ export function WishlistPage() {
 
       {wishlist.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8">
-          <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--gold-light)" }}>
+          <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
             <Heart size={32} style={{ color: "var(--text-brand)" }} strokeWidth={1.5} />
           </div>
           <p className="font-semibold text-center" style={{ color: "var(--text-primary)", fontSize: "16px" }}>المفضلة فارغة</p>
           <p className="text-center" style={{ color: "var(--text-muted)", fontSize: "13px" }}>أضف المنتجات التي تعجبك لتجدها هنا</p>
           <button
             onClick={() => navigate("/categories")}
-            style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", marginTop: 4, boxShadow: "var(--shadow-btn)" }}
+            style={{ padding: "12px 28px", borderRadius: 14, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, cursor: "pointer", marginTop: 4, boxShadow: "var(--shadow-btn)" }}
           >
             تسوّق الآن
           </button>

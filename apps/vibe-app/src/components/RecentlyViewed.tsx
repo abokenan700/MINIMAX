@@ -72,8 +72,8 @@ export function RecentlyViewed() {
                   style={{
                     padding: "2px 6px",
                     borderRadius: "var(--radius-pill)",
-                    background: p.isNew ? "var(--success-bg)" : "var(--discount-bg)",
-                    color: p.isNew ? "var(--success)" : "var(--discount-text)",
+                    background: p.isNew ? "var(--success-bg)" : "var(--color-brand-50)",
+                    color: p.isNew ? "var(--color-success-600)" : "var(--color-brand-700)",
                     fontSize: "clamp(8px, 2.1vw, 9px)",
                     fontWeight: 700,
                     border: `1px solid ${p.isNew ? "rgba(22,163,74,0.20)" : "rgba(249,115,22,0.18)"}`,
@@ -89,7 +89,7 @@ export function RecentlyViewed() {
                 {p.name}
               </p>
               <div className="flex items-baseline gap-0.5 mt-1">
-                <span style={{ fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 800, color: "var(--text-price)" }}>
+                <span style={{ fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 800, color: "var(--text-primary)" }}>
                   {p.price.toLocaleString("ar-SA")}
                 </span>
                 <span style={{ fontSize: "clamp(8px, 2.2vw, 9px)", color: "var(--text-muted)" }}>ر.س</span>

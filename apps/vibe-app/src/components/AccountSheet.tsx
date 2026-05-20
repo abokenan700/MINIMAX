@@ -445,7 +445,7 @@ export function AccountSheet() {
                 {mode === "register" && (
                   <>
                     <Input ref={firstRef} icon={<User size={17} color="#B8A88C" />} type="text" placeholder="الاسم الكامل" value={name} onChange={e => { setName(e.target.value); setFE(p => ({ ...p, name: "" })); }} autoComplete="name" required />
-                    {fieldErr.name && <p role="alert" style={{ fontSize: 12, color: "var(--error)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.name}</p>}
+                    {fieldErr.name && <p role="alert" style={{ fontSize: 12, color: "var(--color-danger-600)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.name}</p>}
                   </>
                 )}
 
@@ -457,7 +457,7 @@ export function AccountSheet() {
                   onChange={e => { setEmail(e.target.value); setFE(p => ({ ...p, email: "" })); setErr(""); }}
                   autoComplete="email" required
                 />
-                {fieldErr.email && <p role="alert" style={{ fontSize: 12, color: "var(--error)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.email}</p>}
+                {fieldErr.email && <p role="alert" style={{ fontSize: 12, color: "var(--color-danger-600)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.email}</p>}
 
                 <Input
                   icon={<Lock size={17} color="#B8A88C" />}
@@ -472,7 +472,7 @@ export function AccountSheet() {
                     </button>
                   }
                 />
-                {fieldErr.pass && <p role="alert" style={{ fontSize: 12, color: "var(--error)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.pass}</p>}
+                {fieldErr.pass && <p role="alert" style={{ fontSize: 12, color: "var(--color-danger-600)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.pass}</p>}
                 {mode === "register" && pass && <PasswordStrength password={pass} />}
 
                 {mode === "register" && (
@@ -489,7 +489,7 @@ export function AccountSheet() {
                         </button>
                       }
                     />
-                    {fieldErr.confirmPass && <p role="alert" style={{ fontSize: 12, color: "var(--error)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.confirmPass}</p>}
+                    {fieldErr.confirmPass && <p role="alert" style={{ fontSize: 12, color: "var(--color-danger-600)", margin: "-10px 0 10px", display: "flex", alignItems: "center", gap: 4 }}>⚠️ {fieldErr.confirmPass}</p>}
                   </>
                 )}
 
@@ -498,7 +498,7 @@ export function AccountSheet() {
                     <label style={{ display: "flex", alignItems: "center", gap: 8, cursor: "pointer", userSelect: "none" }}>
                       <span style={{ position: "relative", width: 20, height: 20, flexShrink: 0 }}>
                         <input type="checkbox" checked={remember} onChange={e => setRemember(e.target.checked)} aria-label="تذكّرني" style={{ position: "absolute", inset: 0, opacity: 0, width: "100%", height: "100%", margin: 0, cursor: "pointer" }} />
-                        <span aria-hidden="true" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 20, height: 20, borderRadius: 6, pointerEvents: "none", border: `2px solid ${remember ? "var(--gold)" : "#D1CBBC"}`, background: remember ? "var(--gold)" : "transparent", transition: "all 0.2s ease" }}>
+                        <span aria-hidden="true" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 20, height: 20, borderRadius: 6, pointerEvents: "none", border: `2px solid ${remember ? "var(--color-brand-600)" : "#D1CBBC"}`, background: remember ? "var(--color-brand-600)" : "transparent", transition: "all 0.2s ease" }}>
                           {remember && <span style={{ color: "#fff", fontSize: 12, fontWeight: 900, lineHeight: 1 }}>✓</span>}
                         </span>
                       </span>

@@ -56,7 +56,7 @@ export function Categories({
                   style={{ background: "#FFFFFF" }}
                 >
                   {imgFailed ? (
-                    <div className="category-fallback" style={{ background: isActive ? "var(--gold-light)" : "#F5F5F5" }}>
+                    <div className="category-fallback" style={{ background: isActive ? "var(--color-brand-50)" : "#F5F5F5" }}>
                       <span className="category-fallback-letter" style={{ color: isActive ? "var(--text-brand)" : "var(--text-muted)" }}>
                         {cat.label[0]}
                       </span>

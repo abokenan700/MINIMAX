@@ -80,7 +80,7 @@ export function CompareSheet() {
                     : false;
                   return (
                     <div key={p.id} style={{ padding: "11px 8px", display: "flex", alignItems: "center", justifyContent: "center", borderInlineEnd: "1px solid var(--border)" }}>
-                      <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: isBest ? 800 : 500, color: isBest ? "var(--text-brand)" : "var(--text-primary)", background: isBest ? "var(--gold-pale)" : "transparent", padding: isBest ? "2px 6px" : "0", borderRadius: 6 }}>{val}</span>
+                      <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: isBest ? 800 : 500, color: isBest ? "var(--text-brand)" : "var(--text-primary)", background: isBest ? "var(--color-brand-50)" : "transparent", padding: isBest ? "2px 6px" : "0", borderRadius: 6 }}>{val}</span>
                     </div>
                   );
                 })}
@@ -93,7 +93,7 @@ export function CompareSheet() {
             {items.map(p => (
               <button key={p.id}
                 onClick={() => { addToCart(p, p.colors?.[0]); }}
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5, padding: "10px 0", borderRadius: 12, border: "none", background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 5, padding: "10px 0", borderRadius: 12, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, cursor: "pointer", boxShadow: "var(--shadow-btn)" }}>
                 <ShoppingBag size={13} /> أضف للسلة
               </button>
             ))}
@@ -113,7 +113,7 @@ export function CompareBar() {
       style={{ position: "absolute", bottom: "calc(var(--nav-h) + 10px)", left: "50%", transform: "translateX(-50%)", zIndex: 90, pointerEvents: "none", display: "flex", justifyContent: "center" }}
     >
       <button
-        style={{ pointerEvents: "auto", display: "flex", alignItems: "center", gap: 8, padding: "9px 18px", borderRadius: 40, background: "var(--gradient-cta)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, border: "none", cursor: "pointer", boxShadow: "var(--shadow-btn)", whiteSpace: "nowrap" }}
+        style={{ pointerEvents: "auto", display: "flex", alignItems: "center", gap: 8, padding: "9px 18px", borderRadius: 40, background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, border: "none", cursor: "pointer", boxShadow: "var(--shadow-btn)", whiteSpace: "nowrap" }}
         onClick={() => setOpen(!open)}
         aria-label="فتح نافذة المقارنة"
       >

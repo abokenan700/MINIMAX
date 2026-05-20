@@ -32,7 +32,7 @@ export function FeaturedCard({ item }: { item: Product }) {
         background: "var(--card-bg)",
         border: "1px solid var(--card-border)",
         borderRadius: "var(--radius-card)",
-        boxShadow: "var(--shadow-card)",
+        boxShadow: "var(--elev-2)",
         cursor: "pointer",
         opacity: isOutOfStock ? 0.7 : 1,
       }}
@@ -46,7 +46,7 @@ export function FeaturedCard({ item }: { item: Product }) {
               fontSize: "clamp(7.5px, 2vw, 9px)",
               fontWeight: 700,
               color: "#fff",
-              background: "var(--gradient-cta)",
+              background: "var(--gradient-brand)",
               borderRadius: "var(--radius-pill)",
               padding: "2.5px 8px",
               lineHeight: 1.4,
@@ -84,17 +84,15 @@ export function FeaturedCard({ item }: { item: Product }) {
           className="absolute inset-0 w-full h-full object-cover"
           onError={(e) => { e.currentTarget.style.opacity = "0"; }}
         />
-        {/* Quick-view button — icon only, bottom-left corner */}
         <button
           onClick={(e) => { e.stopPropagation(); openQuickView(item); }}
           aria-label="نظرة سريعة"
-          className="quick-view-btn"
           style={{
             position: "absolute",
             bottom: 6,
             insetInlineStart: 6,
-            width: 26,
-            height: 26,
+            width: 28,
+            height: 28,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -105,7 +103,7 @@ export function FeaturedCard({ item }: { item: Product }) {
             WebkitBackdropFilter: "blur(6px)",
             color: "var(--text-primary)",
             cursor: "pointer",
-            boxShadow: "0 1px 6px rgba(0,0,0,0.16)",
+            boxShadow: "var(--elev-2)",
             transition: "opacity 0.2s, transform 0.2s",
             flexShrink: 0,
           }}
@@ -113,9 +111,15 @@ export function FeaturedCard({ item }: { item: Product }) {
           <Eye size={13} strokeWidth={2} />
         </button>
 
-        {/* Discount badge */}
         {item.discount > 0 && (
-          <div style={{ position: "absolute", top: 36, insetInlineStart: 4, background: "var(--error)", color: "#fff", fontSize: 9, fontWeight: 800, padding: "2px 6px", borderRadius: 6 }}>
+          <div style={{
+            position: "absolute", top: 36, insetInlineStart: 4,
+            background: "var(--color-danger-600)",
+            color: "#fff", fontSize: 9, fontWeight: 700,
+            padding: "2px 6px", borderRadius: "var(--radius-xs)",
+            fontFamily: "var(--font-numeric)",
+            fontVariantNumeric: "tabular-nums",
+          }}>
             -{item.discount}%
           </div>
         )}
@@ -128,7 +132,7 @@ export function FeaturedCard({ item }: { item: Product }) {
       <div className="flex flex-col gap-0.5 px-2 pt-1.5 pb-2">
         {/* Brand + Colors */}
         <div className="flex items-center justify-between">
-          <p style={{ fontSize: "clamp(9.5px, 2.6vw, 11px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.3px" }}>
+          <p style={{ fontSize: "clamp(9.5px, 2.6vw, 11px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.3px", fontFamily: "var(--font-text)" }}>
             {item.brand}
           </p>
           {item.colors.length > 0 && (
@@ -144,7 +148,7 @@ export function FeaturedCard({ item }: { item: Product }) {
                   <span
                     className="rounded-full block"
                     style={{
-                      width: 13, height: 13,
+                      width: 14, height: 14,
                       background: colorToCss(c),
                       boxShadow: `0 1px 4px rgba(0,0,0,0.22)${needsBorder(c) ? ", 0 0 0 1px rgba(0,0,0,0.12)" : ""}`,
                       transition: "transform 0.15s ease",
@@ -154,7 +158,7 @@ export function FeaturedCard({ item }: { item: Product }) {
                 </button>
               ))}
               {item.colors.length > 4 && (
-                <span style={{ fontSize: "9px", color: "var(--text-muted)", fontWeight: 600, lineHeight: 1 }}>
+                <span style={{ fontSize: "9px", color: "var(--text-muted)", fontWeight: 600, lineHeight: 1, fontFamily: "var(--font-text)" }}>
                   +{item.colors.length - 4}
                 </span>
               )}
@@ -163,7 +167,7 @@ export function FeaturedCard({ item }: { item: Product }) {
         </div>
 
         {/* Name */}
-        <p className="line-clamp-1 font-semibold" style={{ fontSize: "clamp(11px, 3vw, 13px)", color: "var(--text-primary)", lineHeight: 1.35 }}>
+        <p className="line-clamp-1 font-semibold" style={{ fontSize: "clamp(11px, 3vw, 13px)", color: "var(--text-primary)", lineHeight: "var(--leading-snug)", fontFamily: "var(--font-text)" }}>
           {item.name}
         </p>
 
@@ -171,11 +175,11 @@ export function FeaturedCard({ item }: { item: Product }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
             <Stars rating={item.rating} />
-            <span style={{ fontSize: "clamp(9px, 2.5vw, 10px)", color: "var(--text-brand)", fontWeight: 700 }}>
+            <span style={{ fontSize: "clamp(9px, 2.5vw, 10px)", color: "var(--text-brand)", fontWeight: 700, fontFamily: "var(--font-text)" }}>
               {item.rating}
             </span>
           </div>
-          <span style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-muted)" }}>
+          <span style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-muted)", fontFamily: "var(--font-text)" }}>
             {formatSales(item.sales)} مبيعة
           </span>
         </div>
@@ -183,12 +187,12 @@ export function FeaturedCard({ item }: { item: Product }) {
         {/* Price */}
         <div className="flex items-center justify-between">
           <div className="flex items-baseline gap-0.5">
-            <span style={{ fontSize: "clamp(13px, 3.6vw, 15px)", fontWeight: 800, color: "var(--text-price)" }}>
+            <span style={{ fontSize: "clamp(13px, 3.6vw, 15px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
               {item.price.toLocaleString("ar-SA")}
             </span>
-            <span style={{ fontSize: "clamp(9px, 2.5vw, 10px)", color: "var(--text-muted)" }}>ر.س</span>
+            <span style={{ fontSize: "clamp(9px, 2.5vw, 10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
           </div>
-          <span className="line-through" style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-muted)" }}>
+          <span className="line-through" style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
             {item.original_price.toLocaleString("ar-SA")}
           </span>
         </div>
@@ -199,11 +203,13 @@ export function FeaturedCard({ item }: { item: Product }) {
             style={{
               fontSize: "clamp(8.5px, 2.3vw, 9.5px)",
               fontWeight: 700,
-              background: "var(--discount-bg)",
-              color: "var(--discount-text)",
+              background: "var(--color-brand-50)",
+              color: "var(--color-brand-700)",
               borderRadius: "var(--radius-pill)",
               padding: "2px 8px",
-              border: "1px solid rgba(249,115,22,0.15)",
+              border: "1px solid rgba(194,65,12,0.15)",
+              fontFamily: "var(--font-numeric)",
+              fontVariantNumeric: "tabular-nums",
             }}
           >
             خصم {item.discount}%

@@ -66,10 +66,10 @@ export function SearchBar({
           className="flex items-center gap-3 rounded-2xl px-4"
           style={{
             background: "var(--input-bg)",
-            border: "1px solid var(--gold)",
+            border: "1px solid var(--color-brand-600)",
             paddingTop: "7px",
             paddingBottom: "7px",
-            boxShadow: focused ? "0 0 0 2.5px var(--gold-light)" : "none",
+            boxShadow: focused ? "0 0 0 2.5px var(--color-brand-50)" : "none",
             transition: "box-shadow 0.18s ease",
           }}
           dir="rtl"
@@ -79,7 +79,7 @@ export function SearchBar({
             strokeWidth={1.8}
             className="flex-shrink-0"
             style={{
-              color: focused ? "var(--gold-accent)" : "var(--text-muted)",
+              color: focused ? "var(--color-brand-600)" : "var(--text-muted)",
               transition: "color 0.18s ease",
             }}
           />
@@ -159,7 +159,7 @@ export function SearchBar({
                 transition: "background 0.15s, color 0.15s, border-color 0.15s",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background = "var(--gold-light)";
+                (e.currentTarget as HTMLElement).style.background = "var(--color-brand-50)";
                 (e.currentTarget as HTMLElement).style.color = "var(--text-brand)";
                 (e.currentTarget as HTMLElement).style.borderColor = "var(--border-orange)";
               }}

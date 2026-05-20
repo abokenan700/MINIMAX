@@ -101,14 +101,14 @@ export function OTPInput({ length = 6, value, onChange, disabled, error }: OTPIn
               fontSize: 22,
               fontWeight: 800,
               fontFamily: "var(--font-main)",
-              color: error ? "var(--error)" : "var(--text-primary)",
+              color: error ? "var(--color-danger-600)" : "var(--text-primary)",
               background: hasVal
-                ? (error ? "#FEF0EE" : "var(--gold-pale)")
+                ? (error ? "#FEF0EE" : "var(--color-brand-50)")
                 : "var(--input-bg-soft)",
               border: `2px solid ${
-                error      ? "var(--error)"
-                : isFocused ? "var(--gold)"
-                : hasVal    ? "var(--gold-accent)"
+                error      ? "var(--color-danger-600)"
+                : isFocused ? "var(--color-brand-600)"
+                : hasVal    ? "var(--color-brand-600)"
                 : "#E8E4DE"
               }`,
               borderRadius: 12,

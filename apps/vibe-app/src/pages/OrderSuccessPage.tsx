@@ -76,7 +76,7 @@ export function OrderSuccessPage() {
 
         <div style={{
           width: 100, height: 100, borderRadius: "50%",
-          background: "linear-gradient(135deg,var(--gold),var(--gold-accent))",
+          background: "linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))",
           display: "flex", alignItems: "center", justifyContent: "center",
           marginBottom: 24,
           transform: show ? "scale(1)" : "scale(0)",
@@ -103,7 +103,7 @@ export function OrderSuccessPage() {
           opacity: show ? 1 : 0, transform: show ? "translateY(0)" : "translateY(16px)",
           transition: "opacity var(--duration-slow) var(--ease-standard) 0.55s, transform var(--duration-slow) var(--ease-standard) 0.55s",
         }}>
-          <div style={{ padding: "14px 16px", background: "var(--gold-pale)", borderBottom: "1px solid rgba(192,168,130,0.25)" }}>
+          <div style={{ padding: "14px 16px", background: "var(--color-brand-50)", borderBottom: "1px solid rgba(192,168,130,0.25)" }}>
             <p style={{ fontSize: 11, color: "var(--text-muted)", marginBottom: 2 }}>رقم الطلب</p>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 16, fontWeight: 800, color: "var(--text-brand)", letterSpacing: 1 }}>{orderNum}</p>
           </div>
@@ -170,7 +170,7 @@ function PostOrderUpsell({ show, navigate }: { show: boolean; navigate: (to: str
               <div style={{ padding: "8px 10px 10px" }} dir="rtl">
                 <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-brand)", marginBottom: 3 }}>{p.brand}</p>
                 <p className="line-clamp-2" style={{ fontFamily: "var(--font-main)", fontSize: 11.5, color: "var(--text-primary)", lineHeight: 1.3, marginBottom: 5 }}>{p.name}</p>
-                <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 800, color: "var(--text-price)" }}>
+                <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 800, color: "var(--text-primary)" }}>
                   {p.price.toLocaleString("ar-SA")} <span style={{ fontSize: 9.5, fontWeight: 400, color: "var(--text-secondary)" }}>ر.س</span>
                 </p>
               </div>

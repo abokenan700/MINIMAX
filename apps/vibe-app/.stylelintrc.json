@@ -1,0 +1,18 @@
+{
+  "plugins": ["stylelint-declaration-strict-value"],
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      ["/color/", "fill", "stroke", "background", "background-color", "border-color", "outline-color"],
+      {
+        "ignoreKeywords": {
+          "": ["transparent", "inherit", "currentColor", "none", "initial", "unset"],
+          "background": ["transparent", "none", "inherit"],
+          "fill": ["none", "transparent", "currentColor"],
+          "stroke": ["none", "transparent", "currentColor"]
+        },
+        "ignoreFunctions": ["var", "rgba", "linear-gradient", "radial-gradient", "url"],
+        "message": "Use a CSS custom property (var(--color-*)) instead of a raw colour value."
+      }
+    ]
+  }
+}
