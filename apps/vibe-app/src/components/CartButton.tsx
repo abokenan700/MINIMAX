@@ -14,7 +14,7 @@ interface CartButtonProps {
 export function CartButton({ size = "md", product, selectedColor }: CartButtonProps) {
   const { added, pending, handleAdd, showConfetti } = useCartButton(product, selectedColor);
 
-  const iconSize = size === "sm" ? 16 : 18;
+  const iconSize = size === "sm" ? 18 : 21;
   const btnSize  = size === "sm" ? "sm" : "md";
 
   return (
