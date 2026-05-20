@@ -21,7 +21,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
     <div style={{ position: "relative", flexShrink: 0 }}>
       <CartConfetti active={showConfetti} />
       <IconButton
-        variant={added ? "soft" : "solid-gradient"}
+        variant={added ? "soft" : "ghost"}
         size={btnSize}
         aria-label={pending ? "جارٍ الإضافة" : added ? "تمت الإضافة للسلة" : "أضف للسلة"}
         onClick={handleAdd}
