@@ -5,7 +5,7 @@ import { colorToCss, needsBorder } from "../lib/colorMap";
 type SwatchSize = "xs" | "sm" | "md";
 
 const SWATCH_DIM: Record<SwatchSize, number> = { xs: 14, sm: 18, md: 24 };
-const HIT_DIM:    Record<SwatchSize, number> = { xs: 22, sm: 26, md: 32 };
+const HIT_DIM:    Record<SwatchSize, number> = { xs: 16, sm: 22, md: 30 };
 
 export interface ColorSwatchRowProps extends Omit<HTMLAttributes<HTMLDivElement>, "onChange" | "onSelect"> {
   colors: string[];
@@ -24,7 +24,7 @@ export const ColorSwatchRow = forwardRef<HTMLDivElement, ColorSwatchRowProps>(
       <div
         ref={ref}
         className={cn("flex items-center", className)}
-        style={{ gap: 4 }}
+        style={{ gap: 2 }}
         onClick={(e) => { e.stopPropagation(); onClick?.(e); }}
         {...props}
       >
