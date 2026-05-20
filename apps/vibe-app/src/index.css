@@ -107,8 +107,8 @@
   --text-brand:       var(--color-brand-500);     /* #D4503A */
 
   /* ─── Gradient System ─────────────────────────────────────────────── */
-  --gradient-brand:        linear-gradient(135deg, #E8674A 0%, #D4503A 100%);
-  --gradient-brand-hover:  linear-gradient(135deg, #EE8A6A 0%, #E8674A 100%);
+  --gradient-brand:        var(--color-brand-500);
+  --gradient-brand-hover:  var(--color-brand-400);
   --gradient-surface-warm: linear-gradient(135deg, #FEF2EE 0%, #FDDFD6 100%);
 
   /* ─── Typography Families ────────────────────────────────────────── */
