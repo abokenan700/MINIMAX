@@ -27,7 +27,6 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
         onClick={handleAdd}
         disabled={pending}
         style={{
-          minWidth: 40, minHeight: 40,
           transition: "background 200ms var(--ease-out)",
         }}
       >
