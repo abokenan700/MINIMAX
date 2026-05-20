@@ -29,11 +29,11 @@ export const Heart = forwardRef<HTMLButtonElement, HeartProps>(
     >
       <HeartIcon
         size={size}
-        strokeWidth={pressed ? 0 : 1.8}
+        strokeWidth={pressed ? 0 : 2}
         className={pressed ? "heart-pop" : ""}
         style={{
-          fill: pressed ? "#F87171" : "none",
-          stroke: pressed ? "#F87171" : "var(--text-muted)",
+          fill: pressed ? "#F97316" : "none",
+          stroke: pressed ? "#F97316" : "#F97316",
           transition: "fill 220ms var(--ease-spring), stroke 220ms var(--ease-spring)",
         }}
       />

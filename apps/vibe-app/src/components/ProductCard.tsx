@@ -118,7 +118,7 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
             position: "absolute", bottom: 6, insetInlineStart: 6,
             display: "flex", alignItems: "center", justifyContent: "center",
             border: "none", background: "transparent",
-            color: "var(--text-primary)", cursor: "pointer",
+            color: "#F97316", cursor: "pointer",
             padding: 0, flexShrink: 0,
             transition: "opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out)",
           }}
