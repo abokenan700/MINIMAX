@@ -229,18 +229,18 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
 
       {/* Content */}
       <div className="deal-card-body" dir="rtl">
-        <p className="deal-card-brand">{product.brand}</p>
+        <div className="flex items-center justify-between">
+          <p className="deal-card-brand">{product.brand}</p>
+          {product.colors && product.colors.length > 0 && (
+            <ColorSwatchRow
+              colors={product.colors}
+              max={3}
+              size="xs"
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
+        </div>
         <p className="deal-card-name line-clamp-2">{product.name}</p>
-
-        {product.colors && product.colors.length > 0 && (
-          <ColorSwatchRow
-            colors={product.colors}
-            max={3}
-            size="xs"
-            style={{ marginTop: 2 }}
-            onClick={(e) => e.stopPropagation()}
-          />
-        )}
 
         {/* Viewers */}
         <p className="deal-card-viewers">
