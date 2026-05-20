@@ -14,7 +14,7 @@ interface CartButtonProps {
 export function CartButton({ size = "md", product, selectedColor }: CartButtonProps) {
   const { added, pending, handleAdd, showConfetti } = useCartButton(product, selectedColor);
 
-  const iconSize = size === "sm" ? 13 : 14;
+  const iconSize = size === "sm" ? 16 : 18;
   const btnSize  = size === "sm" ? "sm" : "md";
 
   return (
@@ -34,7 +34,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
           ? <Spinner size="sm" />
           : added
           ? <Check size={iconSize} strokeWidth={2.5} />
-          : <ShoppingBag size={iconSize} strokeWidth={2} />
+          : <ShoppingBag size={iconSize} strokeWidth={2} color="var(--color-brand-500)" />
         }
       </IconButton>
     </div>
