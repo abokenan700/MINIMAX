@@ -24,7 +24,7 @@ export const ColorSwatchRow = forwardRef<HTMLDivElement, ColorSwatchRowProps>(
       <div
         ref={ref}
         className={cn("flex items-center", className)}
-        style={{ gap: 2 }}
+        style={{ gap: 4 }}
         onClick={(e) => { e.stopPropagation(); onClick?.(e); }}
         {...props}
       >
