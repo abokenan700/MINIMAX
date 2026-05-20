@@ -270,7 +270,12 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
               </span>
               <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
             </div>
-            <PriceTag price={product.price} size="sm" />
+            <div className="flex items-baseline gap-0.5" dir="ltr">
+              <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
+              <span style={{ fontSize: "clamp(15px,4vw,17px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
+                {product.price.toLocaleString("ar-SA")}
+              </span>
+            </div>
           </div>
 
           <div style={{ position: "relative", flexShrink: 0 }}>
