@@ -34,7 +34,7 @@ export function CartButton({ size = "md", product, selectedColor }: CartButtonPr
           ? <Spinner size="sm" />
           : added
           ? <Check size={iconSize} strokeWidth={2.5} />
-          : <ShoppingBag size={iconSize} strokeWidth={2} color="var(--color-brand-500)" />
+          : <ShoppingBag size={iconSize} strokeWidth={2.5} color="var(--color-brand-500)" />
         }
       </IconButton>
     </div>
