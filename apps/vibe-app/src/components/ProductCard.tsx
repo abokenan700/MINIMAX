@@ -261,15 +261,9 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
         </p>
 
         {/* Price + discount + cart */}
-        <div className="deal-card-bottom-row" onClick={(e) => e.stopPropagation()}>
+        <div className="flex flex-col gap-1" onClick={(e) => e.stopPropagation()}>
           <div className="flex flex-col leading-none gap-0.5">
-            <div className="flex items-center gap-1">
-              <span className="deal-card-discount-inline">
-                {isFire && <Flame size={8} className="fill-white stroke-none inline -mt-0.5" />}
-                {product.discount}%
-              </span>
-              <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
-            </div>
+            <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
             <div className="flex items-baseline gap-0.5" dir="ltr">
               <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
               <span style={{ fontSize: "clamp(15px,4vw,17px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
@@ -277,9 +271,14 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
               </span>
             </div>
           </div>
-
-          <div style={{ position: "relative", flexShrink: 0 }}>
-            <CartButton size="md" product={product} selectedColor={selectedColor} />
+          <div className="flex items-center justify-between">
+            <Badge variant="discount-soft" size="sm">
+              {isFire && <Flame size={8} className="fill-white stroke-none inline -mt-0.5" />}
+              خصم {product.discount}%
+            </Badge>
+            <div style={{ position: "relative", flexShrink: 0 }}>
+              <CartButton size="md" product={product} selectedColor={selectedColor} />
+            </div>
           </div>
         </div>
 
