@@ -182,10 +182,10 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
         {/* Price */}
         <div className="flex items-baseline justify-between" dir="rtl">
           <div className="flex items-baseline gap-0.5" dir="ltr">
-            <span style={{ fontSize: "clamp(13px,3.5vw,15px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
+            <span style={{ fontSize: "clamp(15px,4vw,17px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
               {product.price.toLocaleString("ar-SA")}
             </span>
-            <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
           </div>
           {product.original_price > product.price && (
             <span className="line-through" style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
