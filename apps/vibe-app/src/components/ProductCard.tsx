@@ -118,12 +118,11 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
             position: "absolute", bottom: 6, insetInlineStart: 6,
             display: "flex", alignItems: "center", justifyContent: "center",
             border: "none", background: "transparent",
-            color: "#F97316", cursor: "pointer",
-            padding: 0, flexShrink: 0,
+            cursor: "pointer", padding: 0, flexShrink: 0,
             transition: "opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out)",
           }}
         >
-          <Eye size={13} strokeWidth={2} />
+          <Eye size={16} strokeWidth={2.5} color="#F97316" />
         </button>
         {product.discount > 0 && (
           <div style={{
