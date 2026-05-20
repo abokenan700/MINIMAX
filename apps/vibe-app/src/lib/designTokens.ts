@@ -1,108 +1,243 @@
 /**
- * نخبة Visual Identity
- * Palette: #F97316 (orange) · #FFFFFF (white) · #111111 (text)
- * Semantic: #16A34A (success) · #DC2626 (error) · #D97706 (warning)
+ * نخبة Visual Identity System v3.0
+ * Brand:    #EA580C (brand-600) — 4.6:1 contrast on white, WCAG AA
+ * Surface:  #FBFAF8 (neutral-25) — warm champagne page
+ * Display:  Reem Kufi Fun · Text: IBM Plex Sans Arabic
+ * Grid:     4-pt geometric base
  *
- * استخدم CSS vars في style={{}} بدلاً من القيم المباشرة:
- *   var(--gold), var(--text-brand), var(--accent) ... إلخ
+ * Use CSS vars in style={{}} instead of raw values:
+ *   var(--color-brand-600), var(--text-brand), var(--font-display) ... etc
  */
 
-export const BRAND = {
-  gold:          "var(--gold)",              /* #F97316 — bright orange */
-  goldDark:      "var(--gold-dark)",         /* #EA580C — darker orange */
-  goldAccent:    "var(--gold-accent)",       /* #EA580C */
-  goldLight:     "var(--gold-light)",        /* #FFF7F0 — pale orange tint */
-  goldMid:       "var(--gold-mid)",          /* #FB923C — mid orange */
-  gradientGold:  "var(--gradient-gold)",     /* #F97316 → #EA580C */
-  gradientText:  "var(--gradient-brand-text)",
-  gradientCta:   "var(--gradient-cta)",      /* #F97316 → #EA580C */
+/* ─── Brand Scale — 10-step orange ramp ─────────────────────────── */
+export const BRAND_COLOR = {
+  50:      "var(--color-brand-50)",
+  100:     "var(--color-brand-100)",
+  200:     "var(--color-brand-200)",
+  300:     "var(--color-brand-300)",
+  400:     "var(--color-brand-400)",
+  500:     "var(--color-brand-500)",
+  600:     "var(--color-brand-600)",   /* DEFAULT — 4.6:1 on white */
+  700:     "var(--color-brand-700)",
+  800:     "var(--color-brand-800)",
+  900:     "var(--color-brand-900)",
+  default: "var(--color-brand-default)",
 } as const;
 
-export const ACCENT = {
-  main:    "var(--accent)",       /* #F97316 — urgency / discount / alert */
-  bg:      "var(--accent-bg)",    /* #FFF7F0 */
-  light:   "var(--accent-light)", /* #FFF3E8 */
-  text:    "var(--accent-text)",  /* #EA580C */
+/* ─── Neutral Scale — warm champagne ────────────────────────────── */
+export const NEUTRAL = {
+  0:   "var(--color-neutral-0)",
+  25:  "var(--color-neutral-25)",
+  50:  "var(--color-neutral-50)",
+  100: "var(--color-neutral-100)",
+  200: "var(--color-neutral-200)",
+  300: "var(--color-neutral-300)",
+  400: "var(--color-neutral-400)",
+  500: "var(--color-neutral-500)",
+  600: "var(--color-neutral-600)",
+  700: "var(--color-neutral-700)",
+  900: "var(--color-neutral-900)",
 } as const;
 
+/* ─── Feedback ───────────────────────────────────────────────────── */
+export const FEEDBACK = {
+  success600: "var(--color-success-600)",
+  success50:  "var(--color-success-50)",
+  danger600:  "var(--color-danger-600)",
+  danger50:   "var(--color-danger-50)",
+  warning600: "var(--color-warning-600)",
+  warning50:  "var(--color-warning-50)",
+  info600:    "var(--color-info-600)",
+  info50:     "var(--color-info-50)",
+} as const;
+
+/* ─── Luxury accents ─────────────────────────────────────────────── */
+export const LUXURY = {
+  ink:    "var(--color-ink-luxury)",     /* #1A1410 — warm near-black */
+  bronze: "var(--color-accent-bronze)",  /* #B8763E — ultra-luxury moments ONLY */
+} as const;
+
+/* ─── Loyalty tiers ──────────────────────────────────────────────── */
+export const TIER = {
+  silver: "var(--tier-silver)",
+  gold:   "var(--tier-gold)",
+  onyx:   "var(--tier-onyx)",
+} as const;
+
+/* ─── Text hierarchy ─────────────────────────────────────────────── */
 export const TEXT = {
-  primary:   "var(--text-primary)",   /* #111111 */
-  secondary: "var(--text-secondary)", /* #444444 */
-  muted:     "var(--text-muted)",     /* #888888 */
-  price:     "var(--text-price)",     /* #111111 */
-  brand:     "var(--text-brand)",     /* #F97316 */
+  primary:     "var(--text-primary)",
+  secondary:   "var(--text-secondary)",
+  tertiary:    "var(--text-tertiary)",
+  muted:       "var(--text-muted)",
+  placeholder: "var(--text-placeholder)",
+  brand:       "var(--text-brand)",
 } as const;
 
+/* ─── Surfaces ───────────────────────────────────────────────────── */
 export const SURFACE = {
-  page:    "var(--bg-page)",           /* #FFFFFF */
-  card:    "var(--bg-card)",           /* #FFFFFF */
-  warm:    "var(--bg-surface-warm)",   /* #FAFAFA */
-  subtle:  "var(--bg-surface-subtle)", /* #F5F5F5 */
-  bgSubtle:"var(--bg-subtle)",         /* #F8F8F8 */
-  ctaDark: "var(--bg-cta-dark)",       /* #F97316 — orange, not dark! */
+  body:          "var(--bg-body)",
+  page:          "var(--bg-page)",
+  card:          "var(--bg-card)",
+  warm:          "var(--bg-surface-warm)",
+  subtle:        "var(--bg-surface-subtle)",
+  hover:         "var(--bg-hover)",
 } as const;
 
-export const SEMANTIC = {
-  success:    "var(--success)",    /* #16A34A */
-  successBg:  "var(--success-bg)", /* #F0FDF4 */
-  error:      "var(--error)",      /* #DC2626 */
-  errorBg:    "var(--error-bg)",   /* #FEF2F2 */
-  warning:    "var(--warning)",    /* #D97706 */
-  warningBg:  "var(--warning-bg)", /* #FFFBEB */
+/* ─── Gradients ──────────────────────────────────────────────────── */
+export const GRADIENT = {
+  brand:       "var(--gradient-brand)",
+  brandHover:  "var(--gradient-brand-hover)",
+  surfaceWarm: "var(--gradient-surface-warm)",
 } as const;
 
+/* ─── Typography families ────────────────────────────────────────── */
+export const FONT = {
+  display: "var(--font-display)",   /* Reem Kufi Fun — editorial */
+  text:    "var(--font-text)",      /* IBM Plex Sans Arabic — UI */
+  numeric: "var(--font-numeric)",   /* IBM Plex Sans Arabic — prices */
+  main:    "var(--font-main)",      /* alias for font-text */
+} as const;
+
+/* ─── Type scale ─────────────────────────────────────────────────── */
+export const FONT_SIZE = {
+  "2xs": "var(--text-2xs)",
+  xs:    "var(--text-xs)",
+  sm:    "var(--text-sm)",
+  md:    "var(--text-md)",
+  lg:    "var(--text-lg)",
+  xl:    "var(--text-xl)",
+  "2xl": "var(--text-2xl)",
+  "3xl": "var(--text-3xl)",
+  "4xl": "var(--text-4xl)",
+  base:     "var(--text-md)",        /* backward-compat */
+  priceLg:  "var(--text-3xl)",       /* backward-compat */
+} as const;
+
+/* ─── Weight scale — 5 weights only ─────────────────────────────── */
+export const WEIGHT = {
+  light:    300,
+  regular:  400,
+  medium:   500,
+  semibold: 600,
+  bold:     700,
+} as const;
+
+/* ─── Line-height ramp ───────────────────────────────────────────── */
+export const LEADING = {
+  tight:   "var(--leading-tight)",
+  snug:    "var(--leading-snug)",
+  normal:  "var(--leading-normal)",
+  relaxed: "var(--leading-relaxed)",
+} as const;
+
+/* ─── Letter-spacing ramp ────────────────────────────────────────── */
+export const TRACKING = {
+  tight:  "var(--tracking-tight)",
+  normal: "var(--tracking-normal)",
+  wide:   "var(--tracking-wide)",
+  brand:  "var(--tracking-brand)",
+} as const;
+
+/* ─── 4-pt spacing grid ──────────────────────────────────────────── */
+export const SPACING = {
+  0:  "var(--space-0)",   /* 0 */
+  1:  "var(--space-1)",   /* 4px */
+  2:  "var(--space-2)",   /* 8px */
+  3:  "var(--space-3)",   /* 12px */
+  4:  "var(--space-4)",   /* 16px */
+  5:  "var(--space-5)",   /* 20px */
+  6:  "var(--space-6)",   /* 24px */
+  7:  "var(--space-7)",   /* 32px */
+  8:  "var(--space-8)",   /* 40px */
+  9:  "var(--space-9)",   /* 48px */
+  10: "var(--space-10)",  /* 56px */
+  11: "var(--space-11)",  /* 64px */
+  12: "var(--space-12)",  /* 80px */
+  /* backward-compat named sizes */
+  xs:  "var(--space-1)",
+  sm:  "var(--space-2)",
+  md:  "var(--space-4)",
+  lg:  "var(--space-6)",
+  xl:  "var(--space-7)",
+  xxl: "var(--space-9)",
+} as const;
+
+/* ─── Border radius scale ────────────────────────────────────────── */
 export const RADIUS = {
+  xs:   "var(--radius-xs)",    /* 4px  */
   sm:   "var(--radius-sm)",    /* 8px  */
-  md:   "var(--radius-md)",    /* 14px */
-  lg:   "var(--radius-lg)",    /* 20px */
+  md:   "var(--radius-md)",    /* 12px */
+  lg:   "var(--radius-lg)",    /* 16px */
   card: "var(--radius-card)",  /* 16px */
-  xl:   "var(--radius-xl)",    /* 24px */
+  xl:   "var(--radius-xl)",    /* 20px */
+  "2xl":"var(--radius-2xl)",   /* 28px */
+  pill: "var(--radius-pill)",  /* 9999px */
   full: 9999,
 } as const;
 
+/* ─── Elevation ladder ───────────────────────────────────────────── */
+export const ELEVATION = {
+  0: "var(--elev-0)",
+  1: "var(--elev-1)",
+  2: "var(--elev-2)",
+  3: "var(--elev-3)",
+  4: "var(--elev-4)",
+  5: "var(--elev-5)",
+  6: "var(--elev-6)",
+  brandSm: "var(--glow-brand-sm)",
+} as const;
+
+/* ─── Icon sizes ─────────────────────────────────────────────────── */
 export const ICON_SIZE = {
-  xs:  12,
   sm:  16,
   md:  20,
   lg:  24,
-  xl:  28,
-  xxl: 36,
+  xl:  40,   /* empty state icon */
 } as const;
 
-export const FONT_SIZE = {
-  "2xs": "var(--text-2xs)",  /* clamp(10px, 2.6vw, 11px) */
-  xs:    "var(--text-xs)",   /* clamp(11px, 3vw,   12.5px) */
-  sm:    "var(--text-sm)",   /* clamp(12px, 3.2vw, 13.5px) */
-  base:  "var(--text-base)", /* clamp(13.5px, 3.8vw, 15px) */
-  lg:    "var(--text-lg)",   /* clamp(15px, 4.2vw, 17px) */
-  xl:    "var(--text-xl)",   /* clamp(19px, 5.5vw, 23px) */
-  priceLg: "var(--text-price-lg)", /* clamp(24px, 7vw, 29px) */
+/* ─── Layout ─────────────────────────────────────────────────────── */
+export const LAYOUT = {
+  headerH:     "var(--header-h)",     /* 56px */
+  navH:        "var(--nav-h)",        /* 64px */
+  containerXs: "var(--container-xs)", /* 360px */
+  containerSm: "var(--container-sm)", /* 400px */
+  containerMd: "var(--container-md)", /* 430px */
+  containerLg: "var(--container-lg)", /* 640px */
+  containerXl: "var(--container-xl)", /* 960px */
 } as const;
 
-export const SPACING = {
-  xs:   4,
-  sm:   8,
-  md:   16,
-  lg:   24,
-  xl:   32,
-  xxl:  48,
-} as const;
-
-export const WEIGHT = {
-  regular:   400,
-  medium:    500,
-  semibold:  600,
-  bold:      700,
-  extrabold: 800,
-  black:     900,
-} as const;
-
-/** Motion — 3 canonical speeds */
+/* ─── Motion ─────────────────────────────────────────────────────── */
 export const MOTION = {
-  fast:   "var(--duration-fast)",  /* 0.15s */
-  base:   "var(--duration-base)",  /* 0.28s */
-  slow:   "var(--duration-slow)",  /* 0.50s */
-  easeOut:    "var(--ease-out)",
-  easeSpring: "var(--ease-spring)",
-  easeSlide:  "var(--ease-slide)",
+  fast:       "var(--duration-fast)",
+  base:       "var(--duration-base)",
+  slow:       "var(--duration-slow)",
+  easeOut:       "var(--ease-out)",
+  easeStandard:  "var(--ease-standard)",
+  easeSpring:    "var(--ease-spring)",
+  easeSlide:     "var(--ease-slide)",
+  easeSheet:     "var(--ease-sheet)",
+  easeBounce:    "var(--ease-bounce)",
+  easeEmphasized:"var(--ease-emphasized)",
+} as const;
+
+/* ─── Legacy compatibility shims ─────────────────────────────────── */
+export const BRAND = {
+  gold:         "var(--color-brand-500)",
+  goldDark:     "var(--color-brand-600)",
+  goldAccent:   "var(--color-brand-600)",
+  goldLight:    "var(--color-brand-50)",
+  goldMid:      "var(--color-brand-400)",
+  gradientGold: "var(--gradient-brand)",
+  gradientText: "var(--gradient-brand)",
+  gradientCta:  "var(--gradient-brand)",
+} as const;
+
+export const SEMANTIC = {
+  success:   "var(--color-success-600)",
+  successBg: "var(--color-success-50)",
+  error:     "var(--color-danger-600)",
+  errorBg:   "var(--color-danger-50)",
+  warning:   "var(--color-warning-600)",
+  warningBg: "var(--color-warning-50)",
 } as const;
