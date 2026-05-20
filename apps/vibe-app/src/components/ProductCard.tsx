@@ -262,7 +262,7 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
 
         {/* Price + discount + cart */}
         <div className="flex flex-col gap-1" onClick={(e) => e.stopPropagation()}>
-          <div className="flex flex-col leading-none gap-0.5">
+          <div className="flex flex-col leading-none gap-0.5 items-start">
             <span className="deal-card-original">{product.original_price.toLocaleString("ar-SA")}</span>
             <div className="flex items-baseline gap-0.5" dir="ltr">
               <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
