@@ -1,6 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
+import { Loader } from "lucide-react";
 
 export const buttonVariants = cva(
   [
@@ -14,49 +15,49 @@ export const buttonVariants = cva(
   {
     variants: {
       variant: {
-        /* زر أساسي — داكن THAWQ */
         primary: [
           "text-white border-none",
           "[background:var(--gradient-brand)]",
-          "[box-shadow:var(--shadow-md)]",
+          "[box-shadow:var(--shadow-btn)]",
           "hover:opacity-90",
         ].join(" "),
 
-        /* زر ثانوي — حدود ذهبية THAWQ */
         outline: [
           "bg-transparent text-[var(--text-brand)]",
           "!border-[1.5px] !border-[var(--color-brand-600)]",
           "hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
-        /* زر نصي */
         ghost: [
           "bg-transparent border-none text-[var(--color-brand-600)]",
           "rounded-full hover:bg-[var(--color-brand-50)]",
         ].join(" "),
 
-        /* زر دائري ذهبي — سلة */
         circle: [
           "rounded-full border-none text-white flex-shrink-0",
           "[background:var(--gradient-brand)]",
-          "[box-shadow:var(--shadow-md),inset_0_1px_0_rgba(255,255,255,0.18)]",
+          "[box-shadow:var(--shadow-btn),inset_0_1px_0_rgba(255,255,255,0.18)]",
           "hover:opacity-90",
         ].join(" "),
 
-        /* زر دائري نجاح */
         "circle-success": [
           "rounded-full border-none text-white flex-shrink-0",
           "[background:linear-gradient(135deg,var(--color-brand-600),var(--color-brand-600))]",
           "[box-shadow:var(--shadow-success)]",
         ].join(" "),
 
-        /* زر دائري داكن */
         "circle-dark": [
           "rounded-full border-none text-white flex-shrink-0",
           "[background:var(--gradient-brand)]",
         ].join(" "),
 
-        /* تبويب غير نشط */
+        "solid-gradient": [
+          "rounded-full border-none text-white flex-shrink-0",
+          "[background:var(--gradient-brand)]",
+          "[box-shadow:var(--shadow-btn)]",
+          "hover:opacity-90",
+        ].join(" "),
+
         tab: [
           "rounded-full font-semibold",
           "bg-[var(--bg-card)] text-[var(--text-secondary)]",
@@ -64,20 +65,30 @@ export const buttonVariants = cva(
           "hover:bg-[var(--bg-surface-warm)]",
         ].join(" "),
 
-        /* تبويب نشط */
         "tab-active": [
           "rounded-full font-semibold text-white border-none",
           "[background:var(--gradient-brand)]",
         ].join(" "),
 
-        /* رابط نصي */
         text: "bg-transparent border-none text-[var(--text-brand)] font-semibold p-0 active:scale-100 hover:opacity-75",
 
-        /* زر accent — للعروض والإجراءات العاجلة */
         accent: [
           "text-white border-none",
           "[background:var(--gradient-accent)]",
           "[box-shadow:var(--shadow-accent)]",
+          "hover:opacity-90",
+        ].join(" "),
+
+        destructive: [
+          "text-white border-none",
+          "bg-[var(--color-danger-600)]",
+          "[box-shadow:0_2px_6px_rgba(220,38,38,0.30)]",
+          "hover:opacity-90",
+        ].join(" "),
+
+        success: [
+          "text-white border-none",
+          "bg-[var(--color-success-600)]",
           "hover:opacity-90",
         ].join(" "),
       },
@@ -103,17 +114,45 @@ export const buttonVariants = cva(
 
 export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {}
+    VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+}
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, style, ...props }, ref) => {
+  ({ className, variant, size, loading, leftIcon, rightIcon, style, children, disabled, ...props }, ref) => {
+    const isRTL = typeof document !== "undefined"
+      ? document.documentElement.dir === "rtl"
+      : true;
+
     return (
       <button
         ref={ref}
-        className={cn(buttonVariants({ variant, size }), className)}
+        disabled={disabled || loading}
+        aria-busy={loading ? "true" : undefined}
+        className={cn(
+          buttonVariants({ variant, size }),
+          loading && "pointer-events-none opacity-90",
+          className
+        )}
         style={{ fontFamily: "var(--font-main)", ...style }}
         {...props}
-      />
+      >
+        {loading ? (
+          <>
+            <Loader size={16} className="animate-spin flex-shrink-0" />
+            <span style={{ visibility: "hidden", position: "absolute" }}>{children}</span>
+            <span aria-hidden="true" style={{ opacity: 0.5 }}>{children}</span>
+          </>
+        ) : (
+          <>
+            {isRTL ? rightIcon : leftIcon}
+            {children}
+            {isRTL ? leftIcon : rightIcon}
+          </>
+        )}
+      </button>
     );
   }
 );

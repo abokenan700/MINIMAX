@@ -1,5 +1,5 @@
 import { useCompare } from "../context/CompareContext";
-import { X, GitCompareArrows, ShoppingBag, Star } from "lucide-react";
+import { X, GitCompareArrows, ShoppingBag } from "lucide-react";
 import { useLocation } from "wouter";
 import { useCart } from "../context/CartContext";
 

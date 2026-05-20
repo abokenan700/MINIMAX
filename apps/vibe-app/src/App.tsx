@@ -5,7 +5,6 @@ import { Header } from "./components/Header";
 import { SearchBar } from "./components/SearchBar";
 import { Categories } from "./components/Categories";
 import { BannerSlider } from "./components/BannerSlider";
-import { FlashSaleStrip } from "./components/FlashSaleStrip";
 import { Products } from "./components/Products";
 import { BestSellers } from "./components/BestSellers";
 import { TopRated } from "./components/TopRated";

@@ -1,17 +1,20 @@
 import { useMemo } from "react";
 import { useLocation } from "wouter";
 import { useGetProducts } from "@workspace/api-client-react";
-import { TrendingUp, Heart } from "lucide-react";
+import { TrendingUp } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { Stars } from "./Stars";
 import { CartButton } from "./CartButton";
+import { ColorSwatchRow } from "./ColorSwatchRow";
+import { PriceTag } from "./ui/PriceTag";
+import { Badge } from "./ui/Badge";
+import { Heart } from "./ui/Heart";
 import { useWishlist } from "../context/WishlistContext";
-import { colorToCss, needsBorder } from "../lib/colorMap";
 
 const RANK_STYLES = [
-  { bg: "linear-gradient(135deg, #D4AF37, #B8960C)", text: "#fff", label: "🥇" },
-  { bg: "linear-gradient(135deg, #B0B0B0, #888888)", text: "#fff", label: "🥈" },
-  { bg: "linear-gradient(135deg, #EA580C, #C2410C)", text: "#fff", label: "🥉" },
+  { bg: "linear-gradient(135deg, #D4AF37, #B8960C)", text: "#fff" },
+  { bg: "linear-gradient(135deg, #B0B0B0, #888888)", text: "#fff" },
+  { bg: "linear-gradient(135deg, var(--color-brand-600), var(--color-brand-700))", text: "#fff" },
 ];
 
 export function TrendingSection() {
@@ -29,6 +32,7 @@ export function TrendingSection() {
       <div className="trending-header-wrap">
         <SectionHeader
           title="الأكثر مبيعاً"
+          loading={isLoading}
           icon={<TrendingUp size={14} strokeWidth={2.2} style={{ color: "var(--text-brand)" }} />}
           onViewAll={() => navigate("/search")}
         />
@@ -49,7 +53,6 @@ export function TrendingSection() {
                   className="trending-card card-pressable"
                   onClick={() => navigate(`/product/${p.id}`)}
                 >
-                  {/* Rank badge */}
                   {rank && (
                     <div
                       className="trending-rank-badge"
@@ -60,16 +63,14 @@ export function TrendingSection() {
                     </div>
                   )}
 
-                  {/* Wishlist */}
-                  <button
-                    onClick={(e) => { e.stopPropagation(); toggleWishlist(p); }}
-                    aria-label={liked ? "إزالة من المفضلة" : "إضافة للمفضلة"}
+                  <Heart
+                    pressed={liked}
+                    size={12}
+                    onClick={(e) => { e?.stopPropagation(); toggleWishlist(p); }}
                     className="trending-wish-btn"
-                  >
-                    <Heart size={12} className={liked ? "fill-red-400 stroke-red-400" : "fill-none"} style={{ color: liked ? undefined : "#AAAAAA" }} />
-                  </button>
+                    style={{ position: "absolute", top: 6, insetInlineEnd: 6, width: 26, height: 26 }}
+                  />
 
-                  {/* Image */}
                   <div className="trending-img-wrap">
                     <img
                       src={p.image}
@@ -82,59 +83,31 @@ export function TrendingSection() {
 
                   <div style={{ height: "1px", background: "var(--border-separator)" }} />
 
-                  {/* Info */}
                   <div className="trending-card-body" dir="rtl">
                     <p className="trending-brand">{p.brand}</p>
                     <p className="line-clamp-2 trending-name">{p.name}</p>
 
-                    {/* Color swatches — 14px circles beneath product name */}
                     {p.colors && p.colors.length > 0 && (
-                      <div
+                      <ColorSwatchRow
+                        colors={p.colors}
+                        max={3}
+                        size="xs"
+                        style={{ marginTop: 3, marginBottom: 2 }}
                         onClick={(e) => e.stopPropagation()}
-                        style={{ display: "flex", alignItems: "center", gap: 3, marginTop: 3, marginBottom: 2 }}
-                      >
-                        {p.colors.slice(0, 3).map((c, i) => (
-                          <span
-                            key={i}
-                            aria-label={c}
-                            style={{
-                              display: "block",
-                              width: 14,
-                              height: 14,
-                              borderRadius: "50%",
-                              background: colorToCss(c),
-                              flexShrink: 0,
-                              boxShadow: `0 1px 3px rgba(0,0,0,0.20)${needsBorder(c) ? ", 0 0 0 1px rgba(0,0,0,0.12)" : ""}`,
-                            }}
-                          />
-                        ))}
-                        {p.colors.length > 3 && (
-                          <span style={{
-                            fontSize: 8,
-                            fontFamily: "var(--font-text)",
-                            color: "var(--text-muted)",
-                            fontWeight: 600,
-                            lineHeight: 1,
-                          }}>
-                            +{p.colors.length - 3}
-                          </span>
-                        )}
-                      </div>
+                      />
                     )}
 
                     <div className="flex items-center gap-1 mt-0.5">
                       <Stars rating={p.rating} />
                       <span className="trending-rating">{p.rating}</span>
                     </div>
+
                     <div className="flex items-center justify-between mt-1.5">
-                      <div className="flex items-baseline gap-0.5">
-                        <span className="trending-price">{p.price.toLocaleString("ar-SA")}</span>
-                        <span className="trending-currency">ر.س</span>
-                      </div>
-                      <span className="trending-original">{p.original_price.toLocaleString("ar-SA")}</span>
+                      <PriceTag price={p.price} original={p.original_price} size="sm" />
                     </div>
+
                     <div className="flex items-center justify-between mt-1.5">
-                      <span className="trending-discount-badge">خصم {p.discount}%</span>
+                      <Badge variant="discount-soft" size="sm">خصم {p.discount}%</Badge>
                       <div onClick={(e) => e.stopPropagation()}>
                         <CartButton size="md" product={p} selectedColor={p.colors?.[0]} />
                       </div>

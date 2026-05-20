@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useLocation, useSearch } from "wouter";
 import {
-  ArrowRight, ArrowUpRight, X,
+  ArrowRight, ArrowUpRight,
   LayoutGrid, Trash2, Sparkles, Clock, Heart,
 } from "lucide-react";
 import type { Product } from "@workspace/api-client-react";
@@ -11,7 +11,7 @@ import { SearchBar } from "../components/SearchBar";
 import { SectionHeader } from "../components/SectionHeader";
 import { useWishlist } from "../context/WishlistContext";
 import { Stars } from "../components/Stars";
-import { FeaturedCard } from "../components/FeaturedCard";
+import { ProductCard } from "../components/ProductCard";
 import {
   type Filters, DEFAULT_FILTERS,
   SortSheet, FilterSheet, ControlsBar,
@@ -319,7 +319,7 @@ export function SearchPage() {
                 <div className="grid grid-cols-2 gap-3">
                   {processedResults.map((item, i) => (
                     <div key={item.id} style={{ animation: `staggerFade 0.28s var(--ease-out) both ${i * 30}ms` }}>
-                      <FeaturedCard item={item} />
+                      <ProductCard product={item} layout="vertical" />
                     </div>
                   ))}
                 </div>

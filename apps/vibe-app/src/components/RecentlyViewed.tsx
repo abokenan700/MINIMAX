@@ -2,6 +2,9 @@ import { useMemo } from "react";
 import { useLocation } from "wouter";
 import { Clock } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
+import { Divider } from "./ui/Divider";
+import { PriceTag } from "./ui/PriceTag";
+import { Badge } from "./ui/Badge";
 
 interface StoredProduct {
   id: number;
@@ -67,33 +70,19 @@ export function RecentlyViewed() {
                 onError={(e) => { e.currentTarget.style.opacity = "0"; }}
               />
               {p.badge && (
-                <span
-                  className="absolute top-1.5 end-1.5"
-                  style={{
-                    padding: "2px 6px",
-                    borderRadius: "var(--radius-pill)",
-                    background: p.isNew ? "var(--success-bg)" : "var(--color-brand-50)",
-                    color: p.isNew ? "var(--color-success-600)" : "var(--color-brand-700)",
-                    fontSize: "clamp(8px, 2.1vw, 9px)",
-                    fontWeight: 700,
-                    border: `1px solid ${p.isNew ? "rgba(22,163,74,0.20)" : "rgba(249,115,22,0.18)"}`,
-                  }}
-                >
-                  {p.badge}
+                <span className="absolute top-1.5 end-1.5">
+                  <Badge variant={p.isNew ? "new" : "discount-soft"} size="sm">
+                    {p.badge}
+                  </Badge>
                 </span>
               )}
             </div>
-            <div style={{ height: 1, background: "var(--border-separator)" }} />
+            <Divider />
             <div className="px-2 pt-1.5 pb-2" dir="rtl">
-              <p className="line-clamp-2" style={{ fontSize: "clamp(9.5px, 2.6vw, 11px)", color: "var(--text-primary)", fontWeight: 600, lineHeight: 1.35 }}>
+              <p className="line-clamp-2" style={{ fontSize: "clamp(9.5px, 2.6vw, 11px)", color: "var(--text-primary)", fontWeight: 600, lineHeight: 1.35, fontFamily: "var(--font-text)" }}>
                 {p.name}
               </p>
-              <div className="flex items-baseline gap-0.5 mt-1">
-                <span style={{ fontSize: "clamp(11px, 3vw, 13px)", fontWeight: 800, color: "var(--text-primary)" }}>
-                  {p.price.toLocaleString("ar-SA")}
-                </span>
-                <span style={{ fontSize: "clamp(8px, 2.2vw, 9px)", color: "var(--text-muted)" }}>ر.س</span>
-              </div>
+              <PriceTag price={p.price} size="sm" style={{ marginTop: 4 }} />
             </div>
           </button>
         ))}

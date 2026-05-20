@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, Heart, Clock } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, Heart } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -123,7 +123,7 @@ function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove
   function handleSaveForLater() {
     const fakeProduct = {
       id: item.id, name: item.name, brand: item.brand, price: item.price,
-      image: item.images?.[0] ?? item.image, category: "", slug: item.name,
+      image: (item as (typeof item) & { images?: string[] }).images?.[0] ?? item.image, category: "", slug: item.name,
       stock: 10, sales: 0, rating: 0, reviewCount: 0,
     } as unknown as Product;
     toggleWishlist(fakeProduct);

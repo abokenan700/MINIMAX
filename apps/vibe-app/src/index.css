@@ -191,6 +191,23 @@
   --header-h: 56px;   /* 4-pt grid; meets iOS 44px touch standard */
   --nav-h:    64px;   /* 4-pt grid */
 
+  /* ─── Z-Index Scale ──────────────────────────────────────────────── */
+  --z-base:       0;
+  --z-sticky:     10;
+  --z-header:     50;
+  --z-bottom-nav: 60;
+  --z-overlay:    200;
+  --z-modal:      300;
+  --z-toast:      400;
+
+  /* ─── Navigation ─────────────────────────────────────────────────── */
+  --nav-bg:       #F5EDE0;
+  --nav-inactive: var(--text-muted);
+  --nav-badge-bg: var(--color-danger-600);
+
+  /* ─── Input (alias) ─────────────────────────────────────────────── */
+  --border-input: var(--input-border);
+
   /* ─── Elevation Ladder — neutral surfaces only ───────────────────── */
   --elev-0: none;
   --elev-1: 0 1px 2px rgba(14,12,9,0.05);

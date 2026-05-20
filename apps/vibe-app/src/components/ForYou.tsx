@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useLocation } from "wouter";
 import { useGetProducts } from "@workspace/api-client-react";
 import { SectionHeader } from "./SectionHeader";
-import { FeaturedCard } from "./FeaturedCard";
+import { ProductCard } from "./ProductCard";
 import { Sparkles } from "lucide-react";
 
 interface RecentProduct { id: number }
@@ -35,17 +35,12 @@ export function ForYou() {
 
   return (
     <div style={{ paddingTop: 4, paddingBottom: 8 }}>
-      <div style={{ paddingInline: 16, marginBottom: 12, display: "flex", alignItems: "center", justifyContent: "space-between" }} dir="rtl">
+      <div style={{ paddingInline: 16, marginBottom: 12 }} dir="rtl">
         <SectionHeader
           title="مقترح لك"
           icon={<Sparkles size={14} style={{ color: "var(--color-brand-600)" }} strokeWidth={2} />}
+          onViewAll={() => navigate("/search")}
         />
-        <button
-          onClick={() => navigate("/search")}
-          style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer", padding: "4px 0" }}
-        >
-          عرض المزيد
-        </button>
       </div>
       <div
         className="hide-scrollbar"
@@ -54,7 +49,7 @@ export function ForYou() {
       >
         {forYou.map((item, i) => (
           <div key={item.id} style={{ flexShrink: 0, width: 160, animation: `fadeInUp 0.35s var(--ease-out) both ${i * 50}ms` }}>
-            <FeaturedCard item={item} />
+            <ProductCard product={item} layout="vertical" />
           </div>
         ))}
       </div>

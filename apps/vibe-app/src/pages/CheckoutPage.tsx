@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useLocation } from "wouter";
 import { z } from "zod";
-import { ArrowRight, MapPin, CreditCard, Truck, CheckCircle, ChevronDown, ChevronUp, RefreshCw, Calendar, Coins } from "lucide-react";
+import { ArrowRight, MapPin, CreditCard, Truck, CheckCircle, ChevronDown, ChevronUp, RefreshCw, Calendar } from "lucide-react";
 import { toast } from "sonner";
 import { useCart } from "../context/CartContext";
 import { apiFetch } from "../lib/apiFetch";

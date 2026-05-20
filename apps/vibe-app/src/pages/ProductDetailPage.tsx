@@ -2,10 +2,10 @@ import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useParams, useLocation } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  ArrowRight, Heart, Share2, ShoppingBag, Truck,
-  RotateCcw, Shield, ChevronDown, ChevronUp, Minus, Plus,
+  ArrowRight, Share2, ShoppingBag, Truck,
+  RotateCcw, Shield, ChevronDown, ChevronUp,
   Check, Users, Bell, X, Star, AlertTriangle, Flame,
-  Eye, GitCompareArrows, Sparkles,
+  Eye, GitCompareArrows,
 } from "lucide-react";
 import { toast } from "sonner";
 import type { Product } from "@workspace/api-client-react";
@@ -17,7 +17,6 @@ import { useAuth } from "../context/AuthContext";
 import { apiFetch } from "../lib/apiFetch";
 import { StickyBuyBar } from "../components/StickyBuyBar";
 import { Stars } from "../components/Stars";
-import { Button } from "../components/ui";
 import { ProductColorPicker } from "../components/ProductColorPicker";
 import { useAccountSheet } from "../context/AccountSheetContext";
 import { useCompare } from "../context/CompareContext";
@@ -741,7 +740,7 @@ export function ProductDetailPage() {
               <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>
                 اللون: <span style={{ color: "var(--text-brand)" }}>{selectedColor}</span>
               </p>
-              <ProductColorPicker colors={product.colors} selected={selectedColor} onSelect={setSelectedColor} />
+              <ProductColorPicker colors={product.colors} activeColor={product.colors.indexOf(selectedColor) >= 0 ? product.colors.indexOf(selectedColor) : 0} onSelect={(i) => setSelectedColor(product.colors[i] ?? "")} />
             </div>
           )}
 

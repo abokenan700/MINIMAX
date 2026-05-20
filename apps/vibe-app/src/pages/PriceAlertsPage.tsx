@@ -25,7 +25,7 @@ export function PriceAlertsPage() {
 
   const { data: alerts = [], isLoading } = useQuery<PriceAlert[]>({
     queryKey: ["price-alerts"],
-    queryFn:  () => apiFetch("/api/v1/price-alerts").then(r => r.json()),
+    queryFn:  () => apiFetch<PriceAlert[]>("/api/v1/price-alerts"),
     enabled:  !!user,
   });
 

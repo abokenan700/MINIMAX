@@ -15,9 +15,10 @@ function isFirstAddOfSession(): boolean {
 }
 
 export function useCartButton(product?: Product, selectedColor?: string, duration = 1500) {
-  const [added, setAdded]               = useState(false);
+  const [added,        setAdded]       = useState(false);
+  const [pending,      setPending]     = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
-  const { addToCart }                   = useCart();
+  const { addToCart }                  = useCart();
 
   useEffect(() => {
     if (!added) return;
@@ -33,11 +34,15 @@ export function useCartButton(product?: Product, selectedColor?: string, duratio
 
   const handleAdd = useCallback((e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (added) return;
+    if (added || pending) return;
+    setPending(true);
     if (product) addToCart(product, selectedColor);
-    setAdded(true);
-    if (isFirstAddOfSession()) setShowConfetti(true);
-  }, [added, product, selectedColor, addToCart]);
+    setTimeout(() => {
+      setPending(false);
+      setAdded(true);
+      if (isFirstAddOfSession()) setShowConfetti(true);
+    }, 320);
+  }, [added, pending, product, selectedColor, addToCart]);
 
-  return { added, handleAdd, showConfetti };
+  return { added, pending, handleAdd, showConfetti };
 }
