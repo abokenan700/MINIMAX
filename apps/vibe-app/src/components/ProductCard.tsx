@@ -276,9 +276,6 @@ function HorizontalCard({ product, liked, remaining, viewers, isFire, isOOS, isL
           </div>
         </div>
 
-        {/* Low-stock tag */}
-        {isLow && <Tag tone="warning" size="xs" style={{ marginTop: 4 }}>تبقّى {stock} فقط</Tag>}
-        {isOOS  && <Tag tone="danger"  size="xs" style={{ marginTop: 4 }}>نفذ المخزون</Tag>}
       </div>
     </article>
   );
