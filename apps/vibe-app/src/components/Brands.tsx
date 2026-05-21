@@ -41,7 +41,7 @@ export function Brands() {
     <div
       dir="rtl"
       style={{
-        background: "var(--bg-page)",
+        background: "var(--color-brand-500)",
         position: "relative",
         padding: "16px 0 20px",
         fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -144,16 +144,16 @@ export function Brands() {
           width: 44px; height: 100%;
           pointer-events: none; z-index: 5;
         }
-        .brands-fade-l { left:0;  background: linear-gradient(to right, var(--bg-page) 15%, transparent); }
-        .brands-fade-r { right:0; background: linear-gradient(to left,  var(--bg-page) 15%, transparent); }
+        .brands-fade-l { left:0;  background: linear-gradient(to right, var(--color-brand-500) 15%, transparent); }
+        .brands-fade-r { right:0; background: linear-gradient(to left,  var(--color-brand-500) 15%, transparent); }
       `}} />
 
       {/* section title */}
       <h2 style={{
-        fontFamily: '"Reem Kufi Fun", sans-serif',
+        fontFamily: "var(--font-display)",
         fontSize: "18px",
         fontWeight: 600,
-        color: "var(--text-primary)",
+        color: "#ffffff",
         margin: "0 16px 12px",
         textAlign: "right",
       }}>
