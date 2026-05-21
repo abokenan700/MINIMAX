@@ -11,34 +11,33 @@ const BRANDS = [
   { id: "8", label: "Burberry" },
 ];
 
-const CARD_W = 104;
-const CARD_GAP = 14;
-const STEP = CARD_W + CARD_GAP;
-const COPIES = 5;
-const PAD = 24; // paddingInline
+const CARD_W  = 104;
+const CARD_H  = 138;
+const GAP     = 14;
+const STEP    = CARD_W + GAP;
+const PAD     = 24;          // padding on each side
+const COPIES  = 5;
 
 export function V2FrostedGlass() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const rafRef = useRef<number | null>(null);
-  const posRef = useRef(0);
-  const pausedRef = useRef(false);
+  const scrollRef  = useRef<HTMLDivElement>(null);
+  const rafRef     = useRef<number | null>(null);
+  const posRef     = useRef(0);
+  const pausedRef  = useRef(false);
   const [centerIdx, setCenterIdx] = useState(-1);
 
-  const loopItems = Array.from({ length: COPIES }, () => BRANDS).flat();
-  const totalLen = loopItems.length * STEP;
-  const singleLen = BRANDS.length * STEP;
-  const startPos = singleLen * Math.floor(COPIES / 2); // start at middle copy
+  // ─── build loop list ───────────────────────────────────────────────
+  const loopItems  = Array.from({ length: COPIES }, () => BRANDS).flat();
+  const singleLen  = BRANDS.length * STEP;
+  const startPos   = singleLen * Math.floor(COPIES / 2);   // start at middle copy
 
+  // ─── center detection (LTR scroll, no RTL quirks) ──────────────────
   const detectCenter = () => {
     const el = scrollRef.current;
     if (!el) return;
-    // absolute pixel position of the viewport center
-    const viewCenter = el.scrollLeft + el.clientWidth / 2;
-    // which card index (accounting for left padding) is closest to center
-    const rawIdx = (viewCenter - PAD - CARD_W / 2) / STEP;
-    const idx = Math.round(rawIdx);
-    const clamped = Math.max(0, Math.min(idx, loopItems.length - 1));
-    setCenterIdx(clamped);
+    const midX   = el.scrollLeft + el.clientWidth / 2;
+    const rawIdx = (midX - PAD - CARD_W / 2) / STEP;
+    const idx    = Math.max(0, Math.min(Math.round(rawIdx), loopItems.length - 1));
+    setCenterIdx(idx);
   };
 
   useEffect(() => {
@@ -46,16 +45,14 @@ export function V2FrostedGlass() {
     if (!el) return;
 
     posRef.current = startPos;
-    el.scrollLeft = startPos;
+    el.scrollLeft  = startPos;
     detectCenter();
 
     const tick = () => {
       if (!pausedRef.current && scrollRef.current) {
         posRef.current += 0.5;
-        // seamless loop: when we pass end of 4th copy, jump back to start of 2nd copy
-        if (posRef.current >= singleLen * (COPIES - 1)) {
-          posRef.current = singleLen;
-        }
+        // seamless jump: when we enter the last copy, snap back to the second copy
+        if (posRef.current >= singleLen * (COPIES - 1)) posRef.current = singleLen;
         scrollRef.current.scrollLeft = posRef.current;
         detectCenter();
       }
@@ -82,79 +79,69 @@ export function V2FrostedGlass() {
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
+        /* ── glow pulse stays on the card in place ── */
         @keyframes v2-glow {
-          0%, 100% { box-shadow: 0 8px 24px -6px rgba(180,140,60,0.30), inset 0 0 14px rgba(212,175,55,0.10); }
-          50%       { box-shadow: 0 12px 32px -6px rgba(180,140,60,0.50), inset 0 0 22px rgba(212,175,55,0.20); }
+          0%,100% { box-shadow: 0 6px 22px -4px rgba(180,140,60,0.28), inset 0 0 12px rgba(212,175,55,0.10); }
+          50%      { box-shadow: 0 6px 32px -4px rgba(180,140,60,0.52), inset 0 0 22px rgba(212,175,55,0.20); }
         }
 
         .v2-scroll::-webkit-scrollbar { display: none; }
-        .v2-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .v2-scroll { -ms-overflow-style:none; scrollbar-width:none; }
 
+        /* ── all cards same fixed size, no scale/translate ── */
         .v2-card {
           flex-shrink: 0;
           width: ${CARD_W}px;
-          height: 138px;
+          height: ${CARD_H}px;
           border-radius: 18px;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 12px;
-          border: 1px solid rgba(255,255,255,0.55);
-          background: rgba(255,255,255,0.42);
-          backdrop-filter: blur(10px) saturate(160%);
-          -webkit-backdrop-filter: blur(10px) saturate(160%);
-          box-shadow: 0 4px 14px -4px rgba(180,140,60,0.08);
-          transition:
-            border-color 0.35s ease,
-            background 0.35s ease,
-            box-shadow 0.35s ease,
-            transform 0.35s ease,
-            opacity 0.35s ease;
-          transform: scale(0.92);
-          opacity: 0.55;
+
+          /* dim state */
+          border: 1px solid rgba(255,255,255,0.50);
+          background: rgba(255,255,255,0.36);
+          box-shadow: none;
+          opacity: 0.50;
+
+          backdrop-filter: blur(10px) saturate(150%);
+          -webkit-backdrop-filter: blur(10px) saturate(150%);
+          transition: border-color .35s ease, background .35s ease,
+                      box-shadow .35s ease, opacity .35s ease;
           user-select: none;
         }
 
+        /* ── center card: lights up IN PLACE, no movement ── */
         .v2-card.active {
           border-color: rgba(212,175,55,0.88);
-          background: rgba(255,255,255,0.85);
-          transform: scale(1.0);
+          background: rgba(255,255,255,0.88);
           opacity: 1;
           animation: v2-glow 2.6s ease-in-out infinite;
         }
 
-        .v2-card-label {
+        .v2-label {
           font-family: "IBM Plex Sans Arabic", sans-serif;
           font-size: 13px;
           font-weight: 500;
-          color: #8A7060;
+          color: #9A8878;
           text-align: center;
           line-height: 1.3;
-          transition: font-size 0.3s ease, font-weight 0.3s ease, color 0.3s ease;
+          transition: font-size .3s ease, font-weight .3s ease, color .3s ease;
         }
-
-        .v2-card.active .v2-card-label {
+        .v2-card.active .v2-label {
           font-size: 15px;
           font-weight: 700;
           color: #B8763E;
         }
 
-        .v2-fade-left {
-          position: absolute;
-          top: 0; left: 0;
-          width: 70px; height: 100%;
-          background: linear-gradient(to right, #F5F0E8 15%, transparent);
-          pointer-events: none;
-          z-index: 5;
+        /* ── edge fades ── */
+        .v2-fade-l, .v2-fade-r {
+          position: absolute; top:0; width:70px; height:100%;
+          pointer-events:none; z-index:5;
         }
-        .v2-fade-right {
-          position: absolute;
-          top: 0; right: 0;
-          width: 70px; height: 100%;
-          background: linear-gradient(to left, #F5F0E8 15%, transparent);
-          pointer-events: none;
-          z-index: 5;
-        }
+        .v2-fade-l { left:0;  background: linear-gradient(to right, #F5F0E8 20%, transparent); }
+        .v2-fade-r { right:0; background: linear-gradient(to left,  #F5F0E8 20%, transparent); }
       `}} />
 
       <h2 style={{
@@ -168,17 +155,19 @@ export function V2FrostedGlass() {
         استكشف الماركات
       </h2>
 
-      <div style={{ position: 'relative', height: '158px' }}>
-        <div className="v2-fade-left" />
-        <div className="v2-fade-right" />
+      {/* ── track wrapper: LTR so scrollLeft is always 0 → max ── */}
+      <div style={{ position: 'relative', height: `${CARD_H}px` }}>
+        <div className="v2-fade-l" />
+        <div className="v2-fade-r" />
 
         <div
           ref={scrollRef}
           className="v2-scroll"
+          dir="ltr"                          /* ← LTR: predictable scrollLeft */
           style={{
             display: 'flex',
-            gap: `${CARD_GAP}px`,
-            paddingInline: `${PAD}px`,
+            gap: `${GAP}px`,
+            padding: `0 ${PAD}px`,
             overflowX: 'scroll',
             height: '100%',
             alignItems: 'center',
@@ -191,7 +180,7 @@ export function V2FrostedGlass() {
               key={i}
               className={"v2-card" + (i === centerIdx ? " active" : "")}
             >
-              <span className="v2-card-label">{brand.label}</span>
+              <span className="v2-label">{brand.label}</span>
             </div>
           ))}
         </div>
