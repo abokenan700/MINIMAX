@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 
 const BRANDS = [
   { id: "1", label: "Chanel" },
@@ -11,58 +11,15 @@ const BRANDS = [
   { id: "8", label: "Burberry" },
 ];
 
-const CARD_W  = 104;
-const CARD_H  = 138;
-const GAP     = 14;
-const STEP    = CARD_W + GAP;
-const PAD     = 24;          // padding on each side
-const COPIES  = 5;
+// duplicate for seamless infinite loop
+const LOOP = [...BRANDS, ...BRANDS, ...BRANDS];
+
+const CARD_W = 104;
+const GAP    = 14;
+// total width of one full set
+const SET_W  = BRANDS.length * (CARD_W + GAP);
 
 export function V2FrostedGlass() {
-  const scrollRef  = useRef<HTMLDivElement>(null);
-  const rafRef     = useRef<number | null>(null);
-  const posRef     = useRef(0);
-  const pausedRef  = useRef(false);
-  const [centerIdx, setCenterIdx] = useState(-1);
-
-  // ─── build loop list ───────────────────────────────────────────────
-  const loopItems  = Array.from({ length: COPIES }, () => BRANDS).flat();
-  const singleLen  = BRANDS.length * STEP;
-  const startPos   = singleLen * Math.floor(COPIES / 2);   // start at middle copy
-
-  // ─── center detection (LTR scroll, no RTL quirks) ──────────────────
-  const detectCenter = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const midX   = el.scrollLeft + el.clientWidth / 2;
-    const rawIdx = (midX - PAD - CARD_W / 2) / STEP;
-    const idx    = Math.max(0, Math.min(Math.round(rawIdx), loopItems.length - 1));
-    setCenterIdx(idx);
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-
-    posRef.current = startPos;
-    el.scrollLeft  = startPos;
-    detectCenter();
-
-    const tick = () => {
-      if (!pausedRef.current && scrollRef.current) {
-        posRef.current += 0.5;
-        // seamless jump: when we enter the last copy, snap back to the second copy
-        if (posRef.current >= singleLen * (COPIES - 1)) posRef.current = singleLen;
-        scrollRef.current.scrollLeft = posRef.current;
-        detectCenter();
-      }
-      rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
-  }, []);
-
   return (
     <div
       dir="rtl"
@@ -79,57 +36,75 @@ export function V2FrostedGlass() {
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
-        /* ── glow pulse stays on the card in place ── */
-        @keyframes v2-glow {
-          0%,100% { box-shadow: 0 6px 22px -4px rgba(180,140,60,0.28), inset 0 0 12px rgba(212,175,55,0.10); }
-          50%      { box-shadow: 0 6px 32px -4px rgba(180,140,60,0.52), inset 0 0 22px rgba(212,175,55,0.20); }
+        /* ── infinite scroll: translate from 0 to -1×SET_W then jump back ── */
+        @keyframes v2-marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-${SET_W}px); }
         }
 
-        .v2-scroll::-webkit-scrollbar { display: none; }
-        .v2-scroll { -ms-overflow-style:none; scrollbar-width:none; }
+        /* ── glow pulse on hover ── */
+        @keyframes v2-glow {
+          0%,100% { box-shadow: 0 6px 22px -4px rgba(180,140,60,0.30), inset 0 0 12px rgba(212,175,55,0.10); }
+          50%      { box-shadow: 0 6px 34px -4px rgba(180,140,60,0.55), inset 0 0 22px rgba(212,175,55,0.22); }
+        }
 
-        /* ── all cards same fixed size, no scale/translate ── */
+        .v2-track {
+          display: flex;
+          gap: ${GAP}px;
+          width: max-content;
+          animation: v2-marquee ${BRANDS.length * 2.2}s linear infinite;
+        }
+
+        /* pause on hover over the whole track */
+        .v2-track:hover {
+          animation-play-state: paused;
+        }
+
         .v2-card {
-          flex-shrink: 0;
           width: ${CARD_W}px;
-          height: ${CARD_H}px;
+          height: 138px;
           border-radius: 18px;
+          flex-shrink: 0;
           display: flex;
           align-items: center;
           justify-content: center;
           padding: 12px;
 
-          /* dim state */
-          border: 1px solid rgba(255,255,255,0.50);
-          background: rgba(255,255,255,0.36);
-          box-shadow: none;
-          opacity: 0.50;
+          border: 1px solid rgba(255,255,255,0.60);
+          background: rgba(255,255,255,0.50);
+          backdrop-filter: blur(12px) saturate(170%);
+          -webkit-backdrop-filter: blur(12px) saturate(170%);
+          box-shadow: 0 4px 14px -4px rgba(180,140,60,0.10);
 
-          backdrop-filter: blur(10px) saturate(150%);
-          -webkit-backdrop-filter: blur(10px) saturate(150%);
-          transition: border-color .35s ease, background .35s ease,
-                      box-shadow .35s ease, opacity .35s ease;
+          transition:
+            border-color .3s ease,
+            background   .3s ease,
+            box-shadow   .3s ease,
+            transform    .3s ease;
+          cursor: default;
           user-select: none;
         }
 
-        /* ── center card: lights up IN PLACE, no movement ── */
-        .v2-card.active {
-          border-color: rgba(212,175,55,0.88);
-          background: rgba(255,255,255,0.88);
-          opacity: 1;
-          animation: v2-glow 2.6s ease-in-out infinite;
+        /* ── hover / active effect on every card ── */
+        .v2-card:hover {
+          border-color: rgba(212,175,55,0.90);
+          background: rgba(255,255,255,0.90);
+          transform: translateY(-4px);
+          animation: v2-glow 2s ease-in-out infinite;
         }
 
         .v2-label {
           font-family: "IBM Plex Sans Arabic", sans-serif;
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
-          color: #9A8878;
+          color: #7A6655;
           text-align: center;
           line-height: 1.3;
           transition: font-size .3s ease, font-weight .3s ease, color .3s ease;
+          pointer-events: none;
         }
-        .v2-card.active .v2-label {
+
+        .v2-card:hover .v2-label {
           font-size: 15px;
           font-weight: 700;
           color: #B8763E;
@@ -137,8 +112,9 @@ export function V2FrostedGlass() {
 
         /* ── edge fades ── */
         .v2-fade-l, .v2-fade-r {
-          position: absolute; top:0; width:70px; height:100%;
-          pointer-events:none; z-index:5;
+          position: absolute; top: 72px;
+          width: 60px; height: 138px;
+          pointer-events: none; z-index: 5;
         }
         .v2-fade-l { left:0;  background: linear-gradient(to right, #F5F0E8 20%, transparent); }
         .v2-fade-r { right:0; background: linear-gradient(to left,  #F5F0E8 20%, transparent); }
@@ -155,31 +131,13 @@ export function V2FrostedGlass() {
         استكشف الماركات
       </h2>
 
-      {/* ── track wrapper: LTR so scrollLeft is always 0 → max ── */}
-      <div style={{ position: 'relative', height: `${CARD_H}px` }}>
+      <div style={{ position: 'relative', overflow: 'hidden', height: '138px' }}>
         <div className="v2-fade-l" />
         <div className="v2-fade-r" />
 
-        <div
-          ref={scrollRef}
-          className="v2-scroll"
-          dir="ltr"                          /* ← LTR: predictable scrollLeft */
-          style={{
-            display: 'flex',
-            gap: `${GAP}px`,
-            padding: `0 ${PAD}px`,
-            overflowX: 'scroll',
-            height: '100%',
-            alignItems: 'center',
-          }}
-          onMouseEnter={() => { pausedRef.current = true; }}
-          onMouseLeave={() => { pausedRef.current = false; }}
-        >
-          {loopItems.map((brand, i) => (
-            <div
-              key={i}
-              className={"v2-card" + (i === centerIdx ? " active" : "")}
-            >
+        <div className="v2-track">
+          {LOOP.map((brand, i) => (
+            <div key={i} className="v2-card">
               <span className="v2-label">{brand.label}</span>
             </div>
           ))}
