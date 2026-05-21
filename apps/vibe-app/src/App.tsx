@@ -257,7 +257,6 @@ function HomePage() {
       </RevealSection>
 
       {/* ⑩ New arrivals */}
-      <SectionDivider />
       <RevealSection delay={40}>
         <NewArrivals />
       </RevealSection>
