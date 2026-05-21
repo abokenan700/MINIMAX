@@ -2,12 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
-const CARD_W = 82;
-const CARD_H = 110;
-const GAP    = 10;
-const PAD    = 14;
+const CARD_W = 104;
+const CARD_H = 138;
+const GAP    = 14;
+const PAD    = 24;
 const STEP   = CARD_W + GAP;
-
 const SLOT_COUNT = 5;
 
 export function Brands() {
@@ -16,7 +15,6 @@ export function Brands() {
   const [failedIds, setFailedIds] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // 3 copies for seamless infinite loop
   const loopItems = brands.length > 0
     ? [...brands, ...brands, ...brands]
     : [];
@@ -27,7 +25,6 @@ export function Brands() {
     const el = scrollRef.current;
     if (!el || brands.length === 0) return;
 
-    // Start at middle copy
     el.scrollLeft = setW + PAD;
 
     const onScroll = () => {
@@ -42,41 +39,32 @@ export function Brands() {
 
   return (
     <div
+      dir="rtl"
       style={{
-        background: "#0d0d0d",
+        backgroundColor: "#F5F0E8",
         position: "relative",
-        paddingTop: "2px",
-        paddingBottom: "2px",
+        padding: "28px 0 36px",
+        fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+        overflow: "hidden",
       }}
     >
-      {/* top gold line */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: "1px",
-        background: "linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent)",
-      }} />
-      {/* bottom gold line */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "1px",
-        background: "linear-gradient(to right, transparent, rgba(212,175,55,0.25), transparent)",
-      }} />
-
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes brands-glow {
           0%,100% {
             box-shadow:
-              0 8px 22px -4px rgba(180,140,60,0.22),
-              inset 0 0 10px rgba(212,175,55,0.07);
+              0 12px 28px -6px rgba(180,140,60,0.30),
+              inset 0 0 14px rgba(212,175,55,0.10);
           }
           50% {
             box-shadow:
-              0 10px 30px -4px rgba(180,140,60,0.42),
-              inset 0 0 18px rgba(212,175,55,0.16);
+              0 16px 36px -6px rgba(180,140,60,0.52),
+              inset 0 0 24px rgba(212,175,55,0.22);
           }
         }
 
         @keyframes brands-float {
-          0%,100% { transform: translateY(-2px); }
-          50%      { transform: translateY(-5px); }
+          0%,100% { transform: translateY(-3px); }
+          50%      { transform: translateY(-7px); }
         }
 
         .brands-scroll::-webkit-scrollbar { display: none; }
@@ -86,63 +74,58 @@ export function Brands() {
           flex-shrink: 0;
           width: ${CARD_W}px;
           height: ${CARD_H}px;
-          border-radius: 6px;
+          border-radius: 18px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
           gap: 6px;
-          padding: 10px 8px;
+          padding: 12px;
           cursor: pointer;
           position: relative;
           overflow: hidden;
 
-          border: 1px solid rgba(212,175,55,0.32);
-          background: rgba(255,255,255,0.04);
-          backdrop-filter: blur(10px) saturate(140%);
-          -webkit-backdrop-filter: blur(10px) saturate(140%);
+          border: 1px solid rgba(212,175,55,0.80);
+          background: rgba(255,255,255,0.76);
+          backdrop-filter: blur(14px) saturate(180%);
+          -webkit-backdrop-filter: blur(14px) saturate(180%);
 
           animation:
             brands-glow  3.2s ease-in-out infinite,
             brands-float 3.2s ease-in-out infinite;
-
-          transition: border-color .25s ease, background .25s ease;
         }
 
         .brands-card:active {
-          background: rgba(212,175,55,0.08);
-          border-color: rgba(212,175,55,0.65);
+          background: rgba(255,255,255,0.92);
+          border-color: rgba(212,175,55,1.0);
         }
 
-        /* stagger so cards float at different phases */
         ${Array.from({ length: 24 }, (_, i) =>
-          `.brands-card:nth-child(${i + 1}) { animation-delay: ${(i % SLOT_COUNT) * -0.62}s; }`
+          `.brands-card:nth-child(${i + 1}) { animation-delay: ${(i % SLOT_COUNT) * -0.64}s; }`
         ).join("\n")}
 
-        /* bottom gold shimmer overlay */
         .brands-card::after {
           content: "";
           position: absolute;
           bottom: 0; left: 0; right: 0;
           height: 50%;
-          background: linear-gradient(to top, rgba(212,175,55,0.18), transparent);
+          background: linear-gradient(to top, rgba(212,175,55,0.12), transparent);
           pointer-events: none;
         }
 
         .brands-label {
           position: relative;
           z-index: 1;
-          font-family: serif;
-          font-size: clamp(9px, 2.4vw, 11px);
+          font-family: "IBM Plex Sans Arabic", sans-serif;
+          font-size: 15px;
           font-weight: 700;
-          letter-spacing: 0.4px;
+          color: #B8763E;
+          text-align: center;
+          line-height: 1.3;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
           max-width: 90%;
-          text-align: center;
-          color: #d4af37;
-          text-shadow: 0 0 10px rgba(212,175,55,0.45);
         }
 
         .brands-img {
@@ -151,31 +134,42 @@ export function Brands() {
           width: 68%;
           height: 52%;
           object-fit: contain;
-          filter: brightness(1.05) drop-shadow(0 0 6px rgba(212,175,55,0.35));
+          filter: drop-shadow(0 0 6px rgba(212,175,55,0.30));
         }
 
         .brands-fade-l, .brands-fade-r {
           position: absolute; top: 0;
-          width: 32px; height: 100%;
+          width: 56px; height: 100%;
           pointer-events: none; z-index: 5;
         }
-        .brands-fade-l { left:0;  background: linear-gradient(to right, #0d0d0d 10%, transparent); }
-        .brands-fade-r { right:0; background: linear-gradient(to left,  #0d0d0d 10%, transparent); }
+        .brands-fade-l { left:0;  background: linear-gradient(to right, #F5F0E8 15%, transparent); }
+        .brands-fade-r { right:0; background: linear-gradient(to left,  #F5F0E8 15%, transparent); }
       `}} />
 
-      <div style={{ position: "relative" }}>
+      {/* section title */}
+      <h2 style={{
+        fontFamily: '"Reem Kufi Fun", sans-serif',
+        fontSize: "22px",
+        fontWeight: 600,
+        color: "#1A1410",
+        margin: "0 22px 20px",
+        textAlign: "right",
+      }}>
+        استكشف الماركات
+      </h2>
+
+      <div style={{ position: "relative", height: `${CARD_H}px` }}>
         <div className="brands-fade-l" />
         <div className="brands-fade-r" />
 
         {isLoading ? (
-          /* skeleton */
           <div
-            dir="rtl"
             style={{
               display: "flex",
               gap: `${GAP}px`,
-              padding: `10px ${PAD}px`,
-              overflowX: "hidden",
+              padding: `0 ${PAD}px`,
+              height: "100%",
+              alignItems: "center",
             }}
           >
             {Array.from({ length: SLOT_COUNT }).map((_, i) => (
@@ -186,9 +180,9 @@ export function Brands() {
                   flexShrink: 0,
                   width: CARD_W,
                   height: CARD_H,
-                  borderRadius: "6px",
-                  background: "#1a1a1a",
-                  border: "1px solid rgba(212,175,55,0.08)",
+                  borderRadius: "18px",
+                  background: "rgba(212,175,55,0.10)",
+                  border: "1px solid rgba(212,175,55,0.15)",
                 }}
               />
             ))}
@@ -201,8 +195,10 @@ export function Brands() {
             style={{
               display: "flex",
               gap: `${GAP}px`,
-              padding: `10px ${PAD}px`,
+              padding: `0 ${PAD}px`,
               overflowX: "scroll",
+              height: "100%",
+              alignItems: "center",
               WebkitOverflowScrolling: "touch",
             }}
           >
