@@ -16,7 +16,7 @@ export function BestSellers() {
 
   return (
     <div style={{ background: "var(--bg-page)", paddingBottom: 8 }}>
-      <div style={{ padding: "18px 12px 8px" }}>
+      <div style={{ padding: "10px 12px 8px" }}>
         <SectionHeader title="الأكثر مبيعاً" loading={isLoading} onViewAll={() => navigate("/search")} />
       </div>
 

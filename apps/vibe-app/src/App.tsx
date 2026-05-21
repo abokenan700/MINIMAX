@@ -262,7 +262,6 @@ function HomePage() {
       </RevealSection>
 
       {/* ⑪ Best sellers */}
-      <SectionDivider />
       <RevealSection delay={40}>
         <BestSellers />
       </RevealSection>
