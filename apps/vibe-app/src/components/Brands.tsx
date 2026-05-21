@@ -43,7 +43,7 @@ export function Brands() {
       style={{
         background: "var(--color-brand-500)",
         position: "relative",
-        padding: "16px 0 20px",
+        padding: "10px 0",
         fontFamily: '"IBM Plex Sans Arabic", sans-serif',
         overflow: "hidden",
       }}
@@ -147,18 +147,6 @@ export function Brands() {
         .brands-fade-l { left:0;  background: linear-gradient(to right, var(--color-brand-500) 15%, transparent); }
         .brands-fade-r { right:0; background: linear-gradient(to left,  var(--color-brand-500) 15%, transparent); }
       `}} />
-
-      {/* section title */}
-      <h2 style={{
-        fontFamily: "var(--font-display)",
-        fontSize: "18px",
-        fontWeight: 600,
-        color: "#ffffff",
-        margin: "0 16px 12px",
-        textAlign: "right",
-      }}>
-        استكشف الماركات
-      </h2>
 
       <div style={{ position: "relative", height: `${CARD_H}px` }}>
         <div className="brands-fade-l" />
