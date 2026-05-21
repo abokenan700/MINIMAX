@@ -267,13 +267,11 @@ function HomePage() {
       </RevealSection>
 
       {/* ⑫ Top rated */}
-      <SectionDivider />
       <RevealSection delay={40}>
         <TopRated />
       </RevealSection>
 
       {/* ⑭ For You (personalized) */}
-      <SectionDivider />
       <RevealSection delay={50}>
         <ForYou />
       </RevealSection>

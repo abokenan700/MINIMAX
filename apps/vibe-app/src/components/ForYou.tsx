@@ -34,8 +34,8 @@ export function ForYou() {
   if (forYou.length < 2) return null;
 
   return (
-    <div style={{ paddingTop: 4, paddingBottom: 8 }}>
-      <div style={{ paddingInline: 16, marginBottom: 12 }} dir="rtl">
+    <div style={{ paddingTop: 0, paddingBottom: 8 }}>
+      <div style={{ paddingInline: 16, marginBottom: 4 }} dir="rtl">
         <SectionHeader
           title="مقترح لك"
           icon={<Sparkles size={14} style={{ color: "var(--color-brand-500)" }} strokeWidth={2} />}

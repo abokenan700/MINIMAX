@@ -16,7 +16,7 @@ export function TopRated() {
 
   return (
     <div style={{ background: "var(--bg-page)", paddingBottom: 8 }}>
-      <div style={{ padding: "18px 12px 8px" }}>
+      <div style={{ padding: "10px 12px 4px" }}>
         <SectionHeader title="الأعلى تقييماً" loading={isLoading} onViewAll={() => navigate("/search")} />
       </div>
 
