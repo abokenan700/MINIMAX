@@ -148,7 +148,7 @@ export function Brands() {
         .brands-fade-r { right:0; background: linear-gradient(to left,  var(--color-brand-500) 15%, transparent); }
       `}} />
 
-      <div style={{ position: "relative", height: `${CARD_H}px` }}>
+      <div style={{ position: "relative", height: `${CARD_H + 12}px` }}>
         <div className="brands-fade-l" />
         <div className="brands-fade-r" />
 
@@ -157,7 +157,7 @@ export function Brands() {
             style={{
               display: "flex",
               gap: `${GAP}px`,
-              padding: `0 ${PAD}px`,
+              padding: `6px ${PAD}px`,
               height: "100%",
               alignItems: "center",
             }}
@@ -185,7 +185,7 @@ export function Brands() {
             style={{
               display: "flex",
               gap: `${GAP}px`,
-              padding: `0 ${PAD}px`,
+              padding: `6px ${PAD}px`,
               overflowX: "scroll",
               height: "100%",
               alignItems: "center",
