@@ -43,7 +43,7 @@ export function Brands() {
       style={{
         background: "var(--color-brand-500)",
         position: "relative",
-        padding: "10px 0",
+        padding: "8px 0",
         fontFamily: '"IBM Plex Sans Arabic", sans-serif',
         overflow: "hidden",
       }}

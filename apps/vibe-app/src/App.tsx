@@ -246,17 +246,14 @@ function HomePage() {
       {/* ⑦ Daily deals (عروض اليوم) */}
       <SectionDivider />
       <RevealSection>
-        <div style={{ padding: "0 0 4px" }}>
+        <div style={{ padding: "0" }}>
           <Products />
         </div>
       </RevealSection>
 
       {/* ⑧ Featured brands */}
-      <SectionDivider />
       <RevealSection delay={40}>
-        <div style={{ padding: "8px 0" }}>
-          <Brands />
-        </div>
+        <Brands />
       </RevealSection>
 
       {/* ⑩ New arrivals */}

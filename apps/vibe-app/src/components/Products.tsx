@@ -7,7 +7,7 @@ export function Products() {
   const { data: products = [], isLoading } = useGetProducts();
 
   return (
-    <div className="py-3">
+    <div className="pt-3 pb-0">
       <div style={{
         border: "none",
         borderRadius: "0 0 14px 14px",
