@@ -14,6 +14,7 @@ const BRANDS = [
 const CARD_W = 104;
 const CARD_GAP = 14;
 const STEP = CARD_W + CARD_GAP;
+const COPIES = 3;
 
 export function V2FrostedGlass() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -22,7 +23,6 @@ export function V2FrostedGlass() {
   const pausedRef = useRef(false);
   const [centerId, setCenterId] = useState<string | null>(null);
 
-  const COPIES = 3;
   const loopItems = Array.from({ length: COPIES }, () => BRANDS).flat();
   const singleLen = BRANDS.length * STEP;
 
@@ -31,7 +31,7 @@ export function V2FrostedGlass() {
     if (!el) return;
     const containerCenter = el.scrollLeft + el.clientWidth / 2;
     const idx = Math.round((containerCenter - CARD_W / 2) / STEP);
-    const clamped = Math.max(0, Math.min(idx, loopItems.length - 1));
+    const clamped = ((idx % loopItems.length) + loopItems.length) % loopItems.length;
     const brand = loopItems[clamped];
     if (brand) setCenterId(brand.id);
   };
@@ -39,37 +39,22 @@ export function V2FrostedGlass() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-
     posRef.current = singleLen;
     el.scrollLeft = singleLen;
     detectCenter();
 
-    const speed = 0.5;
-
     const tick = () => {
       if (!pausedRef.current && scrollRef.current) {
-        posRef.current += speed;
-        if (posRef.current >= singleLen * 2) {
-          posRef.current = singleLen;
-        }
+        posRef.current += 0.45;
+        if (posRef.current >= singleLen * 2) posRef.current = singleLen;
         scrollRef.current.scrollLeft = posRef.current;
         detectCenter();
       }
       rafRef.current = requestAnimationFrame(tick);
     };
-
     rafRef.current = requestAnimationFrame(tick);
 
-    const onScroll = () => {
-      posRef.current = el.scrollLeft;
-      detectCenter();
-    };
-    el.addEventListener('scroll', onScroll, { passive: true });
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      el.removeEventListener('scroll', onScroll);
-    };
+    return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   return (
@@ -88,14 +73,9 @@ export function V2FrostedGlass() {
       <style dangerouslySetInnerHTML={{ __html: `
         @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Reem+Kufi+Fun:wght@400;500;600;700&display=swap');
 
-        @keyframes v2-float {
-          0%, 100% { transform: translateY(-5px) scale(1.04); }
-          50%       { transform: translateY(-9px) scale(1.04); }
-        }
-
-        @keyframes v2-glow-pulse {
-          0%, 100% { box-shadow: 0 14px 28px -8px rgba(180,140,60,0.38), inset 0 0 16px rgba(212,175,55,0.14); }
-          50%       { box-shadow: 0 18px 36px -8px rgba(180,140,60,0.55), inset 0 0 22px rgba(212,175,55,0.22); }
+        @keyframes spotlight-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.18), inset 0 0 18px rgba(212,175,55,0.10); }
+          50%       { box-shadow: 0 0 0 4px rgba(212,175,55,0.10), inset 0 0 28px rgba(212,175,55,0.18); }
         }
 
         .v2-scroll::-webkit-scrollbar { display: none; }
@@ -110,28 +90,39 @@ export function V2FrostedGlass() {
           align-items: center;
           justify-content: center;
           cursor: default;
-          transition: border 0.35s ease, background 0.35s ease, transform 0.45s cubic-bezier(0.2,0.8,0.2,1);
           padding: 12px;
-          border: 1px solid rgba(255,255,255,0.6);
-          background: rgba(255,255,255,0.5);
-          backdrop-filter: blur(12px) saturate(180%);
-          -webkit-backdrop-filter: blur(12px) saturate(180%);
-          box-shadow: 0 6px 18px -6px rgba(180,140,60,0.12);
-          transform: translateY(0) scale(1);
+          border: 1px solid rgba(255,255,255,0.55);
+          background: rgba(255,255,255,0.42);
+          backdrop-filter: blur(10px) saturate(160%);
+          -webkit-backdrop-filter: blur(10px) saturate(160%);
+          box-shadow: 0 4px 14px -4px rgba(180,140,60,0.08);
+          transition:
+            border-color 0.4s ease,
+            background 0.4s ease,
+            box-shadow 0.4s ease,
+            transform 0.4s ease;
+          transform: scale(1);
           user-select: none;
         }
 
         .v2-card.active {
-          border: 1px solid rgba(212,175,55,0.85);
+          border-color: rgba(212,175,55,0.9);
           background: rgba(255,255,255,0.82);
-          animation: v2-float 3s ease-in-out infinite, v2-glow-pulse 3s ease-in-out infinite;
+          transform: scale(1.06);
+          box-shadow:
+            0 0 0 1px rgba(212,175,55,0.3),
+            0 10px 26px -6px rgba(180,140,60,0.32),
+            inset 0 0 16px rgba(212,175,55,0.12);
+          animation: spotlight-pulse 2.4s ease-in-out infinite;
+          z-index: 2;
+          position: relative;
         }
 
         .v2-card-label {
           font-family: "IBM Plex Sans Arabic", sans-serif;
           font-size: 14px;
           font-weight: 500;
-          color: #5C4C40;
+          color: #7A6655;
           text-align: center;
           line-height: 1.3;
           transition: font-size 0.35s ease, font-weight 0.35s ease, color 0.35s ease;
@@ -143,25 +134,36 @@ export function V2FrostedGlass() {
           color: #B8763E;
         }
 
+        /* Fixed spotlight window — decorative ring at center */
+        .v2-spotlight {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: ${CARD_W + 20}px;
+          height: 158px;
+          border-radius: 22px;
+          pointer-events: none;
+          z-index: 10;
+          border: 1.5px solid rgba(212,175,55,0.22);
+          background: linear-gradient(180deg, rgba(212,175,55,0.04) 0%, rgba(212,175,55,0.0) 100%);
+        }
+
         .v2-fade-left {
           position: absolute;
-          top: 72px;
-          left: 0;
-          width: 48px;
-          height: 138px;
-          background: linear-gradient(to right, #F5F0E8 30%, transparent);
+          top: 0; left: 0;
+          width: 60px; height: 100%;
+          background: linear-gradient(to right, #F5F0E8 20%, transparent);
           pointer-events: none;
-          z-index: 2;
+          z-index: 5;
         }
         .v2-fade-right {
           position: absolute;
-          top: 72px;
-          right: 0;
-          width: 48px;
-          height: 138px;
-          background: linear-gradient(to left, #F5F0E8 30%, transparent);
+          top: 0; right: 0;
+          width: 60px; height: 100%;
+          background: linear-gradient(to left, #F5F0E8 20%, transparent);
           pointer-events: none;
-          z-index: 2;
+          z-index: 5;
         }
       `}} />
 
@@ -176,7 +178,10 @@ export function V2FrostedGlass() {
         استكشف الماركات
       </h2>
 
-      <div style={{ position: 'relative' }}>
+      <div style={{ position: 'relative', height: '158px' }}>
+        {/* Fixed spotlight ring always at center */}
+        <div className="v2-spotlight" />
+
         <div className="v2-fade-left" />
         <div className="v2-fade-right" />
 
@@ -188,6 +193,8 @@ export function V2FrostedGlass() {
             gap: `${CARD_GAP}px`,
             paddingInline: '24px',
             overflowX: 'scroll',
+            height: '100%',
+            alignItems: 'center',
           }}
           onMouseEnter={() => { pausedRef.current = true; }}
           onMouseLeave={() => { pausedRef.current = false; }}
