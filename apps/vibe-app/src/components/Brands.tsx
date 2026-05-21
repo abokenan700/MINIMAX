@@ -133,8 +133,8 @@ export function Brands() {
         .brands-img {
           position: relative;
           z-index: 1;
-          width: 65%;
-          height: 55%;
+          width: 90%;
+          height: 82%;
           object-fit: contain;
           filter: drop-shadow(0 0 5px rgba(212,175,55,0.28));
         }
