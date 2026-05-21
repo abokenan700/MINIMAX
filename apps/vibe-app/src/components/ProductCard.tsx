@@ -82,7 +82,7 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
         borderRadius: "var(--radius-card)",
         boxShadow: "var(--elev-2)",
         cursor: "pointer",
-        opacity: isOOS ? 0.7 : 1,
+        opacity: 1,
       }}
     >
       {/* ── Badges row ── */}
