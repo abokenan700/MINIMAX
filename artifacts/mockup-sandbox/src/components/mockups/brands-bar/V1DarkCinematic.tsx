@@ -202,7 +202,7 @@ export function V1DarkCinematic() {
               {brands.map(brand => (
                 <div 
                   key={brand.id}
-                  className={\`brands-v1-card \${activeId === brand.id ? 'active' : ''}\`}
+                  className={"brands-v1-card" + (activeId === brand.id ? " active" : "")}
                   onClick={() => setActiveId(brand.id)}
                   onMouseEnter={() => setActiveId(brand.id)}
                 >

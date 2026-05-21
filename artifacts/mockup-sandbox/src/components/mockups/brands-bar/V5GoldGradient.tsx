@@ -169,7 +169,7 @@ export function V5GoldGradient() {
             return (
               <button
                 key={brand.id}
-                className={`nakhba-v5-card ${isActive ? 'active' : 'inactive'}`}
+                className={"nakhba-v5-card " + (isActive ? "active" : "inactive")}
                 onClick={(e) => handleRipple(e, brand.id)}
               >
                 {isActive && ripples.map(ripple => (
