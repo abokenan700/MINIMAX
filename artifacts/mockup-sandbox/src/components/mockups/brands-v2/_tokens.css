@@ -1,0 +1,34 @@
+/* Design tokens extracted from the real نخبة app */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+:root {
+  --brand-primary:   #D4503A;
+  --brand-hover:     #E8674A;
+  --brand-light:     #FDDFD6;
+  --brand-50:        #FEF2EE;
+  --brand-100:       #FDDFD6;
+  --brand-300:       #F3B29D;
+
+  --bronze:          #B8763E;
+  --gold:            #C49E5C;
+
+  --page-bg:         #F7F3EE;
+  --card-bg:         #FFFFFF;
+  --surface-warm:    #EDE8E1;
+  --surface-subtle:  #F7F3EE;
+
+  --border:          rgba(34,34,34,0.08);
+  --border-warm:     rgba(34,34,34,0.10);
+
+  --text-primary:    #222222;
+  --text-secondary:  #4A4A4A;
+  --text-muted:      #8C8480;
+
+  --shadow-sm:  0 1px 4px rgba(34,34,34,0.06), 0 0 0 1px rgba(34,34,34,0.05);
+  --shadow-md:  0 4px 12px rgba(34,34,34,0.10), 0 0 0 1px rgba(34,34,34,0.05);
+  --shadow-lift: 0 8px 24px rgba(212,80,58,0.14), 0 2px 6px rgba(34,34,34,0.08);
+
+  --font-main: 'Tajawal', system-ui, sans-serif;
+  --radius-card: 12px;
+  --radius-pill: 100px;
+}

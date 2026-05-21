@@ -1,0 +1,129 @@
+.warm-glass-container {
+  --brand-primary: #D4503A;
+  --brand-hover: #E8674A;
+  --brand-light: #FDDFD6;
+  --brand-50: #FEF2EE;
+  --page-bg: #F7F3EE;
+  --card-bg: #FFFFFF;
+  --surface-warm: #EDE8E1;
+  --bronze: #B8763E;
+  --gold: #C49E5C;
+  --border: rgba(34,34,34,0.08);
+  --text-primary: #222222;
+  --text-muted: #8C8480;
+
+  position: relative;
+  width: 100%;
+  max-width: 480px; /* ~390px mobile-first but fluid */
+  margin: 0 auto;
+  background: linear-gradient(135deg, var(--brand-50) 0%, var(--page-bg) 50%, var(--surface-warm) 100%);
+  overflow: hidden;
+  font-family: 'Tajawal', sans-serif;
+  padding: 24px 0;
+  border-radius: 24px;
+}
+
+.warm-glass-scroll-area {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  padding: 0 20px;
+}
+
+.warm-glass-scroll-area::-webkit-scrollbar {
+  display: none;
+}
+
+.warm-glass-track {
+  display: inline-flex;
+  gap: 12px;
+  padding-bottom: 8px; /* Room for shadow */
+}
+
+.warm-glass-card {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  width: 88px;
+  height: 80px;
+  border-radius: 14px;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.warm-glass-blur-wrapper {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 12px rgba(34, 34, 34, 0.06), 0 0 0 1px rgba(212, 80, 58, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.warm-glass-decor-bar {
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background-color: var(--brand-primary);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.warm-glass-brand-name {
+  color: #333333;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.2px;
+  text-align: center;
+}
+
+/* Interactivity */
+.warm-glass-card:hover .warm-glass-blur-wrapper {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-color: rgba(212, 80, 58, 0.25);
+}
+
+.warm-glass-card:hover .warm-glass-decor-bar {
+  opacity: 1;
+}
+
+.warm-glass-card:active {
+  transform: scale(0.95);
+  opacity: 0.9;
+}
+
+/* Edge fades */
+.warm-glass-fade-right,
+.warm-glass-fade-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.warm-glass-fade-right {
+  right: 0;
+  background: linear-gradient(to left, var(--brand-50), transparent);
+}
+
+.warm-glass-fade-left {
+  left: 0;
+  background: linear-gradient(to right, var(--surface-warm), transparent);
+}
