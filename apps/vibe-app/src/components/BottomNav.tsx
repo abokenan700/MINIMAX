@@ -121,7 +121,7 @@ export function BottomNav() {
           <path
             d={pillPath(barW, PILL_H, cx)}
             fill="#ffffff"
-            stroke="rgba(234,88,12,0.12)"
+            stroke="rgba(212,80,58,0.12)"
             strokeWidth="1"
           />
         </svg>
@@ -160,7 +160,7 @@ export function BottomNav() {
                       position: "absolute", top: 3, left: "50%", x: "-50%",
                       width: 28, height: 3, borderRadius: 9999,
                       background: "var(--color-brand-500)",
-                      boxShadow: "0 1px 6px rgba(234,88,12,0.45)",
+                      boxShadow: "0 1px 6px rgba(212,80,58,0.45)",
                     }}
                     transition={{ type: "spring", stiffness: 340, damping: 28 }}
                   />
@@ -174,7 +174,7 @@ export function BottomNav() {
                       position: "absolute", top: -CIRCLE_R, left: "50%", x: "-50%",
                       width: CIRCLE_R * 2, height: CIRCLE_R * 2, borderRadius: "50%",
                       background: "#ffffff",
-                      boxShadow: "0 0 0 2px rgba(234,88,12,0.30), 0 4px 14px rgba(0,0,0,0.12)",
+                      boxShadow: "0 0 0 2px rgba(212,80,58,0.30), 0 4px 14px rgba(0,0,0,0.12)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       zIndex: 10,
                     }}

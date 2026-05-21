@@ -18,15 +18,15 @@ function FreeShippingBar({ total }: { total: number }) {
   const reached = total >= FREE_SHIPPING_THRESHOLD;
 
   return (
-    <div dir="rtl" style={{ padding: "10px 12px", background: reached ? "#FFF7F0" : "#F8F8F8", borderBottom: "1px solid var(--border-warm)" }}>
+    <div dir="rtl" style={{ padding: "10px 12px", background: reached ? "var(--color-brand-50)" : "#F8F8F8", borderBottom: "1px solid var(--border-warm)" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: reached ? "#F97316" : "var(--text-brand)" }}>
+        <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-brand)" }}>
           {reached ? "🎉 تأهّلت للشحن المجاني!" : `أضف ${remaining.toLocaleString("ar-SA")} ر.س للحصول على شحن مجاني 🚚`}
         </span>
         <span style={{ fontSize: 10, color: "var(--text-muted)" }}>{Math.round(pct)}%</span>
       </div>
-      <div style={{ height: 5, borderRadius: 3, background: reached ? "#FED7AA" : "rgba(192,168,130,0.25)", overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${pct}%`, borderRadius: 3, background: reached ? "linear-gradient(90deg,#F97316,#4A7A3A)" : "linear-gradient(90deg,var(--color-brand-500),var(--color-brand-500))", transition: "width 0.5s ease" }} />
+      <div style={{ height: 5, borderRadius: 3, background: reached ? "var(--color-brand-100)" : "rgba(192,168,130,0.25)", overflow: "hidden" }}>
+        <div style={{ height: "100%", width: `${pct}%`, borderRadius: 3, background: reached ? "linear-gradient(90deg,var(--color-brand-500),#4A7A3A)" : "linear-gradient(90deg,var(--color-brand-500),var(--color-brand-500))", transition: "width 0.5s ease" }} />
       </div>
     </div>
   );
@@ -60,11 +60,11 @@ function CouponInput() {
   return (
     <div dir="rtl" style={{ padding: "10px 12px", background: "var(--bg-card)", borderBottom: "1px solid var(--border-warm)" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, padding: "10px 12px", borderRadius: 12, border: `1.5px solid ${error ? "#E04545" : applied ? "#F97316" : "var(--border-warm)"}`, background: "var(--bg-page)", transition: "border-color 0.2s" }}>
-          <Tag size={14} style={{ color: applied ? "#F97316" : "var(--text-muted)", flexShrink: 0 }} />
+        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, padding: "10px 12px", borderRadius: 12, border: `1.5px solid ${error ? "#E04545" : applied ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: "var(--bg-page)", transition: "border-color 0.2s" }}>
+          <Tag size={14} style={{ color: applied ? "var(--color-brand-500)" : "var(--text-muted)", flexShrink: 0 }} />
           {applied ? (
             <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "#F97316" }}>{couponCode} — خصم {discountPct}٪ ✓</span>
+              <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--color-brand-500)" }}>{couponCode} — خصم {discountPct}٪ ✓</span>
               <button onClick={reset} style={{ background: "transparent", border: "none", cursor: "pointer", color: "#9A9692", padding: 0, display: "flex" }}>
                 <X size={14} />
               </button>

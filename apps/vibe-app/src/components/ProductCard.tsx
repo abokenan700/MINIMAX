@@ -122,7 +122,7 @@ export function ProductCard({ product, layout = "vertical", density = "compact" 
             transition: "opacity var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out)",
           }}
         >
-          <Eye size={16} strokeWidth={2.5} color="#F97316" />
+          <Eye size={16} strokeWidth={2.5} color="var(--color-brand-500)" />
         </button>
         {product.discount > 0 && (
           <div style={{

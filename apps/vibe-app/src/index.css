@@ -95,6 +95,7 @@
   /* ─── Border Tokens ───────────────────────────────────────────────── */
   --border:            rgba(34, 34, 34, 0.08);
   --border-warm:       rgba(34, 34, 34, 0.10);
+  --border-orange:     var(--color-brand-300);
   --border-separator:  rgba(34, 34, 34, 0.06);
   --border-brand:      rgba(232, 103, 74, 0.22);
 
@@ -1118,7 +1119,7 @@ html, body {
   padding: var(--space-4) var(--space-4);   /* 16px — on grid */
   border-radius: var(--radius-lg);
   background: var(--color-ink-luxury);
-  background-image: radial-gradient(circle at 88% 12%, rgba(249,115,22,0.22) 0%, transparent 55%);
+  background-image: radial-gradient(circle at 88% 12%, rgba(212,80,58,0.22) 0%, transparent 55%);
   position: relative;
   overflow: hidden;
   border: none;

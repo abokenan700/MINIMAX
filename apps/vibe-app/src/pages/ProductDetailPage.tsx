@@ -364,8 +364,8 @@ function SocialProof({ sales, productId }: { sales: number; productId: number })
   return (
     <div dir="rtl" style={{ marginBottom: 18, display: "flex", flexDirection: "column", gap: 7 }}>
       <div style={{ display: "flex", gap: 7 }}>
-        <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 7, padding: "9px 11px", borderRadius: 10, background: "#FFF7F0" }}>
-          <Eye size={13} style={{ color: "#F97316", flexShrink: 0 }} />
+        <div style={{ flex: 1, display: "flex", alignItems: "center", gap: 7, padding: "9px 11px", borderRadius: 10, background: "var(--color-brand-50)" }}>
+          <Eye size={13} style={{ color: "var(--color-brand-500)", flexShrink: 0 }} />
           <span style={{ fontFamily: "var(--font-main)", fontSize: 11.5, color: "#B84A00", fontWeight: 700 }}>
             {viewers} يشاهدونه الآن
           </span>
@@ -505,7 +505,7 @@ function ReviewsSection({ product }: { product: Product }) {
                 </div>
                 <div>
                   <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", lineHeight: 1.2 }}>{r.user_name}</p>
-                  {r.verified === 1 && <span style={{ fontSize: 10, color: "#F97316", fontWeight: 600 }}>✓ مشتري موثّق</span>}
+                  {r.verified === 1 && <span style={{ fontSize: 10, color: "var(--color-brand-500)", fontWeight: 600 }}>✓ مشتري موثّق</span>}
                 </div>
               </div>
               {r.created_at && (

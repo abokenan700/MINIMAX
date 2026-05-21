@@ -351,7 +351,7 @@ export function AccountPage() {
             className="font-bold"
             style={{
               fontSize: "17px", margin: 0,
-              background: "linear-gradient(90deg, #FED7AA 0%, #F97316 40%, #FED7AA 70%, #FB923C 100%)",
+              background: "linear-gradient(90deg, var(--color-brand-200) 0%, var(--color-brand-500) 40%, var(--color-brand-300) 70%, var(--color-brand-400) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",

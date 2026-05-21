@@ -12,7 +12,7 @@ function getStrength(pass: string): { score: number; label: string; color: strin
   if (/[^A-Za-z0-9]/.test(pass)) score++;
 
   if (score <= 1) return { score: 1, label: "ضعيفة جداً", color: "#EF4444" };
-  if (score === 2) return { score: 2, label: "ضعيفة", color: "#F97316" };
+  if (score === 2) return { score: 2, label: "ضعيفة", color: "var(--color-brand-500)" };
   if (score === 3) return { score: 3, label: "متوسطة", color: "#EAB308" };
   if (score === 4) return { score: 4, label: "جيدة", color: "#22C55E" };
   return { score: 5, label: "قوية جداً", color: "#16A34A" };

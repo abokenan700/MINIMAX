@@ -161,7 +161,7 @@ export function SearchBar({
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "var(--color-brand-50)";
                 (e.currentTarget as HTMLElement).style.color = "var(--text-brand)";
-                (e.currentTarget as HTMLElement).style.borderColor = "var(--border-orange)";
+                (e.currentTarget as HTMLElement).style.borderColor = "var(--color-brand-300)";
               }}
               onMouseLeave={(e) => {
                 (e.currentTarget as HTMLElement).style.background = "var(--bg-surface-subtle)";

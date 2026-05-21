@@ -16,9 +16,9 @@ const PROMOS: PromoItem[] = [
     icon: Truck,
     title: "شحن مجاني",
     subtitle: "للطلبات فوق 150 ر.س",
-    bg: "linear-gradient(135deg, #FFF7F0 0%, #FFEDD5 100%)",
-    iconBg: "rgba(249,115,22,0.12)",
-    iconColor: "#F97316",
+    bg: "linear-gradient(135deg, var(--color-brand-50) 0%, var(--color-brand-100) 100%)",
+    iconBg: "rgba(212,80,58,0.12)",
+    iconColor: "var(--color-brand-500)",
     path: "/categories",
   },
   {

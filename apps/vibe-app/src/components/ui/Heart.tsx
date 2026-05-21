@@ -32,8 +32,8 @@ export const Heart = forwardRef<HTMLButtonElement, HeartProps>(
         strokeWidth={pressed ? 0 : 2}
         className={pressed ? "heart-pop" : ""}
         style={{
-          fill: pressed ? "#F97316" : "none",
-          stroke: pressed ? "#F97316" : "#F97316",
+          fill: pressed ? "var(--color-brand-500)" : "none",
+          stroke: "var(--color-brand-500)",
           transition: "fill 220ms var(--ease-spring), stroke 220ms var(--ease-spring)",
         }}
       />

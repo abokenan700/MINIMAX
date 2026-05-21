@@ -29,7 +29,7 @@ interface Order {
 const STATUS_CONFIG: Record<OrderStatus, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
   processing: { label: "قيد المعالجة",    color: "var(--text-brand)", bg: "var(--color-brand-50)", icon: <Package size={13} /> },
   shipped:    { label: "في الطريق إليك",  color: "#1565C0",           bg: "#E3F2FD",          icon: <Truck size={13} /> },
-  delivered:  { label: "تم التسليم",      color: "#F97316",           bg: "#FFF7F0",          icon: <CheckCircle size={13} /> },
+  delivered:  { label: "تم التسليم",      color: "var(--color-brand-500)", bg: "var(--color-brand-50)", icon: <CheckCircle size={13} /> },
   cancelled:  { label: "مُلغى",           color: "#C62828",           bg: "#FFEBEE",          icon: <XCircle size={13} /> },
 };
 
@@ -227,9 +227,9 @@ function OrderCard({ order, onRefresh }: { order: Order; onRefresh: () => void }
           </div>
 
           {/* Delivery estimate */}
-          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 10px", borderRadius: 10, background: order.status === "delivered" ? "#FFF7F0" : "var(--color-brand-50)" }} dir="rtl">
-            <Truck size={13} style={{ color: order.status === "delivered" ? "#F97316" : "var(--text-brand)" }} />
-            <span style={{ fontSize: 12, color: order.status === "delivered" ? "#F97316" : "var(--text-brand)", fontWeight: 600 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 10px", borderRadius: 10, background: "var(--color-brand-50)" }} dir="rtl">
+            <Truck size={13} style={{ color: "var(--text-brand)" }} />
+            <span style={{ fontSize: 12, color: "var(--text-brand)", fontWeight: 600 }}>
               {estimateDelivery(order)}
             </span>
           </div>

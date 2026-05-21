@@ -1,15 +1,15 @@
 /**
  * نخبة Visual Identity System v3.0
- * Brand:    #EA580C (brand-600) — 4.6:1 contrast on white, WCAG AA
+ * Brand:    #D4503A (brand-500) — terracotta, WCAG AA on white
  * Surface:  #FBFAF8 (neutral-25) — warm champagne page
- * Display:  Reem Kufi Fun · Text: IBM Plex Sans Arabic
+ * Display:  Tajawal · Text: IBM Plex Sans Arabic
  * Grid:     4-pt geometric base
  *
  * Use CSS vars in style={{}} instead of raw values:
  *   var(--color-brand-500), var(--text-brand), var(--font-display) ... etc
  */
 
-/* ─── Brand Scale — 10-step orange ramp ─────────────────────────── */
+/* ─── Brand Scale — 10-step terracotta ramp ──────────────────────── */
 export const BRAND_COLOR = {
   50:      "var(--color-brand-50)",
   100:     "var(--color-brand-100)",
