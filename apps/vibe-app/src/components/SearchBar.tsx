@@ -66,7 +66,7 @@ export function SearchBar({
           className="flex items-center gap-3 rounded-2xl px-4"
           style={{
             background: "var(--input-bg)",
-            border: "0.3px solid var(--color-brand-500)",
+            border: "0.5px solid var(--color-brand-500)",
             paddingTop: "7px",
             paddingBottom: "7px",
             boxShadow: focused ? "0 0 0 2.5px var(--color-brand-50)" : "none",
