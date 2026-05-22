@@ -1,5 +1,16 @@
 uploads = []
-generated = []
+
+[[generated]]
+id = "ZvkAvOABecuMw2G-Xc1R3"
+uri = "file://attached_assets/generated_images/gucci_luxury_brand_logo_5864.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "cclXNhnRlT4mYpd5K6XnZ"
+uri = "file://attached_assets/generated_images/versace_luxury_brand_logo_8e70.png"
+type = "image"
+title = "generated_image"
 
 [[outputs]]
 id = "VG0FXRMssSXMN6Rg8m7Yc"

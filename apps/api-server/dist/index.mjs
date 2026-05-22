@@ -43725,9 +43725,9 @@ var router3 = (0, import_express3.Router)();
 var mockBrands = [
   { id: "chanel", label: "CHANEL", icon: "/brands/chanel.png" },
   { id: "dior", label: "DIOR", icon: "/brands/dior.png" },
-  { id: "gucci", label: "GUCCI", icon: "/brands/gucci.svg" },
+  { id: "gucci", label: "GUCCI", icon: "/brands/gucci.png" },
   { id: "lv", label: "LOUIS VUITTON", icon: "/brands/louis-vuitton.png" },
-  { id: "versace", label: "VERSACE", icon: "/brands/versace.svg" }
+  { id: "versace", label: "VERSACE", icon: "/brands/versace.png" }
 ];
 router3.get("/brands", (_req, res) => {
   res.json(mockBrands);
