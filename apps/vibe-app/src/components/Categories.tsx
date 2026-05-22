@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { l1Categories } from "../data/catalog";
 import { useCategories } from "../hooks/useCategories";
 
@@ -19,10 +20,21 @@ export function Categories({
   const [failedIds, setFailedIds]   = useState<Set<string>>(new Set());
   const activeId  = value ?? internalId;
   const { categories } = useCategories();
+  const [, navigate] = useLocation();
 
-  function handleSelect(id: string) {
-    if (onChange) onChange(id);
-    else setInternalId(id);
+  function handleSelect(id: string, label: string) {
+    if (onChange) {
+      onChange(id);
+    } else {
+      if (id === "new") {
+        navigate(`/search?category=${encodeURIComponent("جديدنا")}`);
+      } else if (id === "offers") {
+        navigate(`/search?category=${encodeURIComponent("عروض")}`);
+      } else {
+        navigate(`/search?category=${encodeURIComponent(label)}`);
+      }
+    }
+    setInternalId(id);
   }
 
   function handleImgError(id: string) {
@@ -39,7 +51,7 @@ export function Categories({
           return (
             <button
               key={cat.id}
-              onClick={() => handleSelect(cat.id)}
+              onClick={() => handleSelect(cat.id, cat.label)}
               className="category-item"
               aria-pressed={isActive}
             >

@@ -121,25 +121,29 @@ function ResultCardList({ item }: { item: Product }) {
   );
 }
 
-function useSearchProducts(query: string) {
+function useSearchProducts(query: string, categoryFilter: string) {
   const [results, setResults] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState(false);
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    const q = query.trim();
-    if (q.length < 1) { setResults([]); setLoading(false); setError(false); return; }
+    const q   = query.trim();
+    const cat = categoryFilter.trim();
+    if (q.length < 1 && cat.length < 1) { setResults([]); setLoading(false); setError(false); return; }
     abortRef.current?.abort();
     const ctrl = new AbortController();
     abortRef.current = ctrl;
     setLoading(true); setError(false);
-    fetch(`${API_BASE}/products?q=${encodeURIComponent(q)}`, { signal: ctrl.signal })
+    const params = new URLSearchParams();
+    if (cat) params.set("category", cat);
+    if (q)   params.set("q", q);
+    fetch(`${API_BASE}/products?${params.toString()}`, { signal: ctrl.signal })
       .then((r) => r.json())
       .then((data) => { setResults(data as Product[]); setLoading(false); })
       .catch((e) => { if (e.name !== "AbortError") { setError(true); setLoading(false); } });
     return () => ctrl.abort();
-  }, [query]);
+  }, [query, categoryFilter]);
 
   return { results, loading, error };
 }
@@ -148,10 +152,12 @@ export function SearchPage() {
   const [, navigate] = useLocation();
   const searchStr = useSearch();
 
-  const urlParams = useMemo(() => new URLSearchParams(searchStr), [searchStr]);
-  const qParam = urlParams.get("q") ?? urlParams.get("brand") ?? "";
+  const urlParams      = useMemo(() => new URLSearchParams(searchStr), [searchStr]);
+  const categoryParam  = urlParams.get("category") ?? "";
+  const textParam      = urlParams.get("q") ?? urlParams.get("brand") ?? "";
+  const displayParam   = textParam || categoryParam;
 
-  const [query, setQuery]   = useState(qParam);
+  const [query, setQuery]   = useState(textParam);
   const [history, setHistory] = useState<string[]>(() => {
     try {
       const stored = localStorage.getItem("nakhba_search_history");
@@ -172,13 +178,16 @@ export function SearchPage() {
   const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
-    const params = new URLSearchParams(searchStr);
-    const q = params.get("q") ?? params.get("brand") ?? "";
-    if (q !== query) setQuery(q);
-    const newSort = params.get("sort") ?? "default";
+    const params    = new URLSearchParams(searchStr);
+    const cat       = params.get("category") ?? "";
+    const text      = params.get("q") ?? params.get("brand") ?? "";
+    const newQuery  = text;
+    if (newQuery !== query) setQuery(newQuery);
+    const newSort   = params.get("sort") ?? "default";
     if (newSort !== sortKey) setSortKey(newSort);
     const newFilters = paramsToFilters(params);
     setFilters(newFilters);
+    void cat;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchStr]);
 
@@ -197,7 +206,7 @@ export function SearchPage() {
     try { localStorage.setItem("nakhba_search_history", JSON.stringify(history)); } catch {}
   }, [history]);
 
-  const { results, loading } = useSearchProducts(query);
+  const { results, loading } = useSearchProducts(query, categoryParam);
 
   function applyQuery(q: string) {
     setQuery(q);
@@ -262,7 +271,7 @@ export function SearchPage() {
     }
   }
 
-  const showResults = query.trim().length >= 1;
+  const showResults = query.trim().length >= 1 || categoryParam.trim().length >= 1;
 
   return (
     <div style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden", paddingBottom: "var(--nav-h)", background: "var(--bg-page)", position: "relative" }}>
@@ -270,8 +279,8 @@ export function SearchPage() {
 
       <SearchBar
         placeholder="ابحث عن منتجات، ماركات والمزيد..."
-        value={query}
-        onChange={setQuery}
+        value={categoryParam ? displayParam : query}
+        onChange={(v) => { if (categoryParam) { navigate(`/search?q=${encodeURIComponent(v)}`); } else { setQuery(v); } }}
         onClear={() => { setQuery(""); navigate("/search"); }}
         onKeyDown={(e) => e.key === "Enter" && applyQuery(query)}
         autoFocus
