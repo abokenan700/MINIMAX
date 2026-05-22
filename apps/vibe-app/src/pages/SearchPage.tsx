@@ -14,7 +14,7 @@ import { Stars } from "../components/Stars";
 import { ProductCard } from "../components/ProductCard";
 import {
   type Filters, DEFAULT_FILTERS,
-  SortSheet, FilterSheet, ControlsBar,
+  FilterSheet, ControlsBar,
 } from "../components/SearchFilters";
 
 const TRENDING_CHIPS = [
@@ -174,7 +174,6 @@ export function SearchPage() {
   const [sortKey, setSortKey] = useState(() => urlParams.get("sort") ?? "default");
   const [filters, setFilters] = useState<Filters>(() => paramsToFilters(urlParams));
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
-  const [showSort, setShowSort] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
   useEffect(() => {
@@ -223,6 +222,13 @@ export function SearchPage() {
     const p = new URLSearchParams(searchStr);
     if (key === "default") p.delete("sort"); else p.set("sort", key);
     navigate(`/search?${p.toString()}`);
+  }
+
+  function handleBrandToggle(brand: string) {
+    const newBrands = filters.brands.includes(brand)
+      ? filters.brands.filter((b) => b !== brand)
+      : [...filters.brands, brand];
+    handleFiltersChange({ ...filters, brands: newBrands });
   }
 
   function handleFiltersChange(newFilters: Filters) {
@@ -296,9 +302,10 @@ export function SearchPage() {
                 sort={sortKey}
                 filters={filters}
                 viewMode={viewMode}
-                onSortOpen={() => setShowSort(true)}
+                onSortSelect={handleSortChange}
                 onFilterOpen={() => setShowFilter(true)}
                 onViewToggle={() => setViewMode((v) => v === "grid" ? "list" : "grid")}
+                onBrandToggle={handleBrandToggle}
                 onRemoveFilter={removeFilter}
               />
             )}
@@ -442,8 +449,7 @@ export function SearchPage() {
         )}
       </div>
 
-      {showSort   && <SortSheet   activeSort={sortKey}  onSelect={handleSortChange}   onClose={() => setShowSort(false)} />}
-      {showFilter && <FilterSheet filters={filters}     onApply={handleFiltersChange} onClose={() => setShowFilter(false)} />}
+      {showFilter && <FilterSheet filters={filters} onApply={handleFiltersChange} onClose={() => setShowFilter(false)} />}
     </div>
   );
 }
