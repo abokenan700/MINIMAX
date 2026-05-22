@@ -132,12 +132,11 @@ export function Brands() {
 
         .brands-img {
           display: block;
-          width: 88%;
-          height: 82%;
+          width: 100%;
+          height: 100%;
           object-fit: contain;
-          margin: auto;
-          padding: 4px;
-          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
         }
 
         .brands-fade-l, .brands-fade-r {
