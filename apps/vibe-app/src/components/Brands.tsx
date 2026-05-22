@@ -43,30 +43,12 @@ export function Brands() {
       style={{
         background: "var(--color-brand-500)",
         position: "relative",
-        padding: "8px 0",
+        padding: "4px 0",
         fontFamily: '"IBM Plex Sans Arabic", sans-serif',
         overflow: "hidden",
       }}
     >
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes brands-glow {
-          0%,100% {
-            box-shadow:
-              0 6px 18px -4px rgba(180,140,60,0.28),
-              inset 0 0 10px rgba(212,175,55,0.08);
-          }
-          50% {
-            box-shadow:
-              0 8px 26px -4px rgba(180,140,60,0.48),
-              inset 0 0 18px rgba(212,175,55,0.18);
-          }
-        }
-
-        @keyframes brands-float {
-          0%,100% { transform: translateY(-2px); }
-          50%      { transform: translateY(-5px); }
-        }
-
         .brands-scroll::-webkit-scrollbar { display: none; }
         .brands-scroll { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -90,20 +72,12 @@ export function Brands() {
           backdrop-filter: blur(12px) saturate(160%);
           -webkit-backdrop-filter: blur(12px) saturate(160%);
 
-          animation:
-            brands-glow  3.2s ease-in-out infinite,
-            brands-float 3.2s ease-in-out infinite;
-
           transition: border-color .2s ease, background .2s ease;
         }
 
         .brands-card:active {
           border-color: rgba(212,175,55,0.75);
         }
-
-        ${Array.from({ length: 24 }, (_, i) =>
-          `.brands-card:nth-child(${i + 1}) { animation-delay: ${(i % SLOT_COUNT) * -0.64}s; }`
-        ).join("\n")}
 
         .brands-card::after {
           content: "";
