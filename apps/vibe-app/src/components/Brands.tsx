@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
-const CARD_W = 88;
-const CARD_H = 58;
+const CARD_W = 96;
+const CARD_H = 64;
 const GAP    = 10;
 const PAD    = 16;
 const STEP   = CARD_W + GAP;
