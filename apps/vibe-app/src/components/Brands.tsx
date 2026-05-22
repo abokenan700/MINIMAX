@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
-const CARD_W = 82;
+const CARD_W = 100;
 const CARD_H = 90;
 const GAP    = 10;
 const PAD    = 16;
