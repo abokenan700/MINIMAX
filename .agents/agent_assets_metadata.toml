@@ -48,6 +48,30 @@ uri = "file://attached_assets/generated_images/versace_brand_logo_large_daef.png
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "2rrUgZn0tKIYwIa1-PcI-"
+uri = "file://attached_assets/generated_images/luxury_brand_logo_on_1e65.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "PeGodjd94WPTtsfvbKnRK"
+uri = "file://attached_assets/generated_images/luxury_brand_logo_on_cd36.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "QYzaJgJk8yvoh_uJhYlEi"
+uri = "file://attached_assets/generated_images/luxury_brand_logo_on_8aaf.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "3CCv7dxuU56X4gzg4c6Pw"
+uri = "file://attached_assets/generated_images/luxury_brand_logo_on_4f5d.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "VG0FXRMssSXMN6Rg8m7Yc"
 uri = "file://VISUAL_IDENTITY_PROPOSALS.md"
