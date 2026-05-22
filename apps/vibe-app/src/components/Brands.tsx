@@ -41,7 +41,7 @@ export function Brands() {
     <div
       dir="rtl"
       style={{
-        background: "var(--color-brand-500)",
+        background: "var(--color-brand-700)",
         position: "relative",
         padding: "2px 0",
         fontFamily: '"IBM Plex Sans Arabic", sans-serif',
@@ -118,8 +118,8 @@ export function Brands() {
           width: 44px; height: 100%;
           pointer-events: none; z-index: 5;
         }
-        .brands-fade-l { left:0;  background: linear-gradient(to right, var(--color-brand-500) 15%, transparent); }
-        .brands-fade-r { right:0; background: linear-gradient(to left,  var(--color-brand-500) 15%, transparent); }
+        .brands-fade-l { left:0;  background: linear-gradient(to right, var(--color-brand-700) 15%, transparent); }
+        .brands-fade-r { right:0; background: linear-gradient(to left,  var(--color-brand-700) 15%, transparent); }
       `}} />
 
       <div style={{ position: "relative", height: `${CARD_H + 12}px` }}>
