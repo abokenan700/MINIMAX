@@ -131,12 +131,11 @@ export function Brands() {
         }
 
         .brands-img {
-          position: absolute;
-          inset: 0;
+          display: block;
           width: 100%;
           height: 100%;
           object-fit: cover;
-          z-index: 1;
+          border-radius: 12px;
         }
 
         .brands-fade-l, .brands-fade-r {
