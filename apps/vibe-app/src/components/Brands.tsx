@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
-const CARD_W = 114;
-const CARD_H = 90;
+const CARD_W = 116;
+const CARD_H = 74;
 const GAP    = 10;
 const PAD    = 16;
 const STEP   = CARD_W + GAP;
@@ -132,8 +132,8 @@ export function Brands() {
 
         .brands-img {
           display: block;
-          width: 92%;
-          height: 78%;
+          width: 76%;
+          height: 64%;
           object-fit: contain;
           margin: auto;
         }
