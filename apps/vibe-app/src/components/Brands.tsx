@@ -79,8 +79,8 @@ export function Brands() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          gap: 4px;
-          padding: 8px;
+          gap: 0;
+          padding: 0;
           cursor: pointer;
           position: relative;
           overflow: hidden;
@@ -131,12 +131,12 @@ export function Brands() {
         }
 
         .brands-img {
-          position: relative;
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
           z-index: 1;
-          width: 90%;
-          height: 82%;
-          object-fit: contain;
-          filter: drop-shadow(0 0 5px rgba(212,175,55,0.28));
         }
 
         .brands-fade-l, .brands-fade-r {

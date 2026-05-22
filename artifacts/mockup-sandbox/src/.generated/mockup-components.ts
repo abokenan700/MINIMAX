@@ -19,6 +19,6 @@ export const modules: ModuleMap = {
   "./components/mockups/flash-strip/DarkVariant.tsx": () => import("../components/mockups/flash-strip/DarkVariant.tsx"),
   "./components/mockups/flash-strip/GlowVariant.tsx": () => import("../components/mockups/flash-strip/GlowVariant.tsx"),
   "./components/mockups/flash-strip/GradientVariant.tsx": () => import("../components/mockups/flash-strip/GradientVariant.tsx"),
-  "./components/mockups/identity/IdentityShowcase.tsx": () => import("../components/mockups/identity/IdentityShowcase.tsx"),
-  "./components/mockups/product-card/FeaturedCardPreview.tsx": () => import("../components/mockups/product-card/FeaturedCardPreview.tsx")
+  "./components/mockups/product-card/FeaturedCardPreview.tsx": () => import("../components/mockups/product-card/FeaturedCardPreview.tsx"),
+  "./components/mockups/identity/IdentityShowcase.tsx": () => import("../components/mockups/identity/IdentityShowcase.tsx")
 };
