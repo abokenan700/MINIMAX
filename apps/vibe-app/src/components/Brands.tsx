@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useGetBrands } from "@workspace/api-client-react";
 import { useLocation } from "wouter";
 
-const CARD_W = 100;
+const CARD_W = 114;
 const CARD_H = 90;
 const GAP    = 10;
 const PAD    = 16;
@@ -132,10 +132,10 @@ export function Brands() {
 
         .brands-img {
           display: block;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 12px;
+          width: 78%;
+          height: 58%;
+          object-fit: contain;
+          margin: auto;
         }
 
         .brands-fade-l, .brands-fade-r {
