@@ -24,6 +24,30 @@ uri = "file://attached_assets/generated_images/chanel_luxury_brand_logo_aa59.png
 type = "image"
 title = "generated_image"
 
+[[generated]]
+id = "zbxClKLPRWW9C7cg4w6uJ"
+uri = "file://attached_assets/generated_images/chanel_brand_logo_large_9316.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "T3i2KNbs2Jnylj-I8khKG"
+uri = "file://attached_assets/generated_images/dior_brand_logo_large_9ec3.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Dr2yajldSvlQ7CiVbp-v9"
+uri = "file://attached_assets/generated_images/gucci_brand_logo_large_da0c.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "_lD7n1z7nzx3RIQLkJVx0"
+uri = "file://attached_assets/generated_images/versace_brand_logo_large_daef.png"
+type = "image"
+title = "generated_image"
+
 [[outputs]]
 id = "VG0FXRMssSXMN6Rg8m7Yc"
 uri = "file://VISUAL_IDENTITY_PROPOSALS.md"
