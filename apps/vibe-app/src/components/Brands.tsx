@@ -132,8 +132,8 @@ export function Brands() {
 
         .brands-img {
           display: block;
-          width: 78%;
-          height: 58%;
+          width: 92%;
+          height: 78%;
           object-fit: contain;
           margin: auto;
         }
