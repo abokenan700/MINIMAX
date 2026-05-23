@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal, ShieldCheck, ChevronLeft } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal, ChevronLeft } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -631,66 +631,47 @@ export function CartPage() {
             </div>
           </div>
 
-          {/* شريط الدفع الثابت — نمط المتاجر الكبرى */}
-          <div dir="rtl" style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "8px 12px 12px" }}>
+          {/* شريط الدفع الثابت */}
+          <div dir="rtl" style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "10px 14px 14px", display: "flex", alignItems: "center", gap: 12 }}>
 
-            {/* شارات الثقة — صف صغير فوق */}
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0, marginBottom: 8 }}>
-              {[
-                { icon: <ShieldCheck size={10} strokeWidth={2.5} />, text: "دفع آمن" },
-                { icon: "✓", text: "منتجات أصلية" },
-                { icon: "↩", text: "إرجاع 30 يوم" },
-              ].map(({ icon, text }, i) => (
-                <div key={text} style={{ display: "flex", alignItems: "center", gap: 3, padding: "0 10px", borderInlineEnd: i < 2 ? "1px solid var(--border)" : "none" }}>
-                  <span style={{ fontSize: 10, color: "var(--text-muted)", display: "flex", alignItems: "center" }}>{icon}</span>
-                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 500, whiteSpace: "nowrap" }}>{text}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* الصف الرئيسي: إجمالي (يمين RTL) + زر إتمام (يسار RTL) */}
-            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-
-              {/* معلومات الإجمالي */}
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <p style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", marginBottom: 1 }}>
-                  الإجمالي ({items.length} {items.length === 1 ? "منتج" : "منتجات"})
-                </p>
-                <div style={{ display: "flex", alignItems: "baseline", gap: 3 }} dir="ltr">
-                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, color: "var(--text-secondary)", fontWeight: 500 }}>ر.س</span>
-                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 22, fontWeight: 800, color: "var(--text-primary)", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px" }}>
-                    {grandTotal.toLocaleString("ar-SA")}
-                  </span>
-                </div>
-                {discountAmount > 0 && (
-                  <p style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "#22c55e", fontWeight: 600, marginTop: 1 }}>
-                    وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
-                  </p>
-                )}
+            {/* الإجمالي */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", marginBottom: 2, fontWeight: 500 }}>
+                الإجمالي · {items.length} {items.length === 1 ? "منتج" : "منتجات"}
+              </p>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }} dir="ltr">
+                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 12, color: "var(--text-muted)" }}>ر.س</span>
+                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 24, fontWeight: 800, color: "var(--text-primary)", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px", lineHeight: 1 }}>
+                  {grandTotal.toLocaleString("ar-SA")}
+                </span>
               </div>
-
-              {/* زر إتمام الطلب المضغوط */}
-              <button
-                onClick={() => navigate("/checkout")}
-                style={{
-                  flexShrink: 0,
-                  display: "flex", alignItems: "center", gap: 7,
-                  padding: "0 18px", height: 52, borderRadius: 14, border: "none",
-                  background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
-                  boxShadow: "0 4px 18px rgba(234,88,12,0.35)",
-                  transition: "transform 0.13s, box-shadow 0.13s",
-                  fontFamily: "var(--font-main)",
-                }}
-                onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "0 2px 8px rgba(234,88,12,0.2)"; }}
-                onMouseUp={(e)   => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 18px rgba(234,88,12,0.35)"; }}
-                onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.96)"; }}
-                onTouchEnd={(e)   => { e.currentTarget.style.transform = ""; }}
-              >
-                <ShieldCheck size={17} strokeWidth={2.2} color="#fff" />
-                <span style={{ fontSize: 14, fontWeight: 700, whiteSpace: "nowrap" }}>إتمام الطلب</span>
-                <ChevronLeft size={15} strokeWidth={2.5} color="rgba(255,255,255,0.8)" />
-              </button>
+              {discountAmount > 0 && (
+                <p style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "#16a34a", fontWeight: 600, marginTop: 2 }}>
+                  وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
+                </p>
+              )}
             </div>
+
+            {/* زر إتمام الطلب */}
+            <button
+              onClick={() => navigate("/checkout")}
+              style={{
+                flexShrink: 0,
+                display: "flex", alignItems: "center", gap: 8,
+                padding: "0 22px", height: 50, borderRadius: 13, border: "none",
+                background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
+                boxShadow: "0 3px 14px rgba(234,88,12,0.32)",
+                transition: "transform 0.12s, box-shadow 0.12s",
+                fontFamily: "var(--font-main)",
+              }}
+              onMouseDown={(e)  => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "0 1px 6px rgba(234,88,12,0.18)"; }}
+              onMouseUp={(e)    => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 3px 14px rgba(234,88,12,0.32)"; }}
+              onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.96)"; }}
+              onTouchEnd={(e)   => { e.currentTarget.style.transform = ""; }}
+            >
+              <span style={{ fontSize: 14, fontWeight: 700, whiteSpace: "nowrap" }}>إتمام الطلب</span>
+              <ChevronLeft size={16} strokeWidth={2.5} />
+            </button>
           </div>
         </>
       )}
