@@ -290,26 +290,10 @@ function CategoryContent({ categoryParam, onSelect }: {
     onSelect(activeL1Label, activeL2Label ? `${activeL2Label} — ${label}` : label);
   }
 
-  function resetL1() { setActiveL1Id(null); setActiveL2Id(null); onSelect(""); }
-
   return (
     <div>
-      {/* ── إذا L1 محدد: اعرضه كشريحة + زر تغيير ── */}
-      {activeL1Id ? (
-        <div style={{ marginBottom: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-            <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", letterSpacing: 0.3, margin: 0 }}>
-              الفئة الرئيسية
-            </p>
-            <button onClick={resetL1}
-              style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 600, color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
-              تغيير
-            </button>
-          </div>
-          <Chip label={activeL1Label} active onClick={() => {}} />
-        </div>
-      ) : (
-        /* ── إذا لا يوجد L1: اعرض كل الفئات الرئيسية ── */
+      {/* ── إذا لا يوجد L1 محدد: اعرض كل الفئات الرئيسية ── */}
+      {!activeL1Id && (
         <>
           <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
             الفئة الرئيسية
