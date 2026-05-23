@@ -47,7 +47,7 @@ type PanelKey = "sort" | "price" | "rating" | "brand" | "category";
 /* ═══════════════════════════════════════════════════════════════
    MINI BOTTOM SHEET WRAPPER
 ═══════════════════════════════════════════════════════════════ */
-function MiniSheet({ title, onClose, children }: {
+export function MiniSheet({ title, onClose, children }: {
   title: string; onClose: () => void; children: React.ReactNode;
 }) {
   useEffect(() => {
@@ -101,7 +101,7 @@ function MiniSheet({ title, onClose, children }: {
 /* ═══════════════════════════════════════════════════════════════
    SHARED CHIP
 ═══════════════════════════════════════════════════════════════ */
-function Chip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
+export function Chip({ label, active, onClick }: { label: string; active: boolean; onClick: () => void }) {
   return (
     <button onClick={onClick}
       style={{
@@ -122,7 +122,7 @@ function Chip({ label, active, onClick }: { label: string; active: boolean; onCl
 /* ═══════════════════════════════════════════════════════════════
    FILTER BAR BUTTON
 ═══════════════════════════════════════════════════════════════ */
-function FilterBarBtn({ label, active, onClick }: {
+export function FilterBarBtn({ label, active, onClick }: {
   label: string; active: boolean; onClick: () => void;
 }) {
   return (
@@ -146,12 +146,14 @@ function FilterBarBtn({ label, active, onClick }: {
 /* ═══════════════════════════════════════════════════════════════
    SORT PANEL CONTENT
 ═══════════════════════════════════════════════════════════════ */
-function SortContent({ sort, onSelect, onClose }: {
+export function SortContent({ sort, onSelect, onClose, options }: {
   sort: string; onSelect: (k: string) => void; onClose: () => void;
+  options?: { key: string; label: string }[];
 }) {
+  const opts = options ?? SORT_OPTIONS;
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
-      {SORT_OPTIONS.map(({ key, label }) => {
+      {opts.map(({ key, label }) => {
         const active = sort === key;
         return (
           <button key={key}
@@ -178,7 +180,7 @@ function SortContent({ sort, onSelect, onClose }: {
 /* ═══════════════════════════════════════════════════════════════
    PRICE PANEL CONTENT
 ═══════════════════════════════════════════════════════════════ */
-function PriceContent({ filters, onChange, onClose }: {
+export function PriceContent({ filters, onChange, onClose }: {
   filters: Filters; onChange: (f: Filters) => void; onClose: () => void;
 }) {
   function isActive(min: number | null, max: number | null) {
@@ -201,7 +203,7 @@ function PriceContent({ filters, onChange, onClose }: {
 /* ═══════════════════════════════════════════════════════════════
    RATING PANEL CONTENT
 ═══════════════════════════════════════════════════════════════ */
-function RatingContent({ filters, onChange, onClose }: {
+export function RatingContent({ filters, onChange, onClose }: {
   filters: Filters; onChange: (f: Filters) => void; onClose: () => void;
 }) {
   return (
@@ -239,18 +241,20 @@ function RatingContent({ filters, onChange, onClose }: {
 /* ═══════════════════════════════════════════════════════════════
    BRAND PANEL CONTENT
 ═══════════════════════════════════════════════════════════════ */
-function BrandContent({ filters, onChange }: {
+export function BrandContent({ filters, onChange, availableBrands }: {
   filters: Filters; onChange: (f: Filters) => void;
+  availableBrands?: string[];
 }) {
+  const brands = availableBrands ?? ALL_BRANDS;
   function toggle(b: string) {
-    const brands = filters.brands.includes(b)
+    const next = filters.brands.includes(b)
       ? filters.brands.filter(x => x !== b)
       : [...filters.brands, b];
-    onChange({ ...filters, brands });
+    onChange({ ...filters, brands: next });
   }
   return (
     <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
-      {ALL_BRANDS.map((b) => (
+      {brands.map((b) => (
         <Chip key={b} label={b} active={filters.brands.includes(b)} onClick={() => toggle(b)} />
       ))}
     </div>
