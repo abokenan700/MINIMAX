@@ -296,7 +296,7 @@ export function SearchPage() {
 
         {showResults ? (
           <div>
-            {!loading && (results.length > 0 || hasActiveFilters) && (
+            {(categoryParam.length > 0 || (!loading && (results.length > 0 || hasActiveFilters))) && (
               <ControlsBar
                 count={processedResults.length}
                 sort={sortKey}

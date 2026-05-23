@@ -3,7 +3,7 @@ import {
   X, Star, Check, SlidersHorizontal,
   List, LayoutGrid, ChevronDown,
 } from "lucide-react";
-import { l1Categories, l2Categories } from "../data/catalog";
+import { l1Categories, l2Categories, l3Categories } from "../data/catalog";
 
 /* ═══════════════════════════════════════════════════════════════
    TYPES & CONSTANTS
@@ -255,62 +255,98 @@ function BrandContent({ filters, onChange }: {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   CATEGORY PANEL CONTENT  (L1 + L2)
+   CATEGORY PANEL CONTENT  (L1 selected → L2 + L3)
 ═══════════════════════════════════════════════════════════════ */
 function CategoryContent({ categoryParam, onSelect }: {
   categoryParam: string; onSelect: (l1Label: string, l2Label?: string) => void;
 }) {
-  const currentL1 = l1Categories.find(c => c.label === categoryParam) ?? null;
-  const [activeL1Id, setActiveL1Id] = useState<string | null>(currentL1?.id ?? null);
-  const [activeL2Label, setActiveL2Label] = useState<string | null>(null);
+  const currentL1   = l1Categories.find(c => c.label === categoryParam) ?? null;
+  const [activeL1Id,  setActiveL1Id]  = useState<string | null>(currentL1?.id ?? null);
+  const [activeL2Id,  setActiveL2Id]  = useState<string | null>(null);
 
   const l2ForActive = activeL1Id ? l2Categories.filter(c => c.parentId === activeL1Id) : [];
+  const l3ForActive = activeL2Id ? l3Categories.filter(c => c.parentId === activeL2Id)  : [];
+
+  const activeL1Label = l1Categories.find(c => c.id === activeL1Id)?.label ?? "";
+  const activeL2Label = l2Categories.find(c => c.id === activeL2Id)?.label ?? "";
 
   function handleL1(id: string, label: string) {
     if (activeL1Id === id) {
-      setActiveL1Id(null);
-      setActiveL2Label(null);
-      onSelect("");
+      setActiveL1Id(null); setActiveL2Id(null); onSelect("");
     } else {
-      setActiveL1Id(id);
-      setActiveL2Label(null);
-      onSelect(label);
+      setActiveL1Id(id); setActiveL2Id(null); onSelect(label);
     }
   }
 
-  function handleL2(label: string) {
-    const l1Label = l1Categories.find(c => c.id === activeL1Id)?.label ?? "";
-    if (activeL2Label === label) {
-      setActiveL2Label(null);
-      onSelect(l1Label);
+  function handleL2(id: string, label: string) {
+    if (activeL2Id === id) {
+      setActiveL2Id(null); onSelect(activeL1Label);
     } else {
-      setActiveL2Label(label);
-      onSelect(l1Label, label);
+      setActiveL2Id(id); onSelect(activeL1Label, label);
     }
   }
+
+  function handleL3(label: string) {
+    onSelect(activeL1Label, activeL2Label ? `${activeL2Label} — ${label}` : label);
+  }
+
+  function resetL1() { setActiveL1Id(null); setActiveL2Id(null); onSelect(""); }
 
   return (
     <div>
-      {/* L1 */}
-      <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
-        الفئة الرئيسية
-      </p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: l2ForActive.length > 0 ? 18 : 0 }}>
-        {l1Categories.map(({ id, label }) => (
-          <Chip key={id} label={label} active={activeL1Id === id} onClick={() => handleL1(id, label)} />
-        ))}
-      </div>
+      {/* ── إذا L1 محدد: اعرضه كشريحة + زر تغيير ── */}
+      {activeL1Id ? (
+        <div style={{ marginBottom: 16 }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+            <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", letterSpacing: 0.3, margin: 0 }}>
+              الفئة الرئيسية
+            </p>
+            <button onClick={resetL1}
+              style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 600, color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer", padding: 0 }}>
+              تغيير
+            </button>
+          </div>
+          <Chip label={activeL1Label} active onClick={() => {}} />
+        </div>
+      ) : (
+        /* ── إذا لا يوجد L1: اعرض كل الفئات الرئيسية ── */
+        <>
+          <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
+            الفئة الرئيسية
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 4 }}>
+            {l1Categories.map(({ id, label }) => (
+              <Chip key={id} label={label} active={activeL1Id === id} onClick={() => handleL1(id, label)} />
+            ))}
+          </div>
+        </>
+      )}
 
-      {/* L2 */}
+      {/* ── L2: الفئات الفرعية ── */}
       {l2ForActive.length > 0 && (
         <>
-          <div style={{ height: 1, background: "var(--border-warm)", margin: "4px 0 16px" }} />
+          <div style={{ height: 1, background: "var(--border-warm)", margin: "10px 0 14px" }} />
           <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
             الفئة الفرعية
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             {l2ForActive.map(({ id, label }) => (
-              <Chip key={id} label={label} active={activeL2Label === label} onClick={() => handleL2(label)} />
+              <Chip key={id} label={label} active={activeL2Id === id} onClick={() => handleL2(id, label)} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* ── L3: الفئات الثانوية ── */}
+      {l3ForActive.length > 0 && (
+        <>
+          <div style={{ height: 1, background: "var(--border-warm)", margin: "10px 0 14px" }} />
+          <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
+            الفئة الثانوية
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {l3ForActive.map(({ id, label }) => (
+              <Chip key={id} label={label} active={false} onClick={() => handleL3(label)} />
             ))}
           </div>
         </>
