@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, Heart, SlidersHorizontal } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -9,9 +9,13 @@ import { useGetProducts } from "@workspace/api-client-react";
 import type { CartItem } from "../context/CartContext";
 import type { Product } from "@workspace/api-client-react";
 import { Button } from "../components/ui";
-import { calcShipping, FREE_SHIPPING_THRESHOLD } from "../lib/shippingPolicy";
+import { calcShipping } from "../lib/shippingPolicy";
+import { ProductCard } from "../components/ProductCard";
+import { Heart } from "../components/ui/Heart";
+import { Divider } from "../components/ui/Divider";
+import { Badge } from "../components/ui/Badge";
 import {
-  MiniSheet, FilterBarBtn, Chip,
+  MiniSheet, FilterBarBtn,
   SortContent, PriceContent, BrandContent,
   type Filters, DEFAULT_FILTERS,
 } from "../components/SearchFilters";
@@ -35,28 +39,6 @@ const DISCOUNT_OPTIONS = [
 ];
 
 type CartPanelKey = "sort" | "price" | "brand" | "extra";
-
-/* ═══════════════════════════════════════════════════════════════
-   Free Shipping Bar
-═══════════════════════════════════════════════════════════════ */
-function FreeShippingBar({ total }: { total: number }) {
-  const remaining = Math.max(0, FREE_SHIPPING_THRESHOLD - total);
-  const pct = Math.min(100, (total / FREE_SHIPPING_THRESHOLD) * 100);
-  const reached = total >= FREE_SHIPPING_THRESHOLD;
-  return (
-    <div dir="rtl" style={{ padding: "10px 12px", background: reached ? "var(--color-brand-50)" : "#F8F8F8", borderBottom: "1px solid var(--border-warm)" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 6 }}>
-        <span style={{ fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700, color: "var(--text-brand)" }}>
-          {reached ? "🎉 تأهّلت للشحن المجاني!" : `أضف ${remaining.toLocaleString("ar-SA")} ر.س للحصول على شحن مجاني 🚚`}
-        </span>
-        <span style={{ fontSize: 10, color: "var(--text-muted)" }}>{Math.round(pct)}%</span>
-      </div>
-      <div style={{ height: 5, borderRadius: 3, background: reached ? "var(--color-brand-100)" : "rgba(192,168,130,0.25)", overflow: "hidden" }}>
-        <div style={{ height: "100%", width: `${pct}%`, borderRadius: 3, background: reached ? "linear-gradient(90deg,var(--color-brand-500),#4A7A3A)" : "var(--gradient-brand)", transition: "width 0.5s ease" }} />
-      </div>
-    </div>
-  );
-}
 
 /* ═══════════════════════════════════════════════════════════════
    Coupon Input
@@ -285,138 +267,170 @@ function CartControlsBar({
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   Cart Item Row
+   Cart Item Card — نفس شكل ProductCard العمودي
 ═══════════════════════════════════════════════════════════════ */
-function CartItemRow({ item, editMode, selected, onSelect, onQtyChange, onRemove }: {
+function CartItemCard({ item, editMode, selected, onSelect, onQtyChange, onRemove }: {
   item: CartItem; editMode: boolean; selected: boolean;
   onSelect: (id: number) => void;
   onQtyChange: (id: number, color: string, delta: number) => void;
   onRemove: (id: number, color: string) => void;
 }) {
   const { toggleWishlist, isWishlisted } = useWishlist();
+  const [, navigate] = useLocation();
+  const itemDiscount = (item as CartItem & { discount?: number }).discount ?? 0;
+  const wished = isWishlisted(item.id);
 
-  function handleSaveForLater() {
+  function handleSaveForLater(e: React.MouseEvent) {
+    e.stopPropagation();
     const fakeProduct = {
       id: item.id, name: item.name, brand: item.brand, price: item.price,
-      image: (item as (typeof item) & { images?: string[] }).images?.[0] ?? item.image, category: "", slug: item.name,
+      image: item.image, category: "", slug: item.name,
       stock: 10, sales: 0, rating: 0, reviewCount: 0,
+      colors: item.color ? [item.color] : [],
+      discount: itemDiscount, original_price: item.price,
+      is_new: false,
     } as unknown as Product;
     toggleWishlist(fakeProduct);
-    if (!isWishlisted(item.id)) {
+    if (!wished) {
       onRemove(item.id, item.color);
       toast("تم حفظ المنتج للوقت لاحقاً ❤️");
     }
   }
 
   return (
-    <div className="flex gap-3 p-3 rounded-2xl transition-[border-color,box-shadow] duration-150"
-      style={{ background: "var(--bg-card)", border: `1px solid ${selected ? "var(--color-brand-500)" : "var(--border)"}`, boxShadow: selected ? "0 0 0 1px rgba(166,124,82,0.2)" : "none" }} dir="rtl">
+    <article
+      className="card-pressable flex flex-col overflow-hidden relative"
+      onClick={() => navigate(`/product/${item.id}`)}
+      style={{
+        background: "var(--card-bg)",
+        border: selected ? "1.5px solid var(--color-brand-500)" : "1px solid var(--card-border)",
+        borderRadius: "var(--radius-card)",
+        boxShadow: selected ? "0 0 0 2px rgba(166,124,82,0.15), var(--elev-2)" : "var(--elev-2)",
+        cursor: "pointer",
+      }}
+    >
+      {/* ── تحديد (وضع التعديل) ── */}
       {editMode && (
-        <button onClick={() => onSelect(item.id)} className="flex-shrink-0 flex items-center justify-center self-center" style={{ color: selected ? "var(--text-brand)" : "var(--border)", marginInlineEnd: -4 }} aria-label={selected ? "إلغاء تحديد العنصر" : "تحديد العنصر"}>
-          {selected ? <CheckSquare size={20} strokeWidth={2} /> : <Square size={20} strokeWidth={1.5} />}
+        <button
+          onClick={(e) => { e.stopPropagation(); onSelect(item.id); }}
+          style={{ position: "absolute", top: 6, insetInlineStart: 6, zIndex: 10, background: "rgba(255,255,255,0.9)", border: "none", borderRadius: "50%", width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+          aria-label={selected ? "إلغاء التحديد" : "تحديد"}>
+          {selected
+            ? <CheckSquare size={16} strokeWidth={2} style={{ color: "var(--color-brand-500)" }} />
+            : <Square size={16} strokeWidth={1.5} style={{ color: "var(--text-muted)" }} />}
         </button>
       )}
-      <div className="flex-shrink-0 rounded-xl overflow-hidden" style={{ width: 80, height: 80, background: "var(--card-img-bg)" }}>
-        <img src={item.image} alt={item.name} className="w-full h-full object-contain p-2" onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-      </div>
-      <div className="flex-1 min-w-0 flex flex-col justify-between">
-        <div>
-          <p className="text-[10px] font-bold" style={{ color: "var(--text-brand)" }}>{item.brand}</p>
-          <p className="font-semibold line-clamp-1 mt-0.5" style={{ fontSize: "13px", color: "var(--text-primary)" }}>{item.name}</p>
-          {item.color && (
-            <div className="flex items-center gap-1 mt-1">
-              <div className="w-3 h-3 rounded-full border" style={{ background: item.color, borderColor: "rgba(0,0,0,0.1)" }} />
-              <span style={{ fontSize: 10, color: "var(--text-muted)" }}>{item.color}</span>
-            </div>
-          )}
-          {!editMode && (
-            <button onClick={handleSaveForLater} dir="rtl"
-              style={{ display: "flex", alignItems: "center", gap: 4, marginTop: 5, background: "transparent", border: "none", cursor: "pointer", padding: 0 }}>
-              <Heart size={12} style={{ color: isWishlisted(item.id) ? "#E04545" : "var(--text-muted)" }} />
-              <span style={{ fontSize: 11, color: isWishlisted(item.id) ? "#E04545" : "var(--text-muted)", fontWeight: 600 }}>
-                {isWishlisted(item.id) ? "محفوظ في المفضلة" : "احتفظ لوقت لاحق"}
-              </span>
-            </button>
-          )}
+
+      {/* ── أيقونة المفضلة ── */}
+      {!editMode && (
+        <div style={{ position: "absolute", top: 6, insetInlineEnd: 6, zIndex: 10 }}>
+          <Heart pressed={wished} size={13} onClick={handleSaveForLater} />
         </div>
-        <div className="flex items-center justify-between mt-2">
-          <div>
-            <span className="font-bold" style={{ fontSize: "15px", color: "var(--text-primary)" }}>
+      )}
+
+      {/* ── خصم + لون ── */}
+      <div style={{ position: "absolute", top: 32, insetInlineStart: 4, zIndex: 10, display: "flex", flexDirection: "column", gap: 3 }}>
+        {itemDiscount > 0 && (
+          <span style={{ background: "var(--color-danger-600)", color: "#fff", fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: "var(--radius-xs)", fontFamily: "var(--font-numeric)" }}>
+            -{itemDiscount}%
+          </span>
+        )}
+      </div>
+
+      {/* ── الصورة ── */}
+      <div className="relative w-full" style={{ aspectRatio: "1 / 1", background: "var(--card-img-bg)" }}>
+        <img
+          src={item.image} alt={item.name} loading="lazy"
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => { e.currentTarget.style.opacity = "0"; }}
+        />
+        {/* لون مختار */}
+        {item.color && (
+          <div style={{ position: "absolute", bottom: 6, insetInlineStart: 6, display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.88)", borderRadius: 20, padding: "2px 6px 2px 4px" }}>
+            <div style={{ width: 8, height: 8, borderRadius: "50%", background: item.color, border: "1px solid rgba(0,0,0,0.12)", flexShrink: 0 }} />
+            <span style={{ fontSize: 9, color: "var(--text-secondary)", fontWeight: 600 }}>{item.color}</span>
+          </div>
+        )}
+      </div>
+
+      <Divider />
+
+      {/* ── المحتوى ── */}
+      <div className="flex flex-col gap-0.5 px-2 pt-1.5 pb-2">
+        <p style={{ fontSize: "clamp(9.5px,2.6vw,11px)", color: "var(--text-brand)", fontWeight: 700, letterSpacing: "0.3px", fontFamily: "var(--font-text)" }}>
+          {item.brand}
+        </p>
+        <p className="line-clamp-2" style={{ fontSize: "clamp(11px,3vw,13px)", color: "var(--text-primary)", fontWeight: 600, lineHeight: "var(--leading-snug)", fontFamily: "var(--font-text)" }}>
+          {item.name}
+        </p>
+
+        {/* السعر */}
+        <div className="flex items-baseline justify-between mt-0.5" dir="rtl">
+          <div className="flex items-baseline gap-0.5" dir="ltr">
+            <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
+            <span style={{ fontSize: "clamp(14px,3.8vw,16px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
               {(item.price * item.qty).toLocaleString("ar-SA")}
             </span>
-            <span className="text-[10px] font-normal" style={{ color: "var(--text-secondary)", marginInlineStart: 2 }}>ر.س</span>
-            {(item as CartItem & { discount?: number }).discount! > 0 && (
-              <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 6px", borderRadius: 20, background: "var(--color-brand-50)", color: "var(--color-brand-700)", marginInlineStart: 6 }}>
-                {(item as CartItem & { discount?: number }).discount}%
-              </span>
-            )}
           </div>
-          {!editMode && (
-            <div className="flex items-center gap-0.5">
-              <button onClick={() => onRemove(item.id, item.color)}
-                style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
-                aria-label="إزالة من السلة">
-                <div className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "#FEF0EE", color: "var(--color-danger-600)" }}>
-                  <Trash2 size={12} />
-                </div>
-              </button>
-              <div className="flex items-center rounded-full" style={{ background: "#F0F0F0", border: "1px solid #E8E8E8" }}>
-                <button onClick={() => onQtyChange(item.id, item.color, -1)}
-                  style={{ minWidth: 40, minHeight: 40, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer" }}
-                  aria-label="تقليل الكمية">
-                  <Minus size={12} strokeWidth={2.5} />
-                </button>
-                <span className="text-[13px] font-bold w-5 text-center" style={{ color: "var(--text-primary)" }}>{item.qty}</span>
-                <button onClick={() => onQtyChange(item.id, item.color, 1)}
-                  style={{ minWidth: 40, minHeight: 40, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer" }}
-                  aria-label="زيادة الكمية">
-                  <Plus size={12} strokeWidth={2.5} />
-                </button>
-              </div>
-            </div>
+          {itemDiscount > 0 && (
+            <Badge variant="discount-soft" size="sm">خصم {itemDiscount}%</Badge>
           )}
         </div>
+
+        {/* أدوات الكمية والحذف */}
+        {!editMode && (
+          <div className="flex items-center justify-between mt-1" onClick={(e) => e.stopPropagation()}>
+            {/* حذف */}
+            <button onClick={() => onRemove(item.id, item.color)}
+              style={{ minWidth: 36, minHeight: 36, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
+              aria-label="إزالة">
+              <span style={{ width: 26, height: 26, borderRadius: "50%", background: "#FEF0EE", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Trash2 size={11} style={{ color: "var(--color-danger-600)" }} />
+              </span>
+            </button>
+
+            {/* الكمية */}
+            <div className="flex items-center rounded-full" style={{ background: "#F0F0F0", border: "1px solid #E8E8E8" }}>
+              <button onClick={() => onQtyChange(item.id, item.color, -1)}
+                style={{ minWidth: 34, minHeight: 34, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer" }}
+                aria-label="تقليل الكمية">
+                <Minus size={11} strokeWidth={2.5} />
+              </button>
+              <span style={{ fontSize: 13, fontWeight: 700, minWidth: 16, textAlign: "center", color: "var(--text-primary)", fontFamily: "var(--font-numeric)" }}>{item.qty}</span>
+              <button onClick={() => onQtyChange(item.id, item.color, 1)}
+                style={{ minWidth: 34, minHeight: 34, display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-brand)", background: "none", border: "none", cursor: "pointer" }}
+                aria-label="زيادة الكمية">
+                <Plus size={11} strokeWidth={2.5} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </article>
   );
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   Cart Upsell
+   Cart Upsell — يستخدم ProductCard الأصلي
 ═══════════════════════════════════════════════════════════════ */
 function CartUpsell() {
   const { data: products = [] } = useGetProducts();
-  const [, navigate] = useLocation();
-  const { addToCart } = useCart();
-  const suggestions = useMemo(() => products.slice(0, 6), [products]);
+  const { items } = useCart();
+  const cartIds = useMemo(() => new Set(items.map(i => i.id)), [items]);
+  const suggestions = useMemo(
+    () => products.filter(p => !cartIds.has(p.id)).slice(0, 8),
+    [products, cartIds]
+  );
   if (suggestions.length === 0) return null;
   return (
-    <div style={{ margin: "6px 0 0" }} dir="rtl">
-      <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", padding: "12px 12px 8px" }}>
+    <div dir="rtl" style={{ margin: "8px 0 0" }}>
+      <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", padding: "10px 12px 8px" }}>
         قد يعجبك أيضاً
       </p>
-      <div className="hide-scrollbar" style={{ display: "flex", gap: 8, overflowX: "auto", padding: "0 12px 14px" }}>
+      <div className="hide-scrollbar" style={{ display: "flex", gap: 10, overflowX: "auto", padding: "0 12px 14px" }}>
         {suggestions.map((p) => (
-          <div key={p.id} style={{ flexShrink: 0, width: 110, borderRadius: 14, overflow: "hidden", background: "var(--bg-card)", border: "1px solid var(--border-warm)", cursor: "pointer" }}
-            onClick={() => navigate(`/product/${p.id}`)}>
-            <div style={{ width: "100%", aspectRatio: "1/1", background: "var(--card-img-bg)", position: "relative" }}>
-              <img src={p.image} alt={p.name} loading="lazy"
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 8 }}
-                onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-            </div>
-            <div style={{ padding: "7px 8px 9px" }}>
-              <p className="line-clamp-2" style={{ fontSize: 11, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3, marginBottom: 5 }}>{p.name}</p>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                <span style={{ fontSize: 12, fontWeight: 800, color: "var(--text-primary)" }}>{p.price.toLocaleString("ar-SA")}</span>
-                <button onClick={(e) => { e.stopPropagation(); addToCart(p, p.colors?.[0]); }}
-                  style={{ minWidth: 44, minHeight: 44, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
-                  aria-label="أضف للسلة">
-                  <span style={{ width: 28, height: 28, borderRadius: "50%", background: "var(--color-brand-50)", border: "1px solid var(--color-brand-500)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <Plus size={13} style={{ color: "var(--text-brand)" }} />
-                  </span>
-                </button>
-              </div>
-            </div>
+          <div key={p.id} style={{ flexShrink: 0, width: 150 }}>
+            <ProductCard product={p} layout="vertical" density="compact" />
           </div>
         ))}
       </div>
@@ -523,10 +537,8 @@ export function CartPage() {
         </div>
       ) : (
         <>
-          <FreeShippingBar total={total} />
-
           <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col" dir="rtl">
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "12px 12px 0" }}>
+            <div style={{ padding: "12px 12px 0" }}>
               {filtered.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-10 gap-4">
                   <p className="text-center" style={{ color: "var(--text-muted)", fontSize: 13 }}>لا توجد نتائج مطابقة</p>
@@ -536,16 +548,18 @@ export function CartPage() {
                   </button>
                 </div>
               ) : (
-                filtered.map((item) => (
-                  <CartItemRow key={`${item.id}-${item.color}`} item={item} editMode={editMode} selected={selected.has(item.id)}
-                    onSelect={handleSelect}
-                    onQtyChange={updateQty}
-                    onRemove={(id, color) => {
-                      const itemName = items.find(i => i.id === id && i.color === color)?.name;
-                      removeFromCart(id, color);
-                      if (itemName) toast(`حُذف "${itemName}" من السلة`, { duration: 3000, position: "top-center" });
-                    }} />
-                ))
+                <div className="grid grid-cols-2 gap-3">
+                  {filtered.map((item) => (
+                    <CartItemCard key={`${item.id}-${item.color}`} item={item} editMode={editMode} selected={selected.has(item.id)}
+                      onSelect={handleSelect}
+                      onQtyChange={updateQty}
+                      onRemove={(id, color) => {
+                        const itemName = items.find(i => i.id === id && i.color === color)?.name;
+                        removeFromCart(id, color);
+                        if (itemName) toast(`حُذف "${itemName}" من السلة`, { duration: 3000, position: "top-center" });
+                      }} />
+                  ))}
+                </div>
               )}
             </div>
 
