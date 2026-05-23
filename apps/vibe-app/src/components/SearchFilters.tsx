@@ -16,11 +16,12 @@ export interface Filters {
   isNew:       boolean;
   brands:      string[];
   sizes:       string[];
+  categories:  string[];
 }
 
 export const DEFAULT_FILTERS: Filters = {
   minPrice: null, maxPrice: null, minDiscount: null,
-  minRating: null, isNew: false, brands: [], sizes: [],
+  minRating: null, isNew: false, brands: [], sizes: [], categories: [],
 };
 
 export const SORT_OPTIONS = [

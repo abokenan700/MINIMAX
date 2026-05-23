@@ -15,7 +15,7 @@ import { Heart } from "../components/ui/Heart";
 import { Divider } from "../components/ui/Divider";
 import { Badge } from "../components/ui/Badge";
 import {
-  MiniSheet, FilterBarBtn,
+  MiniSheet, FilterBarBtn, Chip,
   SortContent, PriceContent, BrandContent,
   type Filters, DEFAULT_FILTERS,
 } from "../components/SearchFilters";
@@ -38,7 +38,7 @@ const DISCOUNT_OPTIONS = [
   { label: "٥٠٪ فأكثر", val: 50 },
 ];
 
-type CartPanelKey = "sort" | "price" | "brand" | "extra";
+type CartPanelKey = "sort" | "price" | "brand" | "category" | "extra";
 
 /* ═══════════════════════════════════════════════════════════════
    Coupon Input
@@ -134,16 +134,40 @@ function CartExtraSheet({
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   لوحة الفئات الخاصة بالسلة
+═══════════════════════════════════════════════════════════════ */
+function CartCategoryContent({
+  filters, onChange, availableCategories,
+}: { filters: Filters; onChange: (f: Filters) => void; availableCategories: string[] }) {
+  function toggle(cat: string) {
+    const next = filters.categories.includes(cat)
+      ? filters.categories.filter(c => c !== cat)
+      : [...filters.categories, cat];
+    onChange({ ...filters, categories: next });
+  }
+  if (availableCategories.length === 0)
+    return <p style={{ fontFamily: "var(--font-main)", fontSize: 13, color: "var(--text-muted)", textAlign: "center", padding: "20px 0" }}>لا توجد فئات في السلة</p>;
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 10 }}>
+      {availableCategories.map(cat => (
+        <Chip key={cat} label={cat} active={filters.categories.includes(cat)} onClick={() => toggle(cat)} />
+      ))}
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    شريط التحكم والفلاتر الخاص بالسلة
 ═══════════════════════════════════════════════════════════════ */
 function CartControlsBar({
-  count, sort, filters, availableBrands, editMode, selectedCount,
+  count, sort, filters, availableBrands, availableCategories, editMode, selectedCount,
   onSortChange, onFiltersChange, onToggleEdit, onDeleteSelected,
 }: {
   count: number;
   sort: string;
   filters: Filters;
   availableBrands: string[];
+  availableCategories: string[];
   editMode: boolean;
   selectedCount: number;
   onSortChange: (k: string) => void;
@@ -157,6 +181,7 @@ function CartControlsBar({
 
   const priceActive    = filters.minPrice !== null || filters.maxPrice !== null;
   const brandActive    = filters.brands.length > 0;
+  const categoryActive = filters.categories.length > 0;
   const sortActive     = sort !== "default";
   const discountActive = filters.minDiscount !== null;
 
@@ -167,9 +192,12 @@ function CartControlsBar({
           ? `تحت ${filters.maxPrice.toLocaleString("ar-SA")}`
           : `${filters.minPrice?.toLocaleString("ar-SA")}–${filters.maxPrice?.toLocaleString("ar-SA")}`)
     : "السعر";
-  const brandLabel = brandActive
+  const brandLabel    = brandActive
     ? (filters.brands.length === 1 ? filters.brands[0] : `${filters.brands[0]} +${filters.brands.length - 1}`)
     : "الماركة";
+  const categoryLabel = categoryActive
+    ? (filters.categories.length === 1 ? filters.categories[0] : `${filters.categories[0]} +${filters.categories.length - 1}`)
+    : "الفئة";
   const sortLabel = sortActive
     ? (CART_SORT_OPTIONS.find(s => s.key === sort)?.label ?? "ترتيب")
     : "ترتيب";
@@ -178,6 +206,7 @@ function CartControlsBar({
   if (priceActive) activeChips.push({ id: "price", label: priceLabel, onRemove: () => onFiltersChange({ ...filters, minPrice: null, maxPrice: null }) });
   if (discountActive) activeChips.push({ id: "discount", label: `خصم ${filters.minDiscount}%+`, onRemove: () => onFiltersChange({ ...filters, minDiscount: null }) });
   filters.brands.forEach(b => activeChips.push({ id: `brand-${b}`, label: b, onRemove: () => onFiltersChange({ ...filters, brands: filters.brands.filter(x => x !== b) }) }));
+  filters.categories.forEach(c => activeChips.push({ id: `cat-${c}`, label: c, onRemove: () => onFiltersChange({ ...filters, categories: filters.categories.filter(x => x !== c) }) }));
 
   return (
     <>
@@ -194,6 +223,11 @@ function CartControlsBar({
       {openPanel === "brand" && (
         <MiniSheet title="الماركة" onClose={close}>
           <BrandContent filters={filters} onChange={onFiltersChange} availableBrands={availableBrands} />
+        </MiniSheet>
+      )}
+      {openPanel === "category" && (
+        <MiniSheet title="الفئة" onClose={close}>
+          <CartCategoryContent filters={filters} onChange={onFiltersChange} availableCategories={availableCategories} />
         </MiniSheet>
       )}
       {showExtra && (
@@ -229,9 +263,10 @@ function CartControlsBar({
           )}
 
           <div className="hide-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", flex: 1 }}>
-            <FilterBarBtn label={brandLabel} active={brandActive} onClick={() => setOpenPanel("brand")} />
-            <FilterBarBtn label={priceLabel} active={priceActive} onClick={() => setOpenPanel("price")} />
-            <FilterBarBtn label={sortLabel}  active={sortActive}  onClick={() => setOpenPanel("sort")} />
+            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
+            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
+            <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")} />
+            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")} />
             <button onClick={() => setShowExtra(true)}
               style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 4, padding: "6px 10px", borderRadius: 20, border: `1.5px solid ${discountActive ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: discountActive ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: discountActive ? 700 : 500, color: discountActive ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap" }}>
               <SlidersHorizontal size={11} strokeWidth={2} />
@@ -441,7 +476,10 @@ function CartUpsell() {
 /* ═══════════════════════════════════════════════════════════════
    تطبيق الفلاتر على عناصر السلة
 ═══════════════════════════════════════════════════════════════ */
-function applyCartFilters(items: CartItem[], sort: string, filters: Filters, query: string): CartItem[] {
+function applyCartFilters(
+  items: CartItem[], sort: string, filters: Filters, query: string,
+  productCategoryMap: Map<number, string>,
+): CartItem[] {
   let list = [...items];
 
   const q = query.trim().toLowerCase();
@@ -451,6 +489,10 @@ function applyCartFilters(items: CartItem[], sort: string, filters: Filters, que
   if (filters.maxPrice !== null) list = list.filter(it => it.price <= filters.maxPrice!);
   if (filters.minDiscount !== null) list = list.filter(it => ((it as CartItem & { discount?: number }).discount ?? 0) >= filters.minDiscount!);
   if (filters.brands.length > 0) list = list.filter(it => filters.brands.includes(it.brand));
+  if (filters.categories.length > 0) list = list.filter(it => {
+    const cat = productCategoryMap.get(it.id);
+    return cat ? filters.categories.includes(cat) : false;
+  });
 
   switch (sort) {
     case "price_asc":  list.sort((a, b) => a.price - b.price); break;
@@ -474,14 +516,31 @@ export function CartPage() {
   const [sort, setSort]         = useState("default");
   const [filters, setFilters]   = useState<Filters>(DEFAULT_FILTERS);
 
+  const { data: allProducts } = useGetProducts();
+
+  const productCategoryMap = useMemo(() => {
+    const map = new Map<number, string>();
+    (allProducts ?? []).forEach(p => { if (p.category) map.set(p.id, p.category); });
+    return map;
+  }, [allProducts]);
+
   const availableBrands = useMemo(() =>
     [...new Set(items.map(it => it.brand))].sort(),
     [items]
   );
 
+  const availableCategories = useMemo(() => {
+    const cats = new Set<string>();
+    items.forEach(it => {
+      const cat = productCategoryMap.get(it.id);
+      if (cat) cats.add(cat);
+    });
+    return [...cats].sort();
+  }, [items, productCategoryMap]);
+
   const filtered = useMemo(() =>
-    applyCartFilters(items, sort, filters, query),
-    [items, sort, filters, query]
+    applyCartFilters(items, sort, filters, query, productCategoryMap),
+    [items, sort, filters, query, productCategoryMap]
   );
 
   const shipping   = calcShipping(total);
@@ -513,6 +572,7 @@ export function CartPage() {
         sort={sort}
         filters={filters}
         availableBrands={availableBrands}
+        availableCategories={availableCategories}
         editMode={editMode}
         selectedCount={selected.size}
         onSortChange={setSort}
