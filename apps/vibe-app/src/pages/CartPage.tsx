@@ -631,68 +631,66 @@ export function CartPage() {
             </div>
           </div>
 
-          {/* زر الدفع المثبت */}
-          <div style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "10px 12px 12px" }}>
-            {/* شارات الثقة */}
-            <div dir="rtl" style={{ display: "flex", justifyContent: "center", gap: 0, marginBottom: 10 }}>
+          {/* شريط الدفع الثابت — نمط المتاجر الكبرى */}
+          <div dir="rtl" style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "8px 12px 12px" }}>
+
+            {/* شارات الثقة — صف صغير فوق */}
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0, marginBottom: 8 }}>
               {[
-                { icon: "🔒", text: "دفع آمن" },
+                { icon: <ShieldCheck size={10} strokeWidth={2.5} />, text: "دفع آمن" },
                 { icon: "✓", text: "منتجات أصلية" },
-                { icon: "↩", text: "إرجاع 30 يوماً" },
+                { icon: "↩", text: "إرجاع 30 يوم" },
               ].map(({ icon, text }, i) => (
-                <div key={text} style={{ display: "flex", alignItems: "center", gap: 4, padding: "0 10px", borderInlineEnd: i < 2 ? "1px solid var(--border)" : "none" }}>
-                  <span style={{ fontSize: 11 }}>{icon}</span>
-                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 600, whiteSpace: "nowrap" }}>{text}</span>
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: 3, padding: "0 10px", borderInlineEnd: i < 2 ? "1px solid var(--border)" : "none" }}>
+                  <span style={{ fontSize: 10, color: "var(--text-muted)", display: "flex", alignItems: "center" }}>{icon}</span>
+                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 500, whiteSpace: "nowrap" }}>{text}</span>
                 </div>
               ))}
             </div>
 
-            {/* زر إتمام الطلب */}
-            <button
-              onClick={() => navigate("/checkout")}
-              style={{
-                width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-                padding: "0 6px 0 16px", borderRadius: 18, border: "none",
-                background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
-                boxShadow: "0 6px 24px rgba(234,88,12,0.38)", transition: "transform 0.15s, box-shadow 0.15s",
-                minHeight: 58, overflow: "hidden", position: "relative",
-              }}
-              onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.975)"; e.currentTarget.style.boxShadow = "0 2px 10px rgba(234,88,12,0.22)"; }}
-              onMouseUp={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 6px 24px rgba(234,88,12,0.38)"; }}
-              onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.975)"; }}
-              onTouchEnd={(e) => { e.currentTarget.style.transform = ""; }}
-            >
-              {/* جانب النص + الأيقونة (RTL → يمين) */}
-              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                {/* دائرة الأيقونة */}
-                <div style={{
-                  width: 40, height: 40, borderRadius: 12,
-                  background: "rgba(255,255,255,0.18)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, backdropFilter: "blur(4px)",
-                  border: "1px solid rgba(255,255,255,0.25)",
-                }}>
-                  <ShieldCheck size={20} strokeWidth={2} color="#fff" />
-                </div>
-                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 1 }}>
-                  <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 800, lineHeight: 1.1 }}>إتمام الطلب</span>
-                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, opacity: 0.8, fontWeight: 500 }}>دفع آمن ومشفّر</span>
-                </div>
-              </div>
+            {/* الصف الرئيسي: إجمالي (يمين RTL) + زر إتمام (يسار RTL) */}
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
 
-              {/* جانب السعر + سهم (RTL → يسار) */}
-              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+              {/* معلومات الإجمالي */}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", marginBottom: 1 }}>
+                  الإجمالي ({items.length} {items.length === 1 ? "منتج" : "منتجات"})
+                </p>
                 <div style={{ display: "flex", alignItems: "baseline", gap: 3 }} dir="ltr">
-                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, opacity: 0.85 }}>ر.س</span>
-                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 20, fontWeight: 800, fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px" }}>
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, color: "var(--text-secondary)", fontWeight: 500 }}>ر.س</span>
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 22, fontWeight: 800, color: "var(--text-primary)", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px" }}>
                     {grandTotal.toLocaleString("ar-SA")}
                   </span>
                 </div>
-                <div style={{ width: 28, height: 28, borderRadius: 8, background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.3)" }}>
-                  <ChevronLeft size={16} strokeWidth={2.5} color="#fff" />
-                </div>
+                {discountAmount > 0 && (
+                  <p style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "#22c55e", fontWeight: 600, marginTop: 1 }}>
+                    وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
+                  </p>
+                )}
               </div>
-            </button>
+
+              {/* زر إتمام الطلب المضغوط */}
+              <button
+                onClick={() => navigate("/checkout")}
+                style={{
+                  flexShrink: 0,
+                  display: "flex", alignItems: "center", gap: 7,
+                  padding: "0 18px", height: 52, borderRadius: 14, border: "none",
+                  background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
+                  boxShadow: "0 4px 18px rgba(234,88,12,0.35)",
+                  transition: "transform 0.13s, box-shadow 0.13s",
+                  fontFamily: "var(--font-main)",
+                }}
+                onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "0 2px 8px rgba(234,88,12,0.2)"; }}
+                onMouseUp={(e)   => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 18px rgba(234,88,12,0.35)"; }}
+                onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.96)"; }}
+                onTouchEnd={(e)   => { e.currentTarget.style.transform = ""; }}
+              >
+                <ShieldCheck size={17} strokeWidth={2.2} color="#fff" />
+                <span style={{ fontSize: 14, fontWeight: 700, whiteSpace: "nowrap" }}>إتمام الطلب</span>
+                <ChevronLeft size={15} strokeWidth={2.5} color="rgba(255,255,255,0.8)" />
+              </button>
+            </div>
           </div>
         </>
       )}
