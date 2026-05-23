@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal, ShieldCheck, ChevronLeft } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -650,16 +650,47 @@ export function CartPage() {
             {/* زر إتمام الطلب */}
             <button
               onClick={() => navigate("/checkout")}
-              style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 20px", borderRadius: 18, border: "none", background: "var(--gradient-brand)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(234,88,12,0.35)", transition: "transform 0.15s, box-shadow 0.15s" }}
-              onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.98)"; e.currentTarget.style.boxShadow = "0 2px 10px rgba(234,88,12,0.25)"; }}
-              onMouseUp={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 20px rgba(234,88,12,0.35)"; }}
+              style={{
+                width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "0 6px 0 16px", borderRadius: 18, border: "none",
+                background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
+                boxShadow: "0 6px 24px rgba(234,88,12,0.38)", transition: "transform 0.15s, box-shadow 0.15s",
+                minHeight: 58, overflow: "hidden", position: "relative",
+              }}
+              onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.975)"; e.currentTarget.style.boxShadow = "0 2px 10px rgba(234,88,12,0.22)"; }}
+              onMouseUp={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 6px 24px rgba(234,88,12,0.38)"; }}
+              onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.975)"; }}
+              onTouchEnd={(e) => { e.currentTarget.style.transform = ""; }}
             >
-              <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700 }}>إتمام الطلب</span>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 3 }} dir="ltr">
-                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, opacity: 0.85 }}>ر.س</span>
-                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 18, fontWeight: 800, fontVariantNumeric: "tabular-nums" }}>
-                  {grandTotal.toLocaleString("ar-SA")}
-                </span>
+              {/* جانب النص + الأيقونة (RTL → يمين) */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                {/* دائرة الأيقونة */}
+                <div style={{
+                  width: 40, height: 40, borderRadius: 12,
+                  background: "rgba(255,255,255,0.18)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0, backdropFilter: "blur(4px)",
+                  border: "1px solid rgba(255,255,255,0.25)",
+                }}>
+                  <ShieldCheck size={20} strokeWidth={2} color="#fff" />
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 1 }}>
+                  <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 800, lineHeight: 1.1 }}>إتمام الطلب</span>
+                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, opacity: 0.8, fontWeight: 500 }}>دفع آمن ومشفّر</span>
+                </div>
+              </div>
+
+              {/* جانب السعر + سهم (RTL → يسار) */}
+              <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 3 }} dir="ltr">
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, opacity: 0.85 }}>ر.س</span>
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 20, fontWeight: 800, fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px" }}>
+                    {grandTotal.toLocaleString("ar-SA")}
+                  </span>
+                </div>
+                <div style={{ width: 28, height: 28, borderRadius: 8, background: "rgba(255,255,255,0.2)", display: "flex", alignItems: "center", justifyContent: "center", border: "1px solid rgba(255,255,255,0.3)" }}>
+                  <ChevronLeft size={16} strokeWidth={2.5} color="#fff" />
+                </div>
               </div>
             </button>
           </div>
