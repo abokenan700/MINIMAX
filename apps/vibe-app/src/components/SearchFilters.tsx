@@ -263,27 +263,24 @@ function BrandContent({ filters, onChange }: {
 function CategoryContent({ categoryParam, onSelect }: {
   categoryParam: string; onSelect: (l1Label: string, l2Label?: string) => void;
 }) {
-  const currentL1   = l1Categories.find(c => c.label === categoryParam) ?? null;
-  const [activeL1Id,  setActiveL1Id]  = useState<string | null>(currentL1?.id ?? null);
-  const [activeL2Id,  setActiveL2Id]  = useState<string | null>(null);
+  const currentL1  = l1Categories.find(c => c.label === categoryParam) ?? null;
+  const activeL1Id = currentL1?.id ?? null;
 
   const l2ForActive = activeL1Id ? l2Categories.filter(c => c.parentId === activeL1Id) : [];
-  const l2IdsForActive = l2ForActive.map(c => c.id);
+  const firstL2Id   = l2ForActive[0]?.id ?? null;
+  const [activeL2Id, setActiveL2Id] = useState<string | null>(firstL2Id);
+
   const l3ForActive = activeL2Id
     ? l3Categories.filter(c => c.parentId === activeL2Id)
-    : l2IdsForActive.length > 0
-      ? l3Categories.filter(c => l2IdsForActive.includes(c.parentId))
-      : [];
+    : [];
 
-  const activeL1Label = l1Categories.find(c => c.id === activeL1Id)?.label ?? "";
+  const activeL1Label = currentL1?.label ?? "";
   const activeL2Label = l2Categories.find(c => c.id === activeL2Id)?.label ?? "";
 
+  /* تغيير L2 — نفس سلوك شريط الجانب في صفحة الفئات (لا يُلغي الاختيار) */
   function handleL2(id: string, label: string) {
-    if (activeL2Id === id) {
-      setActiveL2Id(null); onSelect(activeL1Label);
-    } else {
-      setActiveL2Id(id); onSelect(activeL1Label, label);
-    }
+    setActiveL2Id(id);
+    onSelect(activeL1Label, label);
   }
 
   function handleL3(label: string) {
