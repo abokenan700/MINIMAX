@@ -553,7 +553,7 @@ export function ControlsBar({ count, sort, filters, viewMode, categoryParam,
   const brandLabel    = brandActive
     ? (filters.brands.length === 1 ? filters.brands[0] : `${filters.brands[0]} +${filters.brands.length - 1}`)
     : "الماركة";
-  const categoryLabel = categoryActive ? categoryParam : "الفئة";
+  const categoryLabel = "الفئة";
   const sortLabel     = sortActive ? (SORT_OPTIONS.find(s => s.key === sort)?.label ?? "ترتيب") : "ترتيب";
 
   /* active chips */
