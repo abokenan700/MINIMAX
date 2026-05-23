@@ -278,14 +278,6 @@ function CategoryContent({ categoryParam, onSelect }: {
   const activeL1Label = l1Categories.find(c => c.id === activeL1Id)?.label ?? "";
   const activeL2Label = l2Categories.find(c => c.id === activeL2Id)?.label ?? "";
 
-  function handleL1(id: string, label: string) {
-    if (activeL1Id === id) {
-      setActiveL1Id(null); setActiveL2Id(null); onSelect("");
-    } else {
-      setActiveL1Id(id); setActiveL2Id(null); onSelect(label);
-    }
-  }
-
   function handleL2(id: string, label: string) {
     if (activeL2Id === id) {
       setActiveL2Id(null); onSelect(activeL1Label);
@@ -298,26 +290,22 @@ function CategoryContent({ categoryParam, onSelect }: {
     onSelect(activeL1Label, activeL2Label ? `${activeL2Label} — ${label}` : label);
   }
 
+  /* لا يوجد L1 محدد — لا شيء لعرضه */
+  if (!activeL1Id) {
+    return (
+      <div style={{ textAlign: "center", padding: "24px 0" }}>
+        <p style={{ fontFamily: "var(--font-main)", fontSize: 13, color: "var(--text-muted)" }}>
+          اختر فئة من الصفحة الرئيسية لعرض الفئات الفرعية
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {/* ── إذا لا يوجد L1 محدد: اعرض كل الفئات الرئيسية ── */}
-      {!activeL1Id && (
-        <>
-          <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
-            الفئة الرئيسية
-          </p>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 4 }}>
-            {l1Categories.map(({ id, label }) => (
-              <Chip key={id} label={label} active={activeL1Id === id} onClick={() => handleL1(id, label)} />
-            ))}
-          </div>
-        </>
-      )}
-
       {/* ── L2: الفئات الفرعية ── */}
       {l2ForActive.length > 0 && (
         <>
-          <div style={{ height: 1, background: "var(--border-warm)", margin: "10px 0 14px" }} />
           <p style={{ fontFamily: "var(--font-main)", fontSize: 11, fontWeight: 700, color: "var(--text-muted)", marginBottom: 10, letterSpacing: 0.3 }}>
             الفئة الفرعية
           </p>
