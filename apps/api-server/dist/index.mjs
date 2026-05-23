@@ -20626,27 +20626,27 @@ var require_router = __commonJS({
     var slice = Array.prototype.slice;
     var flatten = Array.prototype.flat;
     var methods = METHODS.map((method) => method.toLowerCase());
-    module.exports = Router16;
+    module.exports = Router17;
     module.exports.Route = Route;
-    function Router16(options) {
-      if (!(this instanceof Router16)) {
-        return new Router16(options);
+    function Router17(options) {
+      if (!(this instanceof Router17)) {
+        return new Router17(options);
       }
       const opts = options || {};
-      function router16(req, res, next) {
-        router16.handle(req, res, next);
+      function router17(req, res, next) {
+        router17.handle(req, res, next);
       }
-      Object.setPrototypeOf(router16, this);
-      router16.caseSensitive = opts.caseSensitive;
-      router16.mergeParams = opts.mergeParams;
-      router16.params = {};
-      router16.strict = opts.strict;
-      router16.stack = [];
-      return router16;
+      Object.setPrototypeOf(router17, this);
+      router17.caseSensitive = opts.caseSensitive;
+      router17.mergeParams = opts.mergeParams;
+      router17.params = {};
+      router17.strict = opts.strict;
+      router17.stack = [];
+      return router17;
     }
-    Router16.prototype = function() {
+    Router17.prototype = function() {
     };
-    Router16.prototype.param = function param(name, fn) {
+    Router17.prototype.param = function param(name, fn) {
       if (!name) {
         throw new TypeError("argument name is required");
       }
@@ -20666,7 +20666,7 @@ var require_router = __commonJS({
       params.push(fn);
       return this;
     };
-    Router16.prototype.handle = function handle(req, res, callback) {
+    Router17.prototype.handle = function handle(req, res, callback) {
       if (!callback) {
         throw new TypeError("argument callback is required");
       }
@@ -20793,7 +20793,7 @@ var require_router = __commonJS({
         }
       }
     };
-    Router16.prototype.use = function use(handler) {
+    Router17.prototype.use = function use(handler) {
       let offset = 0;
       let path = "/";
       if (typeof handler !== "function") {
@@ -20826,7 +20826,7 @@ var require_router = __commonJS({
       }
       return this;
     };
-    Router16.prototype.route = function route(path) {
+    Router17.prototype.route = function route(path) {
       const route2 = new Route(path);
       const layer = new Layer(path, {
         sensitive: this.caseSensitive,
@@ -20841,7 +20841,7 @@ var require_router = __commonJS({
       return route2;
     };
     methods.concat("all").forEach(function(method) {
-      Router16.prototype[method] = function(path) {
+      Router17.prototype[method] = function(path) {
         const route = this.route(path);
         route[method].apply(route, slice.call(arguments, 1));
         return this;
@@ -21017,20 +21017,20 @@ var require_application = __commonJS({
     var finalhandler = require_finalhandler();
     var debug = require_src()("express:application");
     var View2 = require_view();
-    var http = __require("node:http");
+    var http2 = __require("node:http");
     var methods = require_utils3().methods;
     var compileETag = require_utils3().compileETag;
     var compileQueryParser = require_utils3().compileQueryParser;
     var compileTrust = require_utils3().compileTrust;
     var resolve = __require("node:path").resolve;
     var once = require_once();
-    var Router16 = require_router();
+    var Router17 = require_router();
     var slice = Array.prototype.slice;
     var flatten = Array.prototype.flat;
     var app2 = exports = module.exports = {};
     var trustProxyDefaultSymbol = "@@symbol:trust_proxy_default";
     app2.init = function init() {
-      var router16 = null;
+      var router17 = null;
       this.cache = /* @__PURE__ */ Object.create(null);
       this.engines = /* @__PURE__ */ Object.create(null);
       this.settings = /* @__PURE__ */ Object.create(null);
@@ -21039,13 +21039,13 @@ var require_application = __commonJS({
         configurable: true,
         enumerable: true,
         get: function getrouter() {
-          if (router16 === null) {
-            router16 = new Router16({
+          if (router17 === null) {
+            router17 = new Router17({
               caseSensitive: this.enabled("case sensitive routing"),
               strict: this.enabled("strict routing")
             });
           }
-          return router16;
+          return router17;
         }
       });
     };
@@ -21116,15 +21116,15 @@ var require_application = __commonJS({
       if (fns.length === 0) {
         throw new TypeError("app.use() requires a middleware function");
       }
-      var router16 = this.router;
+      var router17 = this.router;
       fns.forEach(function(fn2) {
         if (!fn2 || !fn2.handle || !fn2.set) {
-          return router16.use(path, fn2);
+          return router17.use(path, fn2);
         }
         debug(".use app under %s", path);
         fn2.mountpath = path;
         fn2.parent = this;
-        router16.use(path, function mounted_app(req, res, next) {
+        router17.use(path, function mounted_app(req, res, next) {
           var orig = req.app;
           fn2.handle(req, res, function(err) {
             Object.setPrototypeOf(req, orig.request);
@@ -21250,7 +21250,7 @@ var require_application = __commonJS({
       tryRender(view, renderOptions, done);
     };
     app2.listen = function listen() {
-      var server = http.createServer(this);
+      var server = http2.createServer(this);
       var args = slice.call(arguments);
       if (typeof args[args.length - 1] === "function") {
         var done = args[args.length - 1] = once(args[args.length - 1]);
@@ -22025,12 +22025,12 @@ var require_request = __commonJS({
     var accepts = require_accepts();
     var isIP2 = __require("node:net").isIP;
     var typeis = require_type_is();
-    var http = __require("node:http");
+    var http2 = __require("node:http");
     var fresh = require_fresh();
     var parseRange = require_range_parser();
     var parse = require_parseurl();
     var proxyaddr = require_proxy_addr();
-    var req = Object.create(http.IncomingMessage.prototype);
+    var req = Object.create(http2.IncomingMessage.prototype);
     module.exports = req;
     req.get = req.header = function header(name) {
       if (!name) {
@@ -23124,7 +23124,7 @@ var require_response = __commonJS({
     var deprecate = require_depd()("express");
     var encodeUrl = require_encodeurl();
     var escapeHtml = require_escape_html();
-    var http = __require("node:http");
+    var http2 = __require("node:http");
     var onFinished = require_on_finished();
     var mime = require_mime_types();
     var path = __require("node:path");
@@ -23140,7 +23140,7 @@ var require_response = __commonJS({
     var resolve = path.resolve;
     var vary = require_vary();
     var { Buffer: Buffer3 } = __require("node:buffer");
-    var res = Object.create(http.ServerResponse.prototype);
+    var res = Object.create(http2.ServerResponse.prototype);
     module.exports = res;
     res.status = function status(code) {
       if (!Number.isInteger(code)) {
@@ -23697,7 +23697,7 @@ var require_express = __commonJS({
     var EventEmitter = __require("node:events").EventEmitter;
     var mixin = require_merge_descriptors();
     var proto = require_application();
-    var Router16 = require_router();
+    var Router17 = require_router();
     var req = require_request();
     var res = require_response();
     exports = module.exports = createApplication;
@@ -23719,8 +23719,8 @@ var require_express = __commonJS({
     exports.application = proto;
     exports.request = req;
     exports.response = res;
-    exports.Route = Router16.Route;
-    exports.Router = Router16;
+    exports.Route = Router17.Route;
+    exports.Router = Router17;
     exports.json = bodyParser.json;
     exports.raw = bodyParser.raw;
     exports.static = require_serve_static();
@@ -35269,8 +35269,8 @@ var require_gte = __commonJS({
   "../../node_modules/.pnpm/semver@7.8.0/node_modules/semver/functions/gte.js"(exports, module) {
     "use strict";
     var compare2 = require_compare();
-    var gte2 = (a, b, loose) => compare2(a, b, loose) >= 0;
-    module.exports = gte2;
+    var gte3 = (a, b, loose) => compare2(a, b, loose) >= 0;
+    module.exports = gte3;
   }
 });
 
@@ -35279,8 +35279,8 @@ var require_lte = __commonJS({
   "../../node_modules/.pnpm/semver@7.8.0/node_modules/semver/functions/lte.js"(exports, module) {
     "use strict";
     var compare2 = require_compare();
-    var lte2 = (a, b, loose) => compare2(a, b, loose) <= 0;
-    module.exports = lte2;
+    var lte3 = (a, b, loose) => compare2(a, b, loose) <= 0;
+    module.exports = lte3;
   }
 });
 
@@ -35291,9 +35291,9 @@ var require_cmp = __commonJS({
     var eq2 = require_eq();
     var neq = require_neq();
     var gt2 = require_gt();
-    var gte2 = require_gte();
+    var gte3 = require_gte();
     var lt2 = require_lt();
-    var lte2 = require_lte();
+    var lte3 = require_lte();
     var cmp = (a, op, b, loose) => {
       switch (op) {
         case "===":
@@ -35321,11 +35321,11 @@ var require_cmp = __commonJS({
         case ">":
           return gt2(a, b, loose);
         case ">=":
-          return gte2(a, b, loose);
+          return gte3(a, b, loose);
         case "<":
           return lt2(a, b, loose);
         case "<=":
-          return lte2(a, b, loose);
+          return lte3(a, b, loose);
         default:
           throw new TypeError(`Invalid operator: ${op}`);
       }
@@ -36120,8 +36120,8 @@ var require_outside = __commonJS({
     var satisfies = require_satisfies();
     var gt2 = require_gt();
     var lt2 = require_lt();
-    var lte2 = require_lte();
-    var gte2 = require_gte();
+    var lte3 = require_lte();
+    var gte3 = require_gte();
     var outside = (version2, range, hilo, options) => {
       version2 = new SemVer(version2, options);
       range = new Range(range, options);
@@ -36129,14 +36129,14 @@ var require_outside = __commonJS({
       switch (hilo) {
         case ">":
           gtfn = gt2;
-          ltefn = lte2;
+          ltefn = lte3;
           ltfn = lt2;
           comp = ">";
           ecomp = ">=";
           break;
         case "<":
           gtfn = lt2;
-          ltefn = gte2;
+          ltefn = gte3;
           ltfn = gt2;
           comp = "<";
           ecomp = "<=";
@@ -36451,8 +36451,8 @@ var require_semver2 = __commonJS({
     var lt2 = require_lt();
     var eq2 = require_eq();
     var neq = require_neq();
-    var gte2 = require_gte();
-    var lte2 = require_lte();
+    var gte3 = require_gte();
+    var lte3 = require_lte();
     var cmp = require_cmp();
     var coerce2 = require_coerce();
     var truncate = require_truncate();
@@ -36490,8 +36490,8 @@ var require_semver2 = __commonJS({
       lt: lt2,
       eq: eq2,
       neq,
-      gte: gte2,
-      lte: lte2,
+      gte: gte3,
+      lte: lte3,
       cmp,
       coerce: coerce2,
       truncate,
@@ -39393,12 +39393,12 @@ var require_ip_address = __commonJS({
 });
 
 // src/app.ts
-var import_express16 = __toESM(require_express2(), 1);
+var import_express17 = __toESM(require_express2(), 1);
 var import_cors = __toESM(require_lib3(), 1);
 var import_pino_http = __toESM(require_logger(), 1);
 
 // src/routes/index.ts
-var import_express15 = __toESM(require_express2(), 1);
+var import_express16 = __toESM(require_express2(), 1);
 
 // src/routes/health.ts
 var import_express = __toESM(require_express2(), 1);
@@ -43447,154 +43447,47 @@ router.get("/healthz", (_req, res) => {
 });
 var health_default = router;
 
-// src/routes/products.ts
+// src/routes/img.ts
 var import_express2 = __toESM(require_express2(), 1);
+import https from "https";
+import http from "http";
 var router2 = (0, import_express2.Router)();
-var mockProducts = [
-  { id: 1, category: "\u0639\u0637\u0648\u0631", name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 No.5", brand: "CHANEL", price: 385, original_price: 550, discount: 30, image: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400", images: ["https://images.unsplash.com/photo-1541643600914-78b084683702?w=400", "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400"], is_new: false, rating: 4.9, sales: 1420, stock: 18, colors: ["#F5F0E8", "#E8D5B7", "#C0A882"], sizes: [], description: "\u0639\u0637\u0631 \u0641\u0627\u062E\u0631 \u0645\u0646 \u0628\u064A\u062A \u0634\u0627\u0646\u064A\u0644 \u0628\u0645\u0632\u064A\u062C \u0645\u0646 \u0627\u0644\u0632\u0647\u0648\u0631 \u0627\u0644\u062E\u0644\u0627\u0628\u0629 \u0648\u0627\u0644\u0645\u0633\u0643 \u0627\u0644\u0631\u0627\u0642\u064A. \u0627\u0633\u062A\u0644\u0647\u0627\u0645 \u062F\u0627\u0626\u0645 \u0644\u0644\u0623\u0646\u0627\u0642\u0629 \u0648\u0627\u0644\u0631\u0642\u064A \u0627\u0644\u0630\u064A \u0644\u0627 \u064A\u064F\u0636\u0627\u0647\u0649." },
-  { id: 2, category: "\u062D\u0642\u0627\u0626\u0628", name: "\u062D\u0642\u064A\u0628\u0629 \u062F\u064A\u0648\u0631 \u0633\u0627\u062F\u0644", brand: "DIOR", price: 890, original_price: 1200, discount: 25, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400", images: ["https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400", "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400"], is_new: true, rating: 4.8, sales: 870, stock: 4, colors: ["#8B7355", "#2E2C2A", "#C0A882"], sizes: [], description: "\u062D\u0642\u064A\u0628\u0629 \u0633\u0627\u062F\u0644 \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629 \u0645\u0646 \u062F\u0627\u0631 \u062F\u064A\u0648\u0631\u060C \u0645\u0635\u0646\u0648\u0639\u0629 \u064A\u062F\u0648\u064A\u0627\u064B \u0645\u0646 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A \u0627\u0644\u0641\u0627\u062E\u0631. \u0631\u0645\u0632 \u062E\u0627\u0644\u062F \u0644\u0644\u0623\u0646\u0627\u0642\u0629 \u0627\u0644\u0628\u0627\u0631\u064A\u0633\u064A\u0629." },
-  { id: 3, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u0646\u0638\u0627\u0631\u0629 \u0642\u0648\u062A\u0634\u064A \u0634\u0645\u0633\u064A\u0629", brand: "GUCCI", price: 295, original_price: 420, discount: 30, image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", images: ["https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400", "https://images.unsplash.com/photo-1508296695146-257a814070b4?w=400"], is_new: false, rating: 4.7, sales: 2100, stock: 22, colors: ["#2E2C2A", "#8B7355"], sizes: ["One Size"], description: "\u0646\u0638\u0627\u0631\u0629 \u0634\u0645\u0633\u064A\u0629 \u0645\u0646 \u0643\u0648\u0644\u0643\u0634\u0646 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u062D\u0635\u0631\u064A\u060C \u0628\u0625\u0637\u0627\u0631 \u0645\u0645\u064A\u0632 \u0648\u0639\u062F\u0633\u0627\u062A UV400 \u0644\u0644\u062D\u0645\u0627\u064A\u0629 \u0627\u0644\u0643\u0627\u0645\u0644\u0629." },
-  { id: 4, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u0633\u0627\u0639\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A", brand: "VERSACE", price: 1250, original_price: 1800, discount: 30, image: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400", images: ["https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400", "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400"], is_new: false, rating: 4.8, sales: 540, stock: 7, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0633\u0627\u0639\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0627\u0644\u0630\u0647\u0628\u064A\u0629 \u2014 \u0631\u0645\u0632 \u0627\u0644\u0641\u062E\u0627\u0645\u0629 \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A\u0629. \u062D\u0631\u0643\u0629 \u0633\u0648\u064A\u0633\u0631\u064A\u0629 \u062F\u0642\u064A\u0642\u0629 \u0628\u062A\u0635\u0645\u064A\u0645 \u062C\u0631\u064A\u0621 \u0644\u0627 \u064A\u064F\u0646\u0633\u0649." },
-  { id: 5, category: "\u062D\u0642\u0627\u0626\u0628", name: "\u0645\u062D\u0641\u0638\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646", brand: "LV", price: 650, original_price: 850, discount: 23, image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", images: ["https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400", "https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400"], is_new: false, rating: 4.9, sales: 3200, stock: 11, colors: ["#8B7355", "#C0A882"], sizes: [], description: "\u0645\u062D\u0641\u0638\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A\u0629 \u0628\u0627\u0644\u0645\u0648\u0646\u0648\u063A\u0631\u0627\u0645 \u0627\u0644\u0634\u0647\u064A\u0631\u060C \u0645\u0646 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0643\u0627\u0646\u0641\u0627\u0633 \u0627\u0644\u0645\u0637\u0644\u064A. \u0642\u0637\u0639\u0629 \u062E\u0627\u0644\u062F\u0629 \u0644\u0643\u0644 \u0623\u0646\u0627\u0642\u0629." },
-  { id: 6, category: "\u0623\u062D\u0630\u064A\u0629", name: "\u062D\u0630\u0627\u0621 \u0642\u0648\u062A\u0634\u064A \u062C\u0644\u062F", brand: "GUCCI", price: 780, original_price: 1050, discount: 25, image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", images: ["https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400", "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400"], is_new: true, rating: 4.7, sales: 680, stock: 3, colors: ["#2E2C2A", "#8B7355", "#F5F0E8"], sizes: ["38", "39", "40", "41", "42", "43"], description: "\u062D\u0630\u0627\u0621 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u062C\u0644\u062F\u064A \u0627\u0644\u0623\u0646\u064A\u0642 \u0628\u0646\u0639\u0644 \u0645\u0631\u064A\u062D \u0648\u062A\u0635\u0645\u064A\u0645 \u0643\u0644\u0627\u0633\u064A\u0643\u064A. \u0645\u0635\u0646\u0648\u0639 \u0645\u0646 \u0623\u062C\u0648\u062F \u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0625\u064A\u0637\u0627\u0644\u064A." },
-  { id: 7, category: "\u0645\u0644\u0627\u0628\u0633", name: "\u0648\u0634\u0627\u062D \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0643\u0644\u0627\u0633\u064A\u0643", brand: "BURBERRY", price: 420, original_price: 600, discount: 30, image: "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400", images: ["https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400"], is_new: false, rating: 4.6, sales: 1850, stock: 29, colors: ["#C0A882", "#8B7355", "#2E2C2A"], sizes: ["One Size"], description: "\u0627\u0644\u0648\u0634\u0627\u062D \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A \u0645\u0646 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0628\u0646\u0642\u0634\u0629 \u0627\u0644\u0643\u0627\u0631\u0648\u0647\u0627\u062A \u0627\u0644\u0634\u0647\u064A\u0631\u0629. \u0645\u0635\u0646\u0648\u0639 \u0645\u0646 \u0627\u0644\u0643\u0634\u0645\u064A\u0631 \u0627\u0644\u0646\u0627\u0639\u0645 \u0627\u0644\u0641\u0627\u062E\u0631." },
-  { id: 8, category: "\u0639\u0637\u0648\u0631", name: "\u0639\u0637\u0631 \u062F\u064A\u0648\u0631 \u0633\u0648\u0641\u0627\u062C", brand: "DIOR", price: 320, original_price: 440, discount: 27, image: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", images: ["https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=400", "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400"], is_new: true, rating: 4.9, sales: 4100, stock: 0, colors: ["#2E2C2A", "#C0A882"], sizes: [], description: "\u0633\u0648\u0641\u0627\u062C \u2014 \u0627\u0644\u062A\u0639\u0628\u064A\u0631 \u0627\u0644\u062C\u0627\u0645\u062D \u0648\u0627\u0644\u0623\u0635\u064A\u0644 \u0639\u0646 \u0627\u0644\u0631\u062C\u0648\u0644\u0629. \u0645\u0632\u064A\u062C \u0645\u0645\u064A\u0632 \u0645\u0646 \u0627\u0644\u0641\u0644\u0641\u0644 \u0627\u0644\u0623\u0633\u0648\u062F \u0648\u0627\u0644\u0639\u0646\u0628\u0631 \u0648\u0627\u0644\u062E\u0634\u0628 \u0627\u0644\u0635\u0648\u0641\u064A." },
-  { id: 9, category: "\u062D\u0642\u0627\u0626\u0628", name: "\u062D\u0642\u064A\u0628\u0629 \u0634\u0627\u0646\u064A\u0644 \u0643\u0644\u0627\u0633\u064A\u0643", brand: "CHANEL", price: 2100, original_price: 2800, discount: 25, image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400", images: ["https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400", "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400"], is_new: false, rating: 5, sales: 290, stock: 2, colors: ["#2E2C2A", "#F5F0E8", "#C0A882"], sizes: [], description: "\u0627\u0644\u062D\u0642\u064A\u0628\u0629 2.55 \u0645\u0646 \u0634\u0627\u0646\u064A\u0644 \u2014 \u0623\u064A\u0642\u0648\u0646\u0629 \u0627\u0644\u0645\u0648\u0636\u0629 \u0627\u0644\u0641\u0631\u0646\u0633\u064A\u0629 \u0645\u0646\u0630 \u0639\u0627\u0645 1955. \u062A\u0635\u0645\u064A\u0645 \u062A\u0642\u0644\u064A\u0644\u064A \u0644\u0627 \u064A\u062A\u0642\u0627\u062F\u0645 \u0628\u0627\u0644\u062C\u0644\u062F \u0627\u0644\u0645\u0628\u0637\u0646." },
-  { id: 10, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u0628\u064A\u0644\u062A \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646", brand: "LV", price: 380, original_price: 520, discount: 26, image: "https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400", images: ["https://images.unsplash.com/photo-1624222247344-550fb60fe8ff?w=400"], is_new: false, rating: 4.8, sales: 960, stock: 16, colors: ["#8B7355", "#2E2C2A"], sizes: ["85cm", "90cm", "95cm", "100cm"], description: "\u062D\u0632\u0627\u0645 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0628\u0625\u0628\u0632\u064A\u0645 \u0645\u0630\u0647\u0651\u0628 \u0648\u062C\u0644\u062F Monogram \u0623\u0635\u0644\u064A. \u0644\u0645\u0633\u0629 \u0641\u0627\u062E\u0631\u0629 \u0644\u0643\u0644 \u0625\u0637\u0644\u0627\u0644\u0629 \u0631\u062C\u0627\u0644\u064A\u0629." },
-  { id: 11, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u0646\u0638\u0627\u0631\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0630\u0647\u0628\u064A\u0629", brand: "VERSACE", price: 340, original_price: 480, discount: 29, image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400", images: ["https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400", "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400"], is_new: true, rating: 4.6, sales: 720, stock: 12, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0646\u0638\u0627\u0631\u0629 \u0641\u064A\u0631\u0633\u0627\u062A\u0634\u064A \u0628\u0625\u0637\u0627\u0631 \u0630\u0647\u0628\u064A \u062C\u0631\u064A\u0621 \u0648\u0634\u0639\u0627\u0631 \u0645\u064A\u062F\u0648\u0633\u0627 \u0627\u0644\u0628\u0627\u0631\u0632. \u062C\u0631\u0623\u0629 \u0648\u0623\u0646\u0627\u0642\u0629 \u0641\u064A \u0622\u0646 \u0648\u0627\u062D\u062F." },
-  { id: 12, category: "\u0623\u062D\u0630\u064A\u0629", name: "\u062D\u0630\u0627\u0621 \u062F\u064A\u0648\u0631 \u0647\u064A\u0644\u0632", brand: "DIOR", price: 960, original_price: 1300, discount: 26, image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400", images: ["https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=400", "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400"], is_new: true, rating: 4.7, sales: 430, stock: 5, colors: ["#F5F0E8", "#C0A882", "#2E2C2A"], sizes: ["36", "37", "38", "39", "40", "41"], description: "\u062D\u0630\u0627\u0621 \u0647\u064A\u0644\u0632 \u062F\u064A\u0648\u0631 \u0628\u0643\u0639\u0628 9 \u0633\u0645 \u0648\u062A\u0635\u0645\u064A\u0645 \u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0645\u062A\u0637\u0648\u0631. \u062C\u0644\u062F \u0623\u0635\u0644\u064A \u0646\u0627\u0639\u0645 \u0645\u0639 \u0646\u0639\u0644 \u0645\u0631\u064A\u062D \u0644\u0644\u0627\u0631\u062A\u062F\u0627\u0621 \u0627\u0644\u064A\u0648\u0645\u064A." },
-  { id: 13, category: "\u0645\u0644\u0627\u0628\u0633", name: "\u0642\u0645\u064A\u0635 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0645\u0631\u0628\u0639\u0627\u062A", brand: "BURBERRY", price: 480, original_price: 680, discount: 29, image: "https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400", images: ["https://images.unsplash.com/photo-1602810319428-019690571b5b?w=400", "https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?w=400"], is_new: false, rating: 4.5, sales: 1120, stock: 20, colors: ["#8B7355", "#C0A882"], sizes: ["XS", "S", "M", "L", "XL", "XXL"], description: "\u0627\u0644\u0642\u0645\u064A\u0635 \u0627\u0644\u0643\u0644\u0627\u0633\u064A\u0643\u064A \u0645\u0646 \u0628\u0627\u0631\u0628\u064A\u0631\u064A \u0628\u0646\u0642\u0634\u0629 \u0627\u0644\u0643\u0627\u0631\u0648\u0647\u0627\u062A \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629. \u0642\u0637\u0646 \u0645\u0635\u0631\u064A \u0639\u0627\u0644\u064A \u0627\u0644\u062C\u0648\u062F\u0629 \u0628\u0642\u0635\u0629 \u0639\u0635\u0631\u064A\u0629 \u0645\u0631\u064A\u062D\u0629." },
-  { id: 14, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u062E\u0627\u062A\u0645 \u0642\u0648\u062A\u0634\u064A \u0630\u0647\u0628\u064A", brand: "GUCCI", price: 185, original_price: 260, discount: 28, image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400", images: ["https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400"], is_new: false, rating: 4.6, sales: 2400, stock: 33, colors: ["#C0A882", "#F5F0E8"], sizes: ["6", "7", "8", "9", "10"], description: "\u062E\u0627\u062A\u0645 \u0642\u0648\u062A\u0634\u064A \u0627\u0644\u0630\u0647\u0628\u064A \u0627\u0644\u0645\u0632\u062F\u0648\u062C GG \u2014 \u062A\u062D\u0641\u0629 \u0641\u0646\u064A\u0629 \u0628\u0645\u0639\u062F\u0646 \u0630\u0647\u0628\u064A \u0645\u0632\u062F\u0648\u062C \u0627\u0644\u062A\u0623\u062B\u064A\u0631 \u0648\u0634\u0639\u0627\u0631 \u0645\u0631\u0626\u064A \u0644\u0644\u0645\u0627\u0631\u0643\u0629." },
-  { id: 15, category: "\u0639\u0637\u0648\u0631", name: "\u0639\u0637\u0631 \u0634\u0627\u0646\u064A\u0644 Coco Mademoiselle", brand: "CHANEL", price: 410, original_price: 570, discount: 28, image: "https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400", images: ["https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?w=400", "https://images.unsplash.com/photo-1541643600914-78b084683702?w=400"], is_new: false, rating: 4.9, sales: 3800, stock: 25, colors: ["#F5F0E8", "#C0A882"], sizes: [], description: "Coco Mademoiselle \u2014 \u0623\u0643\u062B\u0631 \u0639\u0637\u0648\u0631 \u0634\u0627\u0646\u064A\u0644 \u0627\u0646\u062A\u0634\u0627\u0631\u0627\u064B. \u0645\u0632\u064A\u062C \u0645\u0646\u0639\u0634 \u0645\u0646 \u0627\u0644\u0628\u0631\u063A\u0645\u0648\u062A \u0648\u0627\u0644\u0648\u0631\u062F\u0629 \u0648\u062E\u0634\u0628 \u0627\u0644\u0632\u0646\u062C\u0628\u064A\u0644." },
-  { id: 16, category: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", name: "\u0633\u0627\u0639\u0629 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u062A\u0627\u0646\u0628\u0648\u0631", brand: "LV", price: 1850, original_price: 2500, discount: 26, image: "https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400", images: ["https://images.unsplash.com/photo-1506152983158-b4a74a01c721?w=400", "https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=400"], is_new: true, rating: 4.9, sales: 190, stock: 3, colors: ["#C0A882", "#2E2C2A"], sizes: ["One Size"], description: "\u0633\u0627\u0639\u0629 \u062A\u0627\u0646\u0628\u0648\u0631 \u0627\u0644\u0623\u064A\u0642\u0648\u0646\u064A\u0629 \u0645\u0646 \u0644\u0648\u064A\u0633 \u0641\u064A\u062A\u0648\u0646 \u0628\u062D\u0631\u0643\u0629 \u0633\u0648\u064A\u0633\u0631\u064A\u0629 \u0641\u0627\u062E\u0631\u0629 \u0648\u0642\u0631\u0635 \u0645\u0645\u064A\u0632 \u0628\u0627\u0644\u0645\u0648\u0646\u0648\u063A\u0631\u0627\u0645." }
-];
-function normalizeArabic(term) {
-  return term.replace(/[\u064B-\u065F\u0670]/g, "").replace(/\u0640/g, "").replace(/[أإآا]/g, "\u0627").replace(/^ال/, "").trim();
-}
-router2.get("/products/:id", (req, res) => {
-  const id = Number(req.params.id);
-  if (isNaN(id)) {
-    res.status(400).json({ error: "Invalid id" });
+router2.get("/img/:id", (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id) || id < 1 || id > 1084) {
+    res.status(400).json({ error: "\u0645\u0639\u0631\u0651\u0641 \u0635\u0648\u0631\u0629 \u063A\u064A\u0631 \u0635\u0627\u0644\u062D" });
     return;
   }
-  const product = mockProducts.find((p) => p.id === id);
-  if (!product) {
-    res.status(404).json({ error: "Not found" });
-    return;
-  }
-  res.json(product);
-});
-router2.get("/products", (req, res) => {
-  const { q, brand, category, minPrice, maxPrice, minDiscount, minRating, color, size, inStock, isNew, sort, page, limit: limitQ } = req.query;
-  const pageNum = Math.max(1, Number(page ?? 1));
-  const pageSize = Math.min(100, Math.max(1, Number(limitQ ?? 20)));
-  let filtered = [...mockProducts];
-  if (q && q.trim()) {
-    const raw = q.trim().toLowerCase();
-    const normalized = normalizeArabic(raw);
-    filtered = filtered.filter((p) => {
-      const name = p.name.toLowerCase();
-      const br = p.brand.toLowerCase();
-      const cat = p.category.toLowerCase();
-      const normName = normalizeArabic(name);
-      const normCat = normalizeArabic(cat);
-      return name.includes(raw) || br.includes(raw) || normName.includes(normalized) || cat.includes(raw) || normCat.includes(normalized);
-    });
-  }
-  if (category && category.trim()) {
-    if (category === "\u062C\u062F\u064A\u062F\u0646\u0627") {
-      filtered = filtered.filter((p) => p.is_new);
-    } else if (category === "\u0639\u0631\u0648\u0636") {
-      filtered = filtered.filter((p) => p.discount > 0);
-    } else {
-      const normCat = normalizeArabic(category.trim());
-      filtered = filtered.filter((p) => normalizeArabic(p.category) === normCat);
+  const w = Math.min(parseInt(req.query.w || "600", 10), 1200);
+  const h = Math.min(parseInt(req.query.h || "750", 10), 1500);
+  const url = `https://picsum.photos/id/${id}/${w}/${h}`;
+  const protocol = url.startsWith("https") ? https : http;
+  const proxyReq = protocol.get(url, (proxyRes) => {
+    if (proxyRes.statusCode && proxyRes.statusCode >= 300 && proxyRes.statusCode < 400 && proxyRes.headers.location) {
+      const redirectUrl = proxyRes.headers.location;
+      const redirectProtocol = redirectUrl.startsWith("https") ? https : http;
+      const redirectReq = redirectProtocol.get(redirectUrl, (redirectRes) => {
+        res.setHeader("Content-Type", redirectRes.headers["content-type"] || "image/jpeg");
+        res.setHeader("Cache-Control", "public, max-age=86400");
+        redirectRes.pipe(res);
+      });
+      redirectReq.on("error", () => {
+        if (!res.headersSent) res.status(502).end();
+      });
+      return;
     }
-  }
-  if (brand && brand.trim()) {
-    const brands = brand.split(",").map((b) => b.trim().toUpperCase());
-    filtered = filtered.filter((p) => brands.includes(p.brand.toUpperCase()));
-  }
-  if (minPrice && !isNaN(Number(minPrice))) {
-    filtered = filtered.filter((p) => p.price >= Number(minPrice));
-  }
-  if (maxPrice && !isNaN(Number(maxPrice))) {
-    filtered = filtered.filter((p) => p.price <= Number(maxPrice));
-  }
-  if (minDiscount && !isNaN(Number(minDiscount))) {
-    filtered = filtered.filter((p) => p.discount >= Number(minDiscount));
-  }
-  if (minRating && !isNaN(Number(minRating))) {
-    filtered = filtered.filter((p) => p.rating >= Number(minRating));
-  }
-  if (color && color.trim()) {
-    const c = color.trim().toLowerCase();
-    filtered = filtered.filter((p) => p.colors.some((pc) => pc.toLowerCase().includes(c)));
-  }
-  if (size && size.trim()) {
-    const sizes = size.split(",").map((s) => s.trim());
-    filtered = filtered.filter((p) => p.sizes.some((ps) => sizes.includes(ps)));
-  }
-  if (inStock === "1") {
-    filtered = filtered.filter((p) => p.stock > 0);
-  }
-  if (isNew === "1") {
-    filtered = filtered.filter((p) => p.is_new);
-  }
-  if (sort) {
-    switch (sort) {
-      case "price_asc":
-        filtered.sort((a, b) => a.price - b.price);
-        break;
-      case "price_desc":
-        filtered.sort((a, b) => b.price - a.price);
-        break;
-      case "rating":
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
-      case "discount":
-        filtered.sort((a, b) => b.discount - a.discount);
-        break;
-      case "newest":
-        filtered.sort((a, b) => b.id - a.id);
-        break;
-      case "sales":
-        filtered.sort((a, b) => b.sales - a.sales);
-        break;
-    }
-  }
-  const total = filtered.length;
-  const offset = (pageNum - 1) * pageSize;
-  const paginated = filtered.slice(offset, offset + pageSize);
-  res.setHeader("X-Total-Count", String(total));
-  res.setHeader("X-Page", String(pageNum));
-  res.setHeader("X-Page-Size", String(pageSize));
-  res.setHeader("X-Pages", String(Math.ceil(total / pageSize)));
-  res.json(paginated);
+    res.setHeader("Content-Type", proxyRes.headers["content-type"] || "image/jpeg");
+    res.setHeader("Cache-Control", "public, max-age=86400");
+    proxyRes.pipe(res);
+  });
+  proxyReq.on("error", () => {
+    if (!res.headersSent) res.status(502).end();
+  });
 });
-router2.get("/brands-list", (_req, res) => {
-  const brands = [...new Set(mockProducts.map((p) => p.brand))].sort();
-  res.json(brands);
-});
-var products_default = router2;
+var img_default = router2;
 
-// src/routes/brands.ts
+// src/routes/products.ts
 var import_express3 = __toESM(require_express2(), 1);
-var router3 = (0, import_express3.Router)();
-var mockBrands = [
-  { id: "chanel", label: "CHANEL", icon: "/brands/chanel.png" },
-  { id: "dior", label: "DIOR", icon: "/brands/dior.png" },
-  { id: "gucci", label: "GUCCI", icon: "/brands/gucci.png" },
-  { id: "lv", label: "LOUIS VUITTON", icon: "/brands/louis-vuitton.png" },
-  { id: "versace", label: "VERSACE", icon: "/brands/versace.png" }
-];
-router3.get("/brands", (_req, res) => {
-  res.json(mockBrands);
-});
-var brands_default = router3;
-
-// src/routes/cart.ts
-var import_express4 = __toESM(require_express2(), 1);
 
 // ../../node_modules/.pnpm/pg@8.20.0/node_modules/pg/esm/index.mjs
 var import_lib = __toESM(require_lib5(), 1);
@@ -44285,10 +44178,10 @@ var PgEnumColumn = class extends PgColumn {
 // ../../node_modules/.pnpm/drizzle-orm@0.45.2_@types+pg@8.20.0_pg@8.20.0/node_modules/drizzle-orm/subquery.js
 var Subquery = class {
   static [entityKind] = "Subquery";
-  constructor(sql2, fields, alias, isWith = false, usedTables = []) {
+  constructor(sql3, fields, alias, isWith = false, usedTables = []) {
     this._ = {
       brand: "Subquery",
-      sql: sql2,
+      sql: sql3,
       selectedFields: fields,
       alias,
       isWith,
@@ -44686,19 +44579,19 @@ function sql(strings, ...params) {
   }
   return new SQL(queryChunks);
 }
-((sql2) => {
+((sql22) => {
   function empty() {
     return new SQL([]);
   }
-  sql2.empty = empty;
+  sql22.empty = empty;
   function fromList(list) {
     return new SQL(list);
   }
-  sql2.fromList = fromList;
+  sql22.fromList = fromList;
   function raw(str) {
     return new SQL([new StringChunk(str)]);
   }
-  sql2.raw = raw;
+  sql22.raw = raw;
   function join(chunks, separator) {
     const result = [];
     for (const [i, chunk] of chunks.entries()) {
@@ -44709,24 +44602,24 @@ function sql(strings, ...params) {
     }
     return new SQL(result);
   }
-  sql2.join = join;
+  sql22.join = join;
   function identifier(value) {
     return new Name(value);
   }
-  sql2.identifier = identifier;
+  sql22.identifier = identifier;
   function placeholder2(name2) {
     return new Placeholder(name2);
   }
-  sql2.placeholder = placeholder2;
+  sql22.placeholder = placeholder2;
   function param2(value, encoder) {
     return new Param(value, encoder);
   }
-  sql2.param = param2;
+  sql22.param = param2;
 })(sql || (sql = {}));
 ((SQL2) => {
   class Aliased {
-    constructor(sql2, fieldAlias) {
-      this.sql = sql2;
+    constructor(sql22, fieldAlias) {
+      this.sql = sql22;
       this.fieldAlias = fieldAlias;
     }
     static [entityKind] = "SQL.Aliased";
@@ -47417,8 +47310,8 @@ var PgDialect = class {
       return "none";
     }
   }
-  sqlToQuery(sql2, invokeSource) {
-    return sql2.toQuery({
+  sqlToQuery(sql22, invokeSource) {
+    return sql22.toQuery({
       casing: this.casing,
       escapeName: this.escapeName,
       escapeParam: this.escapeParam,
@@ -49777,10 +49670,10 @@ var PgRelationalQuery = class extends QueryPromise {
 
 // ../../node_modules/.pnpm/drizzle-orm@0.45.2_@types+pg@8.20.0_pg@8.20.0/node_modules/drizzle-orm/pg-core/query-builders/raw.js
 var PgRaw = class extends QueryPromise {
-  constructor(execute, sql2, query, mapBatchResult) {
+  constructor(execute, sql3, query, mapBatchResult) {
     super();
     this.execute = execute;
-    this.sql = sql2;
+    this.sql = sql3;
     this.query = query;
     this.mapBatchResult = mapBatchResult;
   }
@@ -50100,8 +49993,8 @@ var NoopCache = class extends Cache {
   async onMutate(_params) {
   }
 };
-async function hashQuery(sql2, params) {
-  const dataToHash = `${sql2}-${JSON.stringify(params)}`;
+async function hashQuery(sql3, params) {
+  const dataToHash = `${sql3}-${JSON.stringify(params)}`;
   const encoder = new TextEncoder();
   const data = encoder.encode(dataToHash);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -50234,8 +50127,8 @@ var PgSession = class {
     ).all();
   }
   /** @internal */
-  async count(sql2, token) {
-    const res = await this.execute(sql2, token);
+  async count(sql22, token) {
+    const res = await this.execute(sql22, token);
     return Number(
       res[0]["count"]
     );
@@ -50457,8 +50350,8 @@ var NodePgSession = class _NodePgSession extends PgSession {
       if (isPool) session.client.release();
     }
   }
-  async count(sql2) {
-    const res = await this.execute(sql2);
+  async count(sql22) {
+    const res = await this.execute(sql22);
     return Number(
       res["rows"][0]["count"]
     );
@@ -50580,6 +50473,7 @@ var productsTable = pgTable("products", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   brand: text("brand").notNull(),
+  category: text("category").notNull().default(""),
   price: doublePrecision("price").notNull(),
   original_price: doublePrecision("original_price").notNull(),
   discount: integer("discount").notNull(),
@@ -50734,6 +50628,165 @@ if (!process.env.DATABASE_URL) {
 var pool = new Pool3({ connectionString: process.env.DATABASE_URL });
 var db = drizzle(pool, { schema: schema_exports });
 
+// src/routes/products.ts
+var router3 = (0, import_express3.Router)();
+function normalizeArabic(term) {
+  return term.replace(/[\u064B-\u065F\u0670]/g, "").replace(/\u0640/g, "").replace(/[أإآا]/g, "\u0627").replace(/^ال/, "").trim();
+}
+router3.get("/products/:id", async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).json({ error: "Invalid id" });
+      return;
+    }
+    const rows = await db.select().from(productsTable).where(eq(productsTable.id, id)).limit(1);
+    if (rows.length === 0) {
+      res.status(404).json({ error: "Not found" });
+      return;
+    }
+    res.json(rows[0]);
+  } catch (err) {
+    next(err);
+  }
+});
+router3.get("/products", async (req, res, next) => {
+  try {
+    const {
+      q,
+      brand,
+      category,
+      minPrice,
+      maxPrice,
+      minDiscount,
+      minRating,
+      color,
+      size,
+      inStock,
+      isNew,
+      sort,
+      page,
+      limit: limitQ
+    } = req.query;
+    const pageNum = Math.max(1, Number(page ?? 1));
+    const pageSize = Math.min(100, Math.max(1, Number(limitQ ?? 20)));
+    let all = await db.select().from(productsTable);
+    if (q && q.trim()) {
+      const raw = q.trim().toLowerCase();
+      const normalized = normalizeArabic(raw);
+      all = all.filter((p) => {
+        const name = p.name.toLowerCase();
+        const br = p.brand.toLowerCase();
+        const cat = p.category.toLowerCase();
+        const normN = normalizeArabic(name);
+        const normC = normalizeArabic(cat);
+        return name.includes(raw) || br.includes(raw) || normN.includes(normalized) || cat.includes(raw) || normC.includes(normalized);
+      });
+    }
+    if (category && category.trim()) {
+      if (category === "\u062C\u062F\u064A\u062F\u0646\u0627" || category === "new") {
+        all = all.filter((p) => p.is_new);
+      } else if (category === "\u0639\u0631\u0648\u0636" || category === "offers") {
+        all = all.filter((p) => p.discount > 0);
+      } else {
+        const normCat = normalizeArabic(category.trim().toLowerCase());
+        all = all.filter((p) => {
+          const pCat = normalizeArabic(p.category.toLowerCase());
+          return pCat === normCat || p.category.toLowerCase() === category.trim().toLowerCase();
+        });
+      }
+    }
+    if (brand && brand.trim()) {
+      const brands = brand.split(",").map((b) => b.trim().toUpperCase());
+      all = all.filter((p) => brands.includes(p.brand.toUpperCase()));
+    }
+    if (minPrice && !isNaN(Number(minPrice))) {
+      all = all.filter((p) => p.price >= Number(minPrice));
+    }
+    if (maxPrice && !isNaN(Number(maxPrice))) {
+      all = all.filter((p) => p.price <= Number(maxPrice));
+    }
+    if (minDiscount && !isNaN(Number(minDiscount))) {
+      all = all.filter((p) => p.discount >= Number(minDiscount));
+    }
+    if (minRating && !isNaN(Number(minRating))) {
+      all = all.filter((p) => p.rating >= Number(minRating));
+    }
+    if (color && color.trim()) {
+      const c = color.trim().toLowerCase();
+      all = all.filter((p) => p.colors.some((pc) => pc.toLowerCase().includes(c)));
+    }
+    if (size && size.trim()) {
+      const sizes = size.split(",").map((s) => s.trim());
+      all = all.filter((p) => p.sizes.some((ps) => sizes.includes(ps)));
+    }
+    if (inStock === "1") {
+      all = all.filter((p) => p.stock > 0);
+    }
+    if (isNew === "1") {
+      all = all.filter((p) => p.is_new);
+    }
+    if (sort) {
+      switch (sort) {
+        case "price_asc":
+          all.sort((a, b) => a.price - b.price);
+          break;
+        case "price_desc":
+          all.sort((a, b) => b.price - a.price);
+          break;
+        case "rating":
+          all.sort((a, b) => b.rating - a.rating);
+          break;
+        case "discount":
+          all.sort((a, b) => b.discount - a.discount);
+          break;
+        case "newest":
+          all.sort((a, b) => b.id - a.id);
+          break;
+        case "sales":
+          all.sort((a, b) => b.sales - a.sales);
+          break;
+      }
+    }
+    const total = all.length;
+    const offset = (pageNum - 1) * pageSize;
+    const paginated = all.slice(offset, offset + pageSize);
+    res.setHeader("X-Total-Count", String(total));
+    res.setHeader("X-Page", String(pageNum));
+    res.setHeader("X-Page-Size", String(pageSize));
+    res.setHeader("X-Pages", String(Math.ceil(total / pageSize)));
+    res.json(paginated);
+  } catch (err) {
+    next(err);
+  }
+});
+router3.get("/brands-list", async (_req, res, next) => {
+  try {
+    const rows = await db.select({ brand: productsTable.brand }).from(productsTable);
+    const brands = [...new Set(rows.map((r) => r.brand))].sort();
+    res.json(brands);
+  } catch (err) {
+    next(err);
+  }
+});
+var products_default = router3;
+
+// src/routes/brands.ts
+var import_express4 = __toESM(require_express2(), 1);
+var router4 = (0, import_express4.Router)();
+router4.get("/brands", async (_req, res, next) => {
+  try {
+    const rows = await db.select().from(brandsTable).orderBy(brandsTable.label);
+    res.json(rows);
+  } catch (err) {
+    next(err);
+  }
+});
+var brands_default = router4;
+
+// src/routes/cart.ts
+var import_express5 = __toESM(require_express2(), 1);
+
 // src/middlewares/device-id.ts
 function requireDeviceId(req, res, next) {
   const id = req.headers["x-device-id"];
@@ -50746,8 +50799,8 @@ function requireDeviceId(req, res, next) {
 }
 
 // src/routes/cart.ts
-var router4 = (0, import_express4.Router)();
-router4.get("/cart", requireDeviceId, async (req, res, next) => {
+var router5 = (0, import_express5.Router)();
+router5.get("/cart", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const rows = await db.select({
@@ -50770,7 +50823,7 @@ router4.get("/cart", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-router4.post("/cart", requireDeviceId, async (req, res, next) => {
+router5.post("/cart", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const { product_id, qty = 1, color = "" } = req.body;
@@ -50794,7 +50847,7 @@ router4.post("/cart", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-router4.patch("/cart/product/:productId", requireDeviceId, async (req, res, next) => {
+router5.patch("/cart/product/:productId", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const product_id = Number(req.params.productId);
@@ -50821,7 +50874,7 @@ router4.patch("/cart/product/:productId", requireDeviceId, async (req, res, next
     next(err);
   }
 });
-router4.put("/cart/:id", requireDeviceId, async (req, res, next) => {
+router5.put("/cart/:id", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const id = Number(req.params.id);
@@ -50840,7 +50893,7 @@ router4.put("/cart/:id", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-router4.delete("/cart/product/:productId", requireDeviceId, async (req, res, next) => {
+router5.delete("/cart/product/:productId", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const product_id = Number(req.params.productId);
@@ -50862,7 +50915,7 @@ router4.delete("/cart/product/:productId", requireDeviceId, async (req, res, nex
     next(err);
   }
 });
-router4.delete("/cart/:id", requireDeviceId, async (req, res, next) => {
+router5.delete("/cart/:id", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const id = Number(req.params.id);
@@ -50872,7 +50925,7 @@ router4.delete("/cart/:id", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-router4.delete("/cart", requireDeviceId, async (req, res, next) => {
+router5.delete("/cart", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     await db.delete(cartItemsTable).where(eq(cartItemsTable.device_id, deviceId));
@@ -50881,12 +50934,12 @@ router4.delete("/cart", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-var cart_default = router4;
+var cart_default = router5;
 
 // src/routes/wishlist.ts
-var import_express5 = __toESM(require_express2(), 1);
-var router5 = (0, import_express5.Router)();
-router5.get("/wishlist", requireDeviceId, async (req, res, next) => {
+var import_express6 = __toESM(require_express2(), 1);
+var router6 = (0, import_express6.Router)();
+router6.get("/wishlist", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const rows = await db.select({
@@ -50909,7 +50962,7 @@ router5.get("/wishlist", requireDeviceId, async (req, res, next) => {
     next(err);
   }
 });
-router5.post("/wishlist/:productId", requireDeviceId, async (req, res, next) => {
+router6.post("/wishlist/:productId", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const product_id = Number(req.params.productId);
@@ -50928,7 +50981,7 @@ router5.post("/wishlist/:productId", requireDeviceId, async (req, res, next) => 
     next(err);
   }
 });
-router5.delete("/wishlist/:productId", requireDeviceId, async (req, res, next) => {
+router6.delete("/wishlist/:productId", requireDeviceId, async (req, res, next) => {
   try {
     const { deviceId } = req;
     const product_id = Number(req.params.productId);
@@ -50942,10 +50995,10 @@ router5.delete("/wishlist/:productId", requireDeviceId, async (req, res, next) =
     next(err);
   }
 });
-var wishlist_default = router5;
+var wishlist_default = router6;
 
 // src/routes/auth.ts
-var import_express6 = __toESM(require_express2(), 1);
+var import_express7 = __toESM(require_express2(), 1);
 
 // ../../node_modules/.pnpm/bcryptjs@3.0.3/node_modules/bcryptjs/index.js
 import nodeCrypto from "crypto";
@@ -52699,8 +52752,8 @@ function authMiddleware(req, res, next) {
 }
 
 // src/routes/auth.ts
-var router6 = (0, import_express6.Router)();
-router6.post("/auth/register", async (req, res, next) => {
+var router7 = (0, import_express7.Router)();
+router7.post("/auth/register", async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
     if (!name?.trim() || !email?.trim() || !password?.trim()) {
@@ -52724,7 +52777,7 @@ router6.post("/auth/register", async (req, res, next) => {
     next(err);
   }
 });
-router6.post("/auth/login", async (req, res, next) => {
+router7.post("/auth/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email?.trim() || !password?.trim()) {
@@ -52747,7 +52800,7 @@ router6.post("/auth/login", async (req, res, next) => {
     next(err);
   }
 });
-router6.get("/auth/me", authMiddleware, async (req, res, next) => {
+router7.get("/auth/me", authMiddleware, async (req, res, next) => {
   try {
     const { userId } = req.user;
     const [user] = await db.select({
@@ -52766,7 +52819,7 @@ router6.get("/auth/me", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router6.post("/auth/forgot-password", async (req, res, next) => {
+router7.post("/auth/forgot-password", async (req, res, next) => {
   try {
     const { email } = req.body;
     if (!email?.trim()) {
@@ -52789,7 +52842,7 @@ router6.post("/auth/forgot-password", async (req, res, next) => {
     next(err);
   }
 });
-router6.post("/auth/reset-password", async (req, res, next) => {
+router7.post("/auth/reset-password", async (req, res, next) => {
   try {
     const { email, otp, newPassword } = req.body;
     if (!email?.trim() || !otp?.trim() || !newPassword?.trim()) {
@@ -52816,7 +52869,7 @@ router6.post("/auth/reset-password", async (req, res, next) => {
     next(err);
   }
 });
-router6.patch("/auth/change-password", authMiddleware, async (req, res, next) => {
+router7.patch("/auth/change-password", authMiddleware, async (req, res, next) => {
   try {
     const { userId } = req.user;
     const { currentPassword, newPassword } = req.body;
@@ -52845,7 +52898,7 @@ router6.patch("/auth/change-password", authMiddleware, async (req, res, next) =>
     next(err);
   }
 });
-router6.patch("/users/me/avatar", authMiddleware, async (req, res, next) => {
+router7.patch("/users/me/avatar", authMiddleware, async (req, res, next) => {
   try {
     const { userId } = req.user;
     const { avatar } = req.body;
@@ -52873,7 +52926,7 @@ router6.patch("/users/me/avatar", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router6.patch("/users/me", authMiddleware, async (req, res, next) => {
+router7.patch("/users/me", authMiddleware, async (req, res, next) => {
   try {
     const { userId } = req.user;
     const { name, email } = req.body;
@@ -52902,7 +52955,7 @@ router6.patch("/users/me", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router6.get("/users/me/points", authMiddleware, async (req, res, next) => {
+router7.get("/users/me/points", authMiddleware, async (req, res, next) => {
   try {
     const { userId } = req.user;
     const [user] = await db.select({ points: usersTable.points }).from(usersTable).where(eq(usersTable.id, userId)).limit(1);
@@ -52915,10 +52968,10 @@ router6.get("/users/me/points", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-var auth_default = router6;
+var auth_default = router7;
 
 // src/routes/oauth.ts
-var import_express7 = __toESM(require_express2(), 1);
+var import_express8 = __toESM(require_express2(), 1);
 var import_jsonwebtoken3 = __toESM(require_jsonwebtoken(), 1);
 
 // src/lib/logger.ts
@@ -52940,7 +52993,7 @@ var logger = (0, import_pino.default)({
 });
 
 // src/routes/oauth.ts
-var router7 = (0, import_express7.Router)();
+var router8 = (0, import_express8.Router)();
 function getDevDomain() {
   return process.env.REPLIT_DEV_DOMAIN ?? "localhost:8080";
 }
@@ -52981,7 +53034,7 @@ async function findOrCreateOAuthUser(opts) {
   }).returning();
   return created;
 }
-router7.get("/auth/google", (_req, res) => {
+router8.get("/auth/google", (_req, res) => {
   const clientId = process.env.GOOGLE_CLIENT_ID;
   if (!clientId) {
     res.status(503).json({ error: "Google OAuth not configured \u2014 set GOOGLE_CLIENT_ID" });
@@ -52997,7 +53050,7 @@ router7.get("/auth/google", (_req, res) => {
   });
   res.redirect(`https://accounts.google.com/o/oauth2/v2/auth?${params}`);
 });
-router7.get("/auth/google/callback", async (req, res) => {
+router8.get("/auth/google/callback", async (req, res) => {
   const { code, error } = req.query;
   const frontend = frontendBase();
   if (error || !code) {
@@ -53047,7 +53100,7 @@ router7.get("/auth/google/callback", async (req, res) => {
     res.redirect(`${frontendBase()}/?oauth_error=server_error`);
   }
 });
-router7.get("/auth/facebook", (_req, res) => {
+router8.get("/auth/facebook", (_req, res) => {
   const appId = process.env.FACEBOOK_APP_ID;
   if (!appId) {
     res.status(503).json({ error: "Facebook OAuth not configured \u2014 set FACEBOOK_APP_ID" });
@@ -53061,7 +53114,7 @@ router7.get("/auth/facebook", (_req, res) => {
   });
   res.redirect(`https://www.facebook.com/v19.0/dialog/oauth?${params}`);
 });
-router7.get("/auth/facebook/callback", async (req, res) => {
+router8.get("/auth/facebook/callback", async (req, res) => {
   const { code, error } = req.query;
   const frontend = frontendBase();
   if (error || !code) {
@@ -53102,28 +53155,25 @@ router7.get("/auth/facebook/callback", async (req, res) => {
     res.redirect(`${frontendBase()}/?oauth_error=server_error`);
   }
 });
-var oauth_default = router7;
+var oauth_default = router8;
 
 // src/routes/categories.ts
-var import_express8 = __toESM(require_express2(), 1);
-var router8 = (0, import_express8.Router)();
-var mockCategories = [
-  { slug: "new", name: "\u062C\u062F\u064A\u062F\u0646\u0627", image_url: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=300&q=80&fm=webp" },
-  { slug: "clothes", name: "\u0645\u0644\u0627\u0628\u0633", image_url: "https://images.unsplash.com/photo-1551232864-3f0890e580d9?w=300&q=80&fm=webp" },
-  { slug: "shoes", name: "\u0623\u062D\u0630\u064A\u0629", image_url: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&q=80&fm=webp" },
-  { slug: "perfumes", name: "\u0639\u0637\u0648\u0631", image_url: "https://images.unsplash.com/photo-1541643600914-78b084683702?w=300&q=80&fm=webp" },
-  { slug: "jewelry", name: "\u0645\u062C\u0648\u0647\u0631\u0627\u062A", image_url: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&q=80&fm=webp" },
-  { slug: "offers", name: "\u0639\u0631\u0648\u0636", image_url: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=300&q=80&fm=webp" }
-];
-router8.get("/categories", (_req, res) => {
-  res.json(mockCategories);
-});
-var categories_default = router8;
-
-// src/routes/orders.ts
 var import_express9 = __toESM(require_express2(), 1);
 var router9 = (0, import_express9.Router)();
-router9.get("/orders", authMiddleware, async (req, res, next) => {
+router9.get("/categories", async (_req, res, next) => {
+  try {
+    const rows = await db.select().from(categoriesTable).orderBy(categoriesTable.id);
+    res.json(rows);
+  } catch (err) {
+    next(err);
+  }
+});
+var categories_default = router9;
+
+// src/routes/orders.ts
+var import_express10 = __toESM(require_express2(), 1);
+var router10 = (0, import_express10.Router)();
+router10.get("/orders", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const orders = await db.select().from(ordersTable).where(eq(ordersTable.user_id, userId)).orderBy(desc(ordersTable.created_at));
@@ -53138,7 +53188,7 @@ router9.get("/orders", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router9.post("/orders", authMiddleware, async (req, res, next) => {
+router10.post("/orders", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const {
@@ -53203,7 +53253,7 @@ router9.post("/orders", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router9.post("/orders/:id/cancel", authMiddleware, async (req, res, next) => {
+router10.post("/orders/:id/cancel", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const orderId = Number(req.params.id);
@@ -53230,7 +53280,7 @@ router9.post("/orders/:id/cancel", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router9.post("/orders/:id/return", authMiddleware, async (req, res, next) => {
+router10.post("/orders/:id/return", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const orderId = Number(req.params.id);
@@ -53257,12 +53307,12 @@ router9.post("/orders/:id/return", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-var orders_default = router9;
+var orders_default = router10;
 
 // src/routes/notifications.ts
-var import_express10 = __toESM(require_express2(), 1);
-var router10 = (0, import_express10.Router)();
-router10.get("/notifications", authMiddleware, async (req, res, next) => {
+var import_express11 = __toESM(require_express2(), 1);
+var router11 = (0, import_express11.Router)();
+router11.get("/notifications", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const rows = await db.select().from(notificationsTable).where(
@@ -53276,7 +53326,7 @@ router10.get("/notifications", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router10.patch("/notifications/:id/read", authMiddleware, async (req, res, next) => {
+router11.patch("/notifications/:id/read", authMiddleware, async (req, res, next) => {
   try {
     const id = Number(req.params.id);
     if (isNaN(id)) {
@@ -53289,17 +53339,17 @@ router10.patch("/notifications/:id/read", authMiddleware, async (req, res, next)
     next(err);
   }
 });
-var notifications_default = router10;
+var notifications_default = router11;
 
 // src/routes/coupons.ts
-var import_express11 = __toESM(require_express2(), 1);
-var router11 = (0, import_express11.Router)();
+var import_express12 = __toESM(require_express2(), 1);
+var router12 = (0, import_express12.Router)();
 var COUPONS = {
   NAKHBA10: { discountPct: 10, description: "\u062E\u0635\u0645 \u0661\u0660\u066A \u0639\u0644\u0649 \u062C\u0645\u064A\u0639 \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A" },
   NAKHBA20: { discountPct: 20, description: "\u062E\u0635\u0645 \u0662\u0660\u066A \u0639\u0644\u0649 \u062C\u0645\u064A\u0639 \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A" },
   WELCOME5: { discountPct: 5, description: "\u062E\u0635\u0645 \u0665\u066A \u0644\u0644\u0645\u0633\u062A\u062E\u062F\u0645\u064A\u0646 \u0627\u0644\u062C\u062F\u062F" }
 };
-router11.post("/coupons/validate", (req, res) => {
+router12.post("/coupons/validate", (req, res) => {
   const { code } = req.body;
   if (!code?.trim()) {
     res.status(400).json({ error: "\u0643\u0648\u062F \u0627\u0644\u0643\u0648\u0628\u0648\u0646 \u0645\u0637\u0644\u0648\u0628" });
@@ -53313,12 +53363,12 @@ router11.post("/coupons/validate", (req, res) => {
   }
   res.json({ code: upper, discountPct: coupon.discountPct, description: coupon.description });
 });
-var coupons_default = router11;
+var coupons_default = router12;
 
 // src/routes/price-alerts.ts
-var import_express12 = __toESM(require_express2(), 1);
-var router12 = (0, import_express12.Router)();
-router12.get("/price-alerts", authMiddleware, async (req, res, next) => {
+var import_express13 = __toESM(require_express2(), 1);
+var router13 = (0, import_express13.Router)();
+router13.get("/price-alerts", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const alerts = await db.select().from(priceAlertsTable).where(eq(priceAlertsTable.user_id, userId));
@@ -53327,7 +53377,7 @@ router12.get("/price-alerts", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router12.post("/price-alerts", authMiddleware, async (req, res, next) => {
+router13.post("/price-alerts", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const { product_id, product_name, product_image, current_price, target_price } = req.body;
@@ -53360,7 +53410,7 @@ router12.post("/price-alerts", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router12.delete("/price-alerts/:id", authMiddleware, async (req, res, next) => {
+router13.delete("/price-alerts/:id", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const id = Number(req.params.id);
@@ -53374,7 +53424,7 @@ router12.delete("/price-alerts/:id", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router12.delete("/price-alerts/product/:productId", authMiddleware, async (req, res, next) => {
+router13.delete("/price-alerts/product/:productId", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const productId = Number(req.params.productId);
@@ -53388,12 +53438,12 @@ router12.delete("/price-alerts/product/:productId", authMiddleware, async (req, 
     next(err);
   }
 });
-var price_alerts_default = router12;
+var price_alerts_default = router13;
 
 // src/routes/reviews.ts
-var import_express13 = __toESM(require_express2(), 1);
-var router13 = (0, import_express13.Router)();
-router13.get("/products/:id/reviews", async (req, res, next) => {
+var import_express14 = __toESM(require_express2(), 1);
+var router14 = (0, import_express14.Router)();
+router14.get("/products/:id/reviews", async (req, res, next) => {
   try {
     const productId = Number(req.params.id);
     if (isNaN(productId)) {
@@ -53406,7 +53456,7 @@ router13.get("/products/:id/reviews", async (req, res, next) => {
     next(err);
   }
 });
-router13.post("/products/:id/reviews", authMiddleware, async (req, res, next) => {
+router14.post("/products/:id/reviews", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const productId = Number(req.params.id);
@@ -53438,12 +53488,12 @@ router13.post("/products/:id/reviews", authMiddleware, async (req, res, next) =>
     next(err);
   }
 });
-var reviews_default = router13;
+var reviews_default = router14;
 
 // src/routes/addresses.ts
-var import_express14 = __toESM(require_express2(), 1);
-var router14 = (0, import_express14.Router)();
-router14.get("/addresses", authMiddleware, async (req, res, next) => {
+var import_express15 = __toESM(require_express2(), 1);
+var router15 = (0, import_express15.Router)();
+router15.get("/addresses", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const addresses = await db.select().from(addressesTable).where(eq(addressesTable.user_id, userId)).orderBy(desc(addressesTable.is_default), asc(addressesTable.created_at));
@@ -53452,7 +53502,7 @@ router14.get("/addresses", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router14.post("/addresses", authMiddleware, async (req, res, next) => {
+router15.post("/addresses", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const { label, name, phone, city, district, street, apartment, zip, is_default } = req.body;
@@ -53482,7 +53532,7 @@ router14.post("/addresses", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router14.put("/addresses/:id", authMiddleware, async (req, res, next) => {
+router15.put("/addresses/:id", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const id = Number(req.params.id);
@@ -53512,7 +53562,7 @@ router14.put("/addresses/:id", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router14.delete("/addresses/:id", authMiddleware, async (req, res, next) => {
+router15.delete("/addresses/:id", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const id = Number(req.params.id);
@@ -53533,7 +53583,7 @@ router14.delete("/addresses/:id", authMiddleware, async (req, res, next) => {
     next(err);
   }
 });
-router14.put("/addresses/:id/set-default", authMiddleware, async (req, res, next) => {
+router15.put("/addresses/:id/set-default", authMiddleware, async (req, res, next) => {
   try {
     const userId = req.user.userId;
     const id = Number(req.params.id);
@@ -53549,7 +53599,7 @@ router14.put("/addresses/:id/set-default", authMiddleware, async (req, res, next
     next(err);
   }
 });
-var addresses_default = router14;
+var addresses_default = router15;
 
 // ../../node_modules/.pnpm/express-rate-limit@8.5.2_express@5.2.1/node_modules/express-rate-limit/dist/index.mjs
 var import_ip_address = __toESM(require_ip_address(), 1);
@@ -54515,24 +54565,25 @@ var authRateLimiter = rate_limit_default({
 });
 
 // src/routes/index.ts
-var router15 = (0, import_express15.Router)();
-router15.use(health_default);
-router15.use(products_default);
-router15.use(brands_default);
-router15.use(cart_default);
-router15.use(wishlist_default);
-router15.use(categories_default);
-router15.use("/auth/login", authRateLimiter);
-router15.use("/auth/register", authRateLimiter);
-router15.use(auth_default);
-router15.use(oauth_default);
-router15.use(orders_default);
-router15.use(notifications_default);
-router15.use(coupons_default);
-router15.use(price_alerts_default);
-router15.use(reviews_default);
-router15.use(addresses_default);
-var routes_default = router15;
+var router16 = (0, import_express16.Router)();
+router16.use(health_default);
+router16.use(img_default);
+router16.use(products_default);
+router16.use(brands_default);
+router16.use(cart_default);
+router16.use(wishlist_default);
+router16.use(categories_default);
+router16.use("/auth/login", authRateLimiter);
+router16.use("/auth/register", authRateLimiter);
+router16.use(auth_default);
+router16.use(oauth_default);
+router16.use(orders_default);
+router16.use(notifications_default);
+router16.use(coupons_default);
+router16.use(price_alerts_default);
+router16.use(reviews_default);
+router16.use(addresses_default);
+var routes_default = router16;
 
 // src/middlewares/error-handler.ts
 function errorHandler(err, req, res, _next) {
@@ -54542,7 +54593,7 @@ function errorHandler(err, req, res, _next) {
 }
 
 // src/app.ts
-var app = (0, import_express16.default)();
+var app = (0, import_express17.default)();
 app.use(
   (0, import_pino_http.default)({
     logger,
@@ -54569,8 +54620,8 @@ app.use((0, import_cors.default)({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "x-device-id"]
 }));
-app.use(import_express16.default.json());
-app.use(import_express16.default.urlencoded({ extended: true }));
+app.use(import_express17.default.json());
+app.use(import_express17.default.urlencoded({ extended: true }));
 app.use("/api/v1", routes_default);
 app.use(errorHandler);
 var app_default = app;

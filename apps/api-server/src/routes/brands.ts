@@ -1,17 +1,14 @@
-import { Router, type IRouter, type Request, type Response } from "express";
+import { Router, type IRouter, type NextFunction, type Request, type Response } from "express";
+import { db } from "@workspace/db";
+import { brandsTable } from "@workspace/db/schema";
 
 const router: IRouter = Router();
 
-const mockBrands = [
-  { id: "chanel",   label: "CHANEL",        icon: "/brands/chanel.png" },
-  { id: "dior",     label: "DIOR",           icon: "/brands/dior.png" },
-  { id: "gucci",    label: "GUCCI",          icon: "/brands/gucci.png" },
-  { id: "lv",       label: "LOUIS VUITTON",  icon: "/brands/louis-vuitton.png" },
-  { id: "versace",  label: "VERSACE",        icon: "/brands/versace.png" },
-];
-
-router.get("/brands", (_req: Request, res: Response) => {
-  res.json(mockBrands);
+router.get("/brands", async (_req: Request, res: Response, next: NextFunction) => {
+  try {
+    const rows = await db.select().from(brandsTable).orderBy(brandsTable.label);
+    res.json(rows);
+  } catch (err) { next(err); }
 });
 
 export default router;

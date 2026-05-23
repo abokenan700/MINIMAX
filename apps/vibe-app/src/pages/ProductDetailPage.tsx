@@ -278,7 +278,9 @@ function ImageGallery({ images, name, badges }: {
                 transformOrigin: "center center",
                 willChange: "transform",
               }}
-              onError={(e) => { e.currentTarget.style.opacity = "0"; }}
+              onError={(e) => {
+                e.currentTarget.src = `https://placehold.co/600x750/EDE8E1/AEA59A?text=%D9%86%D8%AE%D8%A8%D8%A9`;
+              }}
             />
           </div>
         ))}

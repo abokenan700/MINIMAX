@@ -1,5 +1,6 @@
 import { Router, type IRouter } from "express";
 import healthRouter        from "./health";
+import imgRouter           from "./img";
 import productsRouter      from "./products";
 import brandsRouter        from "./brands";
 import cartRouter          from "./cart";
@@ -18,6 +19,7 @@ import { authRateLimiter } from "../middlewares/rate-limit";
 const router: IRouter = Router();
 
 router.use(healthRouter);
+router.use(imgRouter);
 router.use(productsRouter);
 router.use(brandsRouter);
 router.use(cartRouter);
