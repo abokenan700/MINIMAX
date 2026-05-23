@@ -8,7 +8,6 @@ import { useWishlist } from "../context/WishlistContext";
 import { useGetProducts } from "@workspace/api-client-react";
 import type { CartItem } from "../context/CartContext";
 import type { Product } from "@workspace/api-client-react";
-import { Button } from "../components/ui";
 import { calcShipping } from "../lib/shippingPolicy";
 import { ProductCard } from "../components/ProductCard";
 import { Heart } from "../components/ui/Heart";
@@ -41,7 +40,7 @@ const DISCOUNT_OPTIONS = [
 type CartPanelKey = "sort" | "price" | "brand" | "category" | "extra";
 
 /* ═══════════════════════════════════════════════════════════════
-   Coupon Input
+   Coupon Input — تصميم فاخر
 ═══════════════════════════════════════════════════════════════ */
 function CouponInput() {
   const { couponCode, applyCoupon, removeCoupon, discountPct } = useCart();
@@ -67,31 +66,62 @@ function CouponInput() {
   const applied = !!couponCode;
 
   return (
-    <div dir="rtl" style={{ padding: "10px 12px", background: "var(--bg-card)", borderBottom: "1px solid var(--border-warm)" }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, flex: 1, padding: "10px 12px", borderRadius: 12, border: `1.5px solid ${error ? "#E04545" : applied ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: "var(--bg-page)", transition: "border-color 0.2s" }}>
-          <Tag size={14} style={{ color: applied ? "var(--color-brand-500)" : "var(--text-muted)", flexShrink: 0 }} />
-          {applied ? (
-            <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--color-brand-500)" }}>{couponCode} — خصم {discountPct}٪ ✓</span>
-              <button onClick={reset} style={{ background: "transparent", border: "none", cursor: "pointer", color: "#9A9692", padding: 0, display: "flex" }}><X size={14} /></button>
-            </div>
-          ) : (
-            <input
-              value={code} onChange={(e) => { setCode(e.target.value.toUpperCase()); setError(""); }}
-              onKeyDown={(e) => e.key === "Enter" && void apply()}
-              placeholder="أدخل كود الخصم"
-              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontFamily: "var(--font-main)", fontSize: 13, color: "var(--text-primary)", direction: "rtl", letterSpacing: 1 }} />
-          )}
+    <div dir="rtl" style={{ margin: "12px 12px 0", borderRadius: 18, overflow: "hidden", border: `1.5px solid ${error ? "rgba(224,69,69,0.5)" : applied ? "rgba(212,175,55,0.55)" : "var(--border-warm)"}`, background: "var(--bg-card)", transition: "border-color 0.25s" }}>
+      {/* رأس الكوبون */}
+      <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "10px 14px", borderBottom: `1px solid ${applied ? "rgba(212,175,55,0.2)" : "var(--border)"}` }}>
+        <div style={{ width: 30, height: 30, borderRadius: 10, background: applied ? "linear-gradient(135deg,#d4af37,#b8933a)" : "var(--color-brand-50)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "background 0.3s" }}>
+          <Tag size={14} style={{ color: applied ? "#fff" : "var(--color-brand-500)" }} />
         </div>
-        {!applied && (
-          <button onClick={() => void apply()} disabled={busy}
-            style={{ padding: "10px 16px", borderRadius: 12, border: "none", background: "var(--gradient-brand)", color: "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy ? "not-allowed" : "pointer", whiteSpace: "nowrap", opacity: busy ? 0.7 : 1, boxShadow: "var(--shadow-btn)" }}>
-            {busy ? "..." : "تطبيق"}
-          </button>
+        <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>
+          {applied ? "كود الخصم مُفعَّل" : "لديك كود خصم؟"}
+        </span>
+        {applied && (
+          <span style={{ marginInlineStart: "auto", fontSize: 11, fontWeight: 700, padding: "3px 10px", borderRadius: 20, background: "linear-gradient(135deg,rgba(212,175,55,0.15),rgba(184,118,62,0.15))", color: "#b8933a", border: "1px solid rgba(212,175,55,0.35)" }}>
+            خصم {discountPct}٪
+          </span>
         )}
       </div>
-      {error && <p style={{ fontSize: 11, color: "#E04545", marginTop: 5, paddingInlineStart: 4 }}>{error}</p>}
+
+      {/* حقل الإدخال أو حالة التطبيق */}
+      <div style={{ padding: "10px 14px" }}>
+        {applied ? (
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22c55e" }} />
+              <span style={{ fontFamily: "var(--font-numeric)", fontSize: 14, fontWeight: 700, letterSpacing: 2, color: "#b8933a" }}>
+                {couponCode}
+              </span>
+            </div>
+            <button onClick={reset}
+              style={{ display: "flex", alignItems: "center", gap: 4, padding: "6px 12px", borderRadius: 20, border: "1px solid var(--border)", background: "transparent", fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", cursor: "pointer" }}>
+              <X size={11} strokeWidth={2.5} />
+              إلغاء
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <input
+              value={code}
+              onChange={(e) => { setCode(e.target.value.toUpperCase()); setError(""); }}
+              onKeyDown={(e) => e.key === "Enter" && void apply()}
+              placeholder="أدخل الكود هنا"
+              style={{ flex: 1, background: "transparent", border: "none", outline: "none", fontFamily: "var(--font-numeric)", fontSize: 14, fontWeight: 600, color: "var(--text-primary)", direction: "rtl", letterSpacing: 2 }}
+            />
+            <button
+              onClick={() => void apply()}
+              disabled={busy || !code.trim()}
+              style={{ padding: "8px 18px", borderRadius: 12, border: "none", background: busy || !code.trim() ? "var(--bg-surface-warm)" : "var(--gradient-brand)", color: busy || !code.trim() ? "var(--text-muted)" : "#fff", fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, cursor: busy || !code.trim() ? "not-allowed" : "pointer", whiteSpace: "nowrap", transition: "all 0.2s", boxShadow: !busy && code.trim() ? "var(--shadow-btn)" : "none" }}>
+              {busy ? "جاري..." : "تطبيق"}
+            </button>
+          </div>
+        )}
+        {error && (
+          <p style={{ fontSize: 11, color: "#E04545", marginTop: 6, display: "flex", alignItems: "center", gap: 4 }}>
+            <span style={{ display: "inline-block", width: 5, height: 5, borderRadius: "50%", background: "#E04545", flexShrink: 0 }} />
+            {error}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
@@ -449,7 +479,7 @@ function applyCartFilters(
   if (filters.brands.length > 0) list = list.filter(it => filters.brands.includes(it.brand));
   if (filters.categories.length > 0) list = list.filter(it => {
     const cat = productCategoryMap.get(it.id);
-    return cat ? filters.categories.includes(cat) : false;
+    return cat ? (filters.categories as string[]).includes(cat) : false;
   });
 
   switch (sort) {
@@ -476,7 +506,7 @@ export function CartPage() {
 
   const productCategoryMap = useMemo(() => {
     const map = new Map<number, string>();
-    (allProducts ?? []).forEach(p => { if (p.category) map.set(p.id, p.category); });
+    (allProducts ?? []).forEach(p => { const cat = (p as unknown as { category?: string }).category; if (cat) map.set(p.id, cat); });
     return map;
   }, [allProducts]);
 
@@ -563,48 +593,75 @@ export function CartPage() {
               )}
             </div>
 
-            <div style={{ marginTop: 12 }}><CouponInput /></div>
+            <CouponInput />
             <CartUpsell />
 
-            <div style={{ margin: "4px 12px 12px", borderRadius: 18, background: "var(--bg-card)", border: "1px solid var(--border-warm)", overflow: "hidden" }}>
+            {/* ملخص الطلب */}
+            <div dir="rtl" style={{ margin: "12px 12px 12px", borderRadius: 18, overflow: "hidden", border: "1px solid var(--border-warm)", background: "var(--bg-card)" }}>
+              {/* رأس الملخص */}
+              <div style={{ padding: "12px 14px", borderBottom: "1px solid var(--border)", display: "flex", alignItems: "center", gap: 8 }}>
+                <div style={{ width: 4, height: 16, borderRadius: 2, background: "var(--gradient-brand)", flexShrink: 0 }} />
+                <span style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)" }}>ملخص الطلب</span>
+              </div>
+
+              {/* بنود الملخص */}
+              <div style={{ padding: "4px 0" }}>
                 {[
-                  { label: "إجمالي المنتجات", value: `${total.toLocaleString("ar-SA")} ر.س`, green: false },
-                  ...(discountAmount > 0 ? [{ label: `خصم الكوبون (${couponCode})`, value: `- ${discountAmount.toLocaleString("ar-SA")} ر.س`, green: true }] : []),
-                  { label: "رسوم الشحن", value: shipping === 0 ? "مجاني 🎉" : `${shipping} ر.س`, green: shipping === 0 },
-                ].map(({ label, value, green }) => (
-                  <div key={label} className="flex items-center justify-between" style={{ padding: "11px 14px", borderBottom: "1px solid var(--border)" }}>
-                    <span style={{ fontSize: "13px", color: "var(--text-secondary)" }}>{label}</span>
-                    <span className="font-semibold" style={{ fontSize: "13px", color: green ? "var(--color-success-600)" : "var(--text-primary)" }}>{value}</span>
+                  { label: "إجمالي المنتجات", value: `${total.toLocaleString("ar-SA")} ر.س`, accent: false },
+                  ...(discountAmount > 0 ? [{ label: `كوبون (${couponCode})`, value: `- ${discountAmount.toLocaleString("ar-SA")} ر.س`, accent: true }] : []),
+                  { label: "رسوم الشحن", value: shipping === 0 ? "مجاني" : `${shipping} ر.س`, accent: shipping === 0 },
+                ].map(({ label, value, accent }) => (
+                  <div key={label} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "9px 14px" }}>
+                    <span style={{ fontFamily: "var(--font-main)", fontSize: 13, color: "var(--text-secondary)" }}>{label}</span>
+                    <span style={{ fontFamily: "var(--font-numeric)", fontSize: 13, fontWeight: 600, color: accent ? "#22c55e" : "var(--text-primary)" }}>{value}</span>
                   </div>
                 ))}
-                <div className="flex items-center justify-between" style={{ padding: "13px 14px" }}>
-                  <span className="font-bold" style={{ fontSize: "15px", color: "var(--text-primary)" }}>الإجمالي</span>
-                  <span className="font-bold" style={{ fontSize: "17px", color: "var(--text-brand)" }}>{grandTotal.toLocaleString("ar-SA")} ر.س</span>
+              </div>
+
+              {/* الإجمالي */}
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "13px 14px", borderTop: "1px solid var(--border-warm)", background: "linear-gradient(135deg,rgba(212,175,55,0.05),rgba(184,118,62,0.05))" }}>
+                <span style={{ fontFamily: "var(--font-main)", fontSize: 14, fontWeight: 700, color: "var(--text-primary)" }}>الإجمالي</span>
+                <div className="flex items-baseline gap-1" dir="ltr">
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, color: "var(--text-muted)" }}>ر.س</span>
+                  <span style={{ fontFamily: "var(--font-numeric)", fontSize: 20, fontWeight: 800, color: "var(--text-brand)", fontVariantNumeric: "tabular-nums" }}>
+                    {grandTotal.toLocaleString("ar-SA")}
+                  </span>
                 </div>
               </div>
+            </div>
           </div>
 
-          <div className="px-3 pt-2 pb-3" style={{ flexShrink: 0, background: "#FFFFFF", borderTop: "1px solid var(--border-warm)" }}>
-            <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 10 }} dir="rtl">
+          {/* زر الدفع المثبت */}
+          <div style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "10px 12px 12px" }}>
+            {/* شارات الثقة */}
+            <div dir="rtl" style={{ display: "flex", justifyContent: "center", gap: 0, marginBottom: 10 }}>
               {[
-                { icon: "🔒", text: "دفع آمن 100%" },
+                { icon: "🔒", text: "دفع آمن" },
                 { icon: "✓", text: "منتجات أصلية" },
-                { icon: "↩", text: "إرجاع مجاني 30 يوماً" },
-              ].map(({ icon, text }) => (
-                <div key={text} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                { icon: "↩", text: "إرجاع 30 يوماً" },
+              ].map(({ icon, text }, i) => (
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: 4, padding: "0 10px", borderInlineEnd: i < 2 ? "1px solid var(--border)" : "none" }}>
                   <span style={{ fontSize: 11 }}>{icon}</span>
-                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 600 }}>{text}</span>
+                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 600, whiteSpace: "nowrap" }}>{text}</span>
                 </div>
               ))}
             </div>
-            <Button
+
+            {/* زر إتمام الطلب */}
+            <button
               onClick={() => navigate("/checkout")}
-              variant="primary"
-              size="lg"
-              className="w-full rounded-2xl"
-              style={{ background: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-500))" }}>
-              إتمام الطلب — {grandTotal.toLocaleString("ar-SA")} ر.س
-            </Button>
+              style={{ width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "15px 20px", borderRadius: 18, border: "none", background: "var(--gradient-brand)", color: "#fff", cursor: "pointer", boxShadow: "0 4px 20px rgba(234,88,12,0.35)", transition: "transform 0.15s, box-shadow 0.15s" }}
+              onMouseDown={(e) => { e.currentTarget.style.transform = "scale(0.98)"; e.currentTarget.style.boxShadow = "0 2px 10px rgba(234,88,12,0.25)"; }}
+              onMouseUp={(e) => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 4px 20px rgba(234,88,12,0.35)"; }}
+            >
+              <span style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700 }}>إتمام الطلب</span>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 3 }} dir="ltr">
+                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, opacity: 0.85 }}>ر.س</span>
+                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 18, fontWeight: 800, fontVariantNumeric: "tabular-nums" }}>
+                  {grandTotal.toLocaleString("ar-SA")}
+                </span>
+              </div>
+            </button>
           </div>
         </>
       )}

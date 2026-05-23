@@ -5,6 +5,8 @@ import { CartButton } from "../components/CartButton";
 import { SearchBar } from "../components/SearchBar";
 import { Stars } from "../components/Stars";
 import { useWishlist } from "../context/WishlistContext";
+import { ProductCard } from "../components/ProductCard";
+import { Divider } from "../components/ui/Divider";
 import {
   MiniSheet, FilterBarBtn,
   SortContent, PriceContent, RatingContent, BrandContent,
@@ -220,107 +222,88 @@ function WishlistControlsBar({
 }
 
 /* ────────────────────────────────────────────────────────────────
-   WISH CARD — عرض الشبكة
+   WISH CARD — عرض الشبكة (يستخدم ProductCard الأصلي مباشرة)
 ──────────────────────────────────────────────────────────────── */
-function WishCard({ item, onRemove }: { item: Product; onRemove: () => void }) {
-  const [, navigate] = useLocation();
-  return (
-    <article
-      className="card-pressable flex flex-col rounded-2xl overflow-hidden"
-      style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", cursor: "pointer" }}
-      aria-label={`${item.name} — ${item.price.toLocaleString("ar-SA")} ريال`}
-      onClick={() => navigate(`/product/${item.id}`)}
-    >
-      <div className="relative w-full" style={{ aspectRatio: "1 / 1", background: "var(--card-img-bg)" }}>
-        <img src={item.image} alt={item.name} loading="lazy" className="absolute inset-0 w-full h-full object-contain p-3" onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-        <button
-          onClick={(e) => { e.stopPropagation(); onRemove(); }}
-          className="absolute top-0 end-0 flex items-start justify-end"
-          style={{ minWidth: 44, minHeight: 44, padding: "8px 8px 0 0", background: "transparent", border: "none", cursor: "pointer" }}
-          aria-label="إزالة من المفضلة">
-          <span className="w-7 h-7 flex items-center justify-center rounded-full" style={{ background: "rgba(255,255,255,0.9)" }}>
-            <Heart size={13} className="fill-red-400 stroke-red-400" />
-          </span>
-        </button>
-        {item.discount > 0 && (
-          <span className="absolute top-2 start-2 rounded-full px-2 py-0.5 font-bold leading-none"
-            style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", background: "var(--color-brand-50)", color: "var(--color-brand-700)" }}>
-            {item.discount}%
-          </span>
-        )}
-        {item.is_new && (
-          <span className="absolute bottom-2 start-2 rounded-full px-2 py-0.5 font-bold leading-none"
-            style={{ fontSize: "clamp(8px, 2.2vw, 9px)", background: "linear-gradient(135deg,var(--color-brand-500),var(--color-brand-500))", color: "#fff" }}>
-            جديد
-          </span>
-        )}
-      </div>
-      <div className="gold-divider" />
-      <div className="flex flex-col gap-1 px-2.5 pt-2 pb-2.5">
-        <p className="leading-snug font-bold" style={{ fontSize: "clamp(9px, 2.4vw, 10.5px)", color: "var(--text-brand)" }}>{item.brand}</p>
-        <p className="leading-snug line-clamp-1 font-semibold" style={{ fontSize: "12px", color: "var(--text-primary)" }}>{item.name}</p>
-        <Stars rating={item.rating} />
-        <div className="flex items-center justify-between mt-0.5">
-          <div className="flex items-baseline gap-0.5">
-            <span className="font-bold" style={{ fontSize: "14px", color: "var(--text-primary)" }}>{item.price.toLocaleString("ar-SA")}</span>
-            <span style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-secondary)" }}>ر.س</span>
-          </div>
-          {item.discount > 0 && (
-            <span className="line-through" style={{ fontSize: "clamp(8.5px, 2.3vw, 9.5px)", color: "var(--text-muted)" }}>
-              {item.original_price.toLocaleString("ar-SA")}
-            </span>
-          )}
-        </div>
-        <div className="mt-1" onClick={(e) => e.stopPropagation()}>
-          <CartButton size="md" product={item} selectedColor={item.colors?.[0]} />
-        </div>
-      </div>
-    </article>
-  );
+function WishCard({ item }: { item: Product }) {
+  return <ProductCard product={item} layout="vertical" density="compact" />;
 }
 
 /* ────────────────────────────────────────────────────────────────
    WISH ROW — عرض القائمة
 ──────────────────────────────────────────────────────────────── */
 function WishRow({ item, onRemove }: { item: Product; onRemove: () => void }) {
+  const { isWishlisted } = useWishlist();
   const [, navigate] = useLocation();
+  const liked = isWishlisted(item.id);
   return (
     <article
-      className="card-pressable flex rounded-2xl overflow-hidden"
-      style={{ background: "var(--card-bg)", border: "1px solid var(--card-border)", cursor: "pointer", direction: "rtl" }}
+      className="card-pressable flex overflow-hidden"
+      style={{
+        background: "var(--card-bg)",
+        border: "1px solid var(--card-border)",
+        borderRadius: "var(--radius-card)",
+        boxShadow: "var(--elev-2)",
+        cursor: "pointer",
+        direction: "rtl",
+      }}
+      aria-label={`${item.name} — ${item.price.toLocaleString("ar-SA")} ريال`}
       onClick={() => navigate(`/product/${item.id}`)}
     >
-      <div style={{ position: "relative", width: 100, height: 100, flexShrink: 0, background: "var(--card-img-bg)" }}>
-        <img src={item.image} alt={item.name} loading="lazy"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", padding: 10 }}
-          onError={(e) => { e.currentTarget.style.opacity = "0"; }} />
-        {item.discount > 0 && (
-          <span style={{ position: "absolute", top: 6, insetInlineStart: 6, fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: 20, background: "var(--color-brand-50)", color: "var(--color-brand-700)" }}>
-            {item.discount}%
+      {/* صورة المنتج */}
+      <div style={{ position: "relative", width: 110, height: 110, flexShrink: 0, background: "var(--card-img-bg)" }}>
+        <img
+          src={item.image} alt={item.name} loading="lazy"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+          onError={(e) => { e.currentTarget.style.opacity = "0"; }}
+        />
+        {/* شارة جديد أو خصم */}
+        {item.is_new ? (
+          <span style={{ position: "absolute", top: 5, insetInlineStart: 5, fontSize: 9, fontWeight: 700, padding: "2px 7px", borderRadius: "var(--radius-xs)", background: "var(--color-brand-500)", color: "#fff" }}>
+            جديد
           </span>
-        )}
+        ) : item.discount > 0 ? (
+          <span style={{ position: "absolute", top: 5, insetInlineStart: 5, fontSize: 9, fontWeight: 700, padding: "2px 6px", borderRadius: "var(--radius-xs)", background: "var(--color-danger-600)", color: "#fff" }}>
+            -{item.discount}%
+          </span>
+        ) : null}
       </div>
-      <div style={{ height: "auto", width: 1, background: "linear-gradient(180deg,transparent,var(--color-brand-500),transparent)", opacity: 0.4, flexShrink: 0 }} />
+
+      {/* فاصل ذهبي عمودي */}
+      <Divider orientation="vertical" />
+
+      {/* المحتوى */}
       <div className="flex flex-col justify-between flex-1 min-w-0" style={{ padding: "10px 12px" }}>
         <div>
-          <p style={{ fontSize: 10, fontWeight: 700, color: "var(--text-brand)", marginBottom: 2 }}>{item.brand}</p>
-          <p className="line-clamp-2" style={{ fontSize: 13, fontWeight: 600, color: "var(--text-primary)", lineHeight: 1.3, marginBottom: 4 }}>{item.name}</p>
-          <Stars rating={item.rating} />
+          <p style={{ fontSize: "clamp(9px,2.4vw,10.5px)", fontWeight: 700, color: "var(--text-brand)", fontFamily: "var(--font-text)", marginBottom: 2 }}>
+            {item.brand}
+          </p>
+          <p className="line-clamp-2" style={{ fontSize: "clamp(11px,3vw,13px)", fontWeight: 600, color: "var(--text-primary)", lineHeight: "var(--leading-snug)", fontFamily: "var(--font-text)" }}>
+            {item.name}
+          </p>
+          <div className="mt-1">
+            <Stars rating={item.rating} />
+          </div>
         </div>
+
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 8 }}>
-          <div>
-            <span style={{ fontSize: 15, fontWeight: 800, color: "var(--text-primary)" }}>{item.price.toLocaleString("ar-SA")}</span>
-            <span style={{ fontSize: 10, color: "var(--text-secondary)", marginInlineStart: 2 }}>ر.س</span>
+          {/* السعر */}
+          <div className="flex items-baseline gap-0.5" dir="ltr">
+            <span style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)" }}>ر.س</span>
+            <span style={{ fontSize: "clamp(14px,3.8vw,16px)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-numeric)", fontVariantNumeric: "tabular-nums" }}>
+              {item.price.toLocaleString("ar-SA")}
+            </span>
             {item.discount > 0 && (
-              <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 7px", borderRadius: 20, background: "var(--color-brand-50)", color: "var(--color-brand-700)", marginInlineStart: 6 }}>
-                {item.discount}%
+              <span className="line-through" style={{ fontSize: "clamp(9px,2.4vw,10px)", color: "var(--text-muted)", fontFamily: "var(--font-numeric)", marginInlineStart: 4 }}>
+                {item.original_price.toLocaleString("ar-SA")}
               </span>
             )}
           </div>
+
+          {/* أزرار الإجراءات */}
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
             <button
               onClick={(e) => { e.stopPropagation(); onRemove(); }}
-              style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid rgba(224,69,69,0.3)", background: "#FEF0EE", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+              style={{ width: 34, height: 34, borderRadius: "50%", border: `1.5px solid ${liked ? "rgba(224,69,69,0.35)" : "var(--border-warm)"}`, background: liked ? "#FEF0EE" : "var(--card-bg)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", flexShrink: 0 }}
               aria-label="إزالة من المفضلة">
               <Heart size={13} className="fill-red-400 stroke-red-400" />
             </button>
@@ -435,7 +418,7 @@ export function WishlistPage() {
               <div className="grid grid-cols-2 gap-3 pb-3">
                 {filtered.map((item, i) => (
                   <div key={item.id} style={{ animation: `staggerFade 0.25s var(--ease-out) both ${i * 25}ms` }}>
-                    <WishCard item={item} onRemove={() => toggleWishlist(item)} />
+                    <WishCard item={item} />
                   </div>
                 ))}
               </div>
