@@ -53,9 +53,30 @@ export default defineConfig({
     dedupe: ["react", "react-dom"],
   },
   root: path.resolve(import.meta.dirname),
+  optimizeDeps: {
+    include: [
+      "react",
+      "react-dom",
+      "react-dom/client",
+      "wouter",
+      "@tanstack/react-query",
+      "framer-motion",
+      "lucide-react",
+      "sonner",
+    ],
+  },
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor:  ["react", "react-dom", "wouter", "@tanstack/react-query"],
+          motion:  ["framer-motion"],
+          icons:   ["lucide-react"],
+        },
+      },
+    },
   },
   server: {
     port,

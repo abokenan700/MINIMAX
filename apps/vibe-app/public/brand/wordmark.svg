@@ -2,7 +2,6 @@
   <title>نخبة</title>
   <defs>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@600&amp;display=swap');
       .wm { font-family: 'Reem Kufi Fun', 'Reem Kufi', serif; font-size: 21px; font-weight: 600; fill: #C2410C; letter-spacing: 0.18em; }
     </style>
   </defs>
