@@ -224,11 +224,11 @@ export function SearchPage() {
     navigate(`/search?${p.toString()}`);
   }
 
-  function handleBrandToggle(brand: string) {
-    const newBrands = filters.brands.includes(brand)
-      ? filters.brands.filter((b) => b !== brand)
-      : [...filters.brands, brand];
-    handleFiltersChange({ ...filters, brands: newBrands });
+  function handleCategorySelect(l1Label: string, _l2Label?: string) {
+    const p = new URLSearchParams(searchStr);
+    if (l1Label) p.set("category", l1Label); else p.delete("category");
+    p.delete("q");
+    navigate(`/search?${p.toString()}`);
   }
 
   function handleFiltersChange(newFilters: Filters) {
@@ -264,7 +264,7 @@ export function SearchPage() {
     return list;
   }, [results, filters, sortKey]);
 
-  const hasActiveFilters = filters.minPrice !== null || filters.maxPrice !== null || filters.minDiscount !== null || filters.minRating !== null || filters.isNew || filters.brands.length > 0 || filters.sizes.length > 0;
+  const hasActiveFilters = filters.minPrice !== null || filters.maxPrice !== null || filters.minDiscount !== null || filters.minRating !== null || filters.isNew || filters.brands.length > 0 || filters.sizes.length > 0 || categoryParam.length > 0;
 
   function removeFilter(key: keyof Filters, value?: string) {
     if (key === "brands" && value) {
@@ -302,10 +302,12 @@ export function SearchPage() {
                 sort={sortKey}
                 filters={filters}
                 viewMode={viewMode}
+                categoryParam={categoryParam}
                 onSortSelect={handleSortChange}
+                onFiltersChange={handleFiltersChange}
                 onFilterOpen={() => setShowFilter(true)}
                 onViewToggle={() => setViewMode((v) => v === "grid" ? "list" : "grid")}
-                onBrandToggle={handleBrandToggle}
+                onCategorySelect={handleCategorySelect}
                 onRemoveFilter={removeFilter}
               />
             )}
