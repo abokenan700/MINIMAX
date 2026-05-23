@@ -2,7 +2,7 @@
   <title>نخبة</title>
   <defs>
     <style>
-      .wm { font-family: 'Reem Kufi Fun', 'Reem Kufi', serif; font-size: 21px; font-weight: 600; fill: #C2410C; letter-spacing: 0.18em; }
+      .wm { font-family: 'Tajawal', sans-serif; font-size: 21px; font-weight: 600; fill: #C2410C; letter-spacing: 0.18em; }
     </style>
   </defs>
   <text class="wm" x="50%" y="19" text-anchor="middle" dominant-baseline="auto" direction="rtl">نخبة</text>

@@ -2,7 +2,7 @@
  * نخبة Visual Identity System v3.0
  * Brand:    #D4503A (brand-500) — terracotta, WCAG AA on white
  * Surface:  #FBFAF8 (neutral-25) — warm champagne page
- * Display:  Tajawal · Text: IBM Plex Sans Arabic
+ * Display:  Tajawal · Text: Tajawal
  * Grid:     4-pt geometric base
  *
  * Use CSS vars in style={{}} instead of raw values:
@@ -93,9 +93,9 @@ export const GRADIENT = {
 
 /* ─── Typography families ────────────────────────────────────────── */
 export const FONT = {
-  display: "var(--font-display)",   /* Reem Kufi Fun — editorial */
-  text:    "var(--font-text)",      /* IBM Plex Sans Arabic — UI */
-  numeric: "var(--font-numeric)",   /* IBM Plex Sans Arabic — prices */
+  display: "var(--font-display)",   /* Tajawal — display */
+  text:    "var(--font-text)",      /* Tajawal — UI */
+  numeric: "var(--font-numeric)",   /* Tajawal — prices */
   main:    "var(--font-main)",      /* alias for font-text */
 } as const;
 

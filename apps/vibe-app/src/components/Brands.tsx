@@ -44,7 +44,7 @@ export function Brands() {
         background: "var(--color-brand-500)",
         position: "relative",
         padding: "2px 0",
-        fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+        fontFamily: '"Tajawal", sans-serif',
         overflow: "hidden",
       }}
     >
@@ -91,7 +91,7 @@ export function Brands() {
         .brands-label {
           position: relative;
           z-index: 1;
-          font-family: "IBM Plex Sans Arabic", sans-serif;
+          font-family: "Tajawal", sans-serif;
           font-size: 12px;
           font-weight: 700;
           color: #d4af37;

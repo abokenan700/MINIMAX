@@ -1026,7 +1026,7 @@ html, body {
 }
 .banner-text-block button { pointer-events: auto; }
 
-/* Editorial banner title — Reem Kufi Fun for boutique feel */
+/* Editorial banner title */
 .banner-title {
   font-family: var(--font-display);
   font-size: clamp(17px, 5vw, 22px);
