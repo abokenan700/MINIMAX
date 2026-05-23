@@ -59,35 +59,38 @@ function MiniSheet({ title, onClose, children }: {
   }, [onClose]);
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 300 }}>
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 16px" }}>
       {/* backdrop */}
       <div onClick={onClose}
-        style={{ position: "absolute", inset: 0, background: "rgba(26,20,16,0.45)", backdropFilter: "blur(2px)" }} />
+        style={{ position: "absolute", inset: 0, background: "rgba(26,20,16,0.38)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }} />
 
-      {/* sheet */}
+      {/* floating window */}
       <div dir="rtl" style={{
-        position: "absolute", bottom: 0, left: 0, right: 0,
+        position: "relative", zIndex: 1,
+        width: "100%", maxWidth: 380,
         background: "var(--bg-card)",
-        borderRadius: "20px 20px 0 0",
-        maxHeight: "70vh",
+        borderRadius: 20,
+        maxHeight: "72vh",
         display: "flex", flexDirection: "column",
-        animation: "sheetUp 0.22s var(--ease-out) both",
-        boxShadow: "0 -4px 32px rgba(0,0,0,0.12)",
+        animation: "floatIn 0.2s var(--ease-out) both",
+        boxShadow: "0 8px 40px rgba(26,20,16,0.18), 0 2px 8px rgba(26,20,16,0.08)",
+        border: "1px solid var(--border-warm)",
       }}>
-        {/* handle */}
-        <div style={{ width: 36, height: 4, borderRadius: 2, background: "var(--border-warm)", margin: "10px auto 0", flexShrink: 0 }} />
-
         {/* header */}
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 14px", borderBottom: "1px solid var(--border-warm)", flexShrink: 0 }}>
+        <div style={{
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "14px 16px 13px",
+          borderBottom: "1px solid var(--border-warm)", flexShrink: 0,
+        }}>
           <h3 style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>{title}</h3>
           <button onClick={onClose}
-            style={{ width: 36, height: 36, borderRadius: "50%", border: "1px solid var(--border-warm)", background: "var(--bg-page)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+            style={{ width: 32, height: 32, borderRadius: "50%", border: "none", background: "var(--bg-page)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
             <X size={13} style={{ color: "var(--text-muted)" }} />
           </button>
         </div>
 
         {/* content */}
-        <div className="hide-scrollbar" style={{ overflowY: "auto", padding: "14px 16px 24px" }}>
+        <div className="hide-scrollbar" style={{ overflowY: "auto", padding: "16px 16px 20px" }}>
           {children}
         </div>
       </div>
@@ -418,30 +421,43 @@ export function FilterSheet({ filters, onApply, onClose }: {
   const activeCount = [local.minDiscount !== null, local.isNew, local.sizes.length > 0].filter(Boolean).length;
 
   return (
-    <div style={{ position: "absolute", inset: 0, zIndex: 200 }}>
-      <div className="bottom-sheet-overlay" onClick={onClose} />
-      <div className="bottom-sheet hide-scrollbar" dir="rtl" style={{ maxHeight: "88vh" }}>
-        <div className="bottom-sheet-handle" />
+    <div style={{ position: "fixed", inset: 0, zIndex: 300, display: "flex", alignItems: "center", justifyContent: "center", padding: "0 16px" }}>
+      {/* backdrop */}
+      <div onClick={onClose}
+        style={{ position: "absolute", inset: 0, background: "rgba(26,20,16,0.38)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }} />
 
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 14px", borderBottom: "1px solid var(--border-warm)", position: "sticky", top: 0, background: "var(--bg-card)", zIndex: 1 }}>
+      {/* floating window */}
+      <div dir="rtl" style={{
+        position: "relative", zIndex: 1,
+        width: "100%", maxWidth: 380,
+        background: "var(--bg-card)",
+        borderRadius: 20,
+        maxHeight: "80vh",
+        display: "flex", flexDirection: "column",
+        animation: "floatIn 0.2s var(--ease-out) both",
+        boxShadow: "0 8px 40px rgba(26,20,16,0.18), 0 2px 8px rgba(26,20,16,0.08)",
+        border: "1px solid var(--border-warm)",
+      }}>
+        {/* header */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px 13px", borderBottom: "1px solid var(--border-warm)", flexShrink: 0 }}>
           <h2 style={{ fontFamily: "var(--font-main)", fontSize: 15, fontWeight: 700, color: "var(--text-primary)", margin: 0 }}>
             فلاتر إضافية {activeCount > 0 && `(${activeCount})`}
           </h2>
-          <div style={{ display: "flex", gap: 8 }}>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             {activeCount > 0 && (
               <button onClick={() => setLocal(p => ({ ...p, minDiscount: null, isNew: false, sizes: [] }))}
-                style={{ padding: "6px 12px", borderRadius: 20, border: "1px solid var(--border-warm)", background: "transparent", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 600, color: "var(--text-secondary)", cursor: "pointer" }}>
+                style={{ padding: "5px 12px", borderRadius: 20, border: "1px solid var(--border-warm)", background: "transparent", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 600, color: "var(--text-secondary)", cursor: "pointer" }}>
                 إعادة ضبط
               </button>
             )}
             <button onClick={onClose}
-              style={{ width: 44, height: 44, borderRadius: "50%", border: "1px solid var(--border-warm)", background: "var(--bg-page)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-              <X size={14} style={{ color: "var(--text-muted)" }} />
+              style={{ width: 32, height: 32, borderRadius: "50%", border: "none", background: "var(--bg-page)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+              <X size={13} style={{ color: "var(--text-muted)" }} />
             </button>
           </div>
         </div>
 
-        <div style={{ padding: 16 }}>
+        <div className="hide-scrollbar" style={{ overflowY: "auto", padding: 16, flex: "1 1 auto" }}>
           {/* Discount */}
           <div style={{ marginBottom: 22 }}>
             <p style={{ fontFamily: "var(--font-main)", fontSize: 13, fontWeight: 700, color: "var(--text-primary)", marginBottom: 10 }}>نسبة الخصم</p>

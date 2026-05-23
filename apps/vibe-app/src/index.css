@@ -1558,6 +1558,12 @@ html, body {
 .btn-cta:hover  { background: var(--gradient-brand-hover); box-shadow: var(--shadow-btn-hover); transform: translateY(-1px); }
 .btn-cta:active { transform: scale(0.97) translateY(0); box-shadow: var(--shadow-btn); }
 
+/* ─── Floating Modal Animation ───────────────────────────────────── */
+@keyframes floatIn {
+  from { opacity: 0; transform: scale(0.93) translateY(6px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
+}
+
 /* ─── Discount Badge ─────────────────────────────────────────────── */
 .badge-discount {
   display: inline-flex; align-items: center;
