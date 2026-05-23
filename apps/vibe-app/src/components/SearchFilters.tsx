@@ -602,11 +602,11 @@ export function ControlsBar({ count, sort, filters, viewMode, categoryParam,
         {/* button row */}
         <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 12px" }}>
           <div className="hide-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", flex: 1 }}>
-            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")} />
+            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
+            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
             <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")} />
             <FilterBarBtn label={ratingLabel}   active={ratingActive}   onClick={() => setOpenPanel("rating")} />
-            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
-            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
+            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")} />
 
             {/* extra filters button */}
             <button onClick={onFilterOpen}
