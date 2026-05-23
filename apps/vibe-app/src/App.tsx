@@ -20,6 +20,7 @@ import { PromoBanners } from "./components/PromoBanners";
 import { ForYou } from "./components/ForYou";
 import { CompareProvider } from "./context/CompareContext";
 import { CompareSheet, CompareBar } from "./components/CompareSheet";
+import { NewArrivalsToast } from "./components/NewArrivalsToast";
 import { useAuth } from "./context/AuthContext";
 import { toast } from "sonner";
 
@@ -226,6 +227,7 @@ function HomePage() {
 
       {/* ① Header */}
       <Header />
+      <NewArrivalsToast />
 
       {/* ② Search + trending chips */}
       <SearchBar readOnly navigateTo="/search" hideTrending />
@@ -257,9 +259,11 @@ function HomePage() {
       </RevealSection>
 
       {/* ⑩ New arrivals */}
-      <RevealSection delay={40}>
-        <NewArrivals />
-      </RevealSection>
+      <div id="section-new-arrivals">
+        <RevealSection delay={40}>
+          <NewArrivals />
+        </RevealSection>
+      </div>
 
       {/* ⑪ Best sellers */}
       <RevealSection delay={40}>
