@@ -494,6 +494,19 @@ export function CartPage() {
         onChange={setQuery}
       />
 
+      <CartControlsBar
+        count={filtered.length}
+        sort={sort}
+        filters={filters}
+        availableBrands={availableBrands}
+        editMode={editMode}
+        selectedCount={selected.size}
+        onSortChange={setSort}
+        onFiltersChange={setFilters}
+        onToggleEdit={() => { setEditMode(v => !v); setSelected(new Set()); }}
+        onDeleteSelected={handleDeleteSelected}
+      />
+
       {items.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8">
           <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
@@ -511,19 +524,6 @@ export function CartPage() {
       ) : (
         <>
           <FreeShippingBar total={total} />
-
-          <CartControlsBar
-            count={filtered.length}
-            sort={sort}
-            filters={filters}
-            availableBrands={availableBrands}
-            editMode={editMode}
-            selectedCount={selected.size}
-            onSortChange={setSort}
-            onFiltersChange={setFilters}
-            onToggleEdit={() => { setEditMode(v => !v); setSelected(new Set()); }}
-            onDeleteSelected={handleDeleteSelected}
-          />
 
           <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col" dir="rtl">
             <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "12px 12px 0" }}>

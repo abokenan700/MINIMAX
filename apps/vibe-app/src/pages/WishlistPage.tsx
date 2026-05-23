@@ -395,6 +395,17 @@ export function WishlistPage() {
         onChange={setQuery}
       />
 
+      <WishlistControlsBar
+        count={filtered.length}
+        sort={sort}
+        filters={filters}
+        viewMode={viewMode}
+        availableBrands={availableBrands}
+        onSortChange={setSort}
+        onFiltersChange={setFilters}
+        onViewToggle={() => setViewMode(v => v === "grid" ? "list" : "grid")}
+      />
+
       {wishlist.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8">
           <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
@@ -409,19 +420,7 @@ export function WishlistPage() {
           </button>
         </div>
       ) : (
-        <>
-          <WishlistControlsBar
-            count={filtered.length}
-            sort={sort}
-            filters={filters}
-            viewMode={viewMode}
-            availableBrands={availableBrands}
-            onSortChange={setSort}
-            onFiltersChange={setFilters}
-            onViewToggle={() => setViewMode(v => v === "grid" ? "list" : "grid")}
-          />
-
-          <div className="flex-1 overflow-y-auto hide-scrollbar px-3 pt-3">
+        <div className="flex-1 overflow-y-auto hide-scrollbar px-3 pt-3">
             {filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 gap-4">
                 <p className="text-center" style={{ color: "var(--text-muted)", fontSize: 13 }}>لا توجد نتائج مطابقة</p>
@@ -450,7 +449,6 @@ export function WishlistPage() {
               </div>
             )}
           </div>
-        </>
       )}
     </div>
   );
