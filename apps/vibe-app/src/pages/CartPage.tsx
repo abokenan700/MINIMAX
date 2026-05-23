@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, CheckSquare, Square, ArrowRight, Tag, X, SlidersHorizontal } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -160,20 +160,16 @@ function CartCategoryContent({
    شريط التحكم والفلاتر الخاص بالسلة
 ═══════════════════════════════════════════════════════════════ */
 function CartControlsBar({
-  count, sort, filters, availableBrands, availableCategories, editMode, selectedCount,
-  onSortChange, onFiltersChange, onToggleEdit, onDeleteSelected,
+  count, sort, filters, availableBrands, availableCategories,
+  onSortChange, onFiltersChange,
 }: {
   count: number;
   sort: string;
   filters: Filters;
   availableBrands: string[];
   availableCategories: string[];
-  editMode: boolean;
-  selectedCount: number;
   onSortChange: (k: string) => void;
   onFiltersChange: (f: Filters) => void;
-  onToggleEdit: () => void;
-  onDeleteSelected: () => void;
 }) {
   const [openPanel, setOpenPanel] = useState<CartPanelKey | null>(null);
   const [showExtra, setShowExtra] = useState(false);
@@ -241,27 +237,6 @@ function CartControlsBar({
       <div dir="rtl" style={{ background: "var(--bg-card)", borderBottom: "1px solid var(--border-warm)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 12px" }}>
 
-          {/* زر تعديل / حذف */}
-          {count > 0 && (
-            <button
-              onClick={editMode && selectedCount > 0 ? onDeleteSelected : onToggleEdit}
-              style={{
-                flexShrink: 0, display: "flex", alignItems: "center", gap: 5,
-                padding: "6px 11px", borderRadius: 20,
-                border: `1.5px solid ${editMode ? (selectedCount > 0 ? "#E04545" : "var(--color-brand-500)") : "var(--border-warm)"}`,
-                background: editMode ? (selectedCount > 0 ? "#FEF0EE" : "var(--color-brand-50)") : "var(--bg-card)",
-                fontFamily: "var(--font-main)", fontSize: 12, fontWeight: 700,
-                color: editMode ? (selectedCount > 0 ? "#E04545" : "var(--text-brand)") : "var(--text-secondary)",
-                cursor: "pointer", whiteSpace: "nowrap",
-              }}>
-              {editMode
-                ? selectedCount > 0
-                  ? <><Trash2 size={11} strokeWidth={2} />حذف ({selectedCount})</>
-                  : "تم"
-                : "تعديل"}
-            </button>
-          )}
-
           <div className="hide-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", flex: 1 }}>
             <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
             <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
@@ -304,9 +279,8 @@ function CartControlsBar({
 /* ═══════════════════════════════════════════════════════════════
    Cart Item Card — نفس شكل ProductCard العمودي
 ═══════════════════════════════════════════════════════════════ */
-function CartItemCard({ item, editMode, selected, onSelect, onQtyChange, onRemove }: {
-  item: CartItem; editMode: boolean; selected: boolean;
-  onSelect: (id: number) => void;
+function CartItemCard({ item, onQtyChange, onRemove }: {
+  item: CartItem;
   onQtyChange: (id: number, color: string, delta: number) => void;
   onRemove: (id: number, color: string) => void;
 }) {
@@ -338,30 +312,16 @@ function CartItemCard({ item, editMode, selected, onSelect, onQtyChange, onRemov
       onClick={() => navigate(`/product/${item.id}`)}
       style={{
         background: "var(--card-bg)",
-        border: selected ? "1.5px solid var(--color-brand-500)" : "1px solid var(--card-border)",
+        border: "1px solid var(--card-border)",
         borderRadius: "var(--radius-card)",
-        boxShadow: selected ? "0 0 0 2px rgba(166,124,82,0.15), var(--elev-2)" : "var(--elev-2)",
+        boxShadow: "var(--elev-2)",
         cursor: "pointer",
       }}
     >
-      {/* ── تحديد (وضع التعديل) ── */}
-      {editMode && (
-        <button
-          onClick={(e) => { e.stopPropagation(); onSelect(item.id); }}
-          style={{ position: "absolute", top: 6, insetInlineStart: 6, zIndex: 10, background: "rgba(255,255,255,0.9)", border: "none", borderRadius: "50%", width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
-          aria-label={selected ? "إلغاء التحديد" : "تحديد"}>
-          {selected
-            ? <CheckSquare size={16} strokeWidth={2} style={{ color: "var(--color-brand-500)" }} />
-            : <Square size={16} strokeWidth={1.5} style={{ color: "var(--text-muted)" }} />}
-        </button>
-      )}
-
       {/* ── أيقونة المفضلة ── */}
-      {!editMode && (
-        <div style={{ position: "absolute", top: 6, insetInlineEnd: 6, zIndex: 10 }}>
-          <Heart pressed={wished} size={13} onClick={handleSaveForLater} />
-        </div>
-      )}
+      <div style={{ position: "absolute", top: 6, insetInlineEnd: 6, zIndex: 10 }}>
+        <Heart pressed={wished} size={13} onClick={handleSaveForLater} />
+      </div>
 
       {/* ── خصم + لون ── */}
       <div style={{ position: "absolute", top: 32, insetInlineStart: 4, zIndex: 10, display: "flex", flexDirection: "column", gap: 3 }}>
@@ -413,8 +373,7 @@ function CartItemCard({ item, editMode, selected, onSelect, onQtyChange, onRemov
         </div>
 
         {/* أدوات الكمية والحذف */}
-        {!editMode && (
-          <div className="flex items-center justify-between mt-1" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center justify-between mt-1" onClick={(e) => e.stopPropagation()}>
             {/* حذف */}
             <button onClick={() => onRemove(item.id, item.color)}
               style={{ minWidth: 36, minHeight: 36, display: "flex", alignItems: "center", justifyContent: "center", background: "transparent", border: "none", cursor: "pointer" }}
@@ -439,7 +398,6 @@ function CartItemCard({ item, editMode, selected, onSelect, onQtyChange, onRemov
               </button>
             </div>
           </div>
-        )}
       </div>
     </article>
   );
@@ -510,11 +468,9 @@ function applyCartFilters(
 export function CartPage() {
   const { items, total, discountAmount, couponCode, removeFromCart, updateQty } = useCart();
   const [, navigate] = useLocation();
-  const [editMode, setEditMode] = useState(false);
-  const [selected, setSelected] = useState<Set<number>>(new Set());
-  const [query, setQuery]       = useState("");
-  const [sort, setSort]         = useState("default");
-  const [filters, setFilters]   = useState<Filters>(DEFAULT_FILTERS);
+  const [query, setQuery]   = useState("");
+  const [sort, setSort]     = useState("default");
+  const [filters, setFilters] = useState<Filters>(DEFAULT_FILTERS);
 
   const { data: allProducts } = useGetProducts();
 
@@ -546,17 +502,6 @@ export function CartPage() {
   const shipping   = calcShipping(total);
   const grandTotal = total - discountAmount + shipping;
 
-  function handleSelect(id: number) {
-    setSelected((prev) => { const next = new Set(prev); next.has(id) ? next.delete(id) : next.add(id); return next; });
-  }
-
-  function handleDeleteSelected() {
-    const toDelete = items.filter(i => selected.has(i.id));
-    toDelete.forEach((i) => removeFromCart(i.id, i.color));
-    setSelected(new Set()); setEditMode(false);
-    toast(`تم حذف ${toDelete.length} عنصر${toDelete.length > 1 ? "ات" : ""} من السلة`, { duration: 4000, position: "top-center" });
-  }
-
   return (
     <div style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden", paddingBottom: "var(--nav-h)", background: "var(--bg-surface-warm)" }}>
       <h1 className="sr-only">السلة</h1>
@@ -573,12 +518,8 @@ export function CartPage() {
         filters={filters}
         availableBrands={availableBrands}
         availableCategories={availableCategories}
-        editMode={editMode}
-        selectedCount={selected.size}
         onSortChange={setSort}
         onFiltersChange={setFilters}
-        onToggleEdit={() => { setEditMode(v => !v); setSelected(new Set()); }}
-        onDeleteSelected={handleDeleteSelected}
       />
 
       {items.length === 0 ? (
@@ -610,8 +551,7 @@ export function CartPage() {
               ) : (
                 <div className="grid grid-cols-2 gap-3">
                   {filtered.map((item) => (
-                    <CartItemCard key={`${item.id}-${item.color}`} item={item} editMode={editMode} selected={selected.has(item.id)}
-                      onSelect={handleSelect}
+                    <CartItemCard key={`${item.id}-${item.color}`} item={item}
                       onQtyChange={updateQty}
                       onRemove={(id, color) => {
                         const itemName = items.find(i => i.id === id && i.color === color)?.name;
@@ -623,11 +563,10 @@ export function CartPage() {
               )}
             </div>
 
-            {!editMode && <div style={{ marginTop: 12 }}><CouponInput /></div>}
-            {!editMode && <CartUpsell />}
+            <div style={{ marginTop: 12 }}><CouponInput /></div>
+            <CartUpsell />
 
-            {!editMode && (
-              <div style={{ margin: "4px 12px 12px", borderRadius: 18, background: "var(--bg-card)", border: "1px solid var(--border-warm)", overflow: "hidden" }}>
+            <div style={{ margin: "4px 12px 12px", borderRadius: 18, background: "var(--bg-card)", border: "1px solid var(--border-warm)", overflow: "hidden" }}>
                 {[
                   { label: "إجمالي المنتجات", value: `${total.toLocaleString("ar-SA")} ر.س`, green: false },
                   ...(discountAmount > 0 ? [{ label: `خصم الكوبون (${couponCode})`, value: `- ${discountAmount.toLocaleString("ar-SA")} ر.س`, green: true }] : []),
@@ -643,33 +582,30 @@ export function CartPage() {
                   <span className="font-bold" style={{ fontSize: "17px", color: "var(--text-brand)" }}>{grandTotal.toLocaleString("ar-SA")} ر.س</span>
                 </div>
               </div>
-            )}
           </div>
 
-          {!editMode && (
-            <div className="px-3 pt-2 pb-3" style={{ flexShrink: 0, background: "#FFFFFF", borderTop: "1px solid var(--border-warm)" }}>
-              <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 10 }} dir="rtl">
-                {[
-                  { icon: "🔒", text: "دفع آمن 100%" },
-                  { icon: "✓", text: "منتجات أصلية" },
-                  { icon: "↩", text: "إرجاع مجاني 30 يوماً" },
-                ].map(({ icon, text }) => (
-                  <div key={text} style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    <span style={{ fontSize: 11 }}>{icon}</span>
-                    <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 600 }}>{text}</span>
-                  </div>
-                ))}
-              </div>
-              <Button
-                onClick={() => navigate("/checkout")}
-                variant="primary"
-                size="lg"
-                className="w-full rounded-2xl"
-                style={{ background: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-500))" }}>
-                إتمام الطلب — {grandTotal.toLocaleString("ar-SA")} ر.س
-              </Button>
+          <div className="px-3 pt-2 pb-3" style={{ flexShrink: 0, background: "#FFFFFF", borderTop: "1px solid var(--border-warm)" }}>
+            <div style={{ display: "flex", justifyContent: "center", gap: 16, marginBottom: 10 }} dir="rtl">
+              {[
+                { icon: "🔒", text: "دفع آمن 100%" },
+                { icon: "✓", text: "منتجات أصلية" },
+                { icon: "↩", text: "إرجاع مجاني 30 يوماً" },
+              ].map(({ icon, text }) => (
+                <div key={text} style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                  <span style={{ fontSize: 11 }}>{icon}</span>
+                  <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 600 }}>{text}</span>
+                </div>
+              ))}
             </div>
-          )}
+            <Button
+              onClick={() => navigate("/checkout")}
+              variant="primary"
+              size="lg"
+              className="w-full rounded-2xl"
+              style={{ background: "linear-gradient(135deg, var(--color-brand-500), var(--color-brand-500))" }}>
+              إتمام الطلب — {grandTotal.toLocaleString("ar-SA")} ر.س
+            </Button>
+          </div>
         </>
       )}
     </div>
