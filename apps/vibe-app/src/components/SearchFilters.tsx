@@ -265,7 +265,12 @@ function CategoryContent({ categoryParam, onSelect }: {
   const [activeL2Id,  setActiveL2Id]  = useState<string | null>(null);
 
   const l2ForActive = activeL1Id ? l2Categories.filter(c => c.parentId === activeL1Id) : [];
-  const l3ForActive = activeL2Id ? l3Categories.filter(c => c.parentId === activeL2Id)  : [];
+  const l2IdsForActive = l2ForActive.map(c => c.id);
+  const l3ForActive = activeL2Id
+    ? l3Categories.filter(c => c.parentId === activeL2Id)
+    : l2IdsForActive.length > 0
+      ? l3Categories.filter(c => l2IdsForActive.includes(c.parentId))
+      : [];
 
   const activeL1Label = l1Categories.find(c => c.id === activeL1Id)?.label ?? "";
   const activeL2Label = l2Categories.find(c => c.id === activeL2Id)?.label ?? "";
