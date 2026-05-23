@@ -1,4 +1,4 @@
-import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal, ChevronLeft } from "lucide-react";
+import { ShoppingBag, Trash2, Plus, Minus, ArrowRight, Tag, X, SlidersHorizontal } from "lucide-react";
 import { useMemo, useState } from "react";
 import { useLocation } from "wouter";
 import { toast } from "sonner";
@@ -533,7 +533,7 @@ export function CartPage() {
   const grandTotal = total - discountAmount + shipping;
 
   return (
-    <div style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden", paddingBottom: "var(--nav-h)", background: "var(--bg-surface-warm)" }}>
+    <div style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", background: "var(--bg-surface-warm)", position: "relative" }}>
       <h1 className="sr-only">السلة</h1>
 
       <SearchBar
@@ -553,7 +553,7 @@ export function CartPage() {
       />
 
       {items.length === 0 ? (
-        <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8">
+        <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8" style={{ paddingBottom: "var(--nav-h)" }}>
           <div className="w-20 h-20 rounded-full flex items-center justify-center" style={{ background: "var(--color-brand-50)" }}>
             <ShoppingBag size={32} style={{ color: "var(--text-brand)" }} strokeWidth={1.5} />
           </div>
@@ -568,7 +568,7 @@ export function CartPage() {
         </div>
       ) : (
         <>
-          <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col" dir="rtl">
+          <div className="flex-1 overflow-y-auto hide-scrollbar flex flex-col" dir="rtl" style={{ paddingBottom: 62 }}>
             <div style={{ padding: "12px 12px 0" }}>
               {filtered.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-10 gap-4">
@@ -629,49 +629,6 @@ export function CartPage() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* شريط الدفع الثابت */}
-          <div dir="rtl" style={{ flexShrink: 0, background: "var(--bg-card)", borderTop: "1px solid var(--border-warm)", padding: "10px 14px 14px", display: "flex", alignItems: "center", gap: 12 }}>
-
-            {/* الإجمالي */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <p style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", marginBottom: 2, fontWeight: 500 }}>
-                الإجمالي · {items.length} {items.length === 1 ? "منتج" : "منتجات"}
-              </p>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }} dir="ltr">
-                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 12, color: "var(--text-muted)" }}>ر.س</span>
-                <span style={{ fontFamily: "var(--font-numeric)", fontSize: 24, fontWeight: 800, color: "var(--text-primary)", fontVariantNumeric: "tabular-nums", letterSpacing: "-0.5px", lineHeight: 1 }}>
-                  {grandTotal.toLocaleString("ar-SA")}
-                </span>
-              </div>
-              {discountAmount > 0 && (
-                <p style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "#16a34a", fontWeight: 600, marginTop: 2 }}>
-                  وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
-                </p>
-              )}
-            </div>
-
-            {/* زر إتمام الطلب */}
-            <button
-              onClick={() => navigate("/checkout")}
-              style={{
-                flexShrink: 0,
-                display: "flex", alignItems: "center", gap: 8,
-                padding: "0 22px", height: 50, borderRadius: 13, border: "none",
-                background: "var(--gradient-brand)", color: "#fff", cursor: "pointer",
-                boxShadow: "0 3px 14px rgba(234,88,12,0.32)",
-                transition: "transform 0.12s, box-shadow 0.12s",
-                fontFamily: "var(--font-main)",
-              }}
-              onMouseDown={(e)  => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "0 1px 6px rgba(234,88,12,0.18)"; }}
-              onMouseUp={(e)    => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 3px 14px rgba(234,88,12,0.32)"; }}
-              onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.96)"; }}
-              onTouchEnd={(e)   => { e.currentTarget.style.transform = ""; }}
-            >
-              <span style={{ fontSize: 14, fontWeight: 700, whiteSpace: "nowrap" }}>إتمام الطلب</span>
-              <ChevronLeft size={16} strokeWidth={2.5} />
-            </button>
           </div>
         </>
       )}

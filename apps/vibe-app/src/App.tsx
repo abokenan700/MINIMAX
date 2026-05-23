@@ -10,6 +10,7 @@ import { BestSellers } from "./components/BestSellers";
 import { TopRated } from "./components/TopRated";
 import { Brands } from "./components/Brands";
 import { BottomNav } from "./components/BottomNav";
+import { CartCheckoutBar } from "./components/CartCheckoutBar";
 import { NewArrivals } from "./components/NewArrivals";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AccountSheet } from "./components/AccountSheet";
@@ -304,7 +305,7 @@ export default function App() {
         <FocusOnNavigation />
         <main
           id="main-content"
-          style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", overflow: "hidden" }}
+          style={{ flex: "1 1 auto", minHeight: 0, display: "flex", flexDirection: "column", position: "relative" }}
         >
           <Switch>
             <Route path="/">
@@ -354,6 +355,8 @@ export default function App() {
             </Route>
           </Switch>
         </main>
+
+        <CartCheckoutBar />
 
         <div className="bottom-bar">
           <BottomNav />
