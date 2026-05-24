@@ -29,7 +29,12 @@ export function CartCheckoutBar() {
           transition={{ type: "spring", stiffness: 360, damping: 30 }}
           style={{
             position: "absolute",
-            bottom: "var(--nav-h)",   /* يلتصق بأعلى الشريط */
+            /*
+             * TOP_PAD = 17px → الشريط يبدأ عند y=50 من أسفل الشاشة.
+             * bottom: 50 يضع قاع الزر عند حافة الشريط العلوية مباشرةً،
+             * أي "قبل الانحدار" للدائرة بالضبط.
+             */
+            bottom: 50,
             left: 12,
             right: 12,
             zIndex: 51,
