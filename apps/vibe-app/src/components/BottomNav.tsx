@@ -7,10 +7,17 @@ import { Badge } from "./ui/Badge";
 
 /* ── Geometry ────────────────────────────────────────────────── */
 const PILL_H     = 60;
-const CORNER_R   = 24;
-const CIRCLE_R   = 26;
-const NOTCH_HALF = 32;
-const NOTCH_ARC  = 32;
+const CORNER_R   = 22;
+const CIRCLE_R   = 27;
+const NOTCH_HALF = 30;
+const NOTCH_ARC  = 30;
+
+/* ── The notch must stay inside the corner-radius zone ───────── */
+function clampNotch(cx: number, W: number) {
+  const minCx = CORNER_R + NOTCH_HALF + 4;
+  const maxCx = W - CORNER_R - NOTCH_HALF - 4;
+  return Math.min(maxCx, Math.max(minCx, cx));
+}
 
 export type NavId = "home" | "categories" | "wishlist" | "cart";
 
@@ -25,27 +32,28 @@ const navItems: { id: NavId; label: string; Icon: React.ElementType }[] = [
   { id: "cart",       label: "السلة",     Icon: ShoppingBag },
 ];
 
-function pillPath(W: number, H: number, cx: number): string {
-  const nL = Math.max(0, cx - NOTCH_HALF);
-  const nR = Math.min(W, cx + NOTCH_HALF);
+function pillPath(W: number, H: number, rawCx: number): string {
+  const cx = clampNotch(rawCx, W);
+  const nL = cx - NOTCH_HALF;
+  const nR = cx + NOTCH_HALF;
   const CR = CORNER_R;
-  const d: string[] = [];
-  if (nL >= CR) { d.push(`M ${CR} 0`); d.push(`L ${nL} 0`); }
-  else          { d.push(`M ${nL} 0`); }
-  d.push(`A ${NOTCH_ARC} ${NOTCH_ARC} 0 0 1 ${nR} 0`);
-  if (nR <= W - CR) { d.push(`L ${W - CR} 0`); d.push(`Q ${W} 0 ${W} ${CR}`); }
-  else              { d.push(`Q ${W} 0 ${W} ${CR}`); }
-  d.push(`L ${W} ${H - CR}`);
-  d.push(`Q ${W} ${H} ${W - CR} ${H}`);
-  d.push(`L ${CR} ${H}`);
-  d.push(`Q 0 ${H} 0 ${H - CR}`);
-  if (nL >= CR) { d.push(`L 0 ${CR}`); d.push(`Q 0 0 ${CR} 0`); }
-  else          { d.push(`L 0 0`); }
-  d.push("Z");
-  return d.join(" ");
+
+  return [
+    `M ${CR} 0`,
+    `L ${nL} 0`,
+    `A ${NOTCH_ARC} ${NOTCH_ARC} 0 0 1 ${nR} 0`,
+    `L ${W - CR} 0`,
+    `Q ${W} 0 ${W} ${CR}`,
+    `L ${W} ${H - CR}`,
+    `Q ${W} ${H} ${W - CR} ${H}`,
+    `L ${CR} ${H}`,
+    `Q 0 ${H} 0 ${H - CR}`,
+    `L 0 ${CR}`,
+    `Q 0 0 ${CR} 0`,
+    `Z`,
+  ].join(" ");
 }
 
-/* ── Spring config ───────────────────────────────────────────── */
 const NAV_SPRING = { type: "spring" as const, stiffness: 380, damping: 32 };
 
 export function BottomNav() {
@@ -74,10 +82,12 @@ export function BottomNav() {
 
   const activeId  = activeIdFromPath(location);
   const activeIdx = navItems.findIndex(n => n.id === activeId);
-  const notchPct  = 87.5 - activeIdx * 25;
-  const cx        = (notchPct / 100) * barW;
 
-  /* ── FIX 1: Animate cx via useMotionValue + spring → update SVG path via ref ── */
+  /* RTL: item 0 is visually rightmost → cx near barW end */
+  const notchPct = 87.5 - activeIdx * 25;
+  const cx       = (notchPct / 100) * barW;
+
+  /* Animate the notch cx via MotionValue → direct DOM setAttribute per frame */
   const cxMotion = useMotionValue(cx);
 
   useEffect(() => {
@@ -114,16 +124,17 @@ export function BottomNav() {
         display: "flex",
         alignItems: "flex-end",
         paddingBottom: "env(safe-area-inset-bottom, 0px)",
-        paddingInline: 10,
+        paddingInline: 12,
         overflow: "visible",
-        background: "var(--nav-bg)",
+        /* transparent: the white pill is the only background — no color strip */
+        background: "transparent",
       }}
     >
       <div
         ref={wrapRef}
         style={{ position: "relative", width: "100%", height: PILL_H, overflow: "visible" }}
       >
-        {/* ── SVG pill — notch animates via spring on cxMotion → direct DOM update ── */}
+        {/* ── SVG pill ── notch animated via spring on cxMotion */}
         <svg
           aria-hidden="true"
           viewBox={`0 0 ${barW} ${PILL_H}`}
@@ -133,14 +144,14 @@ export function BottomNav() {
           style={{
             position: "absolute", top: 0, left: 0,
             overflow: "visible",
-            filter: "drop-shadow(0 -2px 6px rgba(0,0,0,0.06)) drop-shadow(0 3px 10px rgba(0,0,0,0.08))",
+            filter: "drop-shadow(0 -3px 8px rgba(0,0,0,0.07)) drop-shadow(0 4px 12px rgba(0,0,0,0.09))",
           }}
         >
           <path
             ref={pathRef}
             d={pillPath(barW, PILL_H, cx)}
             fill="#ffffff"
-            stroke="rgba(212,80,58,0.12)"
+            stroke="rgba(0,0,0,0.06)"
             strokeWidth="1"
           />
         </svg>
@@ -152,7 +163,6 @@ export function BottomNav() {
             const showBadge = id === "cart" && count > 0;
 
             return (
-              /* FIX 2+3: motion.button → whileTap press state + minHeight 44px touch target */
               <motion.button
                 key={id}
                 ref={el => { btnRefs.current[idx] = el; }}
@@ -168,7 +178,7 @@ export function BottomNav() {
                 style={{
                   flex: 1,
                   height: "100%",
-                  minHeight: 44,       /* FIX 2: touch target ≥44px (Apple HIG / Material) */
+                  minHeight: 44,
                   display: "flex", flexDirection: "column",
                   alignItems: "center", justifyContent: "flex-end",
                   paddingBottom: 9, gap: 4,
@@ -176,7 +186,7 @@ export function BottomNav() {
                   position: "relative", borderRadius: "var(--radius-sm)",
                 }}
               >
-                {/* Animated pill indicator */}
+                {/* Active top indicator pill */}
                 {isActive && (
                   <motion.div
                     layoutId="tab-indicator"
@@ -184,33 +194,42 @@ export function BottomNav() {
                       position: "absolute", top: 3, left: "50%", x: "-50%",
                       width: 28, height: 3, borderRadius: 9999,
                       background: "var(--color-brand-500)",
-                      boxShadow: "0 1px 6px rgba(212,80,58,0.45)",
+                      boxShadow: "0 1px 6px rgba(212,80,58,0.40)",
                     }}
                     transition={NAV_SPRING}
                   />
                 )}
 
-                {/* Active bubble */}
+                {/* Active floating bubble — ring matches page bg for clean separation */}
                 {isActive && (
                   <motion.div
                     layoutId="nav-bubble"
                     style={{
-                      position: "absolute", top: -CIRCLE_R, left: "50%", x: "-50%",
-                      width: CIRCLE_R * 2, height: CIRCLE_R * 2, borderRadius: "50%",
+                      position: "absolute",
+                      top: -CIRCLE_R,
+                      left: "50%",
+                      x: "-50%",
+                      width: CIRCLE_R * 2,
+                      height: CIRCLE_R * 2,
+                      borderRadius: "50%",
                       background: "#ffffff",
-                      boxShadow: "0 0 0 2px rgba(212,80,58,0.30), 0 4px 14px rgba(0,0,0,0.12)",
+                      /*
+                       * The outer ring uses the page background color (#F7F3EE)
+                       * so the bubble looks like it "floats through" the pill top,
+                       * matching the reference image exactly.
+                       */
+                      boxShadow: "0 0 0 5px #F7F3EE, 0 4px 16px rgba(0,0,0,0.13)",
                       display: "flex", alignItems: "center", justifyContent: "center",
                       zIndex: 10,
                     }}
                     transition={NAV_SPRING}
                   >
-                    <Icon size={21} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
+                    <Icon size={22} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
                     {showBadge && (
                       <Badge
                         variant="count"
                         size="count"
                         aria-hidden="true"
-                        /* FIX 5: badge sits outside the bubble, not overlapping the icon */
                         style={{ position: "absolute", top: -2, right: -4, border: "2px solid #fff" }}
                       >
                         {count > 9 ? "9+" : count}
@@ -222,7 +241,7 @@ export function BottomNav() {
                 {/* Inactive icon */}
                 {!isActive && (
                   <div style={{ position: "relative" }}>
-                    <Icon size={20} strokeWidth={1.6} style={{ color: "var(--nav-inactive)" }} />
+                    <Icon size={20} strokeWidth={1.6} style={{ color: "var(--color-neutral-400)" }} />
                     {showBadge && (
                       <Badge
                         variant="count"
@@ -236,7 +255,6 @@ export function BottomNav() {
                   </div>
                 )}
 
-                {/* FIX 4: contrast — neutral-500 (#6B6B6B) vs old neutral-400 (#8C8480) */}
                 <span style={{
                   fontSize: 10,
                   fontFamily: "var(--font-text)",
