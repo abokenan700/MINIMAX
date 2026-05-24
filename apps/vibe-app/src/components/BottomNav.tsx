@@ -19,8 +19,8 @@ import { Badge } from "./ui/Badge";
 const CIRCLE_R    = 21;   // active-tab floating circle radius (px)
 const BAR_H       = 50;   // compact bar — leaves max space for product content
 const NOTCH_D     = 27;   // how deep the notch dips INTO the bar (px, downward)
-const NOTCH_HALF  = 31;   // half-width of the notch bowl
-const NOTCH_EXT   = 18;   // bezier tangent extension for smooth approach curve
+const NOTCH_HALF  = 24;   // half-width ≈ CIRCLE_R + 3 so notch hugs the circle
+const NOTCH_EXT   = 13;   // bezier tangent extension for smooth approach curve
 const CORNER_R    = 16;   // pill corner radius
 const CIRCLE_ABOVE = CIRCLE_R - NOTCH_D + 2; // = -4 px — centre sits inside the notch
 const TOP_PAD      = Math.max(2, CIRCLE_R + CIRCLE_ABOVE); // = 17 px reserved above bar
