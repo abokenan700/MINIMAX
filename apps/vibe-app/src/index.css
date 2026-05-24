@@ -186,7 +186,7 @@
   --container-lg: 640px;
   --container-xl: 960px;
   --header-h: 56px;   /* 4-pt grid; meets iOS 44px touch standard */
-  --nav-h:    64px;   /* 4-pt grid */
+  --nav-h:    98px;   /* TOP_PAD(34) + BAR_H(64) — matches floating-circle geometry */
 
   /* ─── Z-Index Scale ──────────────────────────────────────────────── */
   --z-base:       0;
