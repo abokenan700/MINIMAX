@@ -95,7 +95,7 @@ export function BottomNav() {
         height: "100%",
         display: "flex",
         alignItems: "flex-end",
-        paddingBottom: "max(8px, env(safe-area-inset-bottom, 0px))",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
         paddingInline: 10,
         overflow: "visible",
         background: "var(--nav-bg)",
