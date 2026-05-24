@@ -16,15 +16,15 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import { Badge } from "./ui/Badge";
 
 /* ── Geometry — exact values from the reference source ───────────────────── */
-const CIRCLE_R    = 30;   // active-tab floating circle radius (px)
+const CIRCLE_R    = 24;   // active-tab floating circle radius (px)
 const BAR_H       = 64;   // height of the white pill body (px)
-const NOTCH_D     = 28;   // how deep the notch dips INTO the bar (px, downward)
-const NOTCH_HALF  = 29;   // half-width of the notch bowl
-const NOTCH_EXT   = 19;   // bezier tangent extension for smooth approach curve
+const NOTCH_D     = 22;   // how deep the notch dips INTO the bar (px, downward)
+const NOTCH_HALF  = 23;   // half-width of the notch bowl
+const NOTCH_EXT   = 15;   // bezier tangent extension for smooth approach curve
 const CORNER_R    = 22;   // pill corner radius
 const CIRCLE_ABOVE = CIRCLE_R - NOTCH_D + 2; // = 4 px — centre sits this far above bar top
-const TOP_PAD      = CIRCLE_ABOVE + CIRCLE_R; // = 34 px — space reserved above bar
-const CONTAINER_H  = TOP_PAD + BAR_H;         // = 98 px total nav height
+const TOP_PAD      = CIRCLE_ABOVE + CIRCLE_R; // = 28 px — space reserved above bar
+const CONTAINER_H  = TOP_PAD + BAR_H;         // = 92 px total nav height
 
 /* ── Tab definitions ─────────────────────────────────────────────────────── */
 export type NavId = "home" | "categories" | "wishlist" | "cart";
@@ -190,8 +190,7 @@ export function BottomNav() {
           height: CIRCLE_R * 2,
           borderRadius: "50%",
           background: "#ffffff",
-          border: "3px solid #ECECEC",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.10)",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
