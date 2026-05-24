@@ -19,8 +19,8 @@ import { Badge } from "./ui/Badge";
 const CIRCLE_R    = 24;   // active-tab floating circle radius (px)
 const BAR_H       = 64;   // height of the white pill body (px)
 const NOTCH_D     = 30;   // how deep the notch dips INTO the bar (px, downward)
-const NOTCH_HALF  = 27;   // half-width of the notch bowl
-const NOTCH_EXT   = 16;   // bezier tangent extension for smooth approach curve
+const NOTCH_HALF  = 34;   // half-width of the notch bowl — wider to give circle breathing room
+const NOTCH_EXT   = 20;   // bezier tangent extension for smooth approach curve
 const CORNER_R    = 22;   // pill corner radius
 const CIRCLE_ABOVE = CIRCLE_R - NOTCH_D + 2; // = -4 px — centre sits inside the notch
 const TOP_PAD      = Math.max(4, CIRCLE_R + CIRCLE_ABOVE); // = 20 px reserved above bar
