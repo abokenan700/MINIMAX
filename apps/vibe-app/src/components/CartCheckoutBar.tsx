@@ -35,7 +35,9 @@ export function CartCheckoutBar() {
              * أي "قبل الانحدار" للدائرة بالضبط.
              */
             bottom: 50,
-            left: 12,
+            /* الدائرة مركزها 12.5%، نصف قطرها 21px → حافتها اليمنى 12.5%+21px.
+               نضع حافة الزر اليسرى بعدها بـ 6px مباشرةً. */
+            left: "calc(12.5% + 27px)",
             right: 12,
             zIndex: 51,
             pointerEvents: "none",
