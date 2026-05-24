@@ -16,15 +16,15 @@ import { motion, useMotionValue, animate } from "framer-motion";
 import { Badge } from "./ui/Badge";
 
 /* ── Geometry — exact values from the reference source ───────────────────── */
-const CIRCLE_R    = 24;   // active-tab floating circle radius (px)
-const BAR_H       = 64;   // height of the white pill body (px)
-const NOTCH_D     = 30;   // how deep the notch dips INTO the bar (px, downward)
-const NOTCH_HALF  = 34;   // half-width of the notch bowl — wider to give circle breathing room
-const NOTCH_EXT   = 20;   // bezier tangent extension for smooth approach curve
-const CORNER_R    = 22;   // pill corner radius
+const CIRCLE_R    = 21;   // active-tab floating circle radius (px)
+const BAR_H       = 50;   // compact bar — leaves max space for product content
+const NOTCH_D     = 27;   // how deep the notch dips INTO the bar (px, downward)
+const NOTCH_HALF  = 31;   // half-width of the notch bowl
+const NOTCH_EXT   = 18;   // bezier tangent extension for smooth approach curve
+const CORNER_R    = 16;   // pill corner radius
 const CIRCLE_ABOVE = CIRCLE_R - NOTCH_D + 2; // = -4 px — centre sits inside the notch
-const TOP_PAD      = Math.max(4, CIRCLE_R + CIRCLE_ABOVE); // = 20 px reserved above bar
-const CONTAINER_H  = TOP_PAD + BAR_H;         // = 84 px total nav height
+const TOP_PAD      = Math.max(2, CIRCLE_R + CIRCLE_ABOVE); // = 17 px reserved above bar
+const CONTAINER_H  = TOP_PAD + BAR_H;         // = 67 px total nav height
 
 /* ── Tab definitions ─────────────────────────────────────────────────────── */
 export type NavId = "home" | "categories" | "wishlist" | "cart";
@@ -205,7 +205,7 @@ export function BottomNav() {
           const showBadge = id === "cart" && count > 0;
           return (
             <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center" }}>
-              <Icon size={24} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
+              <Icon size={20} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
               {showBadge && (
                 <Badge
                   variant="count"
@@ -258,8 +258,8 @@ export function BottomNav() {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "flex-end",
-                paddingBottom: 10,
-                gap: 4,
+                paddingBottom: 6,
+                gap: 3,
                 background: "transparent",
                 border: "none",
                 cursor: "pointer",
@@ -271,13 +271,13 @@ export function BottomNav() {
               {isActive ? (
                 <div
                   aria-hidden="true"
-                  style={{ width: 24, height: 24 }}
+                  style={{ width: 20, height: 20 }}
                 />
               ) : (
                 /* Inactive tab: show outline icon + optional badge */
                 <div style={{ position: "relative" }}>
                   <Icon
-                    size={22}
+                    size={20}
                     strokeWidth={1.6}
                     style={{ color: "var(--color-neutral-400)", display: "block" }}
                   />

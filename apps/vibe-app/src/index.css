@@ -186,7 +186,7 @@
   --container-lg: 640px;
   --container-xl: 960px;
   --header-h: 56px;   /* 4-pt grid; meets iOS 44px touch standard */
-  --nav-h:    84px;   /* TOP_PAD(20) + BAR_H(64) — deeper notch geometry */
+  --nav-h:    67px;   /* TOP_PAD(17) + BAR_H(50) — compact bar */
 
   /* ─── Z-Index Scale ──────────────────────────────────────────────── */
   --z-base:       0;
