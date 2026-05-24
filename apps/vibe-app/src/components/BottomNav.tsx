@@ -2,7 +2,7 @@ import { useRef, useCallback, useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { Home, LayoutGrid, Heart, ShoppingBag } from "lucide-react";
 import { useCart } from "../context/CartContext";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, animate } from "framer-motion";
 import { Badge } from "./ui/Badge";
 
 /* ── Geometry ────────────────────────────────────────────────── */
@@ -45,11 +45,15 @@ function pillPath(W: number, H: number, cx: number): string {
   return d.join(" ");
 }
 
+/* ── Spring config ───────────────────────────────────────────── */
+const NAV_SPRING = { type: "spring" as const, stiffness: 380, damping: 32 };
+
 export function BottomNav() {
   const [location, navigate] = useLocation();
   const { count }  = useCart();
   const btnRefs    = useRef<(HTMLButtonElement | null)[]>([]);
   const wrapRef    = useRef<HTMLDivElement>(null);
+  const pathRef    = useRef<SVGPathElement>(null);
   const [barW, setBarW] = useState(360);
 
   useEffect(() => {
@@ -72,6 +76,20 @@ export function BottomNav() {
   const activeIdx = navItems.findIndex(n => n.id === activeId);
   const notchPct  = 87.5 - activeIdx * 25;
   const cx        = (notchPct / 100) * barW;
+
+  /* ── FIX 1: Animate cx via useMotionValue + spring → update SVG path via ref ── */
+  const cxMotion = useMotionValue(cx);
+
+  useEffect(() => {
+    const controls = animate(cxMotion, cx, NAV_SPRING);
+    return controls.stop;
+  }, [cx, cxMotion]);
+
+  useEffect(() => {
+    return cxMotion.on("change", (val) => {
+      pathRef.current?.setAttribute("d", pillPath(barW, PILL_H, val));
+    });
+  }, [barW, cxMotion]);
 
   const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
     const total = navItems.length;
@@ -105,7 +123,7 @@ export function BottomNav() {
         ref={wrapRef}
         style={{ position: "relative", width: "100%", height: PILL_H, overflow: "visible" }}
       >
-        {/* ── SVG pill ── */}
+        {/* ── SVG pill — notch animates via spring on cxMotion → direct DOM update ── */}
         <svg
           aria-hidden="true"
           viewBox={`0 0 ${barW} ${PILL_H}`}
@@ -119,6 +137,7 @@ export function BottomNav() {
           }}
         >
           <path
+            ref={pathRef}
             d={pillPath(barW, PILL_H, cx)}
             fill="#ffffff"
             stroke="rgba(212,80,58,0.12)"
@@ -133,7 +152,8 @@ export function BottomNav() {
             const showBadge = id === "cart" && count > 0;
 
             return (
-              <button
+              /* FIX 2+3: motion.button → whileTap press state + minHeight 44px touch target */
+              <motion.button
                 key={id}
                 ref={el => { btnRefs.current[idx] = el; }}
                 type="button"
@@ -142,9 +162,13 @@ export function BottomNav() {
                 aria-label={showBadge ? `${label} — ${count} عناصر` : label}
                 tabIndex={isActive ? 0 : -1}
                 onClick={() => navigate(NAV_ROUTE[id])}
+                whileTap={{ scale: 0.88 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 className="focus-visible:outline-2 focus-visible:outline-[var(--color-brand-500)] focus-visible:outline-offset-2"
                 style={{
-                  flex: 1, height: "100%",
+                  flex: 1,
+                  height: "100%",
+                  minHeight: 44,       /* FIX 2: touch target ≥44px (Apple HIG / Material) */
                   display: "flex", flexDirection: "column",
                   alignItems: "center", justifyContent: "flex-end",
                   paddingBottom: 9, gap: 4,
@@ -162,7 +186,7 @@ export function BottomNav() {
                       background: "var(--color-brand-500)",
                       boxShadow: "0 1px 6px rgba(212,80,58,0.45)",
                     }}
-                    transition={{ type: "spring", stiffness: 340, damping: 28 }}
+                    transition={NAV_SPRING}
                   />
                 )}
 
@@ -178,7 +202,7 @@ export function BottomNav() {
                       display: "flex", alignItems: "center", justifyContent: "center",
                       zIndex: 10,
                     }}
-                    transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                    transition={NAV_SPRING}
                   >
                     <Icon size={21} strokeWidth={2.2} style={{ color: "var(--color-brand-500)" }} />
                     {showBadge && (
@@ -186,7 +210,8 @@ export function BottomNav() {
                         variant="count"
                         size="count"
                         aria-hidden="true"
-                        style={{ position: "absolute", top: 3, right: 3, border: "1.5px solid #fff" }}
+                        /* FIX 5: badge sits outside the bubble, not overlapping the icon */
+                        style={{ position: "absolute", top: -2, right: -4, border: "2px solid #fff" }}
                       >
                         {count > 9 ? "9+" : count}
                       </Badge>
@@ -211,17 +236,18 @@ export function BottomNav() {
                   </div>
                 )}
 
+                {/* FIX 4: contrast — neutral-500 (#6B6B6B) vs old neutral-400 (#8C8480) */}
                 <span style={{
                   fontSize: 10,
                   fontFamily: "var(--font-text)",
-                  color: isActive ? "var(--color-brand-500)" : "var(--nav-inactive)",
+                  color: isActive ? "var(--color-brand-500)" : "var(--color-neutral-500)",
                   fontWeight: isActive ? 700 : 500,
                   lineHeight: 1,
                   transition: "color var(--duration-base) var(--ease-out)",
                 }}>
                   {label}
                 </span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
