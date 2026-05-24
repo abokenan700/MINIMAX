@@ -44,7 +44,7 @@ export function CartCheckoutBar() {
             onClick={() => navigate("/checkout")}
             style={{
               flex: 1,
-              height: 36,
+              height: 30,
               pointerEvents: "auto",
               display: "flex",
               alignItems: "center",
