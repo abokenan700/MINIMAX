@@ -15,74 +15,67 @@ export function CartCheckoutBar() {
     <div
       style={{
         position: "absolute",
-        bottom: "var(--nav-h)",
+        bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 48,
-        background: "var(--bg-card)",
-        borderTop: "1px solid var(--border-warm)",
-        display: "grid",
-        /* RTL: عمود auto أول (يُوضع يميناً) ثم 1fr (الإجمالي يساراً) */
-        gridTemplateColumns: "auto 1fr",
-        alignItems: "center",
-        gap: 10,
-        padding: "8px 14px",
-        boxShadow: "0 -3px 16px rgba(0,0,0,0.08)",
-        boxSizing: "border-box",
+        /* نفس ارتفاع شريط التنقل — الزر يجلس داخله */
+        height: "var(--nav-h)",
+        zIndex: 51,
+        pointerEvents: "none",
         direction: "rtl",
+        display: "flex",
+        alignItems: "flex-end",
+        /* اليسار: يبدأ بعد دائرة السلة (الربع الأيسر = 25%) + فراغ صغير */
+        paddingLeft: "calc(25% + 10px)",
+        paddingRight: 12,
+        paddingBottom: 7,
       }}
     >
-      {/* زر إتمام الطلب — أول عنصر في RTL = يُوضع يميناً */}
       <button
         onClick={() => navigate("/checkout")}
         style={{
+          flex: 1,
+          height: 42,
+          pointerEvents: "auto",
           display: "flex",
           alignItems: "center",
-          gap: 6,
-          padding: "0 20px",
-          height: 46,
-          borderRadius: 13,
+          justifyContent: "space-between",
+          padding: "0 14px 0 12px",
+          borderRadius: 14,
           border: "none",
           background: "linear-gradient(135deg, #f97316 0%, #ea580c 55%, #c2410c 100%)",
           color: "#fff",
           cursor: "pointer",
-          boxShadow: "0 3px 14px rgba(234,88,12,0.4), inset 0 1px 0 rgba(255,255,255,0.18)",
+          boxShadow: "0 3px 14px rgba(234,88,12,0.38), inset 0 1px 0 rgba(255,255,255,0.18)",
           transition: "transform 0.1s, box-shadow 0.1s",
           fontFamily: "var(--font-main)",
-          whiteSpace: "nowrap",
         }}
-        onMouseDown={(e) => {
-          e.currentTarget.style.transform = "scale(0.95)";
-          e.currentTarget.style.boxShadow = "0 1px 5px rgba(234,88,12,0.25)";
-        }}
-        onMouseUp={(e) => {
-          e.currentTarget.style.transform = "";
-          e.currentTarget.style.boxShadow = "0 3px 14px rgba(234,88,12,0.4), inset 0 1px 0 rgba(255,255,255,0.18)";
-        }}
-        onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.95)"; }}
+        onTouchStart={(e) => { e.currentTarget.style.transform = "scale(0.96)"; }}
         onTouchEnd={(e)   => { e.currentTarget.style.transform = ""; }}
+        onMouseDown={(e)  => { e.currentTarget.style.transform = "scale(0.96)"; e.currentTarget.style.boxShadow = "0 1px 5px rgba(234,88,12,0.25)"; }}
+        onMouseUp={(e)    => { e.currentTarget.style.transform = ""; e.currentTarget.style.boxShadow = "0 3px 14px rgba(234,88,12,0.38), inset 0 1px 0 rgba(255,255,255,0.18)"; }}
       >
-        <span style={{ fontSize: 14, fontWeight: 800, letterSpacing: "0.3px" }}>إتمام الطلب</span>
-        <ChevronLeft size={15} strokeWidth={3} style={{ opacity: 0.85 }} />
-      </button>
-
-      {/* الإجمالي — ثاني عنصر في RTL = يُوضع يساراً */}
-      <div style={{ textAlign: "left", minWidth: 0 }}>
-        <span style={{ display: "block", fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", fontWeight: 500, marginBottom: 1 }}>
-          الإجمالي · {items.length} {items.length === 1 ? "منتج" : "منتجات"}
-        </span>
-        <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
-          <span style={{ fontFamily: "var(--font-numeric)", fontSize: 26, fontWeight: 900, color: "var(--text-primary)", fontVariantNumeric: "tabular-nums", letterSpacing: "-1px", lineHeight: 1 }}>
-            {grandTotal.toLocaleString("ar-SA")}
-          </span>
-          <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, color: "var(--text-muted)" }}>ر.س</span>
+        {/* يمين: النص + السهم */}
+        <div style={{ display: "flex", alignItems: "center", gap: 5 }}>
+          <span style={{ fontSize: 13, fontWeight: 800, letterSpacing: "0.2px" }}>إتمام الطلب</span>
+          <ChevronLeft size={14} strokeWidth={3} style={{ opacity: 0.85, flexShrink: 0 }} />
         </div>
-        {discountAmount > 0 && (
-          <span style={{ display: "block", fontFamily: "var(--font-main)", fontSize: 10, color: "#16a34a", fontWeight: 700, marginTop: 1 }}>
-            وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
-          </span>
-        )}
-      </div>
+
+        {/* يسار: الإجمالي */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end" }}>
+          {discountAmount > 0 && (
+            <span style={{ fontFamily: "var(--font-main)", fontSize: 9, color: "rgba(255,255,255,0.75)", fontWeight: 600, lineHeight: 1, marginBottom: 1 }}>
+              وفّرت {discountAmount.toLocaleString("ar-SA")} ر.س
+            </span>
+          )}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 3 }}>
+            <span style={{ fontFamily: "var(--font-numeric)", fontSize: 20, fontWeight: 900, letterSpacing: "-0.5px", lineHeight: 1 }}>
+              {grandTotal.toLocaleString("ar-SA")}
+            </span>
+            <span style={{ fontFamily: "var(--font-numeric)", fontSize: 11, opacity: 0.8 }}>ر.س</span>
+          </div>
+        </div>
+      </button>
     </div>
   );
 }
