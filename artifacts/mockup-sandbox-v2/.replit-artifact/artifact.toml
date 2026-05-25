@@ -1,0 +1,22 @@
+kind = "design"
+previewPath = "/__mockup/"
+title = "Checkout Button Variants"
+version = "1.0.0"
+id = "artifacts/mockup-sandbox-v2"
+router = "path"
+
+[[integratedSkills]]
+name = "mockup-sandbox"
+version = "1.0.0"
+
+[[services]]
+name = "Component Preview Server"
+paths = [ "/__mockup/" ]
+localPort = 22551
+
+[services.development]
+run = "npm run dev"
+
+[services.env]
+PORT = "22551"
+BASE_PATH = "/__mockup/"
