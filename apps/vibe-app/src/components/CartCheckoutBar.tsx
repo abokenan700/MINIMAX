@@ -78,7 +78,7 @@ export function CartCheckoutBar() {
               pointerEvents: "auto",
               display: "flex",
               alignItems: "center",
-              padding: "3px 3px 3px 0",
+              padding: expanded ? "3px 3px 3px 16px" : "3px",
               borderRadius: 20,
               border: "1px solid rgba(0,0,0,0.07)",
               background: "#FBFAF8",
@@ -102,13 +102,15 @@ export function CartCheckoutBar() {
               background: "linear-gradient(135deg, #b54026 0%, #a43a21 60%, #90321c 100%)",
               borderRadius: 17,
               height: "100%",
+              width: expanded ? "auto" : "100%",
               display: "flex",
               alignItems: "center",
+              justifyContent: "center",
               gap: 6,
-              padding: expanded ? "0 13px 0 10px" : "0 13px",
+              padding: expanded ? "0 13px 0 10px" : "0",
               flexShrink: 0,
               boxShadow: "0 2px 10px rgba(164,58,33,0.35)",
-              transition: "padding 0.3s ease",
+              transition: "padding 0.25s ease, width 0.25s ease",
             }}>
               {/* أيقونة الحقيبة — دائماً ظاهرة */}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
