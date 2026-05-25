@@ -3,6 +3,8 @@ import { useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
 import { useCart } from "../context/CartContext";
 import { calcShipping } from "../lib/shippingPolicy";
+import { useAuth, RETURN_TO_KEY } from "../context/AuthContext";
+import { useAccountSheet } from "../context/AccountSheetContext";
 
 /*
  * الزر ملتصق بأعلى شريط التنقل (bottom = --nav-h = 67px).
@@ -12,6 +14,8 @@ import { calcShipping } from "../lib/shippingPolicy";
  */
 export function CartCheckoutBar() {
   const { items, total, discountAmount } = useCart();
+  const { user } = useAuth();
+  const { openSheet } = useAccountSheet();
   const [location, navigate] = useLocation();
 
   const visible = items.length > 0 && location === "/cart";
@@ -45,7 +49,14 @@ export function CartCheckoutBar() {
           }}
         >
           <button
-            onClick={() => navigate("/checkout")}
+            onClick={() => {
+              if (!user) {
+                try { sessionStorage.setItem(RETURN_TO_KEY, "/checkout"); } catch { }
+                openSheet();
+              } else {
+                navigate("/checkout");
+              }
+            }}
             style={{
               width: "100%",
               height: 40,                /* ≤ قطر الدائرة 42px */

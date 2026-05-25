@@ -6,7 +6,7 @@ import {
   Loader, User, CheckCircle2, ShieldCheck,
 } from "lucide-react";
 import { z } from "zod";
-import { useAuth } from "../context/AuthContext";
+import { useAuth, RETURN_TO_KEY } from "../context/AuthContext";
 import { useAccountSheet } from "../context/AccountSheetContext";
 import { friendlyError } from "../lib/errors";
 import { Input } from "./ui/Input";
@@ -220,7 +220,12 @@ export function AccountSheet() {
         await register(name.trim(), email.trim(), pass);
         toast("تم إنشاء حسابك بنجاح ✨");
       }
-      closeSheet(); navigate("/account");
+      closeSheet();
+      try {
+        const returnTo = sessionStorage.getItem(RETURN_TO_KEY);
+        sessionStorage.removeItem(RETURN_TO_KEY);
+        navigate(returnTo && returnTo !== "/" ? returnTo : "/account");
+      } catch { navigate("/account"); }
     } catch (ex) {
       setErr(friendlyError(ex instanceof Error ? ex.message : ""));
     } finally { setBusy(false); }
@@ -266,7 +271,12 @@ export function AccountSheet() {
       try {
         await login(forgotEmail.trim(), newPass);
         toast.success("تم تغيير كلمة المرور وتسجيل الدخول تلقائياً");
-        closeSheet(); navigate("/account");
+        closeSheet();
+        try {
+          const returnTo = sessionStorage.getItem(RETURN_TO_KEY);
+          sessionStorage.removeItem(RETURN_TO_KEY);
+          navigate(returnTo && returnTo !== "/" ? returnTo : "/account");
+        } catch { navigate("/account"); }
       } catch {
         toast.success("تم تغيير كلمة المرور — يمكنك تسجيل الدخول الآن");
         setTimeout(() => switchMode("login"), 2000);
