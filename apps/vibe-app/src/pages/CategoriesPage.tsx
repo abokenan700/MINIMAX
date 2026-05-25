@@ -223,8 +223,8 @@ function CatalogBody({
           flexShrink: 0,
           width: 76,
           overflowY: "auto",
-          background: "#ffffff",
-          borderInlineStart: "1px solid var(--border)",
+          background: "var(--bg-surface-warm)",
+          borderInlineStart: "1px solid var(--border-warm)",
         }}
       >
         {l2Items.map((cat) => (
@@ -242,7 +242,7 @@ function CatalogBody({
         key={activeL2}
         onScroll={handleScroll}
         className="hide-scrollbar fade-in-up"
-        style={{ flex: 1, overflowY: "auto", background: "#FFFFFF" }}
+        style={{ flex: 1, overflowY: "auto", background: "var(--bg-surface-warm)" }}
         dir="rtl"
       >
         {l3Items.length > 0 ? (
