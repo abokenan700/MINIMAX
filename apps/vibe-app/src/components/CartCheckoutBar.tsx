@@ -99,7 +99,7 @@ export function CartCheckoutBar() {
 
             {/* ══ يمين (RTL-start): بيل الأكشن — دائماً ظاهر ══ */}
             <div style={{
-              background: "linear-gradient(135deg, #a83a2c 0%, #923226 60%, #7a2820 100%)",
+              background: "linear-gradient(135deg, #b54026 0%, #a43a21 60%, #90321c 100%)",
               borderRadius: 17,
               height: "100%",
               display: "flex",
@@ -107,7 +107,7 @@ export function CartCheckoutBar() {
               gap: 6,
               padding: expanded ? "0 13px 0 10px" : "0 13px",
               flexShrink: 0,
-              boxShadow: "0 2px 10px rgba(146,50,38,0.35)",
+              boxShadow: "0 2px 10px rgba(164,58,33,0.35)",
               transition: "padding 0.3s ease",
             }}>
               {/* أيقونة الحقيبة — دائماً ظاهرة */}
@@ -177,8 +177,8 @@ export function CartCheckoutBar() {
                 >
                   {/* عدد القطع */}
                   <div style={{
-                    background: "rgba(146,50,38,0.07)",
-                    border: "1px solid rgba(146,50,38,0.18)",
+                    background: "rgba(164,58,33,0.07)",
+                    border: "1px solid rgba(164,58,33,0.18)",
                     borderRadius: 8,
                     padding: "2px 8px",
                     display: "flex",
@@ -190,7 +190,7 @@ export function CartCheckoutBar() {
                       fontFamily: "var(--font-numeric)",
                       fontSize: 12,
                       fontWeight: 700,
-                      color: "#923226",
+                      color: "#a43a21",
                       lineHeight: 1,
                     }}>
                       {qty}
@@ -199,7 +199,7 @@ export function CartCheckoutBar() {
                       fontFamily: "var(--font-main)",
                       fontSize: 10,
                       fontWeight: 600,
-                      color: "rgba(146,50,38,0.75)",
+                      color: "rgba(164,58,33,0.75)",
                       lineHeight: 1,
                     }}>
                       {qty === 1 ? "قطعة" : "قطع"}
