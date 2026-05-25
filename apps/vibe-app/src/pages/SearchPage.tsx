@@ -290,6 +290,7 @@ export function SearchPage() {
         onClear={() => { setQuery(""); navigate("/search"); }}
         onKeyDown={(e) => e.key === "Enter" && applyQuery(query)}
         autoFocus
+        containerStyle={{ background: "var(--bg-page)", borderBottom: "none" }}
       />
 
       <div className="hide-scrollbar" style={{ flex: "1 1 auto", overflowY: "auto", overflowX: "hidden" }}>

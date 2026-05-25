@@ -587,39 +587,39 @@ export function ControlsBar({ count, sort, filters, viewMode, categoryParam,
       )}
 
       {/* ── sticky bar */}
-      <div dir="rtl" style={{ background: "var(--bg-card)", borderBottom: "1px solid var(--border-warm)" }}>
+      <div dir="rtl" style={{ background: "var(--bg-surface-warm)" }}>
 
         {/* button row */}
-        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 12px" }}>
-          <div className="hide-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", flex: 1 }}>
-            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
-            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
-            <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")} />
-            <FilterBarBtn label={ratingLabel}   active={ratingActive}   onClick={() => setOpenPanel("rating")} />
-            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")} />
+        <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "2px 12px 6px" }}>
+          <div className="hide-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", flex: 1 }}>
+            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")}    compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")}    compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={ratingLabel}   active={ratingActive}   onClick={() => setOpenPanel("rating")}   compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")}     compact inactiveBg="var(--bg-surface-warm)" />
 
             {/* extra filters button */}
             <button onClick={onFilterOpen}
               style={{
-                flexShrink: 0, display: "flex", alignItems: "center", gap: 4,
-                padding: "6px 10px", borderRadius: 20,
+                flexShrink: 0, display: "flex", alignItems: "center", gap: 3,
+                padding: "4px 8px", borderRadius: 20,
                 border: `1.5px solid ${extraCount > 0 ? "var(--color-brand-500)" : "var(--border-warm)"}`,
-                background: extraCount > 0 ? "var(--color-brand-50)" : "var(--bg-card)",
-                fontFamily: "var(--font-main)", fontSize: 12, fontWeight: extraCount > 0 ? 700 : 500,
+                background: extraCount > 0 ? "var(--color-brand-50)" : "var(--bg-surface-warm)",
+                fontFamily: "var(--font-main)", fontSize: 11, fontWeight: extraCount > 0 ? 700 : 500,
                 color: extraCount > 0 ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap",
               }}>
-              <SlidersHorizontal size={11} strokeWidth={2} />
+              <SlidersHorizontal size={10} strokeWidth={2} />
               {extraCount > 0 ? `المزيد (${extraCount})` : "المزيد"}
             </button>
           </div>
 
           {/* view toggle */}
           <button onClick={onViewToggle}
-            style={{ flexShrink: 0, width: 34, height: 34, borderRadius: 10, border: "1px solid var(--border-warm)", background: "var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
+            style={{ flexShrink: 0, width: 30, height: 30, borderRadius: 8, border: "1px solid var(--border-warm)", background: "var(--bg-surface-warm)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}
             aria-label={viewMode === "grid" ? "عرض القائمة" : "عرض الشبكة"}>
             {viewMode === "grid"
-              ? <List size={13} style={{ color: "var(--text-secondary)" }} />
-              : <LayoutGrid size={13} style={{ color: "var(--text-secondary)" }} />}
+              ? <List size={12} style={{ color: "var(--text-secondary)" }} />
+              : <LayoutGrid size={12} style={{ color: "var(--text-secondary)" }} />}
           </button>
         </div>
 
