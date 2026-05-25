@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ChevronLeft } from "lucide-react";
 import { useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
@@ -26,17 +26,23 @@ export function CartCheckoutBar() {
 
   /* ─── phase: "icon" → "full" → "icon" ─── */
   const [expanded, setExpanded] = useState(false);
+  const collapseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const expandFull = () => {
+    if (collapseTimer.current) clearTimeout(collapseTimer.current);
+    setExpanded(true);
+    collapseTimer.current = setTimeout(() => setExpanded(false), 5000);
+  };
 
   useEffect(() => {
     if (!visible) {
       setExpanded(false);
+      if (collapseTimer.current) clearTimeout(collapseTimer.current);
       return;
     }
-    /* 1s أيقونة، ثم يتمدد */
-    const t1 = setTimeout(() => setExpanded(true), 1000);
-    /* 1s + 5s = ينكمش */
-    const t2 = setTimeout(() => setExpanded(false), 6000);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    /* 1s أيقونة، ثم يتمدد تلقائياً */
+    const t1 = setTimeout(() => expandFull(), 1000);
+    return () => { clearTimeout(t1); };
   }, [visible]);
 
   /* عند تغيير محتوى السلة بعد الانكماش، لا نعيد الدورة */
@@ -64,6 +70,10 @@ export function CartCheckoutBar() {
         >
           <motion.button
             onClick={() => {
+              if (!expanded) {
+                expandFull();
+                return;
+              }
               if (!user) {
                 try { sessionStorage.setItem(RETURN_TO_KEY, "/checkout"); } catch { }
                 openSheet();
