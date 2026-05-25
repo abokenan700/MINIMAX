@@ -145,21 +145,24 @@ function L2Item({
   return (
     <button
       onClick={onClick}
-      className="w-full flex flex-col items-center gap-1 py-3 px-1.5 relative transition-colors duration-150"
-      style={{ background: isActive ? "var(--color-brand-50)" : "transparent" }}
+      className="w-full flex flex-col items-center gap-0.5 py-1.5 px-1 relative transition-colors duration-150"
+      style={{ background: "transparent" }}
     >
-      {isActive && (
-        <div
-          className="absolute inset-inline-end-0 top-1/2 -translate-y-1/2 rounded-s-full"
-          style={{ insetInlineEnd: 0, position: "absolute", width: 3, height: "55%", background: "var(--color-brand-500)" }}
+      <div style={{
+        width: 34, height: 34,
+        borderRadius: "50%",
+        background: isActive ? "var(--color-brand-50)" : "transparent",
+        border: isActive ? "1.5px solid rgba(234,88,12,0.2)" : "1.5px solid transparent",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "background 0.18s, border 0.18s",
+        flexShrink: 0,
+      }}>
+        <Icon
+          size={16}
+          strokeWidth={isActive ? 2.2 : 1.6}
+          style={{ color: isActive ? "var(--text-brand)" : "var(--text-secondary)", transition: "color 0.18s" }}
         />
-      )}
-      <Icon
-        size={18}
-        strokeWidth={isActive ? 2.2 : 1.6}
-        style={{ color: isActive ? "var(--text-brand)" : "var(--text-secondary)" }}
-      />
-      {/* مشكلة 42: fontSize:9px أصغر من الحد الأدنى المقروء — تم تصحيحه إلى 11px (WCAG AA) */}
+      </div>
       <span
         className="leading-tight text-center line-clamp-2"
         style={{
@@ -167,6 +170,7 @@ function L2Item({
           color: isActive ? "var(--text-brand)" : "var(--text-secondary)",
           fontWeight: isActive ? 700 : 500,
           maxWidth: "100%",
+          transition: "color 0.18s",
         }}
       >
         {cat.label}
@@ -222,7 +226,7 @@ function CatalogBody({
         className="hide-scrollbar"
         style={{
           flexShrink: 0,
-          width: 76,
+          width: 68,
           overflowY: "auto",
           background: "var(--bg-surface-warm)",
           borderInlineStart: "1px solid var(--border-warm)",
