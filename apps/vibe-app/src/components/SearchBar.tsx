@@ -64,7 +64,7 @@ export function SearchBar({
         ...containerStyle,
       }}
     >
-      <div className="px-3 pt-2 pb-1.5">
+      <div className="px-3 pt-1 pb-1.5">
         <div
           className="flex items-center gap-3 rounded-2xl px-4"
           style={{
