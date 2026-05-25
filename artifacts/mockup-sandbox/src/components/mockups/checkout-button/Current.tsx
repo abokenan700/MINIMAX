@@ -55,10 +55,8 @@ export function Current() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.90)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </div>
 
-          <div style={{ flex: 1 }} />
-
-          {/* Count + price — مسافة أكبر */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 12 }}>
+          {/* Count + price — أقصى مسافة ممكنة بين الطرفين */}
+          <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "space-between", paddingLeft: 14, paddingRight: 6 }}>
             <div style={{
               background: "rgba(234,88,12,0.07)",
               border: "1px solid rgba(234,88,12,0.18)",
