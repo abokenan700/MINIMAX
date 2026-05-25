@@ -83,7 +83,7 @@ export function CartCheckoutBar() {
 
             {/* ══ يمين (RTL-start): بيل الأكشن البرتقالي ══ */}
             <div style={{
-              background: "linear-gradient(135deg, #f97316 0%, #ea580c 60%, #c2410c 100%)",
+              background: "linear-gradient(135deg, #a83a2c 0%, #923226 60%, #7a2820 100%)",
               borderRadius: 17,
               height: "100%",           /* يملأ كامل ارتفاع الزر ناقص 3px padding */
               display: "flex",
@@ -91,7 +91,7 @@ export function CartCheckoutBar() {
               gap: 6,
               padding: "0 13px 0 10px",
               flexShrink: 0,
-              boxShadow: "0 2px 10px rgba(234,88,12,0.35)",
+              boxShadow: "0 2px 10px rgba(146,50,38,0.35)",
             }}>
               {/* أيقونة الحقيبة */}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -121,8 +121,8 @@ export function CartCheckoutBar() {
 
               {/* عدد القطع */}
               <div style={{
-                background: "rgba(234,88,12,0.07)",
-                border: "1px solid rgba(234,88,12,0.18)",
+                background: "rgba(146,50,38,0.07)",
+                border: "1px solid rgba(146,50,38,0.18)",
                 borderRadius: 8,
                 padding: "2px 8px",
                 display: "flex",
@@ -133,7 +133,7 @@ export function CartCheckoutBar() {
                   fontFamily: "var(--font-numeric)",
                   fontSize: 12,
                   fontWeight: 700,
-                  color: "#EA580C",
+                  color: "#923226",
                   lineHeight: 1,
                 }}>
                   {qty}
@@ -142,7 +142,7 @@ export function CartCheckoutBar() {
                   fontFamily: "var(--font-main)",
                   fontSize: 10,
                   fontWeight: 600,
-                  color: "rgba(234,88,12,0.75)",
+                  color: "rgba(146,50,38,0.75)",
                   lineHeight: 1,
                 }}>
                   {qty === 1 ? "قطعة" : "قطع"}
