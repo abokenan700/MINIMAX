@@ -94,37 +94,26 @@ function L3Card({ item }: { item: L3Category }) {
     <button
       className="card-pressable flex flex-col items-center"
       onClick={() => navigate(`/search?category=${item.id}`)}
-      style={{ background: "none", border: "none", cursor: "pointer", gap: 5, padding: "4px 2px" }}
+      style={{ background: "none", border: "none", cursor: "pointer", gap: 6, padding: "4px 2px", width: "100%" }}
     >
-      {/* حلقة تدرّج برتقالية مثل L1 */}
       <div style={{
+        width: 64, height: 64,
         borderRadius: "50%",
-        background: "linear-gradient(145deg, #C45500, #A03D00)",
-        padding: 1.5,
+        overflow: "hidden",
         flexShrink: 0,
-        width: "clamp(52px, 14vw, 64px)",
-        height: "clamp(52px, 14vw, 64px)",
       }}>
-        <div style={{
-          width: "100%", height: "100%",
-          borderRadius: "50%",
-          overflow: "hidden",
-          background: "#fff",
-          border: "2px solid #fff",
-        }}>
-          <img
-            src={item.image}
-            alt={item.label}
-            loading="lazy"
-            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-            onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
-          />
-        </div>
+        <img
+          src={item.image}
+          alt={item.label}
+          loading="lazy"
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          onError={(e) => { e.currentTarget.style.opacity = "0.25"; }}
+        />
       </div>
 
       <p style={{
         fontFamily: "var(--font-text)",
-        fontSize: "clamp(9.5px, 2.7vw, 11px)",
+        fontSize: 11,
         fontWeight: 600,
         color: "var(--text-primary)",
         textAlign: "center",
@@ -132,7 +121,7 @@ function L3Card({ item }: { item: L3Category }) {
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
-        maxWidth: "clamp(52px, 14vw, 68px)",
+        maxWidth: "100%",
       }}>
         {item.label}
       </p>
@@ -258,7 +247,7 @@ function CatalogBody({
         dir="rtl"
       >
         {l3Items.length > 0 ? (
-          <div className="grid grid-cols-4 gap-x-1 gap-y-3 p-3">
+          <div className="grid grid-cols-3 gap-3 p-3">
             {l3Items.map((item) => (
               <L3Card key={item.id} item={item} />
             ))}
