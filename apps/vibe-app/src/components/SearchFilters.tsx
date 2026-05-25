@@ -123,22 +123,22 @@ export function Chip({ label, active, onClick }: { label: string; active: boolea
 /* ═══════════════════════════════════════════════════════════════
    FILTER BAR BUTTON
 ═══════════════════════════════════════════════════════════════ */
-export function FilterBarBtn({ label, active, onClick }: {
-  label: string; active: boolean; onClick: () => void;
+export function FilterBarBtn({ label, active, onClick, compact = false, inactiveBg }: {
+  label: string; active: boolean; onClick: () => void; compact?: boolean; inactiveBg?: string;
 }) {
   return (
     <button onClick={onClick}
       style={{
         flexShrink: 0, display: "flex", alignItems: "center", gap: 3,
-        padding: "6px 10px 6px 8px", borderRadius: 20,
+        padding: compact ? "4px 8px 4px 6px" : "6px 10px 6px 8px", borderRadius: 20,
         border: `1.5px solid ${active ? "var(--color-brand-500)" : "var(--border-warm)"}`,
-        background: active ? "var(--color-brand-50)" : "var(--bg-card)",
-        fontFamily: "var(--font-main)", fontSize: 12, fontWeight: active ? 700 : 500,
+        background: active ? "var(--color-brand-50)" : (inactiveBg ?? "var(--bg-card)"),
+        fontFamily: "var(--font-main)", fontSize: compact ? 11 : 12, fontWeight: active ? 700 : 500,
         color: active ? "var(--text-brand)" : "var(--text-secondary)",
         cursor: "pointer", transition: "all 0.15s", whiteSpace: "nowrap",
       }}>
       <span>{label}</span>
-      <ChevronDown size={10} strokeWidth={2.5}
+      <ChevronDown size={compact ? 9 : 10} strokeWidth={2.5}
         style={{ color: active ? "var(--color-brand-500)" : "var(--text-muted)", flexShrink: 0 }} />
     </button>
   );

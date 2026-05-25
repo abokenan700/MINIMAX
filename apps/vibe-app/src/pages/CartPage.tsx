@@ -264,22 +264,22 @@ function CartControlsBar({
         />
       )}
 
-      <div dir="rtl" style={{ background: "var(--bg-card)", borderBottom: "1px solid var(--border-warm)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 12px" }}>
+      <div dir="rtl" style={{ background: "var(--bg-surface-warm)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 5, padding: "2px 12px 6px" }}>
 
-          <div className="hide-scrollbar" style={{ display: "flex", gap: 6, overflowX: "auto", flex: 1 }}>
-            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} />
-            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")} />
-            <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")} />
-            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")} />
+          <div className="hide-scrollbar" style={{ display: "flex", gap: 5, overflowX: "auto", flex: 1 }}>
+            <FilterBarBtn label={categoryLabel} active={categoryActive} onClick={() => setOpenPanel("category")} compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={brandLabel}    active={brandActive}    onClick={() => setOpenPanel("brand")}    compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={priceLabel}    active={priceActive}    onClick={() => setOpenPanel("price")}    compact inactiveBg="var(--bg-surface-warm)" />
+            <FilterBarBtn label={sortLabel}     active={sortActive}     onClick={() => setOpenPanel("sort")}     compact inactiveBg="var(--bg-surface-warm)" />
             <button onClick={() => setShowExtra(true)}
-              style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 4, padding: "6px 10px", borderRadius: 20, border: `1.5px solid ${discountActive ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: discountActive ? "var(--color-brand-50)" : "var(--bg-card)", fontFamily: "var(--font-main)", fontSize: 12, fontWeight: discountActive ? 700 : 500, color: discountActive ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap" }}>
-              <SlidersHorizontal size={11} strokeWidth={2} />
+              style={{ flexShrink: 0, display: "flex", alignItems: "center", gap: 3, padding: "4px 8px", borderRadius: 20, border: `1.5px solid ${discountActive ? "var(--color-brand-500)" : "var(--border-warm)"}`, background: discountActive ? "var(--color-brand-50)" : "var(--bg-surface-warm)", fontFamily: "var(--font-main)", fontSize: 11, fontWeight: discountActive ? 700 : 500, color: discountActive ? "var(--text-brand)" : "var(--text-secondary)", cursor: "pointer", whiteSpace: "nowrap" }}>
+              <SlidersHorizontal size={10} strokeWidth={2} />
               {discountActive ? `الخصم (${filters.minDiscount}%+)` : "الخصم"}
             </button>
           </div>
 
-          <span style={{ fontFamily: "var(--font-main)", fontSize: 11, color: "var(--text-muted)", whiteSpace: "nowrap", flexShrink: 0 }}>
+          <span style={{ fontFamily: "var(--font-main)", fontSize: 10, color: "var(--text-muted)", whiteSpace: "nowrap", flexShrink: 0 }}>
             {count} منتج
           </span>
         </div>
@@ -540,6 +540,7 @@ export function CartPage() {
         placeholder="ابحث في السلة..."
         value={query}
         onChange={setQuery}
+        containerStyle={{ background: "var(--bg-surface-warm)", borderBottom: "none" }}
       />
 
       <CartControlsBar

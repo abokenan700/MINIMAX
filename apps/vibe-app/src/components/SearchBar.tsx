@@ -14,6 +14,7 @@ interface SearchBarProps {
   filtersRow?: React.ReactNode;
   navigateTo?: string;
   hideTrending?: boolean;
+  containerStyle?: React.CSSProperties;
 }
 
 const TRENDING_TERMS = [
@@ -37,6 +38,7 @@ export function SearchBar({
   filtersRow,
   navigateTo,
   hideTrending = false,
+  containerStyle,
 }: SearchBarProps) {
   const [, navigate] = useLocation();
   const [focused, setFocused] = useState(false);
@@ -59,6 +61,7 @@ export function SearchBar({
         background: "var(--bg-card)",
         borderBottom: (filtersRow || showTrending) ? undefined : "1px solid var(--border)",
         flexShrink: 0,
+        ...containerStyle,
       }}
     >
       <div className="px-3 pt-2 pb-1.5">
