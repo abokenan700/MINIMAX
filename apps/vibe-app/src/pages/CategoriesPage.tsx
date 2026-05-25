@@ -303,8 +303,9 @@ export function CategoriesPage() {
           readOnly
           navigateTo="/search"
           hideTrending
+          containerStyle={{ background: "var(--bg-surface-warm)", borderBottom: "none" }}
         />
-        <Categories value={activeL1} onChange={handleL1Change} />
+        <Categories value={activeL1} onChange={handleL1Change} bg="var(--bg-surface-warm)" />
       </div>
 
       <CatalogBody
