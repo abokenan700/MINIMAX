@@ -16,7 +16,7 @@ export function Current() {
 
       <p style={{ fontSize: 11, color: "#999", letterSpacing: 1, textTransform: "uppercase", marginBottom: -8 }}>التصميم الحالي</p>
 
-      {/* ─── Current button ─── */}
+      {/* ─── Current button (محسّن) ─── */}
       <div style={{ width: 340, position: "relative" }}>
         <button
           style={{
@@ -27,7 +27,7 @@ export function Current() {
             padding: "3px 3px 3px 16px",
             borderRadius: 20,
             border: "1px solid rgba(0,0,0,0.07)",
-            background: "#FFFFFF",
+            background: "#FBFAF8",
             boxShadow: "0 -2px 14px rgba(0,0,0,0.07), 0 4px 18px rgba(0,0,0,0.08)",
             cursor: "pointer",
             gap: 0,
@@ -45,6 +45,10 @@ export function Current() {
             flexShrink: 0,
             boxShadow: "0 2px 10px rgba(234,88,12,0.35)",
           }}>
+            {/* Cart icon */}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.92)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
             <span style={{ fontSize: 13, fontWeight: 800, color: "#fff", letterSpacing: "0.3px", whiteSpace: "nowrap" }}>
               إتمام الطلب
             </span>
@@ -53,8 +57,8 @@ export function Current() {
 
           <div style={{ flex: 1 }} />
 
-          {/* Count + price */}
-          <div style={{ display: "flex", alignItems: "center", gap: 8, paddingLeft: 4 }}>
+          {/* Count + price — مسافة أكبر */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14, paddingLeft: 12 }}>
             <div style={{
               background: "rgba(234,88,12,0.07)",
               border: "1px solid rgba(234,88,12,0.18)",
